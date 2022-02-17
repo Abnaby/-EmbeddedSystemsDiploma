@@ -1,0 +1,96 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+unintializedGlobalVarForBSS_Sec
+                    0x4               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000      0x150
+ *(.vectors*)
+ .vectors       0x08000000       0x44 c_startup.o
+                0x08000000                vectors
+ *(.text*)
+ .text          0x08000044       0x90 c_startup.o
+                0x08000044                RESEVERD_Handler
+                0x08000044                HardFault_Handler
+                0x08000044                SysTick_Handler
+                0x08000044                IRQ0_Handler
+                0x08000044                PendSV_Handler
+                0x08000044                NMI_Handler
+                0x08000044                SVcall_Handler
+                0x08000044                UsageFault_Handler
+                0x08000044                BusFault_Handler
+                0x08000044                defaultHandler
+                0x08000044                DebugReserved_Handler
+                0x08000044                MMFault_Handler
+                0x08000050                resetHandler
+ .text          0x080000d4       0x7c main.o
+                0x080000d4                main
+ *(.rodata*)
+                0x08000150                _E_TEXT_SEC = .
+
+.glue_7         0x08000150        0x0
+ .glue_7        0x08000150        0x0 linker stubs
+
+.glue_7t        0x08000150        0x0
+ .glue_7t       0x08000150        0x0 linker stubs
+
+.vfp11_veneer   0x08000150        0x0
+ .vfp11_veneer  0x08000150        0x0 linker stubs
+
+.v4_bx          0x08000150        0x0
+ .v4_bx         0x08000150        0x0 linker stubs
+
+.iplt           0x08000150        0x0
+ .iplt          0x08000150        0x0 c_startup.o
+
+.rel.dyn        0x08000150        0x0
+ .rel.iplt      0x08000150        0x0 c_startup.o
+
+.data           0x20000000        0x4 load address 0x08000150
+                0x20000000                _S_DATA_SEC = .
+ *(.data*)
+ .data          0x20000000        0x0 c_startup.o
+ .data          0x20000000        0x4 main.o
+                0x20000000                intializedGlobalVarForDATA_Sec
+                0x20000004                _E_DATA_SEC = .
+
+.igot.plt       0x20000004        0x0 load address 0x08000154
+ .igot.plt      0x20000004        0x0 c_startup.o
+
+.bss            0x20000004        0x4 load address 0x08000154
+                0x20000004                _S_BSS_SEC = .
+ *(.bss*)
+ .bss           0x20000004        0x0 c_startup.o
+ .bss           0x20000004        0x0 main.o
+                0x20000004                _E_BSS_SEC = .
+ COMMON         0x20000004        0x4 main.o
+                0x20000004                unintializedGlobalVarForBSS_Sec
+                0x20000008                . = ALIGN (0x4)
+                0x20001008                . = (. + 0x1000)
+                0x20001008                stack_top = .
+LOAD c_startup.o
+LOAD main.o
+OUTPUT(blinkLED.elf elf32-littlearm)
+
+.comment        0x00000000       0x7e
+ .comment       0x00000000       0x7e c_startup.o
+                                 0x7f (size before relaxing)
+ .comment       0x0000007e       0x7f main.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 c_startup.o
+ .ARM.attributes
+                0x00000033       0x33 main.o

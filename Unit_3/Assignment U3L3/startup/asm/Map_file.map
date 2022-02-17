@@ -1,0 +1,62 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000       0xc8
+ *(.vectors*)
+ .vectors       0x08000000       0x44 asm_startup.o
+ *(.text*)
+ .text          0x08000044       0x7c main.o
+                0x08000044                main
+ .text          0x080000c0        0x8 asm_startup.o
+
+.data           0x080000c8        0x0
+ .data          0x080000c8        0x0 main.o
+ .data          0x080000c8        0x0 asm_startup.o
+
+.igot.plt       0x080000c8        0x0
+ .igot.plt      0x080000c8        0x0 asm_startup.o
+
+.glue_7         0x080000c8        0x0
+ .glue_7        0x080000c8        0x0 linker stubs
+
+.glue_7t        0x080000c8        0x0
+ .glue_7t       0x080000c8        0x0 linker stubs
+
+.vfp11_veneer   0x080000c8        0x0
+ .vfp11_veneer  0x080000c8        0x0 linker stubs
+
+.v4_bx          0x080000c8        0x0
+ .v4_bx         0x080000c8        0x0 linker stubs
+
+.iplt           0x080000c8        0x0
+ .iplt          0x080000c8        0x0 asm_startup.o
+
+.rel.dyn        0x080000c8        0x0
+ .rel.iplt      0x080000c8        0x0 asm_startup.o
+
+.bss            0x20000000        0x0
+ *(.bss*)
+ .bss           0x20000000        0x0 main.o
+ .bss           0x20000000        0x0 asm_startup.o
+LOAD main.o
+LOAD asm_startup.o
+OUTPUT(blinkLED.elf elf32-littlearm)
+
+.comment        0x00000000       0x7e
+ .comment       0x00000000       0x7e main.o
+                                 0x7f (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x33 main.o
+ .ARM.attributes
+                0x00000033       0x21 asm_startup.o

@@ -43,7 +43,7 @@ source :[AUTOSAR Document](https://www.autosar.org/fileadmin/user_upload/standar
     3.3 booling in `Local_booleanUART_ErrorState` if it zero it will try to send string again.  
 #### uart.h
 ![uart.h](https://i.ibb.co/zhMqFvj/Capture.png)  
-1. Header guards
+1. Header guards  
    Header guards are designed to ensure that the contents of a given header file are not copied more than once into any single file, to prevent duplicate definitions.
 2. Define the base address of UART0 and DR register to write in its FIFO to send the string.
 3. API Header to send a string from app.c
@@ -59,7 +59,7 @@ source :[AUTOSAR Document](https://www.autosar.org/fileadmin/user_upload/standar
    3. return type : `boolean` for trace error it will be 0 if 1st char is null  
 ### Generate *.o files
  ![files.o](https://i.ibb.co/2nTPNFh/Capture.png)  
- 1) `arm-none-eabi-gcc.exe`: GNU Arm Embedded Toolchain is a ready-to-use.  
+ 1) `arm-none-eabi-gcc.exe`: GNU Arm Embedded Toolchain is ready-to-use.  
  2) Options:    
     a) `-c` :  Compile and assemble, but do not link.  
     b) `-g` :  Enable debug information.  
@@ -84,7 +84,7 @@ source :[AUTOSAR Document](https://www.autosar.org/fileadmin/user_upload/standar
          &emsp;c) `LMA`: Load Mem. address of the output section.
 ### startup file content   
 ![startup.s](https://i.ibb.co/JCPnDbp/su-Content.png)  
-1) `global` refer to the global section to be seen from other files.
+1) `global` refers to the global section to be seen from other files.
 2) Define sections like :  
     a) `reset` section to be executed first.    
         &emsp;    `ldr` --> load stack pointer to address stack_top (defined in linker script)  
@@ -110,9 +110,9 @@ as set in linker script
 
 ### Symbols 
 ![Symbols](https://i.ibb.co/3TnjH42/Symboles.png)  
-&emsp;`D` refere to Data section   
-&emsp;`T` refere to text section  
-&emsp;`U` refere to unresolved   
+&emsp;`D` referse to Data section   
+&emsp;`T` referse to text section  
+&emsp;`U` referse to unresolved   
 ![Symbols](https://i.ibb.co/x6GmXzt/symbols-in-elf.png)  
 all `symboles` are resolved
 
