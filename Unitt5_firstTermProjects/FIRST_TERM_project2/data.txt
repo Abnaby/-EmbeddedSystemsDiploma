@@ -1,0 +1,5 @@
+2 Mohamed Abdo 3.5 1 2 3 4 5
+1 Pavly Mina 3 80 12 37 29 1
+2 Kerolos Shenouda 3.9 99 1 55 66 77
+3 Bolis Karam 3.5 45 21 55 18 46
+4 Kerolos Gamal 3.5 45 21 55 18
