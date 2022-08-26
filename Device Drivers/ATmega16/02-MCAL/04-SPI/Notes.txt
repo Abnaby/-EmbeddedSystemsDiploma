@@ -1,0 +1,8 @@
+1- CE (chip Enable) --> used to initiate and terminate the data transfer.
+2- Modes
+	1- 4 Wires 
+	2- 3-Wires use MISO only for data
+3- SPI Comunication must agree clk polarity and phase in master and slave 
+	Convention 
+			CPHA = 0 	0 LEADING 1ST EDGE 	1 SECOND CLK
+			CPOL = 1	0 RISING EDGE		1 FALLING EDGE

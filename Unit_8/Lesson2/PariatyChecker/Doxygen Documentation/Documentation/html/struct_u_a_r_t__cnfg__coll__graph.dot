@@ -1,0 +1,7 @@
+digraph "UART_cnfg"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{UART_cnfg\n|+ u16 baudrate\l+ USART_dataBitsCnfg\l databits\l+ USART_parityCnfg parity\l+ USART_stopBitCnfg stopbits\l+ USART_stateCnfg state\l+ USRT_operationCnfg\l operation\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+}

@@ -1,0 +1,14 @@
+digraph "main"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="This is the entery point of code."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MCAL_USART_init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_u_s_a_r_t___program_8c.html#ae03f1f40e3d9ae2203806d3585d72631",tooltip="This is a initilze function for USART in ATmega16."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="MCAL_USART_SendString",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_u_s_a_r_t___program_8c.html#ab20be00aef256b2333897dc2d5cb6455",tooltip="This function can send a string ."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MCAL_USART_TxChar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_u_s_a_r_t___program_8c.html#a811b417cd667ea87a81fc877e0f1acbe",tooltip="This function can send a character of data."];
+}
