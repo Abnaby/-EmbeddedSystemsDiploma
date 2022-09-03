@@ -1,0 +1,79 @@
+Address Packet Format	
+	- Nine Bits Long --> 7 address + 1 W/R + 1 Ack
+	- When a Slave recognizes that it is being addressed, it should acknowledge by pulling SDA low in the ninth SCL (ACK)
+	- addressed Slave is Busy :  SDA line should be left high in the ACK clock cycle
+	- An address packet consisting of a Slave address and a READ or a WRITE bit is called SLA+R or SLA+W, respectively
+	- The MSB of the address byte is transmitted first. Slave addresses can freely be allocated by the designer, but
+		the address 0000 000 is reserved for a general call.
+	- When a general call is issued, all Slaves should respond by pulling the SDA line low in the ACK cycle.
+	- All addresses of the format 1111 xxx should be reserved for future purposes
+Data Packet Format
+	- nine bits long --> 1 Byte Data + 1 Ack
+	- An Acknowledge (ACK) is signalled by the receiver pulling the SDA line low during the ninth SCL cycle. 
+	- If the receiver leaves the SDA line high, a NACK is signalled.
+	- When the receiver has received the last byte, or for some reason cannot receive any more bytes, 
+		it should inform the transmitter by sending a NACK after the final byte. 
+	- he MSB of the data byte is transmitted first.
+Combining Address and Data Packets into a Transmission
+	- consists of a START condition, a SLA+R/W, one or more data packets and a STOP condition.
+	- empty message, consisting of a START followed by a STOP condition, is illegal. 
+	- Note that the wired-ANDing  
+	- The Slave can extend the SCL low period by pulling the SCL line low. This is useful if the clock speed set up by the
+		Master is too fast for the Slave, or the Slave needs extra time for processing between the data transmissions
+	- Slave extending the SCL low period will not affect the SCL high period
+Multi-master Bus Systems, Arbitration and Synchronization
+	- if two or more Masters initiate a transmission at the Same time.
+		* Arbitration 
+		* Clk Synch
+	- When a contending Master discovers that it has lost the arbitration process, it should immediately switch to Slave mode to check whether it is being addressed by
+			the winning Master.  
+	- The fact that multiple Masters have started transmission at the same time should not be detectable to the Slaves.
+	- If the value read from the SDA line does not match the value the Master had output, it has lost the arbitration. 
+		* Note that a Master can only lose arbitration when it outputs a high SDA value while another Master outputs a low value.
+	- Note that arbitration is not allowed between:
+		* A REPEATED START condition and a data bit
+		* A STOP condition and a data bit
+		* A REPEATED START and a STOP condition
+Registers
+	- Bit Rate --> TWBR		SCL frequency = (F_CPU)/(16 + 2 * (TWBR) * 4 ^ (TWPS))	TWBR = Value of the TWI Bit Rate Register	TWPS = Value of the prescaler bits in the TWI Status Register
+					but the CPU clock frequency in the Slave must be at least 16 times higher than the SCL frequency.
+	- Status	  --> TWCR
+	- Control	  --> TWCR
+	- Data/Address    --> TWDR
+Notes
+	- The AVR TWI is byte-oriented and interrupt based. 
+	- Interrupts are issued after all bus events, like reception of a byte or transmission of a START condition. Because the TWI is interrupt-based
+	- Note that the TWI Interrupt Enable (TWIE) bit in TWCR together with the Global Interrupt Enable bit in SREG allow the application to decide whether or not assertion of
+		the TWINT Flag should generate an interrupt request. 
+	- If the TWIE bit is cleared, the application must poll the TWINT Flag in order to detect actions on the TWI bus.
+Start Condition 
+	- done by writing a specific value into TWCR, instructing the TWI hardware to transmit a START condition.
+	- Writing a one to TWINT clears the flag.
+	- The TWI will not start any operation as long as the TWINT bit in TWCR is set
+	- Immediately after the application has cleared TWINT,
+	- START condition has been transmitted, the TWINT Flag in TWCR is set.
+	- If TWSR indicates otherwise & 0xF8
+		* . If TWSR indicates otherwise
+Slave Address 
+	-  loads SLA+W into TWDR ( TWDR is used both for address and data)
+	- After TWDR has been loaded with the desired SLA+W, a specific value must be written to TWCR, 
+		making sure that TWINT is written to one (Clear The Flag), and TWSTA is written to zero
+	- Immediately after the application has cleared TWINT, the TWI will initiate transmission of the address packet
+	- TWCR flag is Set --> SLA+W has been transmitted and N/ACK Has been Received.
+Data Tx:
+	-  loads data into TWDR.
+	-  it is important that the TWINT bit is set in the value written. Writing a one to TWINT clears the flag
+	-  TWI will not start any operation as long as the TWINT bit in TWCR is set.
+	- Immediately after the application has cleared TWINT, the TWI will initiate transmission of the data packet.
+	- data packet has been transmitted, the TWINT Flag in TWCR is set
+Stop 
+	- Check TWSR to see if data was sent and ACK received.
+MODEES
+	- Master Transmitter 
+		1- START condition must be transmitted.
+		2- SLA+W is transmitted
+	- Master Receiver 
+		1- START condition must be transmitted.
+		2- SLA+R is transmitted
+	- Slave Transmitter
+	- Slave Receiver.
