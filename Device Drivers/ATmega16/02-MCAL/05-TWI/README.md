@@ -34,7 +34,6 @@ In V1 will has this function :
 | MCAL_TWI_StopCondition(void)  | This Function is used to Send STOP condition. |`void`  |`TWI_Errors` <a href="#TWI-Errors">enum of errors and states</a>  can be returned |Master Only|
 | MCAL_TWI_SlaveAddressMatch(addressingMode)  | This Function Used to Match slave address. |`addressingMode mode`  used to select how match addrees -  <a href="#TWI-addressingMode">in case of Slave Address + Read or Slave Address + Write</a>|`TWI_Errors` <a href="#TWI-Errors">enum of errors and states</a>  can be returned |Slave Only|
 | MCAL_TWI_ReceiveUntillStop(p2f)  | This Function Used to receive data untill master send stop condition Asynch. |`void (*ptr_callbck)(u8 copy_callbackData)`  Pointer to function executed when a byte of data received. |`TWI_Errors` <a href="#TWI-Errors">enum of errors and states</a>  can be returned |Slave Only|
-
 ### TWI-Initialization
 ```c
 TWI_Config myI2C=
@@ -45,14 +44,7 @@ TWI_Config myI2C=
 MCAL_TWI_Init(&myTWI);
 
 ```
-| Members | Description |  Parameters | Notes | 
-| ------ | ------ |  ------ | --------------| 
-| <a href="#TWI_InterruptControl">TWI_InterruptControl</a>  | Enable/Disable TWI Interrupts. | - <a href="#TWI_InterruptControl">refToParameters</a> ||
-| <a href="#TWI_DataOrder">TWI_DataOrder</a>  | LSB/MSB Transmit First.   | - <a href="#TWI_DataOrder">refToParameters</a> |`Master And Slave Must have the same data order.|
-| <a href="#TWI_Mode">TWI_Mode</a>  | Master Or Slave  | - <a href="#TWI_Mode">refToParameters</a> ||
-| <a href="#TWI_IdleLevel">TWI_IdleLevel</a>  | Idel be LOW/HIGH Level | - <a href="#TWI_IdleLevel">refToParameters</a> |Master And Slave Must have the same Clock Polarity.|
-| <a href="#TWI_DataSampling">TWI_DataSampling</a>  | determine When sample data  | - <a href="#TWI_DataSampling">refToParameters</a> |Master And Slave Must have the same Clock Phase|
-| <a href="#TWI_ClockRate">TWI_ClockRate</a>  | Set Clock Rate of TWI Module | - <a href="#TWI_ClockRate">refToParameters</a> |Master And Slave Must have the same Clock Rate|
+
 
 ## Different Configuration Parameter : 
 
