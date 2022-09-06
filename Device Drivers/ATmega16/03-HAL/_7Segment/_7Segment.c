@@ -117,6 +117,18 @@ _7Segment_ReturnState HAL_7SegmentWriteNumber(_7Segment_Config* ptr_config, u8 c
 		return LOC_u8Return; 
 	}
 	/*		GOTO FUNC			*/
+	if(copy_u8Number <= 48 && copy_u8Number >= 57)
+	{
+		copy_u8Number = copy_u8Number - 48 ;
+	}
+	else if (copy_u8Number <= 0 && copy_u8Number >= 9)
+	{
+		copy_u8Number = copy_u8Number ; 
+	}
+	else
+	{
+		// <!TODO ERROR> Wrong Input
+	}
    (*arr_ofFunctions[copy_u8Number])(ptr_config);
 
 	/*		Return Value		*/	
