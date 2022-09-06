@@ -2,7 +2,7 @@
 * @file _7Segment.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
+* @version 0.2 : Support 1 or '1' as 1 --> Num or 'Num' = NUM
 * @date 2022-09-05
 *
 */
