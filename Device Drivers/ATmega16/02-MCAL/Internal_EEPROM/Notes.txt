@@ -1,0 +1,27 @@
+Write Operation :
+
+1. Wait till previous write operation is completed(i.e. wait till EEWE becomes zero).
+
+2. Load the EEPROM address into EEAR at which the data has to be stored.
+
+3. Load the data into EEDR which has to be stored in EEPROM.
+
+4. Set the EEMWE (EEPROM Master Write Enable).
+
+5. Within four clock cycles after 4th step, set EEWE(Eeprom Write Enable) to trigger the EEPROM Write Opeartion 
+
+Read Operation :
+1. WAit for completion of previous Write operation.
+
+2. EEWE will be cleared once EEPROM write is completed.
+
+3. Load the EEPROM address into EEAR from where the data needs to be read.
+
+4. Trigger the EEPROM read operation by setting EERE (EEPROM Read Enable).
+
+5. Wait for some time (about 1ms) and collect the read data from EEDR. 
+
+
+
+When the EEPROM is read, the CPU is halted for four clock cycles before the next instruction is executed.
+When the EEPROM is written, the CPU is halted for two clock cycles before the next instruction is executed
