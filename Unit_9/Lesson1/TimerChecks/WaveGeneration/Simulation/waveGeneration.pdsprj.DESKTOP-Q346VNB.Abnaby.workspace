@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<WORKSPACE>
+ <FRAME activewindow="1">
+  <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffff100000000d000000bf0300002c040000</PLACEMENT>
+  <WINDOW type="default" module="PROJNOTES"/>
+  <WINDOW type="default" module="ISIS">
+   <editor metric="0" gridmajor="2540000" mode="00000000" zoom="0" scale="131" flipped="0" gridminor="254000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="127000">
+    <world y1="-8890000" x1="-12700000" y2="8890000" x2="12700000"/>
+    <centre x="0" y="0"/>
+    <origin x="0" y="0"/>
+   </editor>
+  </WINDOW>
+ </FRAME>
+ <MODULE name="ARES">
+  <editor metric="0" gridmajor="0" mode="00000000" zoom="10" scale="10" flipped="0" gridminor="0" gridmode="32" snapidx="3" snap="0" xcursor="0" orgmode="0" snaprange="0">
+   <world y1="-12700000" x1="-15240000" y2="12700000" x2="15240000"/>
+   <centre x="0" y="0"/>
+   <origin x="0" y="0"/>
+  </editor>
+ </MODULE>
+ <MODULE name="ISIS">
+  <editor metric="0" gridmajor="2540000" mode="00000000" zoom="0" scale="131" flipped="0" gridminor="254000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="127000">
+   <world y1="-8890000" x1="-12700000" y2="8890000" x2="12700000"/>
+   <centre x="0" y="0"/>
+   <origin x="0" y="0"/>
+  </editor>
+ </MODULE>
+ <MODULE name="VSMDEBUG">
+  <PWI>
+   <POPUP w="800" x="512" flags="00008003" y="635" h="200" pid="0" iid="-1">
+    <PROPERTIES>
+     <ITEM name="Message Column Width">542</ITEM>
+     <ITEM name="ShowGrid">No</ITEM>
+     <ITEM name="Source Column Width">100</ITEM>
+     <ITEM name="Time Column Width">120</ITEM>
+     <ITEM name="Version">100</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="630" x="0" flags="00000032" y="145" h="298" pid="1" iid="-1">
+    <PROPERTIES>
+     <ITEM name="Address Column Width">191</ITEM>
+     <ITEM name="AutoResize">No</ITEM>
+     <ITEM name="Gridlines">Yes</ITEM>
+     <ITEM name="Item 0">"DATA","[R28]+0005",00000005,0000000E,1114,2,2,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Item 1">"EEAR","0080003E",00000005,0000000E,62,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Item 2">"EEDR","0080003D",00000005,0000000E,61,1,3,00000002,0,00000000,00000000</ITEM>
+     <ITEM name="Item 3">"TotalTicks","[R28]+0001",00000005,0000000E,1099,2,4,00000003,0,00000000,00000000</ITEM>
+     <ITEM name="Name Column Width">183</ITEM>
+     <ITEM name="ShowAddresses">Yes</ITEM>
+     <ITEM name="ShowPreviousValues">No</ITEM>
+     <ITEM name="ShowTypes">No</ITEM>
+     <ITEM name="ShowWatchPoint">Yes</ITEM>
+     <ITEM name="TriggerMode">0</ITEM>
+     <ITEM name="Value Column Width">83</ITEM>
+     <ITEM name="Version">100</ITEM>
+     <ITEM name="Watch Expression Column Width">83</ITEM>
+     <ITEM name="nItems">4</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="30" x="78" flags="00000008" y="169" h="16" pid="3" iid="5">
+    <PROPERTIES/>
+   </POPUP>
+   <POPUP w="8" x="98" flags="0000000a" y="189" h="1" pid="10" iid="5">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000000</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="8" x="118" flags="0000000a" y="209" h="32" pid="6" iid="5">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000000</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="16" x="138" flags="0000000a" y="229" h="32" pid="7" iid="5">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000000</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="16" x="158" flags="00000000" y="249" h="32" pid="14" iid="5">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000000</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="16" x="178" flags="0000000a" y="269" h="32" pid="4" iid="5">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000060</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="16" x="198" flags="0000000a" y="289" h="8" pid="13" iid="5">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000020</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="871" x="1049" flags="0000000b" y="680" h="400" pid="1" iid="5">
+    <PROPERTIES/>
+   </POPUP>
+   <POPUP w="594" x="1184" flags="0000000b" y="20" h="499" pid="2" iid="5">
+    <PROPERTIES>
+     <ITEM name="Address Column Width">94</ITEM>
+     <ITEM name="AutoResize">No</ITEM>
+     <ITEM name="Gridlines">Yes</ITEM>
+     <ITEM name="Name Column Width">176</ITEM>
+     <ITEM name="ShowAddresses">Yes</ITEM>
+     <ITEM name="ShowGlobals">Yes</ITEM>
+     <ITEM name="ShowPreviousValues">No</ITEM>
+     <ITEM name="ShowTypes">No</ITEM>
+     <ITEM name="ShowWatchPoint">No</ITEM>
+     <ITEM name="TriggerMode">0</ITEM>
+     <ITEM name="Value Column Width">382</ITEM>
+     <ITEM name="Version">100</ITEM>
+     <ITEM name="nItems">0</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="1384" x="165" flags="00000001" y="166" h="877" pid="0" iid="2">
+    <PROPERTIES/>
+   </POPUP>
+  </PWI>
+  <BREAKPOINT LINE="31" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="54" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="55" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="57" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="59" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="65" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="66" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="80" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="84" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="86" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/main.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="88" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/ATMEGA_EEPROM_Program.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="92" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/ATMEGA_EEPROM_Program.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="111" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/ATMEGA_EEPROM_Program.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="141" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/ATMEGA_EEPROM_Program.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="146" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/ATMEGA_EEPROM_Program.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="175" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/ATMEGA_EEPROM_Program.c" ADDRESS="4294967295" PROJECT="5"/>
+  <BREAKPOINT LINE="116" ENABLED="FALSE" FILE="../../../../../Documents/Atmel Studio/7.0/chkDrivers/chkDrivers/GPIO_program.c" ADDRESS="4294967295" PROJECT="5"/>
+ </MODULE>
+</WORKSPACE>
