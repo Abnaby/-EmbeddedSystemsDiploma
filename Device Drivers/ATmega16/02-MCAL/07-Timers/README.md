@@ -199,6 +199,7 @@ int main(void)
 }
 ```
 ![Timing Diagram](https://drive.google.com/uc?export=download&id=1bebLBB3_HEQvDFzLn3jwR1NGHsnL7pY1)
+
 ![Output](https://drive.google.com/uc?export=download&id=1y-NEcn57g69LsyzwhlDegB4h0ax6lKtt)
 
 ## Contributing  
