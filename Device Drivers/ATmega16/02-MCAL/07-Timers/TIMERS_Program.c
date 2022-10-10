@@ -61,6 +61,9 @@ static u32 Global_u8PWM_Ton = 0 ;
 static u32 Global_u8PWM_Toff = 0 ; 
 
 
+static Timer2Config_t* GLOBAL_ptrToTimer2UserConf ; 
+static u16 Timer2Prescaler = 0 ; 
+
 /******************************************************************************
 * Function Prototypes
 *******************************************************************************/
@@ -87,11 +90,11 @@ void Timer_voidInitTimer0(Timer0Config_t *ptr_userConfig)
 			//Set Global Variable 
 		switch(GLOBAL_ptrToTimer0UserConf->clockSourceAndPrescalerTimer0)
 		{
-			case TIMER_DISABLE:     Timer0Prescaler = 0 ; 			    break ;
-			case TIMER_CLK_OVR_1:	Timer0Prescaler = 1 ; 			    break ; 
-			case TIMER_CLK_OVR_8:	Timer0Prescaler = 8 ;				break ; 
-			case TIMER_CLK_OVR_256:	Timer0Prescaler = 256	;			break ; 
-			case TIMER_CLK_OVR_1024: Timer0Prescaler = 1024	;			break ; 	
+			case TIMER0_DISABLE:     Timer0Prescaler = 0 ; 			    break ;
+			case TIMER0_CLK_OVR_1:	Timer0Prescaler = 1 ; 			    break ; 
+			case TIMER0_CLK_OVR_8:	Timer0Prescaler = 8 ;				break ; 
+			case TIMER0_CLK_OVR_256:	Timer0Prescaler = 256	;			break ; 
+			case TIMER0_CLK_OVR_1024: Timer0Prescaler = 1024	;			break ; 	
 			default: break ;  
 		}
     }
@@ -100,68 +103,231 @@ void Timer_voidInitTimer0(Timer0Config_t *ptr_userConfig)
         // <!TODO> ERROR IN CONFIG POINTER 
     }
 }
-void Timer_voidStartTimer0(void)
+void Timer_voidInitTimer2(Timer2Config_t *ptr_userConfig)
 {
-    if(GLOBAL_ptrToTimer0UserConf != NULL)
+    GLOBAL_ptrToTimer2UserConf = ptr_userConfig ; 
+    if(ptr_userConfig != NULL)
     {
-        // Set Clock With Prescaler 
-        TIM_TCCR0 &= ~(0x7) ; 
-        TIM_TCCR0 |= GLOBAL_ptrToTimer0UserConf->clockSourceAndPrescalerTimer0 ;
+        
+        /*  CHK CLK SRC    */ 
+        if(ptr_userConfig->clkSourceOfTimer2 != TIMER2_MAIN_SYS_IO_CLK)
+        {
+            // Asynch Mode :  A safe procedure for switching clock source is
+            // STEP1:  Disable the Timer/Counter2 interrupts by clearing OCIE2 and TOIE2 
+            CLR_BIT(TIM_TIMSK,TIMSK_OCIE2); 
+            CLR_BIT(TIM_TIMSK,TIMSK_TOIE2);
+            // STEP2: Select clock source by setting AS2 as appropriate
+            SET_BIT(TIM_ASSR2,ASSR2_AS2);
+            // STEP3: Write new values to TCNT2, OCR2, and TCCR2
+            TIM_TCNT2 = 0 ;
+            TIM_TCCR2 = 0  ;
+            //wait for registers update
+            while (TIM_ASSR2 & ((1<<ASSR2_TCN2UB)|(1<<ASSR2_TCR2UB)));
+            TIM_TCCR2 |= GLOBAL_ptrToTimer2UserConf->operationModeTIM2 ; 
+            while (TIM_ASSR2 & ((1<<ASSR2_TCR2UB)));
+
+
+        }
+        else
+        {
+
+            // STEP1: CLR TCCR2 
+            TIM_TCCR2 = 0  ;    
+            // step2: SET MODE
+            TIM_TCCR2 |= GLOBAL_ptrToTimer2UserConf->operationModeTIM2 ; 
+        
+            CLR_BIT(TIM_ASSR2,ASSR2_AS2);
+
+        }
+
+        switch(GLOBAL_ptrToTimer2UserConf->clkSourceAndPrescalerTimer2)
+        {
+            case TIMER2_DISABLE:     Timer2Prescaler = 0 ; 			    break ;
+            case TIMER2_CLK_OVR_1:	Timer2Prescaler = 1 ; 			    break ; 
+            case TIMER2_CLK_OVR_8:	Timer2Prescaler = 8 ;				break ; 
+            case TIMER2_CLK_OVR_32: Timer2Prescaler = 32	;			break ; 
+            case TIMER2_CLK_OVR_64: Timer2Prescaler = 64	;			break ; 	
+            case TIMER2_CLK_OVR_128: Timer2Prescaler = 128	;			break ; 	
+            case TIMER2_CLK_OVR_256:	Timer2Prescaler = 256	;			break ; 
+            case TIMER2_CLK_OVR_1024: Timer2Prescaler = 1024	;			break ; 	
+            default: break ;  
+        }
+
     }
     else
     {
         // <!TODO> ERROR IN CONFIG POINTER 
-    }
+    }    
 }
-void Timer_voidStopTimer0(void)
+void Timer_voidStartTimer(TimerSelection_t copyTimerIndex)
 {
-     TIM_TCCR0 &= ~(0x7) ; 
+    switch (copyTimerIndex)
+    {
+    case TIMER0: 
+        {
+            if(GLOBAL_ptrToTimer0UserConf != NULL)
+            {
+                // Set Clock With Prescaler 
+                TIM_TCCR0 &= ~(0x7) ; 
+                TIM_TCCR0 |= GLOBAL_ptrToTimer0UserConf->clockSourceAndPrescalerTimer0 ;
+            }
+            else
+            {
+                // <!TODO> ERROR IN CONFIG POINTER 
+            }
+        }
+        break;
+    case TIMER1: 
+        break;
+    case TIMER2: 
+        {
+            if(GLOBAL_ptrToTimer2UserConf != NULL)
+            {
+                // Set Clock With Prescaler 
+                TIM_TCCR2 &= ~(0x7) ; 
+                TIM_TCCR2 |= GLOBAL_ptrToTimer2UserConf->clkSourceAndPrescalerTimer2 ;
+                if(GLOBAL_ptrToTimer2UserConf->clkSourceOfTimer2 != TIMER2_MAIN_SYS_IO_CLK)
+                {
+                    // Wait for TCCR2
+                    while (TIM_ASSR2 & ((1<<ASSR2_TCR2UB)));
+                }
+                
+            }
+            else
+            {
+                // <!TODO> ERROR IN CONFIG POINTER 
+    }
+        }
+        break;
+    default:
+        break;
+    }
+
 }
 
-void Timer_u8GetCounterTimer0(u8 *pu8GetTicks)
+void Timer_voidStopTimer(TimerSelection_t copyTimerIndex)
 {
-    if(GLOBAL_ptrToTimer0UserConf != NULL)
+    switch (copyTimerIndex)
     {
-        *pu8GetTicks =TIM_TCNT0 ; 
-    }
-    else
-    {
-        // <!TODO> ERROR IN CONFIG POINTER 
+    case TIMER0: 
+        {
+         TIM_TCCR0 &= ~(0x7) ; 
+        }
+        break;
+    case TIMER1: 
+        break;
+    case TIMER2: 
+        {    
+            TIM_TCCR2 &= ~(0x7) ; 
+            if(GLOBAL_ptrToTimer2UserConf->clkSourceOfTimer2 != TIMER2_MAIN_SYS_IO_CLK)
+            {
+                // Wait for TCCR2
+                while (TIM_ASSR2 & ((1<<ASSR2_TCR2UB)));
+            }
+        }
+        break;
+    default:
+        break;
     }
 }
 
-void Timer_u8SetCounterTimer0(u8 copy_u8SetTicks)
+void Timer_u8GetCounterTimer(TimerSelection_t copyTimerIndex,u16 *pu8GetTicks)
 {
-    if(GLOBAL_ptrToTimer0UserConf != NULL)
+    switch (copyTimerIndex)
     {
-       TIM_TCNT0 =  copy_u8SetTicks  ; 
+    case TIMER0: 
+        {
+            if(GLOBAL_ptrToTimer0UserConf != NULL)
+            {
+                *pu8GetTicks =TIM_TCNT0 ; 
+            }
+            else
+            {
+                // <!TODO> ERROR IN CONFIG POINTER 
+            } 
+        }
+        break;
+    case TIMER1: 
+        break;
+    case TIMER2: 
+        {    
+            if(GLOBAL_ptrToTimer2UserConf != NULL)
+            {
+                *pu8GetTicks =TIM_TCNT2 ; 
+            }
+            else
+            {
+                // <!TODO> ERROR IN CONFIG POINTER 
+            } 
+        }
+        break;
+    default:
+        break;
     }
-    else
+}
+
+void Timer_u8SetCounterTimer(TimerSelection_t copyTimerIndex , u8 copy_u8SetTicks)
+{
+    switch (copyTimerIndex)
     {
-        // <!TODO> ERROR IN CONFIG POINTER 
-    }   
+    case TIMER0: 
+        {
+            if(GLOBAL_ptrToTimer0UserConf != NULL)
+            {
+                TIM_TCNT0 =  copy_u8SetTicks  ; 
+            }
+            else
+            {
+                // <!TODO> ERROR IN CONFIG POINTER 
+            } 
+        }
+        break;
+    case TIMER1: 
+        break;
+    case TIMER2: 
+        {    
+            if(GLOBAL_ptrToTimer2UserConf != NULL)
+            {
+                TIM_TCNT2 =  copy_u8SetTicks ;  
+                if(GLOBAL_ptrToTimer2UserConf->clkSourceOfTimer2 != TIMER2_MAIN_SYS_IO_CLK)
+                {
+                    // Wait for TCCR2
+                    while (TIM_ASSR2 & ((1<<ASSR2_TCN2UB)));
+                }
+            }
+            else
+            {
+                // <!TODO> ERROR IN CONFIG POINTER 
+            } 
+        }
+        break;
+    default:
+        break;
+    }
+  
 }
 void Timer_voidSetBusyWait_ms(TimerSelection_t timerNum , u16 Copy_u16DelayMs)
 {
     float LOCAL_floatTicks = 0;
-    u32 LOCAL_u32Ticks = 0;
-	
-    u32 LOC_u16OverflowsCount ; 
-	LOCAL_floatTicks = (u32)CPU_CLOCK_FREQ/(u32)(TIM_GENERATE_1_MS) ; 
-	LOCAL_floatTicks = (LOCAL_floatTicks/Timer0Prescaler);
-	LOCAL_floatTicks = LOCAL_floatTicks * (u32)Copy_u16DelayMs ;
-	LOCAL_u32Ticks = (u32)LOCAL_floatTicks ; 
+    u32 LOCAL_u32Ticks = 0;	
+    u32 LOC_u16OverflowsCount  ; 
+    u8 Loc_u8IntState ; 
+    u16 LOC_u8NumOfOverflows ; 
 	 
     switch (timerNum)
     {
     case TIMER0:
 	{
+        LOCAL_floatTicks = (u32)CPU_CLOCK_FREQ/(u32)(TIM_GENERATE_1_MS) ; 
+        LOCAL_floatTicks = (LOCAL_floatTicks/Timer0Prescaler);
+        LOCAL_floatTicks = LOCAL_floatTicks * (u32)Copy_u16DelayMs ;
+        LOCAL_u32Ticks = (u32)LOCAL_floatTicks ; 
 		// Get Interrupt Status 
-		u8 Loc_u8IntState = GET_BIT(TIM_TIMSK,TIMSK_TOIE0);
+		Loc_u8IntState = GET_BIT(TIM_TIMSK,TIMSK_TOIE0);
 		CLR_BIT(TIM_TIMSK,TIMSK_TOIE1); 
         // Restart Timer 
-        Timer_voidStopTimer0();
-        Timer_voidStartTimer0();
+        Timer_voidStopTimer(TIMER0);
+        Timer_voidStartTimer(TIMER0);
         // Stuck Until Reach
         if(LOCAL_u32Ticks <= _8_BIT_OV_) 
         {
@@ -171,7 +337,7 @@ void Timer_voidSetBusyWait_ms(TimerSelection_t timerNum , u16 Copy_u16DelayMs)
         {
             LOC_u16OverflowsCount = 0 ; 
             // Need to Calc Number of Overflows 
-            u16 LOC_u8NumOfOverflows = LOCAL_u32Ticks/ _8_BIT_OV_ ; 
+            LOC_u8NumOfOverflows = LOCAL_u32Ticks/ _8_BIT_OV_ ; 
             while (LOC_u8NumOfOverflows > LOC_u16OverflowsCount ) 
             {
                 WAIT_OV_FLAG(TIM_TIFR,TIFR_TOV0); /* Wait for TOV0 to roll over */
@@ -183,15 +349,56 @@ void Timer_voidSetBusyWait_ms(TimerSelection_t timerNum , u16 Copy_u16DelayMs)
         }
 		// Set int state 
 		TIM_TIMSK |= (Loc_u8IntState << TIMSK_TOIE0);
-
         break;
 	}
     case TIMER1:
+
         /* code */
         break;
     case TIMER2:
-        /* code */
+    {
+        if(GLOBAL_ptrToTimer2UserConf->clkSourceOfTimer2 != TIMER2_MAIN_SYS_IO_CLK)
+        {
+            LOCAL_floatTicks = (u32)TIMER2_EXTERNAL_CLK_VAL_IN_HZ/(u32)(TIM_GENERATE_1_MS) ;          
+        }
+        else
+        {
+            LOCAL_floatTicks = (u32)CPU_CLOCK_FREQ/(u32)(TIM_GENERATE_1_MS) ; 
+        }
+        LOCAL_floatTicks = (LOCAL_floatTicks/Timer2Prescaler);
+        LOCAL_floatTicks = LOCAL_floatTicks * (u32)Copy_u16DelayMs ;
+        LOCAL_u32Ticks = (u32)LOCAL_floatTicks ;
+        // Get Interrupt Status 
+        Loc_u8IntState = GET_BIT(TIM_TIMSK,TIMSK_TOIE2);
+        CLR_BIT(TIM_TIMSK,TIMSK_TOIE2); 
+        // Restart Timer 
+        Timer_voidStopTimer(TIMER2);
+        Timer_voidStartTimer(TIMER2);
+        // Stuck Until Reach
+        if(LOCAL_u32Ticks <= _8_BIT_OV_) 
+        {
+            while (TIM_TCNT2 < (u8)LOCAL_u32Ticks );
+        }
+        else
+        {
+            LOC_u16OverflowsCount = 0 ; 
+            // Need to Calc Number of Overflows 
+            LOC_u8NumOfOverflows = LOCAL_u32Ticks/ _8_BIT_OV_ ; 
+            while (LOC_u8NumOfOverflows > LOC_u16OverflowsCount ) 
+            {
+                WAIT_OV_FLAG(TIM_TIFR,TIFR_TOV2); /* Wait for TOV2 to roll over */
+                //Clear Flag
+                TIM_TIFR = 0x40;  // Can't use |= that implies a read-modify-write
+                // Increas LOC_u16OverflowsCount 
+                LOC_u16OverflowsCount++ ; 
+            }
+        }
+		// Set int state 
+		TIM_TIMSK |= (Loc_u8IntState << TIMSK_TOIE2);
+		
         break;
+    }
+
     default:
         // <!TODO> ERROR IN Timer Selection
         break;
@@ -202,22 +409,23 @@ void Timer_voidSetBusyWait_us(TimerSelection_t timerNum, u16 Copy_u16DelayUs)
 	float LOCAL_floatTicks ; 
 	u32 LOCAL_u32Ticks ; 
     u32 LOC_u16OverflowsCount ; 
-	LOCAL_floatTicks = (u32)CPU_CLOCK_FREQ/(u32)(TIM_GENERATE_1_US) ; 
-	LOCAL_floatTicks = (LOCAL_floatTicks/Timer0Prescaler);
-	LOCAL_floatTicks = LOCAL_floatTicks * (u32)Copy_u16DelayUs ;
-	LOCAL_u32Ticks = (u32)LOCAL_floatTicks ; 
-	 
+	u8 Loc_u8IntState = 0 ; 
+	u16 LOC_u8NumOfOverflows; 
     switch (timerNum)
     {
     case TIMER0:
 	{
+		LOCAL_floatTicks = (u32)CPU_CLOCK_FREQ/(u32)(TIM_GENERATE_1_US) ; 
+		LOCAL_floatTicks = (LOCAL_floatTicks/Timer0Prescaler);
+		LOCAL_floatTicks = LOCAL_floatTicks * (u32)Copy_u16DelayUs ;
+		LOCAL_u32Ticks = (u32)LOCAL_floatTicks ; 
 		// Get Interrupt Status 
-		u8 Loc_u8IntState = GET_BIT(TIM_TIMSK,TIMSK_TOIE0);
-		CLR_BIT(TIM_TIMSK,TIMSK_TOIE1); 
+		Loc_u8IntState = GET_BIT(TIM_TIMSK,TIMSK_TOIE0);
+		CLR_BIT(TIM_TIMSK,TIMSK_TOIE0); 
         // Restart Timer 
-        Timer_voidStopTimer0();
-        Timer_u8SetCounterTimer0(0); 
-        Timer_voidStartTimer0();
+        Timer_voidStopTimer(TIMER0);
+        Timer_u8SetCounterTimer(TIMER0,0); 
+        Timer_voidStartTimer(TIMER0);
         // Stuck Until Reach
         if(LOCAL_u32Ticks <= _8_BIT_OV_) 
         {
@@ -227,7 +435,7 @@ void Timer_voidSetBusyWait_us(TimerSelection_t timerNum, u16 Copy_u16DelayUs)
         {
             LOC_u16OverflowsCount = 0 ; 
             // Need to Calc Number of Overflows 
-            u16 LOC_u8NumOfOverflows = LOCAL_u32Ticks/ _8_BIT_OV_ ; 
+            LOC_u8NumOfOverflows = LOCAL_u32Ticks/ _8_BIT_OV_ ; 
             while (LOC_u8NumOfOverflows > LOC_u16OverflowsCount ) 
             {
                 WAIT_OV_FLAG(TIM_TIFR,TIFR_TOV0); /* Wait for TOV0 to roll over */
@@ -245,8 +453,51 @@ void Timer_voidSetBusyWait_us(TimerSelection_t timerNum, u16 Copy_u16DelayUs)
         /* code */
         break;
     case TIMER2:
-        /* code */
+	{
+        if(GLOBAL_ptrToTimer2UserConf->clkSourceOfTimer2 != TIMER2_MAIN_SYS_IO_CLK)
+        {	
+			// <!ERROR> : Unsupported Feature
+        }
+        else
+        {
+            LOCAL_floatTicks = (u32)CPU_CLOCK_FREQ/(u32)(TIM_GENERATE_1_US) ; 
+			LOCAL_floatTicks = (LOCAL_floatTicks/Timer2Prescaler);
+			LOCAL_floatTicks = LOCAL_floatTicks * (u32)Copy_u16DelayUs ;
+			LOCAL_u32Ticks = (u32)LOCAL_floatTicks ; 
+			// Get Interrupt Status 
+			Loc_u8IntState = GET_BIT(TIM_TIMSK,TIMSK_TOIE2);
+			CLR_BIT(TIM_TIMSK,TIMSK_TOIE2); 
+			// Restart Timer 
+			Timer_voidStopTimer(TIMER2);
+			Timer_u8SetCounterTimer(TIMER2,0); 
+			Timer_voidStartTimer(TIMER2);
+			// Stuck Until Reach
+			if(LOCAL_u32Ticks <= _8_BIT_OV_) 
+			{
+				while (TIM_TCNT2 < (u8)LOCAL_u32Ticks );
+			}
+			else
+			{
+				LOC_u16OverflowsCount = 0 ; 
+				// Need to Calc Number of Overflows 
+				LOC_u8NumOfOverflows = LOCAL_u32Ticks/ _8_BIT_OV_ ; 
+				while (LOC_u8NumOfOverflows > LOC_u16OverflowsCount ) 
+				{
+					WAIT_OV_FLAG(TIM_TIFR,TIFR_TOV2); /* Wait for TOV0 to roll over */
+					//Clear Flag
+					TIM_TIFR = 0x80 ;  // Can't use |= that implies a read-modify-write
+					// Increas LOC_u16OverflowsCount 
+					LOC_u16OverflowsCount++ ; 
+				}
+			}
+
+        }
+		// Set int state 
+		TIM_TIMSK |= (Loc_u8IntState << TIMSK_TOIE2);
         break;
+
+	}
+
     default:
         // <!TODO> ERROR IN Timer Selection
         break;
@@ -536,7 +787,7 @@ void __vector_19(void)
             TIMER0_CTC_CallBack_Single(); 
             //  Reset Number overflow
             copy_u16NumberofOverflows = 0 ; 
-			Timer_voidStopTimer0();
+			Timer_voidStopTimer(TIMER0);
         }
     }
     else

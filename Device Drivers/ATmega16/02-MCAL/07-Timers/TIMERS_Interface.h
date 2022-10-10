@@ -60,7 +60,16 @@ typedef void(*ptr_VoidFcn)(void);
 * Function Prototypes
 *******************************************************************************/
 
+/**************************************/
 
+/**
+ * @brief This Function Used to Init Timer2 Only
+ * 
+ * @param ptr_userConfig pointer to struct that holds user configuration for timer0 
+ */
+void Timer_voidInitTimer2(Timer2Config_t *ptr_userConfig); 
+
+/*************************************/
 /**
  * @brief This Function Used to Init Timer0 Only
  * 
@@ -70,27 +79,29 @@ void Timer_voidInitTimer0(Timer0Config_t *ptr_userConfig);
 /**
  * @brief This Function Used to Start Timer0 for counting 
  * 
+ * @param copyTimerIndex select from @ref TimerSelection_t enum
  */
-void Timer_voidStartTimer0(void); 
+void Timer_voidStartTimer(TimerSelection_t copyTimerIndex);
 /**
- * @brief This Function Used to Stop Timer 0 from Counting and clear Counter
+ * @brief This Function Used to Stop Timers from Counting and clear Counter
  * 
+* @param copyTimerIndex select from @ref TimerSelection_t enum
  */
-void Timer_voidStopTimer0(void);
-
+void Timer_voidStopTimer(TimerSelection_t copyTimerIndex);
 /**
  * @brief This function used to get number of ticks from when start timer. 
  * 
  * @param u8 *pu8GetTicks pointer to number of ticks 
+ * @param copyTimerIndex select from @ref TimerSelection_t enum
  * @return void 
  */
-void Timer_u8GetCounterTimer0(u8 *pu8GetTicks); 
+void Timer_u8GetCounterTimer(TimerSelection_t copyTimerIndex, u16 *pu8GetTicks); 
 /**
  * @brief This function used to set number of ticks to start count from it. 
  * @param u8 copy_u8SetTicks number of ticks will loaded into TCNT0 reg
  * @return void 
  */
-void Timer_u8SetCounterTimer0(u8 copy_u8SetTicks); 
+void Timer_u8SetCounterTimer(TimerSelection_t copyTimerIndex, u8 copy_u8SetTicks); 
 
 
 /**
