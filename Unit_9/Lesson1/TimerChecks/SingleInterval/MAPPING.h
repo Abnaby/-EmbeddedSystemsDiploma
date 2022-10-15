@@ -1,7 +1,7 @@
 /**************************************************************************/
 /* Author	: Mohamed                                               	  */
 /* Date		: 15 February 2021                                 		      */
-/* Version	: V02							  							  */
+/* Version	: V03							  							  */
 /**************************************************************************/
 
 #ifndef MAPPING_H
@@ -54,6 +54,8 @@
 #define EXT_INT2_FALLING_EDGE       33
 #define EXT_INT2_RISING_EDGE        36
 
+#define SREG              *((volatile u8 *) (0x5F))
+#define SREG_GIE    7
 
 
 
