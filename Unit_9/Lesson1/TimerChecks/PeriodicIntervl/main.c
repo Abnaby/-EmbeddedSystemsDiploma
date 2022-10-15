@@ -6,8 +6,7 @@
 #include "TIMERS_Interface.h"
 #include "EXT_INT_interface.h"
 
-#include <util/delay.h>
-Timer0Config_t myTimer0 = {TIM0_CTC_Mode , TIMER_CLK_OVR_1};
+Timer0Config_t myTimer0 = {TIM_CTC_Mode , TIMER0_CLK_OVR_1};
 void xxx (void); 
 int main(void)
 {
@@ -17,7 +16,7 @@ int main(void)
 	GPIO_voidSetPinValue(PORTC, PIN0, HIGH);
 	Timer_voidSetCompMatchInterrupState(TIMER0,TIM_OCM_ENABLE);
 	Timer_voidSetIntervalPeriodicMS(TIMER0,1000,xxx);
-	Timer_voidStartTimer0();
+	Timer_voidStartTimer(TIMER0);
 	EXTINT_voidGlobalIntEnable();	
 	while(1)
 	{

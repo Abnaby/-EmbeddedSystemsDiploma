@@ -60,16 +60,22 @@ typedef void(*ptr_VoidFcn)(void);
 * Function Prototypes
 *******************************************************************************/
 
-/**************************************/
+
+/**
+ * @brief This Function Used to Init Timer1 Only
+ * 
+ * @param ptr_userConfig pointer to struct that holds user configuration for timer1
+ */
+void Timer_voidInitTimer1(Timer1Config_t *ptr_userConfig); 
+
 
 /**
  * @brief This Function Used to Init Timer2 Only
  * 
- * @param ptr_userConfig pointer to struct that holds user configuration for timer0 
+ * @param ptr_userConfig pointer to struct that holds user configuration for timer2
  */
 void Timer_voidInitTimer2(Timer2Config_t *ptr_userConfig); 
 
-/*************************************/
 /**
  * @brief This Function Used to Init Timer0 Only
  * 
@@ -101,7 +107,7 @@ void Timer_u8GetCounterTimer(TimerSelection_t copyTimerIndex, u16 *pu8GetTicks);
  * @param u8 copy_u8SetTicks number of ticks will loaded into TCNT0 reg
  * @return void 
  */
-void Timer_u8SetCounterTimer(TimerSelection_t copyTimerIndex, u8 copy_u8SetTicks); 
+void Timer_u8SetCounterTimer(TimerSelection_t copyTimerIndex, u16 copy_u8SetTicks); 
 
 
 /**
@@ -206,5 +212,26 @@ void Timer_voidOutputPinMode(TimerSelection_t copyTimerIndex, TIM0_CompereOutput
  * @param copy_u8DutyCycle  Dutycycle of signal 0 : 100 
  */
 void Timer_voidGenerateSignal(TimerSelection_t copyTimerIndex , u8 copy_u8FreqInHz , u8 copy_u8DutyCycle) ; 
+
+/**
+ * @brief This Fuction Used To Get Counts Between Two Events Synchronous
+ * 
+ * @param copyTimerIndex 
+ * @param copy_u8Event 
+ */
+void Timer_voidInputCaptureTicksSynch(TimerSelection_t copyTimerIndex,  TIM1_EventCapturing copy_TriggerEvent , u16 *copyCounts );
+/**
+ * @brief This Fuction Used To Detect Event in Pin 
+ * 
+ * @param copyTimerIndex 
+ * @param copy_u8Event 
+ */
+void Timer_voidInputCaptureInterrupt(TimerSelection_t copyTimerIndex,  TIM1_EventCapturing copy_TriggerEvent , ptr_VoidFcn setCallBackFn); 
+/**
+ * @brief This Fuction Used To get Flags status
+ * @param copyTimerIndex 
+ * @param copy_u8Event 
+ */
+void Timer_voidGetFlagsRegStatus(u8 * ptr_u8Reg); 
 #endif
 /************************************* End of File ******************************************/

@@ -6,7 +6,7 @@
 #include "TIMERS_Interface.h"
 #include "EXT_INT_interface.h"
 
-Timer0Config_t myTimer0 = {TIM0_CTC_Mode , TIMER_CLK_OVR_1024};
+Timer0Config_t myTimer0 = {TIM_CTC_Mode , TIMER0_CLK_OVR_1024};
 int main(void)
 {
 	GPIO_voidInit();
@@ -14,7 +14,7 @@ int main(void)
 	GPIO_voidSetPinDirection(PORTB, PIN3, OUTPUT);
 	GPIO_voidSetPinValue(PORTB, PIN3, LOW);
 	Timer_voidGenerateSignal(TIMER0,50,50);
-	Timer_voidStartTimer0();
+	Timer_voidStartTimer(TIMER0);
 	EXTINT_voidGlobalIntEnable();	
 	while(1)
 	{

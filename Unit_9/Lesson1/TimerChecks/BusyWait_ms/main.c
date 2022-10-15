@@ -5,7 +5,7 @@
 #include "GPIO_interface.h"
 #include "TIMERS_Interface.h"
 #include <util/delay.h>
-Timer0Config_t myTimer0 = { TIM0_Normal_Mode , TIMER_CLK_OVR_1024};
+Timer0Config_t myTimer0 = { TIM_Normal_Mode , TIMER0_CLK_OVR_1024};
 int main(void)
 {
 	GPIO_voidInit();

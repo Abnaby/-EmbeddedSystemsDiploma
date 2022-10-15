@@ -7,7 +7,7 @@
 #include "EXT_INT_interface.h"
 
 #include <util/delay.h>
-Timer0Config_t myTimer0 = {TIM0_CTC_Mode , TIMER_CLK_OVR_1024};
+Timer0Config_t myTimer0 = {TIM_CTC_Mode , TIMER0_CLK_OVR_1024};
 int main(void)
 {
 	GPIO_voidInit();
@@ -16,7 +16,7 @@ int main(void)
 	GPIO_voidSetPinValue(PORTB, PIN3, HIGH);
 	Timer_voidSetCompareValue(TIMER0,200); 
 	Timer_voidOutputPinMode(TIMER0,TIM0_OC0_TOGGLE); 
-	Timer_voidStartTimer0();
+	Timer_voidStartTimer(TIMER0);
 	EXTINT_voidGlobalIntEnable();	
 	while(1)
 	{

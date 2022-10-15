@@ -29,7 +29,8 @@
 #define TIM_GENERATE_1_US   1000000 
 
 
-#define _8_BIT_OV_ 255
+#define _8_BIT_OV_  255
+#define _16_BIT_OV_ 65535
 
 #define PERIODIC	0
 #define SINGLE	    1
@@ -62,6 +63,28 @@
     #define TCCR0_FOC0          7
 #define TIM_TCNT0               *((volatile u8 *) 0x52 )
 #define TIM_OCR0                *((volatile u8 *) 0x5C )
+/********************TIMER1******************************/
+#define TIM_TCCR1A              *((volatile u8 *) 0x4F )
+    #define TCCR1A_COM1A1       7
+    #define TCCR1A_COM1A0       6
+    #define TCCR1A_COM1B1       5
+    #define TCCR1A_COM1B0       4
+    #define TCCR1A_FOC1A        3
+    #define TCCR1A_FOC1B        2
+    #define TCCR1A_WGM11        1
+    #define TCCR1A_WGM10        0
+#define TIM_TCCR1B              *((volatile u8 *) 0x4E )
+    #define TCCR1B_ICNC1        7
+    #define TCCR1B_ICES1        6
+    #define TCCR1B_WGM13        4
+    #define TCCR1B_WGM12        3
+    #define TCCR1B_CS12         2
+    #define TCCR1B_CS11         1
+    #define TCCR1B_CS10         0
+#define TIM_TCNT1               *((volatile u16 *) 0x4C )
+#define TIM_OCR1AH              *((volatile u8 *) 0x4B )
+#define TIM_OCR1B               *((volatile u16 *) 0x48 )
+#define TIM_ICR1                *((volatile u16 *) 0x46 )
 
 /********************TIMER2******************************/
 #define TIM_TCCR2               *((volatile u8 *) 0x45 )
@@ -132,6 +155,17 @@
 void __vector_19(void) __attribute__(( signal , used ));
 /*		OVERFLOW INTERRUPT		*/
 void __vector_9(void) __attribute__(( signal , used ));
+
+/*  TIMER   1   */
+/*		OVERFLOW INTERRUPT		*/
+void __vector_8(void) __attribute__(( signal , used ));
+/*		COMP MAATCH			*/
+void __vector_5(void) __attribute__(( signal , used ));
+
+/*  TIMER   2   */
+/*		OVERFLOW INTERRUPT		*/
+void __vector_4(void) __attribute__(( signal , used ));
+
 
 static u16 Timer_u16GetBestFitValue(u32 copy_u32NumberofTicks , u16 copy_u16MaxCounterVal);
 

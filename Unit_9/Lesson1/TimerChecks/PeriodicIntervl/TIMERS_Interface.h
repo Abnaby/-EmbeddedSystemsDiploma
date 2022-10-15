@@ -62,6 +62,21 @@ typedef void(*ptr_VoidFcn)(void);
 
 
 /**
+ * @brief This Function Used to Init Timer1 Only
+ * 
+ * @param ptr_userConfig pointer to struct that holds user configuration for timer1
+ */
+void Timer_voidInitTimer1(Timer1Config_t *ptr_userConfig); 
+
+
+/**
+ * @brief This Function Used to Init Timer2 Only
+ * 
+ * @param ptr_userConfig pointer to struct that holds user configuration for timer2
+ */
+void Timer_voidInitTimer2(Timer2Config_t *ptr_userConfig); 
+
+/**
  * @brief This Function Used to Init Timer0 Only
  * 
  * @param ptr_userConfig pointer to struct that holds user configuration for timer0 
@@ -70,27 +85,29 @@ void Timer_voidInitTimer0(Timer0Config_t *ptr_userConfig);
 /**
  * @brief This Function Used to Start Timer0 for counting 
  * 
+ * @param copyTimerIndex select from @ref TimerSelection_t enum
  */
-void Timer_voidStartTimer0(void); 
+void Timer_voidStartTimer(TimerSelection_t copyTimerIndex);
 /**
- * @brief This Function Used to Stop Timer 0 from Counting and clear Counter
+ * @brief This Function Used to Stop Timers from Counting and clear Counter
  * 
+* @param copyTimerIndex select from @ref TimerSelection_t enum
  */
-void Timer_voidStopTimer0(void);
-
+void Timer_voidStopTimer(TimerSelection_t copyTimerIndex);
 /**
  * @brief This function used to get number of ticks from when start timer. 
  * 
  * @param u8 *pu8GetTicks pointer to number of ticks 
+ * @param copyTimerIndex select from @ref TimerSelection_t enum
  * @return void 
  */
-void Timer_u8GetCounterTimer0(u8 *pu8GetTicks); 
+void Timer_u8GetCounterTimer(TimerSelection_t copyTimerIndex, u16 *pu8GetTicks); 
 /**
  * @brief This function used to set number of ticks to start count from it. 
  * @param u8 copy_u8SetTicks number of ticks will loaded into TCNT0 reg
  * @return void 
  */
-void Timer_u8SetCounterTimer0(u8 copy_u8SetTicks); 
+void Timer_u8SetCounterTimer(TimerSelection_t copyTimerIndex, u16 copy_u8SetTicks); 
 
 
 /**
@@ -175,5 +192,46 @@ void Timer_voidSetIntervalSingleMS(TimerSelection_t copyTimerIndex , u16 Copy_u1
  */
 void Timer_voidSetIntervalPeriodicMS(TimerSelection_t copyTimerIndex , u16 Copy_u16IntervalTimeMS , ptr_VoidFcn intervalCallback); 
 
+
+
+
+/**
+ * @brief This Function Used to Generate output at OCR0 Value
+ * 
+ * @param copyTimerIndex select from @ref TimerSelection_t enum
+ * @param copy_stateOfOCRPin select from @ref TIM0_CompereOutputPin enum
+ */
+void Timer_voidOutputPinMode(TimerSelection_t copyTimerIndex, TIM0_CompereOutputPin copy_stateOfOCRPin);
+
+
+/**
+ * @brief This Function used to generate square wave signal in KHZ with duty cycle.
+ * 
+ * @param copyTimerIndex select from @ref TimerSelection_t enum
+ * @param copy_u8FreqInHz  frequency of signal in Hz
+ * @param copy_u8DutyCycle  Dutycycle of signal 0 : 100 
+ */
+void Timer_voidGenerateSignal(TimerSelection_t copyTimerIndex , u8 copy_u8FreqInHz , u8 copy_u8DutyCycle) ; 
+
+/**
+ * @brief This Fuction Used To Get Counts Between Two Events Synchronous
+ * 
+ * @param copyTimerIndex 
+ * @param copy_u8Event 
+ */
+void Timer_voidInputCaptureTicksSynch(TimerSelection_t copyTimerIndex,  TIM1_EventCapturing copy_TriggerEvent , u16 *copyCounts );
+/**
+ * @brief This Fuction Used To Detect Event in Pin 
+ * 
+ * @param copyTimerIndex 
+ * @param copy_u8Event 
+ */
+void Timer_voidInputCaptureInterrupt(TimerSelection_t copyTimerIndex,  TIM1_EventCapturing copy_TriggerEvent , ptr_VoidFcn setCallBackFn); 
+/**
+ * @brief This Fuction Used To get Flags status
+ * @param copyTimerIndex 
+ * @param copy_u8Event 
+ */
+void Timer_voidGetFlagsRegStatus(u8 * ptr_u8Reg); 
 #endif
 /************************************* End of File ******************************************/

@@ -77,7 +77,10 @@ typedef enum
     TIM_Normal_Mode =0x00 ,       // Timer 0 Supoorted : (WGM01:0 = 0) , n this mode the counting direction is always up (incrementing),  no counter clear is performed
 
 
-    TIM_CTC_Mode = 0x08            // Timer 0 Supported : Clear Timer on Compare or CTC mode (WGM01:0 = 2)
+    TIM_CTC_Mode = 0x08   ,       // Timer 0 Supported : Clear Timer on Compare or CTC mode (WGM01:0 = 2)
+
+    TIM_IC_Mode = 0x0            // Timer 1 Supported Only :
+
 
 }TIM_OpMode;
 
@@ -136,6 +139,44 @@ typedef struct
  ******************************** TIMER 1 *************************************
  ******************************************************************************/
 
+/**
+ * @brief This enum used to select clock source with prescaler 
+ * @details If external pin modes are used for the Timer/Counter0, transitions on the T0 pin will clock the counter even if the pin is configured as an output. This feature allows software control of the counting.
+ * 
+ */
+typedef enum
+{
+    TIMER1_DISABLE                    ,
+    TIMER1_CLK_OVR_1                  ,
+    TIMER1_CLK_OVR_8                  ,
+    TIMER1_CLK_OVR_64                 ,
+    TIMER1_CLK_OVR_256                ,
+    TIMER1_CLK_OVR_1024               ,
+    TIMER1_CLK_FROM_T0_FALLING        ,
+    TIMER1_CLK_FROM_T0_RAISING
+}TIM1_ClockSelect;
+
+/**
+ * @brief This enum used to select selects which edge on the Input Capture Pin (ICP1) that is used to trigger a capture event.  
+ */
+typedef enum
+{
+    TIM1_CAPT_FALLING_EDG = 0x0 , 
+    TIM1_CAPT_RAISING_EDG = 0x40 
+
+}TIM1_EventCapturing; 
+
+/**
+ * @brief This struct holds configuration parameters of Timer0
+ * 
+ */
+typedef struct
+{
+    TIM_OpMode                      operationModeTIM1 ;                            // select from @ref TIM_OpMode enum 
+    TIM1_ClockSelect                clockSourceAndPrescalerTimer1 ;                // select from @ref TIM1_ClockSelect enum 
+}Timer1Config_t;
+
+
 /******************************************************************************
  ******************************** TIMER 2 *************************************
  ******************************************************************************/
@@ -183,7 +224,11 @@ typedef struct
     TIM_OpMode                      operationModeTIM2 ;                            // select from @ref TIM_OpMode enum 
 }Timer2Config_t;
 
-
+/**
+ * @brief This Value Used when TIM2_ClockSource selected as TIMER2_EXTERNAL_CLK
+ * 
+ */
+#define TIMER2_EXTERNAL_CLK_VAL_IN_HZ  32768 
 /******************************************************************************
 * Configuration Constants
 *******************************************************************************/
