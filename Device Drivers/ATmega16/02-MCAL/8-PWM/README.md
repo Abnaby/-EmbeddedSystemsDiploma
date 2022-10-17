@@ -49,6 +49,7 @@ typedef struct
 | ANTI_GLITCH_DISABLE | Allow Glitching if change value of PWM in Run Time |
 
 ### Glitch Effect 
+
 ![image](https://drive.google.com/uc?export=download&id=1eJae6g3q8l_lUPQseQdVMeUiTn5jiWXf)
 
 
@@ -192,10 +193,34 @@ typedef enum
 # Full Example 
 
 ```c
-```
-![Timing Diagram](https://drive.google.com/uc?export=download&id=1bebLBB3_HEQvDFzLn3jwR1NGHsnL7pY1)
+#define TIM1_ANTI_GLITCH    ANTI_GLITCH_ENABLE 
+``` 
+```c
+#include "STD_TYPES.h"
+#include "MAPPING.h"
+#include "GPIO_interface.h"
+#include "PWM_Interface.h"
+#include "PWM_Private.h"
 
-![Output](https://drive.google.com/uc?export=download&id=1y-NEcn57g69LsyzwhlDegB4h0ax6lKtt)
+#include <util/delay.h>
+
+PWM_config_t x = {TIMER1 , PWM1_PHASE_FREQ_CORRECT , TIMER1_CLK_OVR_1024};	
+int main(void)
+{
+	
+	GPIO_voidInit();
+	PWM_voidInit(&x);
+	PWM_voidSetOCPin(&x,PWM1_PD4_PFC_SET_AT_COMP);
+	GPIO_voidSetPinDirection(PORTD, PIN4, OUTPUT);
+	PWM_voidGeneratePWM(&x,100,70);
+	while(1)
+	{
+		
+	}
+	return 0;
+}
+```
+![image](https://drive.google.com/uc?export=download&id=1SdVMJyLDzaBiQmjdYCZmiK6bn85rTbiN)
 
 
 ## Contributing  
