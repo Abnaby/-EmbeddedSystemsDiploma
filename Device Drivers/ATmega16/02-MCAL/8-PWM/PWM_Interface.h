@@ -94,7 +94,16 @@ void PWM_voidSetDuty(PWM_config_t *ptr_userConfig,u16 copy_u16fDuty);
  */
 void PWM_voidGeneratePWM(PWM_config_t *ptr_userConfig, u8 copy_u8FreqInHz , u8 copy_u8DutyCycle);
 
-
+/**
+ * @brief This Function Used To Set Phase_Freq Parameters TOP,COMP Values  
+ * 
+ * @details be aware of overflows
+			Timer1 Only
+ * @param ptr_userConfig    Instance of User Configurtion
+ * @param copy_u16TopValue   Freq Correction Value
+ * @param copy_u16CompValue  Phase Correction Value 
+ */
+void PWM_voidPhaseFrequencyCorrectSetValues(PWM_config_t *ptr_userConfig, u16 copy_u16TopValue , u16 copy_u16CompValue);
 
 #endif
 /************************************* End of File ******************************************/

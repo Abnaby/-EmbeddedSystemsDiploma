@@ -402,6 +402,86 @@ void PWM_voidGeneratePWM(PWM_config_t *ptr_userConfig, u8 copy_u8FreqInHz , u8 c
     }
 }
 
+void PWM_voidPhaseFrequencyCorrectSetValues(PWM_config_t *ptr_userConfig, u16 copy_u16TopValue , u16 copy_u16CompValue)
+{
+/* CHK ANTI-GLITCH MODE	*/
+if(TIM1_ANTI_GLITCH == ANTI_GLITCH_ENABLE)
+{
+    // GOTO ANTI GLITCH MODE BY 
+    // SET WGM13 = 1    WGM12=0    WGM11=0      WGM10=1 
+    SET_BIT(TIM_TCCR1B,TCCR1B_WGM13);
+    CLR_BIT(TIM_TCCR1B,TCCR1B_WGM12);
+    SET_BIT(TIM_TCCR1A,TCCR1A_WGM10);
+    CLR_BIT(TIM_TCCR1A,TCCR1A_WGM11);
+                
+    /* CHK PIN IS  OC1B PD4 BY CHKING VAL OF COMB1 FRM TCCR1A = 1*/
+    if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1B1) == 1)
+    {
+        // Calculation and set OCR1A as a Top NOT This Freq During Up-Down Count so we need Half of it to calc TOP val
+
+        TIM_OCR1A = copy_u16TopValue ;
+        // Set Duty 
+        TIM_OCR1B = copy_u16CompValue ; 				
+    }
+    else
+    {
+        // <! TODO ERROR > Pin Selection 
+                    
+    }
+}
+else
+{
+    // ANTI GLITCH DISABLED 
+    // GOTO ANTI GLITCH MODE BY 
+    // SET WGM13 = 1    WGM12=0    WGM11=0      WGM10=0 
+    SET_BIT(TIM_TCCR1B,TCCR1B_WGM13);
+    CLR_BIT(TIM_TCCR1B,TCCR1B_WGM12);
+    CLR_BIT(TIM_TCCR1A,TCCR1A_WGM10);
+    CLR_BIT(TIM_TCCR1A,TCCR1A_WGM11);
+    // Calculation and set OCR1A as a Top NOT This Freq During Up-Down Count so we need Half of it to calc TOP val
+    TIM_ICR1 = copy_u16TopValue ;
+    /*	CHK WHICH PIN USED	*/
+    if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1B1) == 1)
+    {
+        /* INVRTING CHK	*/
+        if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1B0) == 1)
+        {
+            // Set Duty 
+            TIM_OCR1B = copy_u16CompValue ; 				
+        }
+        else
+        {
+            // Non Inverting 
+            // Clear OC1A/OC1B on compare match when upcounting. (Non Inverting)
+            // Set Duty 
+            TIM_OCR1B = copy_u16CompValue ; 				
+        }	
+    }
+    else if (GET_BIT(TIM_TCCR1A,TCCR1A_COM1A1) == 1)
+    {
+            /* INVRTING CHK	*/
+        if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1A0) == 1)
+        {
+            // Inverting 
+            // Set Duty 
+            TIM_OCR1A = copy_u16CompValue ; 				
+        }
+        else
+        {
+            // Non Inverting 
+            // Clear OC1A/OC1B on compare match when upcounting. (Non Inverting)
+            // Set Duty 
+            TIM_OCR1A = copy_u16CompValue ; 				
+        }	
+    }
+    else
+    {
+        // <!TODO> ERROR IN PIN SELECTION 
+    }
+                
+}
+ 
+}
 /**************************************PRIVATE************************************************/
 
 u8 GetNearestVal(u16 Number , u16 *arr , u8 copy_u8Size)
