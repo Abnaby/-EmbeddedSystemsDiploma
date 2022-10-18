@@ -72,7 +72,6 @@ void PWM_voidInit(PWM_config_t *ptr_userConfig)
     case TIMER0:
     {
         // PWM MODE WGM00 = 1 
-        TIM_TCCR0 = 0 ; 
         TIM_TCCR0 |= ptr_userConfig->PWM_MOP ; 
         // Get Prescaler 
 		switch(ptr_userConfig->TimerPrescaler)
@@ -93,10 +92,6 @@ void PWM_voidInit(PWM_config_t *ptr_userConfig)
     case TIMER1:
     {
         /*  Must Be Freq And Phase Correct  */
-        // Clear Timer/Counter Control Register to defult value 
-        TIM_TCCR1A = 0  ;   
-        TIM_TCCR1B = 0  ;   
-
 
         // Slect Mode 
         TIM_TCCR1A |= (ptr_userConfig->PWM_MOP&0b0011);  
@@ -122,7 +117,6 @@ void PWM_voidInit(PWM_config_t *ptr_userConfig)
     case TIMER2:
     {
                 // PWM MODE WGM00 = 1 
-        TIM_TCCR2 = 0 ; 
         TIM_TCCR2 |= ptr_userConfig->PWM_MOP ; 
         // Get Prescaler 
 		switch(ptr_userConfig->TimerPrescaler)
@@ -402,7 +396,7 @@ void PWM_voidGeneratePWM(PWM_config_t *ptr_userConfig, u8 copy_u8FreqInHz , u8 c
     }
 }
 
-void PWM_voidPhaseFrequencyCorrectSetValues(PWM_config_t *ptr_userConfig, u16 copy_u16TopValue , u16 copy_u16CompValue)
+void PWM_voidPhaseFrequencyCorrectSetValues(PWM_config_t *ptr_userConfig,PWM_OC_Pin setOCpinMode, u16 copy_u16TopValue , u16 copy_u16CompValue)
 {
 /* CHK ANTI-GLITCH MODE	*/
 if(TIM1_ANTI_GLITCH == ANTI_GLITCH_ENABLE)
@@ -441,42 +435,14 @@ else
     // Calculation and set OCR1A as a Top NOT This Freq During Up-Down Count so we need Half of it to calc TOP val
     TIM_ICR1 = copy_u16TopValue ;
     /*	CHK WHICH PIN USED	*/
-    if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1B1) == 1)
+    if(setOCpinMode == PWM1_PD4_FM_NON_INVERTING ||setOCpinMode == PWM1_PD4_FM_INVERTING )
     {
-        /* INVRTING CHK	*/
-        if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1B0) == 1)
-        {
-            // Set Duty 
             TIM_OCR1B = copy_u16CompValue ; 				
-        }
-        else
-        {
-            // Non Inverting 
-            // Clear OC1A/OC1B on compare match when upcounting. (Non Inverting)
-            // Set Duty 
-            TIM_OCR1B = copy_u16CompValue ; 				
-        }	
+
     }
-    else if (GET_BIT(TIM_TCCR1A,TCCR1A_COM1A1) == 1)
+    else if (setOCpinMode == PWM1_PD5_FM_NON_INVERTING ||setOCpinMode == PWM1_PD5_FM_INVERTING)
     {
-            /* INVRTING CHK	*/
-        if(GET_BIT(TIM_TCCR1A,TCCR1A_COM1A0) == 1)
-        {
-            // Inverting 
-            // Set Duty 
-            TIM_OCR1A = copy_u16CompValue ; 				
-        }
-        else
-        {
-            // Non Inverting 
-            // Clear OC1A/OC1B on compare match when upcounting. (Non Inverting)
-            // Set Duty 
-            TIM_OCR1A = copy_u16CompValue ; 				
-        }	
-    }
-    else
-    {
-        // <!TODO> ERROR IN PIN SELECTION 
+        TIM_OCR1A = copy_u16CompValue ; 				
     }
                 
 }

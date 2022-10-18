@@ -45,14 +45,16 @@ typedef enum
 }PWM_ModeOfOperation ; 
 
 
-/*
 
-*   OC0 PB3
-*   OC2 PD7
-*   OC1A PD5
-*   OC1B PD4
 
-*/
+/**
+ * @brief This Enum Used to Select Mode For PWMx_PinNumber_Mode
+ * @details
+ *   OC0 PB3
+ *   OC2 PD7
+ *   OC1A PD5
+ *   OC1B PD4
+ */
 typedef enum
 {
     /*      TIMER 0     */ 
@@ -77,46 +79,43 @@ typedef enum
 
 
 
+
+
 /**
- * @brief This Enum used to Select Timer Module 
+ * @brief This Enum used to Select Timer Module Prescaler 
  * 
  */
 
 typedef enum
 {
-    TIMER0 , 
-    TIMER1 , 
-    TIMER2 
-
-}TimerSelection_t ;
-
-typedef enum
-{
-    TIMER0_DISABLE                    ,
-    TIMER0_CLK_OVR_1                  ,
-    TIMER0_CLK_OVR_8                  ,
-    TIMER0_CLK_OVR_64                 ,
-    TIMER0_CLK_OVR_256                ,
-    TIMER0_CLK_OVR_1024               ,
+    PWM_TIMER0_DISABLE                    ,
+    PWM_TIMER0_CLK_OVR_1                  ,
+    PWM_TIMER0_CLK_OVR_8                  ,
+    PWM_TIMER0_CLK_OVR_64                 ,
+    PWM_TIMER0_CLK_OVR_256                ,
+    PWM_TIMER0_CLK_OVR_1024               ,
     /*  Timer   1   */
-    TIMER1_DISABLE  = 0x0             ,
-    TIMER1_CLK_OVR_1                  ,
-    TIMER1_CLK_OVR_8                  ,
-    TIMER1_CLK_OVR_64                 ,
-    TIMER1_CLK_OVR_256                ,
-    TIMER1_CLK_OVR_1024               ,
+    PWM_TIMER1_DISABLE  = 0x0             ,
+    PWM_TIMER1_CLK_OVR_1                  ,
+    PWM_TIMER1_CLK_OVR_8                  ,
+    PWM_TIMER1_CLK_OVR_64                 ,
+    PWM_TIMER1_CLK_OVR_256                ,
+    PWM_TIMER1_CLK_OVR_1024               ,
     /*  Timer 2 */
-    TIMER2_DISABLE  = 0x0             ,
-    TIMER2_CLK_OVR_1                  ,
-    TIMER2_CLK_OVR_8                  ,
-    TIMER2_CLK_OVR_32                 ,
-    TIMER2_CLK_OVR_64                 ,
-    TIMER2_CLK_OVR_128                ,
-    TIMER2_CLK_OVR_256                ,
-    TIMER2_CLK_OVR_1024               
+    PWM_TIMER2_DISABLE  = 0x0             ,
+    PWM_TIMER2_CLK_OVR_1                  ,
+    PWM_TIMER2_CLK_OVR_8                  ,
+    PWM_TIMER2_CLK_OVR_32                 ,
+    PWM_TIMER2_CLK_OVR_64                 ,
+    PWM_TIMER2_CLK_OVR_128                ,
+    PWM_TIMER2_CLK_OVR_256                ,
+    PWM_TIMER2_CLK_OVR_1024               
 }PWM_TimerPrescaler ; 
 
-
+/**
+ * @brief User Configure Struct 
+ * 
+ */
 typedef struct
 {
     TimerSelection_t    TimerNumber ; 
@@ -131,7 +130,7 @@ typedef struct
  *          If ANTI-GLITCH is Disabled you have freedom to use OCR1B(PD4)
  * 
  */
-#define TIM1_ANTI_GLITCH    ANTI_GLITCH_ENABLE 
+#define TIM1_ANTI_GLITCH    ANTI_GLITCH_DISABLE 
 
 
 /******************************************************************************

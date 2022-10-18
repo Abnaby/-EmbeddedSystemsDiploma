@@ -102,8 +102,8 @@ void PWM_voidGeneratePWM(PWM_config_t *ptr_userConfig, u8 copy_u8FreqInHz , u8 c
  * @param ptr_userConfig    Instance of User Configurtion
  * @param copy_u16TopValue   Freq Correction Value
  * @param copy_u16CompValue  Phase Correction Value 
+ * @param setOCpinMode select on of @ref PWM_OC_Pin
  */
-void PWM_voidPhaseFrequencyCorrectSetValues(PWM_config_t *ptr_userConfig, u16 copy_u16TopValue , u16 copy_u16CompValue);
-
+void PWM_voidPhaseFrequencyCorrectSetValues(PWM_config_t *ptr_userConfig,PWM_OC_Pin setOCpinMode, u16 copy_u16TopValue , u16 copy_u16CompValue);
 #endif
 /************************************* End of File ******************************************/

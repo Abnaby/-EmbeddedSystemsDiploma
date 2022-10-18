@@ -130,7 +130,7 @@ typedef struct
  *          If ANTI-GLITCH is Disabled you have freedom to use OCR1B(PD4)
  * 
  */
-#define TIM1_ANTI_GLITCH    ANTI_GLITCH_ENABLE 
+#define TIM1_ANTI_GLITCH    ANTI_GLITCH_DISABLE 
 
 
 /******************************************************************************
