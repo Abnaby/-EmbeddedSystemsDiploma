@@ -79,18 +79,7 @@ typedef enum
 
 
 
-/**
- * @brief This Enum used to Select Timer Module 
- * 
- */
 
-typedef enum
-{
-    TIMER0 , 
-    TIMER1 , 
-    TIMER2 
-
-}TimerSelection_t ;
 
 /**
  * @brief This Enum used to Select Timer Module Prescaler 
@@ -99,28 +88,28 @@ typedef enum
 
 typedef enum
 {
-    TIMER0_DISABLE                    ,
-    TIMER0_CLK_OVR_1                  ,
-    TIMER0_CLK_OVR_8                  ,
-    TIMER0_CLK_OVR_64                 ,
-    TIMER0_CLK_OVR_256                ,
-    TIMER0_CLK_OVR_1024               ,
+    PWM_TIMER0_DISABLE                    ,
+    PWM_TIMER0_CLK_OVR_1                  ,
+    PWM_TIMER0_CLK_OVR_8                  ,
+    PWM_TIMER0_CLK_OVR_64                 ,
+    PWM_TIMER0_CLK_OVR_256                ,
+    PWM_TIMER0_CLK_OVR_1024               ,
     /*  Timer   1   */
-    TIMER1_DISABLE  = 0x0             ,
-    TIMER1_CLK_OVR_1                  ,
-    TIMER1_CLK_OVR_8                  ,
-    TIMER1_CLK_OVR_64                 ,
-    TIMER1_CLK_OVR_256                ,
-    TIMER1_CLK_OVR_1024               ,
+    PWM_TIMER1_DISABLE  = 0x0             ,
+    PWM_TIMER1_CLK_OVR_1                  ,
+    PWM_TIMER1_CLK_OVR_8                  ,
+    PWM_TIMER1_CLK_OVR_64                 ,
+    PWM_TIMER1_CLK_OVR_256                ,
+    PWM_TIMER1_CLK_OVR_1024               ,
     /*  Timer 2 */
-    TIMER2_DISABLE  = 0x0             ,
-    TIMER2_CLK_OVR_1                  ,
-    TIMER2_CLK_OVR_8                  ,
-    TIMER2_CLK_OVR_32                 ,
-    TIMER2_CLK_OVR_64                 ,
-    TIMER2_CLK_OVR_128                ,
-    TIMER2_CLK_OVR_256                ,
-    TIMER2_CLK_OVR_1024               
+    PWM_TIMER2_DISABLE  = 0x0             ,
+    PWM_TIMER2_CLK_OVR_1                  ,
+    PWM_TIMER2_CLK_OVR_8                  ,
+    PWM_TIMER2_CLK_OVR_32                 ,
+    PWM_TIMER2_CLK_OVR_64                 ,
+    PWM_TIMER2_CLK_OVR_128                ,
+    PWM_TIMER2_CLK_OVR_256                ,
+    PWM_TIMER2_CLK_OVR_1024               
 }PWM_TimerPrescaler ; 
 
 /**

@@ -8,7 +8,7 @@
 
 #include <util/delay.h>
 
-PWM_config_t x = {TIMER1 , PWM1_PHASE_FREQ_CORRECT , TIMER1_CLK_OVR_1024};	
+PWM_config_t x = {TIMER1 , PWM1_PHASE_FREQ_CORRECT , PWM_TIMER1_CLK_OVR_1024};	
 int main(void)
 {
 	

@@ -7,7 +7,7 @@
 
 #include <util/delay.h>
 
-PWM_config_t x = {TIMER2 , PWM2_FAST_MODE , TIMER2_CLK_OVR_1};	
+PWM_config_t x = {TIMER2 , PWM2_FAST_MODE , PWM_TIMER2_CLK_OVR_1};	
 int main(void)
 {
 	

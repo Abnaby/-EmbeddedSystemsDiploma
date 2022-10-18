@@ -77,12 +77,12 @@ void PWM_voidInit(PWM_config_t *ptr_userConfig)
         // Get Prescaler 
 		switch(ptr_userConfig->TimerPrescaler)
 		{
-			case TIMER0_DISABLE:     TIMER0_Prescaler = 0 ; 			    break ;
-			case TIMER0_CLK_OVR_1:	 TIMER0_Prescaler = 1 ; 			    break ; 
-			case TIMER0_CLK_OVR_8:	 TIMER0_Prescaler = 8 ;				break ; 
-			case TIMER0_CLK_OVR_64:	 TIMER0_Prescaler = 64 ;				break ; 
-			case TIMER0_CLK_OVR_256: TIMER0_Prescaler = 256	;			break ; 
-			case TIMER0_CLK_OVR_1024: TIMER0_Prescaler = 1024	;			break ; 	
+			case PWM_TIMER0_DISABLE:     TIMER0_Prescaler = 0 ; 			    break ;
+			case PWM_TIMER0_CLK_OVR_1:	 TIMER0_Prescaler = 1 ; 			    break ; 
+			case PWM_TIMER0_CLK_OVR_8:	 TIMER0_Prescaler = 8 ;				break ; 
+			case PWM_TIMER0_CLK_OVR_64:	 TIMER0_Prescaler = 64 ;				break ; 
+			case PWM_TIMER0_CLK_OVR_256: TIMER0_Prescaler = 256	;			break ; 
+			case PWM_TIMER0_CLK_OVR_1024: TIMER0_Prescaler = 1024	;			break ; 	
 			default: break ;  
 		}
        // Set Clock With Prescaler 
@@ -105,13 +105,13 @@ void PWM_voidInit(PWM_config_t *ptr_userConfig)
         // Get Prescaler 
 		switch(ptr_userConfig->TimerPrescaler)
 		{
-			case TIMER1_DISABLE:     TIMER1_Prescaler = 0 ; 			    break ;
-			case TIMER1_CLK_OVR_1:	 TIMER1_Prescaler = 1 ; 			    break ; 
-			case TIMER1_CLK_OVR_8:	 TIMER1_Prescaler = 8 ;				break ; 
-			case TIMER1_CLK_OVR_64:	 TIMER1_Prescaler = 64 ;				break ; 
+			case PWM_TIMER1_DISABLE:     TIMER1_Prescaler = 0 ; 			    break ;
+			case PWM_TIMER1_CLK_OVR_1:	 TIMER1_Prescaler = 1 ; 			    break ; 
+			case PWM_TIMER1_CLK_OVR_8:	 TIMER1_Prescaler = 8 ;				break ; 
+			case PWM_TIMER1_CLK_OVR_64:	 TIMER1_Prescaler = 64 ;				break ; 
 
-			case TIMER1_CLK_OVR_256: TIMER1_Prescaler = 256	;			break ; 
-			case TIMER1_CLK_OVR_1024: TIMER1_Prescaler = 1024	;			break ; 	
+			case PWM_TIMER1_CLK_OVR_256: TIMER1_Prescaler = 256	;			break ; 
+			case PWM_TIMER1_CLK_OVR_1024: TIMER1_Prescaler = 1024	;			break ; 	
 			default: break ;  
 		}
        // Set Clock With Prescaler 
@@ -127,14 +127,14 @@ void PWM_voidInit(PWM_config_t *ptr_userConfig)
         // Get Prescaler 
 		switch(ptr_userConfig->TimerPrescaler)
 		{
-            case TIMER2_DISABLE:     TIMER2_Prescaler = 0 ; 			    break ;
-            case TIMER2_CLK_OVR_1:	TIMER2_Prescaler = 1 ; 			    break ; 
-            case TIMER2_CLK_OVR_8:	TIMER2_Prescaler = 8 ;				break ; 
-            case TIMER2_CLK_OVR_32: TIMER2_Prescaler = 32	;			break ; 
-            case TIMER2_CLK_OVR_64: TIMER2_Prescaler = 64	;			break ; 	
-            case TIMER2_CLK_OVR_128: TIMER2_Prescaler = 128	;			break ; 	
-            case TIMER2_CLK_OVR_256:	TIMER2_Prescaler = 256	;			break ; 
-            case TIMER2_CLK_OVR_1024: TIMER2_Prescaler = 1024	;			break ; 	
+            case PWM_TIMER2_DISABLE:     TIMER2_Prescaler = 0 ; 			    break ;
+            case PWM_TIMER2_CLK_OVR_1:	TIMER2_Prescaler = 1 ; 			    break ; 
+            case PWM_TIMER2_CLK_OVR_8:	TIMER2_Prescaler = 8 ;				break ; 
+            case PWM_TIMER2_CLK_OVR_32: TIMER2_Prescaler = 32	;			break ; 
+            case PWM_TIMER2_CLK_OVR_64: TIMER2_Prescaler = 64	;			break ; 	
+            case PWM_TIMER2_CLK_OVR_128: TIMER2_Prescaler = 128	;			break ; 	
+            case PWM_TIMER2_CLK_OVR_256:	TIMER2_Prescaler = 256	;			break ; 
+            case PWM_TIMER2_CLK_OVR_1024: TIMER2_Prescaler = 1024	;			break ; 	
             default: break ;  
 		}
        // Set Clock With Prescaler 

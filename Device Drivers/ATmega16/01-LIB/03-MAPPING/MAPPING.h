@@ -1,7 +1,7 @@
 /**************************************************************************/
 /* Author	: Mohamed                                               	  */
-/* Date		: 15 February 2021                                 		      */
-/* Version	: V03							  							  */
+/* Date		: 18 Oct 2022                                 		      */
+/* Version	: V04							  							  */
 /**************************************************************************/
 
 #ifndef MAPPING_H
@@ -57,6 +57,19 @@
 #define SREG              *((volatile u8 *) (0x5F))
 #define SREG_GIE    7
 
+/****************************************************** Timers *********************************************/
+/**
+ * @brief This Enum used to Select Timer Module 
+ * 
+ */
+
+typedef enum
+{
+    TIMER0 , 
+    TIMER1 , 
+    TIMER2 
+
+}TimerSelection_t ;
 
 
 

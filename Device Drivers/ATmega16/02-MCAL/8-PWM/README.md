@@ -57,29 +57,29 @@ typedef struct
 ```c
 typedef enum
 {
-    TIMER0_DISABLE                    ,
-    TIMER0_CLK_OVR_1                  ,
-    TIMER0_CLK_OVR_8                  ,
-    TIMER0_CLK_OVR_64                 ,
-    TIMER0_CLK_OVR_256                ,
-    TIMER0_CLK_OVR_1024               ,
+    PWM_TIMER0_DISABLE                    ,
+    PWM_TIMER0_CLK_OVR_1                  ,
+    PWM_TIMER0_CLK_OVR_8                  ,
+    PWM_TIMER0_CLK_OVR_64                 ,
+    PWM_TIMER0_CLK_OVR_256                ,
+    PWM_TIMER0_CLK_OVR_1024               ,
     /*  Timer   1   */
-    TIMER1_DISABLE  = 0x0             ,
-    TIMER1_CLK_OVR_1                  ,
-    TIMER1_CLK_OVR_8                  ,
-    TIMER1_CLK_OVR_64                 ,
-    TIMER1_CLK_OVR_256                ,
-    TIMER1_CLK_OVR_1024               ,
+    PWM_TIMER1_DISABLE  = 0x0             ,
+    PWM_TIMER1_CLK_OVR_1                  ,
+    PWM_TIMER1_CLK_OVR_8                  ,
+    PWM_TIMER1_CLK_OVR_64                 ,
+    PWM_TIMER1_CLK_OVR_256                ,
+    PWM_TIMER1_CLK_OVR_1024               ,
     /*  Timer 2 */
-    TIMER2_DISABLE  = 0x0             ,
-    TIMER2_CLK_OVR_1                  ,
-    TIMER2_CLK_OVR_8                  ,
-    TIMER2_CLK_OVR_32                 ,
-    TIMER2_CLK_OVR_64                 ,
-    TIMER2_CLK_OVR_128                ,
-    TIMER2_CLK_OVR_256                ,
-    TIMER2_CLK_OVR_1024               
-}PWM_TimerPrescaler ; 
+    PWM_TIMER2_DISABLE  = 0x0             ,
+    PWM_TIMER2_CLK_OVR_1                  ,
+    PWM_TIMER2_CLK_OVR_8                  ,
+    PWM_TIMER2_CLK_OVR_32                 ,
+    PWM_TIMER2_CLK_OVR_64                 ,
+    PWM_TIMER2_CLK_OVR_128                ,
+    PWM_TIMER2_CLK_OVR_256                ,
+    PWM_TIMER2_CLK_OVR_1024               
+}PWM_TimerPrescaler ;  
 ``` 
 ### PWM-Modes
 ```c
@@ -178,11 +178,8 @@ typedef enum
 |PWM2_PD7_FM_INVERTING | Set OC2 on compare match, clear OC0 at BOTTOM, (inverting mode) | Timer0/PWM0| FAST MODE | PD7 |
 
 ## Explantion 
-
 ![Fast Mode](https://i.ibb.co/HCkYGpw/2.png)
-
 ![Phase Correct ](https://i.ibb.co/TtpkPNM/3.png)
-
 ![Phase and Frequency Correct ](https://i.ibb.co/QmbVLnL/Capture.png)
 
 
@@ -204,7 +201,7 @@ typedef enum
 
 #include <util/delay.h>
 
-PWM_config_t x = {TIMER1 , PWM1_PHASE_FREQ_CORRECT , TIMER1_CLK_OVR_1024};	
+PWM_config_t x = {TIMER1 , PWM1_PHASE_FREQ_CORRECT , PWM_TIMER1_CLK_OVR_1024};	
 int main(void)
 {
 	

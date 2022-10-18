@@ -54,18 +54,7 @@ typedef enum
     TIM_OCM_ENABLE 
 }TIM_CompareMatchInterrupt ; 
 
-/**
- * @brief This Enum used to Select Timer Module 
- * 
- */
 
-typedef enum
-{
-    TIMER0 , 
-    TIMER1 , 
-    TIMER2 
-
-}TimerSelection_t ;
 
 
 /**
