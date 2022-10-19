@@ -148,7 +148,8 @@ void PWM_voidSetOCPin(PWM_config_t *ptr_userConfig , PWM_OC_Pin setOCpinMode)
     {
     case TIMER0:
     {
-        TIM_TCCR0 |= setOCpinMode ; 
+        TIM_TCCR0 |= setOCpinMode ;
+        break ; 
     }
     case TIMER1:
 	{
@@ -178,6 +179,7 @@ void PWM_voidSetDuty(PWM_config_t *ptr_userConfig,u16 copy_u16fDuty)
         {
             // OUT OF RANGE 
         }
+        break ; 
     }
     case TIMER1:
     {  
@@ -198,6 +200,7 @@ void PWM_voidSetDuty(PWM_config_t *ptr_userConfig,u16 copy_u16fDuty)
         {
             // OUT OF RANGE 
         }
+        break ; 
     }
     case TIMER2:
     {
