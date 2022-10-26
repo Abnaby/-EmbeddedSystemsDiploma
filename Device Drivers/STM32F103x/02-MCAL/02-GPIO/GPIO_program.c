@@ -92,7 +92,7 @@ void GPIO_voidSetPinDirection	(u8 Copy_u8Port, Pin_t Copy_Pin , u8 Copy_u8Mode)
 			else if (Copy_Pin <= 15 )
 			{
 				Copy_Pin = Copy_Pin - 8 ; //TO REPRESENT PIN 8 IN FIRST 4 BITS IN CRH REGESTER
-				GPIOB->CRL &= ~(0b1111<<(Copy_Pin*4));
+				GPIOB->CRH &= ~(0b1111<<(Copy_Pin*4));
 				GPIOB->CRH |= ((Copy_u8Mode)<< (4*Copy_Pin));
 
 			}
@@ -306,6 +306,37 @@ u8 GPIO_u8GetPinValue (u8 Copy_u8Port, Pin_t Copy_Pin)
 	return LOC_u8Result ;
 }
 
+void GPIO_u8ChoosePullMode(u8 Copy_u8Port, Pin_t Copy_Pin, GPIO_PULL_MODE_t Copy_Mode)
+{
+	switch(Copy_u8Port)
+	{
+		case PORTA :
+            switch(Copy_Mode)
+            {
+                case GPIO_PULL_DOWN : CLR_BIT(GPIOA->ODR, Copy_Pin);break;
+                case GPIO_PULL_UP   : SET_BIT(GPIOA->ODR, Copy_Pin);break;
+                default : /*!<TODO: Error Code*/break;
+            }			break ;
+		case PORTB :
+            switch(Copy_Mode)
+            {
+                case GPIO_PULL_DOWN : CLR_BIT(GPIOB->ODR, Copy_Pin);break;
+                case GPIO_PULL_UP   : SET_BIT(GPIOB->ODR, Copy_Pin);break;
+                default : /*!<TODO: Error Code*/break;
+            }			break ;
+		case PORTC :
+            switch(Copy_Mode)
+            {
+                case GPIO_PULL_DOWN : CLR_BIT(GPIOC->ODR, Copy_Pin);break;
+                case GPIO_PULL_UP   : SET_BIT(GPIOC->ODR, Copy_Pin);break;
+                default : /*!<TODO: Error Code*/break;
+            }			break ;
+		default :
+			/* error */
+			break ;
+	}
+
+}
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/

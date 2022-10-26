@@ -69,7 +69,11 @@
 * Typedefs
 *******************************************************************************/
 
-
+typedef enum
+{
+   GPIO_PULL_DOWN = 0,
+   GPIO_PULL_UP
+}GPIO_PULL_MODE_t;
 
 
 /******************************************************************************
@@ -130,5 +134,13 @@ void GPIO_voidTogglePinValue	(u8 Copy_u8Port, Pin_t Copy_Pin);
  * @param Copy_u8Pin  PIN0 : PIN7
  */
 u8 GPIO_u8GetPinValue (u8 Copy_u8Port, Pin_t Copy_Pin);
+/**
+ * @brief Select Pull Mode
+ *
+ * @param Copy_u8Port PORTA,PORTB,PORTC
+ * @param Copy_u8Pin  PIN0 : PIN7
+ * @param Copy_Mode select from @ref GPIO_PULL_MODE_t
+ */
+void GPIO_u8ChoosePullMode(u8 Copy_u8Port, Pin_t Copy_Pin, GPIO_PULL_MODE_t Copy_Mode);
 #endif
 /************************************* End of File ******************************************/
