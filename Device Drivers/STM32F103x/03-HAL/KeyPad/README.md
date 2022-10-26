@@ -1,7 +1,3 @@
-## Development
-Microchip Studio 7 (Version: 7.0.2594 - )
-© 2020 Microchip Technology, Inc.
-All rights reserved.
 
 
 OS Version: Microsoft Windows NT 6.2.9200.0
