@@ -1,7 +1,7 @@
 /**************************************************************************/
 /* Author	: Mohamed                                                 */
-/* Date		: 29 JUL 2020                                             */
-/* Version	: V01							  */
+/* Date		: 28 OCT 2022                                             */
+/* Version	: V02							  */
 /**************************************************************************/
 #ifndef COMMON_H
 #define COMMON_H
@@ -37,7 +37,16 @@ typedef enum
 #define	HIGH								1
 #define LOW									0
 
+/************************* SCB PRIORITY	*********************************/
+typedef enum
+{
+    SCB_16_GROUP_0_SUB_GROUP = 	(u32)0x05FA0300 ,   //0b011  -->  4 bits for group (IPR) ==> Group
+    SCB_8_GROUP_2_SUB_GROUP	 =  (u32)0x05FA0400 ,   //0b100  -->  3 bits for group and 1 bit for sub
+    SCB_4_GROUP_4_SUB_GROUP	 =  (u32)0x05FA0500 ,   //0b101  -->  2 bits for group and 2 bit for sun
+    SCB_2_GROUP_8_SUB_GROUP	 =  (u32)0x05FA0600 ,   //0b110  -->  1 bit  for group and 3 bits for sub
+    SCB_0_GROUP_16_SUB_GROUP =  (u32)0x05FA0700     //0b111  -->  0 bit for group and 4 bits for sub
 
+}PriorityGrouping_t;
 
 
 #endif
