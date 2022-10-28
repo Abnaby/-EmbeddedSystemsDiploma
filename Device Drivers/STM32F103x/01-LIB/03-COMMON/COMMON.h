@@ -48,5 +48,24 @@ typedef enum
 
 }PriorityGrouping_t;
 
-
+/************************ EXTERNAL INTERRUPT LINES	************************/ 
+typedef enum
+{
+	EXTI_LINE0 = 0 ,
+	EXTI_LINE1		,
+	EXTI_LINE2		,
+	EXTI_LINE3		,
+	EXTI_LINE4		,
+	EXTI_LINE5		,
+	EXTI_LINE6		,
+	EXTI_LINE7		,
+	EXTI_LINE8		,
+	EXTI_LINE9		,
+	EXTI_LINE10		,
+	EXTI_LINE11		,
+	EXTI_LINE12		,
+	EXTI_LINE13		,
+	EXTI_LINE14		,
+	EXTI_LINE15
+}EXTI_Lines ; 
 #endif

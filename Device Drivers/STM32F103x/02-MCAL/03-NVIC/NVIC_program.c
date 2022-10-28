@@ -138,10 +138,9 @@ activeFlagState_t NVIC_u8GetInterruptStatus ( u8 Copy_u8IntNumber )
 
 void NVIC_voidSetIRQ_PriorityGrouping (u8 Copy_u8IntNumber , u8 Copy_u8GroupPripority, u8 Copy_u8SubGroupPripority)
 {
-	u32 SCB_AIRCR_regVal  ;
 	u8 LOC_u8Priority ;
 	// READ SCB_AIRCR Reg	
-	SCB_AIRCR_regVal = SCB_AIRCR ;
+	u32 SCB_AIRCR_regVal = SCB_AIRCR  ;
 	// Priority Eqn 
 	LOC_u8Priority = 	(Copy_u8SubGroupPripority | (Copy_u8GroupPripority<<((SCB_AIRCR_regVal- 0x05FA0300)/0x100)));
 	// Set Priority 
