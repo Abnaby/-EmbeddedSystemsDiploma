@@ -2,8 +2,8 @@
 * @file USART_private.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-11-09
+* @version 0.2
+* @date 2022-11-10
 *
 */
 #ifndef USART_PRIVATE_H 

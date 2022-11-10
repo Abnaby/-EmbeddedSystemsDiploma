@@ -2,8 +2,8 @@
 * @file USART_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-11-09
+* @version 0.2
+* @date 2022-11-10
 *
 */
 #ifndef USART_INTERFACE_H 
@@ -109,7 +109,14 @@ typedef enum
 
 }USART_DataSampling_t;
 
+typedef enum
+{
+	DMA_DISABLE = 0	,
+	DMA_TX_ENABLE	= (1<<7),
+	DMA_RX_ENABLE	= (1<<6),
+	DMA_TX_RX_ENABLE = ((1<<6) | (1<<7) )
 
+}USART_DMA_t;
 /******************************************************************************
 * Typedefs Struct
 *******************************************************************************/
@@ -132,6 +139,7 @@ typedef struct
 	USART_HWFlowControl_t	USART_HWFlowControl;
 	USART_IdleLevel_t		USART_IdleLevel		;
 	USART_DataSampling_t	USART_DataSampling	;
+	USART_DMA_t				USART_DMA			;			// See @ref 282 in Datasheet
 	//USART_IRQ_t				USART_IRQ_t[4]		;		// Set Each Element with @USART_IRQ_t and reset set by (u8)NULL
 	USART_IRQ_t				USART_IRQ_t	;
 	//void(* P_IRQ_CallBack)(u16 copy_u16Data , USART_IRQ_SRC irq_src);
@@ -166,9 +174,9 @@ void USART_voidReceiveDataSynch(USART_Number_t USART_Number , u16 *P_u16Data) ;
 
 void USART_voidSendDataSynch(USART_Number_t USART_Number , u16 *P_u16Data);
 
-
 void USART__VoidGPIO_SetPins(USART_Number_t USART_Number) ;
 
+void USART_voidGetDMA_PeripheralAddress(USART_Number_t USART_Number , u32* ptr_u32PeripheralAddress) ;
 
 #endif
 /************************************* End of File ******************************************/

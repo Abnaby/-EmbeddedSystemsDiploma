@@ -2,8 +2,8 @@
 * @file USART_program.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-11-09
+* @version 0.2
+* @date 2022-11-10
 *
 */
 /******************************************************************************
@@ -71,6 +71,8 @@ void USART_voidInit(USART_Number_t  USART_Number , USART_Config * usrConfig)
 {
 	u16 LOC_u16CR1 = 0 ;
 	u16 LOC_u16CR2 = 0 ;
+	u16 LOC_u16CR3 = 0 ;
+
 /********************************************************* CR1 REG	****************************************************************/
 	LOC_u16CR1 = (1<<13)								/*	Enable	*/
 				|(usrConfig->USART_DataLength)			/*	Data Length	*/
@@ -91,15 +93,23 @@ void USART_voidInit(USART_Number_t  USART_Number , USART_Config * usrConfig)
 	LOC_u16CR2 = (usrConfig->USART_StopBit) 			/*	Number of Stop Bits	*/
 				|(usrConfig->USART_IdleLevel)			/*	Clock polarity		*/
 				|(usrConfig->USART_DataSampling);		/*	Clock phase			*/
-/*****************************************************************************************************************************************/
+/******************************************************* CR3 REG ********************************************************************/
+	LOC_u16CR3 = (usrConfig->USART_DMA);			/*	DMA		*/
+
+/******************************************************* BuadRate ********************************************************************/
 	Global_USART_Config[USART_Number] = usrConfig ;
 	u16 BRR_Reg = 0 ;
 	USART_voidBuadRateCalc(usrConfig->USART_BuadRate , 8000000 , &BRR_Reg);
+
+
+/******************************************************* Regs ********************************************************************/
+
+
 	switch(USART_Number)
 	{
-	case USART_1 : USART1->BRR =  BRR_Reg  ; USART1->CR1 = LOC_u16CR1 ;  USART1->CR2 = LOC_u16CR2 ; 	break ;
-	case USART_2 : USART2->BRR =  BRR_Reg  ; USART2->CR1 = LOC_u16CR1 ;  USART2->CR2 = LOC_u16CR2 ;  	break ;
-	case USART_3 : USART3->BRR =  BRR_Reg  ; USART3->CR1 = LOC_u16CR1 ;  USART3->CR2 = LOC_u16CR2 ;  	break ;
+	case USART_1 : USART1->BRR =  BRR_Reg  ; USART1->CR1 = LOC_u16CR1 ;  USART1->CR2 = LOC_u16CR2 , USART1->CR3 = LOC_u16CR3 ; 	break ;
+	case USART_2 : USART2->BRR =  BRR_Reg  ; USART2->CR1 = LOC_u16CR1 ;  USART2->CR2 = LOC_u16CR2 ; USART2->CR3 = LOC_u16CR3 ;   	break ;
+	case USART_3 : USART3->BRR =  BRR_Reg  ; USART3->CR1 = LOC_u16CR1 ;  USART3->CR2 = LOC_u16CR2 ; USART3->CR3 = LOC_u16CR3 ; 	break ;
 	default : break ;
 
 	}
@@ -514,5 +524,21 @@ void USART3_IRQHandler(void)
 	//Flags
 	 USART3->SR &=~  (1<<6) ; // TXC
 	 USART3->SR&=~  (1<<5) ; // RXNE
+}
+
+
+void USART_voidGetDMA_PeripheralAddress(USART_Number_t USART_Number , u32* ptr_u32PeripheralAddress)
+{
+	u32 LOC_u32Result  ;
+
+	switch(USART_Number)
+	{
+	case USART_1 : LOC_u32Result = (u32)(&(USART1->DR)) ; break ;
+	case USART_2 : LOC_u32Result = (u32)(&(USART2->DR)) ; break ;
+	case USART_3 : LOC_u32Result = (u32)(&(USART3->DR)) ; break ;
+	default : break ;
+	}
+
+	*ptr_u32PeripheralAddress =LOC_u32Result ;
 }
 /************************************* End of File ******************************************/
