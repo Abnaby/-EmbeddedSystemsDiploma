@@ -2,8 +2,8 @@
  * @file I2C_program.c
  * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com)
  * @brief
- * @version 0.1
- * @date 2022-11-14
+ * @version 0.2
+ * @date 2022-11-15
  *
  */
 /******************************************************************************
@@ -110,6 +110,7 @@ static void I2C_voidTimingInit(I2C_Selection_t I2Cx, u32 PClock , I2C_ClockSpeed
 void I2C_Init(I2C_Selection_t I2Cx, I2C_Config_t* I2C_UserStruct)
 {
 
+
 	/*	Add Global Var	*/
 	if(I2Cx == (u32)I2C1)
 	{
@@ -153,7 +154,8 @@ void I2C_Init(I2C_Selection_t I2Cx, I2C_Config_t* I2C_UserStruct)
 		ACCESS_I2Cx(I2Cx)->OAR1 |= I2C_TEMP_REG   ;
 		/* --------------------- Enable the Selected I2C Peripheral --------------------- */
 		ACCESS_I2Cx(I2Cx)->CR1 |= I2C_CR1_PE;
-
+		/*------------------------ DMA ----------------------------------------------------*/
+		ACCESS_I2Cx(I2Cx)->CR2 |= I2C_UserStruct->I2C_DMA;
 	}
 	else
 	{
@@ -186,7 +188,30 @@ void I2C_VoidGPIO_SetPins(I2C_Selection_t I2Cx)
 	}
 }
 
+void I2C_voidMasterTransmitDMA(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , I2C_startState_t I2C_startState)
+{
 
+	volatile u32 LOC_u32DummyVar = 0 ;
+	LOC_u32DummyVar++; // to ignore warning
+
+	// 1. Set the START bit in I2C_CR1 register to generate start Condition
+	I2C_voidGenerateStart(I2Cx, I2C_startState);
+
+	// 2. Wait for EV5 5: SB=1, cleared by reading SR1 register followed by writing DR register with Address.
+	while(!(I2C_GetFlags(I2Cx , I2C_EV5))) ;
+	LOC_u32DummyVar = ACCESS_I2Cx(I2Cx)->SR1 ;
+
+	// 3. Send Address
+	I2C_voidSendAddress( I2Cx ,  copy_u16SlaveAddress , I2C_MASTER_TX);
+
+	// 4. Wait for EV6: ADDR=1, cleared by reading SR1 register followed by reading SR2.
+	while( !(I2C_GetFlags( I2Cx, I2C_EV6)));
+
+	// 5. Check on [ Busy / MSL / TXE / TRA ] flags from SR1 and SR2 "Clear ADDR Flag"
+	while(!(I2C_GetFlags( I2Cx, MASTER_BYTE_TRANSMITING)));
+
+
+}
 void I2C_voidMasterTransmit(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , u8* ptr_u8Data , u16 copy_u16DataLength , I2C_startState_t I2C_startState , I2C_stopState_t I2C_stopState)
 {
 
@@ -284,6 +309,8 @@ void I2C_voidGenerateStop(I2C_Selection_t I2Cx)
 {
 	/* Generate Stop Condition */
 	ACCESS_I2Cx(I2Cx)->CR1 |= I2C_CR1_STOP;
+	(void)ACCESS_I2Cx(I2Cx)->SR1;
+	(void)ACCESS_I2Cx(I2Cx)->SR2;
 }
 I2C_FlagsState_t I2C_GetFlags(I2C_Selection_t I2Cx , I2C_Flags_t I2C_Flag)
 {
@@ -388,4 +415,13 @@ void I2C_voidSendAddress(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , I2C_M
 		// <TODO> Error 10_BIT MODE NOT SUPORTTED
 	}
 }
+
+
+void I2C_voidGetDMA_PeripheralAddress(I2C_Selection_t I2Cx , u32* ptr_u32PeripheralAddress)
+{
+	u32 LOC_u32Result  ;
+	LOC_u32Result = (u32)(&(ACCESS_I2Cx(I2Cx)->DR));
+	*ptr_u32PeripheralAddress =LOC_u32Result ;
+}
+
 /************************************* End of File ******************************************/

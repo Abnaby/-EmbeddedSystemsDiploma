@@ -2,10 +2,11 @@
 * @file I2C_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-11-14
-*
-*/
+ * @version 0.2
+ * @date 2022-11-15
+ *
+ */
+
 #ifndef I2C_INTERFACE_H 
 #define I2C_INTERFACE_H 
 
@@ -135,6 +136,11 @@ typedef enum
 	I2C_MASTER_TX ,
 	I2C_MASTER_RX
 }I2C_MasterDirection_t;
+typedef enum
+{
+	I2C_DMA_DISABLE = 0 ,
+	I2C_DMA_ENABLE = I2C_CR2_DMAEN
+}I2C_DMA_t;
 /******************************************************************************
 * Config Struct
 *******************************************************************************/
@@ -145,6 +151,7 @@ typedef struct
 	 I2C_ClockSpeed_t						I2C_ClockSpeed	;
 	 I2C_SlaveAddressing_t 					I2C_SlaveAddressing	;
 	 I2C_GenealCallAdressDetection_t		I2C_GenealCallAdressDetection ;
+	 I2C_DMA_t								I2C_DMA						  ;
 }I2C_Config_t;
 
 
@@ -194,7 +201,7 @@ void I2C_VoidGPIO_SetPins(I2C_Selection_t I2Cx);
 void I2C_voidMasterTransmit(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , u8* ptr_u8Data , u16 copy_u16DataLength , I2C_startState_t I2C_startState , I2C_stopState_t I2C_stopState);
 
 /**
-* @brief 				- Set I2C to Recieved data buffer passed from the user
+* @brief 				- Set I2C to Received data buffer passed from the user
 * @param 	 			- I2Cx : where x can be (1,2 depending on device used)
 * @param 	 			- copy_u16SlaveAddress : the address of the device slave we will write on it
 * @param 	 			- ptr_u8Data : pointer on the buffer of first element
@@ -207,6 +214,26 @@ void I2C_voidMasterTransmit(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , u8
 void I2C_voidMasterReceive(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , u8* ptr_u8Data , u16 copy_u16DataLength , I2C_startState_t I2C_startState , I2C_stopState_t I2C_stopState);
 
 
+/**
+* @brief 				- Set I2C to Transmit By DMA
+* @param 	 			- I2Cx : where x can be (1,2 depending on device used)
+* @param 	 			- copy_u16SlaveAddress : the address of the device slave we will write on it
+* @param 	 			- I2C_startState : To choose using repeated start or JUST Start
+* @retval 				- None
+* Note					- Master Will be based on DMA
+* 						- Send Stop Condition on DMA_IRQ
+*/
+void I2C_voidMasterTransmitDMA(I2C_Selection_t I2Cx , u16 copy_u16SlaveAddress , I2C_startState_t I2C_startState);
+
+
+
+/**
+* @brief 				- Get Address of Peripheral for DMA
+* @param 	 			- I2Cx : where x can be (1,2 depending on device used)
+* @param 	 			- copy_u16SlaveAddress : the address of the device slave we will write on it
+*/
+
+void I2C_voidGetDMA_PeripheralAddress(I2C_Selection_t I2Cx , u32* ptr_u32PeripheralAddress);
 
 
 /*															GENERAIC 									*/

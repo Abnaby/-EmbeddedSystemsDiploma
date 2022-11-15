@@ -2,12 +2,12 @@
 * @file EXT_EEPROM.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
+* @version 0.2
 * @date 2022-11-15
 *
 */
-#ifndef EXT_EEPROM__H 
-#define EXT_EEPROM__H 
+#ifndef EXT_EEPROM_H
+#define EXT_EEPROM_H
 
 
 
@@ -30,6 +30,9 @@
 #define EXT_EEPROM_ADDRESS	0x2A
 
 #define EXT_EEPROM_BUFFER_SIZER 	8
+
+
+#define EEPROM_SUPPORT_DMA		1
 
 /******************************************************************************
 * Preprocessor Constants
@@ -73,8 +76,10 @@ void EEPROM_voidInit(void);
 void EEPROM_voidWriteNBytes(u16 copy_u16Address , u8 *ptr_u8Data , u16 copy_u16DataLength);
 void EEPROM_voidReadNBytes(u16 copy_u16Address , u8 *ptr_u8Data , u16 copy_u16DataLength);
 
-
-
+void EEPROM_voidWriteNBytes_DMA(u16 copy_u16Address , u8 *ptr_u8Data , u16 copy_u16DataLength , void(*ptrFCN)(void));
+#if EEPROM_SUPPORT_DMA == 1
+	void EEPROM_voidWriteNBytes_DMA(u16 copy_u16Address , u8 *ptr_u8Data , u16 copy_u16DataLength , void(*ptrFCN)(void));
+#endif
 
 #endif
 /************************************* End of File ******************************************/
