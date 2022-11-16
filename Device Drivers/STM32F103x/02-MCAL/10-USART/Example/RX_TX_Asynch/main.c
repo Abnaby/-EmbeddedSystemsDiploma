@@ -62,10 +62,7 @@ int main(void){
 	}
 
 }
-void USART_callback(u16 copy_u16data )
+void USART_callback(u16 copy_u16data)
 {
-	USART_voidSendDataAsynch(USART_1, &copy_u16data) ;
-
-
-
+	USART_voidSendDataAsynch(USART_1, &copy_u16data);
 }

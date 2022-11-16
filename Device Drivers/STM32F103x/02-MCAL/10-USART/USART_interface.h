@@ -2,8 +2,8 @@
 * @file USART_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.2
-* @date 2022-11-10
+* @version 0.3
+* @date 2022-11-16
 *
 */
 #ifndef USART_INTERFACE_H 
@@ -132,7 +132,7 @@ typedef struct
 typedef struct
 {
 	USART_OperationMode_t	USART_OperationMode	;
-	u16						USART_BuadRate		;
+	u32						USART_BuadRate		;
 	USART_DataLength_t		USART_DataLength	;
 	USART_Parity_t			USART_Parity		;
 	USART_StopBit_t			USART_StopBit		;
@@ -177,6 +177,10 @@ void USART_voidSendDataSynch(USART_Number_t USART_Number , u16 *P_u16Data);
 void USART__VoidGPIO_SetPins(USART_Number_t USART_Number) ;
 
 void USART_voidGetDMA_PeripheralAddress(USART_Number_t USART_Number , u32* ptr_u32PeripheralAddress) ;
+
+void USART_voidSendStringWithFixedSizeSynch(USART_Number_t USART_Number , u8 *P_u8Data , u16 copy_u16BufferSize );
+
+void USART_voidSendStringWithDelimiterSynch(USART_Number_t USART_Number , u8 *P_u8Data , u8 copy_u16Delimiter );
 
 #endif
 /************************************* End of File ******************************************/

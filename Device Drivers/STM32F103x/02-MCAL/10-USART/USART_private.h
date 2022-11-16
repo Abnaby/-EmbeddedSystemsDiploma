@@ -2,8 +2,8 @@
 * @file USART_private.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.2
-* @date 2022-11-10
+* @version 0.3
+* @date 2022-11-16
 *
 */
 #ifndef USART_PRIVATE_H 
@@ -86,7 +86,7 @@ typedef struct{
 *******************************************************************************/
 
 
-void USART_voidBuadRateCalc(u16 BuadRate , u32 PClock , u16 *BRR_Reg);
+void USART_voidBuadRateCalc(u32 BuadRate , u32 PClock , u32 *BRR_Reg);
 
 #endif
 /************************************* End of File ******************************************/

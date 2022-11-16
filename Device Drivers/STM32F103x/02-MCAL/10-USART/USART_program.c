@@ -2,8 +2,8 @@
 * @file USART_program.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.2
-* @date 2022-11-10
+* @version 0.3
+* @date 2022-11-16
 *
 */
 /******************************************************************************
@@ -259,14 +259,20 @@ void USART_voidReceiveDataAsynch(USART_Number_t USART_Number)
 }
 
 
-void USART_voidBuadRateCalc(u16 BuadRate , u32 PClock , u16 *BRR_Reg)
+void USART_voidBuadRateCalc(u32 BuadRate , u32 PClock , u32 *BRR_Reg)
 {
 
+	
+
 	u32 USARTDEV = ((PClock)/(16*BuadRate)) ;
-	u32 USARTDEV_Mull_100 = ((25 * PClock)/(4*BuadRate)) ;
+	u32 USARTDEV_Mull_100 = ((25.0 * PClock)/(4.0*BuadRate)) ;
 	u32 Mantiessa_Mull_100 = USARTDEV * 100  ;
 	u32 Mantiessa = USARTDEV ;
 	u32 Fraction = ((USARTDEV_Mull_100 - Mantiessa_Mull_100)*16) /100 ;
+
+	/*u32 Mantiessa = ((PClock)/(16*BuadRate)) ;
+	u32 Fraction  = ((((1.0*PClock)/(16.0*BuadRate)) * 100) - (Mantiessa * 100)) * 16 ;
+	*/
 	if(Fraction > 16)
 	{
 		Mantiessa = Mantiessa+1 ;
@@ -540,5 +546,23 @@ void USART_voidGetDMA_PeripheralAddress(USART_Number_t USART_Number , u32* ptr_u
 	}
 
 	*ptr_u32PeripheralAddress =LOC_u32Result ;
+}
+
+void USART_voidSendStringWithFixedSizeSynch(USART_Number_t USART_Number , u8 *P_u8Data , u16 copy_u16BufferSize )
+{
+	u16 LOC_u16Counter = 0 ;
+	for(LOC_u16Counter = 0 ; LOC_u16Counter < copy_u16BufferSize ; LOC_u16Counter++)
+	{
+		USART_voidSendDataSynch(USART_Number, (u16*)&P_u8Data[LOC_u16Counter]);
+	}
+}
+void USART_voidSendStringWithDelimiterSynch(USART_Number_t USART_Number , u8 *P_u8Data , u8 copy_u16Delimiter )
+{
+	u32 LOC_u16Counter = 0 ;
+	while (P_u8Data[LOC_u16Counter] != copy_u16Delimiter)
+	{
+		USART_voidSendDataSynch(USART_Number, (u16*)&P_u8Data[LOC_u16Counter]);
+		LOC_u16Counter++ ;
+	}
 }
 /************************************* End of File ******************************************/
