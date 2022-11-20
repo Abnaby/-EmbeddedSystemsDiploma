@@ -2,8 +2,8 @@
 * @file DMA_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-11-07
+* @version 0.2
+* @date 2022-11-10
 *
 */
 #ifndef DMA_INTERFACE_H 
@@ -50,13 +50,13 @@
  */
 typedef enum
 {
-    CHANNEL0 ,
     CHANNEL1 ,
     CHANNEL2 ,
     CHANNEL3 ,
     CHANNEL4 ,
     CHANNEL5 ,
-    CHANNEL6 
+    CHANNEL6 ,
+    CHANNEL7
 }DMA_Channel_t ;
 
 typedef enum
@@ -82,9 +82,9 @@ typedef enum
  */
 typedef enum
 {
-    MEM_TO_MEM  = 0x4000,
-    PREI_TO_MEM = 0x10 ,
-    MEM_TO_PERI = 0x10
+    MEM_TO_MEM  = (1<<14),
+    PREI_TO_MEM = 0 ,
+    MEM_TO_PERI = (1<<4)
 }DMA_Direction_t ;
 
 /**
@@ -105,7 +105,7 @@ typedef enum
 typedef enum
 {
     MEM_INCREMENT_DISABLE ,
-    MEM_INCREMENT_ENABLE = 0x40
+    MEM_INCREMENT_ENABLE = 0x80
 }DMA_MemIncrement_t;
 
 /**
@@ -115,7 +115,7 @@ typedef enum
 typedef enum
 {
     PERIPHERAL_INCREMENT_DISABLE ,
-    PERIPHERAL_INCREMENT_ENABLE =0x80
+    PERIPHERAL_INCREMENT_ENABLE =0x40
 }DMA_PripheralIncrement_t ;
 
 /**

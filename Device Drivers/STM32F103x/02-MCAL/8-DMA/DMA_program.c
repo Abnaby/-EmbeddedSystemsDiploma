@@ -2,8 +2,8 @@
 * @file DMA_program.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-11-07
+* @version 0.2
+* @date 2022-11-10
 *
 */
 /******************************************************************************
@@ -30,7 +30,7 @@
 *******************************************************************************/
 
 
-#define GET_CHANNEL()     (DMA->CHANNEL[ptr_UsrConfig->channelNumber])
+#define GET_CHANNEL()     (DMA->CHANNEL[((ptr_UsrConfig->channelNumber))])
 
 /******************************************************************************
 * Module Preprocessor Macros
@@ -69,16 +69,17 @@ void DMA_voidInitChannel(DMA_Config_t* ptr_UsrConfig)
     CLR_BIT( GET_CHANNEL().CCR ,  0 );
     while( GET_BIT(  GET_CHANNEL().CCR  , 0 ) == 1 );
     /* Set Direction    */
+
     GET_CHANNEL().CCR &=~(0b100000000010000) ;
     GET_CHANNEL().CCR |= (ptr_UsrConfig->channelDirection) ;
     /* Set Mode */
     CLR_BIT(GET_CHANNEL().CCR , 5 );
     GET_CHANNEL().CCR |= ptr_UsrConfig->channelCircularMode ;
     /* Mem Increment Mode   */
-    CLR_BIT( GET_CHANNEL().CCR , 6  );
+    CLR_BIT( GET_CHANNEL().CCR , 7  );
     GET_CHANNEL().CCR |= ptr_UsrConfig->channelMemIncrement ;
     /* Pripheral Increment Mode */
-     CLR_BIT( GET_CHANNEL().CCR , 7  );
+     CLR_BIT( GET_CHANNEL().CCR , 6  );
     GET_CHANNEL().CCR |= ptr_UsrConfig->channelPriphIncremnet ;
     /*  Mem Memory Size    */
     if( ptr_UsrConfig->channelMemElementSize == BYTE )
@@ -124,24 +125,24 @@ void DMA_voidInitChannel(DMA_Config_t* ptr_UsrConfig)
 }
 void DMA_voidSetChannelState(DMA_Channel_t channelNumber, DMA_State_t channelState)
 {
-    CLR_BIT( DMA->CHANNEL[channelNumber].CCR ,  0 );
-    DMA->CHANNEL[channelNumber].CCR |= channelState;
+    CLR_BIT( DMA->CHANNEL[(channelNumber)].CCR ,  0 );
+    DMA->CHANNEL[(channelNumber)].CCR |= channelState;
 }
 void DNA_voidSetHalfCompleteInterruptState(DMA_Channel_t channelNumber , DMA_halfTxInterrupt_t channelHalfTransferIntState)
 {
-    CLR_BIT( DMA->CHANNEL[channelNumber].CCR ,  2 );
-    DMA->CHANNEL[channelNumber].CCR |= channelHalfTransferIntState ;
+    CLR_BIT( DMA->CHANNEL[(channelNumber)].CCR ,  2 );
+    DMA->CHANNEL[(channelNumber)].CCR |= channelHalfTransferIntState ;
 
 }
 void DNA_voidSetCompleteInterruptState(DMA_Channel_t channelNumber , DMA_CompleteTxInterrupt_t channelCompleteTransferInt)
 {
-    CLR_BIT( DMA->CHANNEL[channelNumber].CCR ,  1 );
-    DMA->CHANNEL[channelNumber].CCR |= channelCompleteTransferInt ;
+    CLR_BIT( DMA->CHANNEL[(channelNumber)].CCR ,  1 );
+    DMA->CHANNEL[(channelNumber)].CCR |= channelCompleteTransferInt ;
 }
 void DNA_voidSetErrorInterruptState(DMA_Channel_t channelNumber , DMA_errorInterrupt_t  channelerrorInTransferInt)
 {
-    CLR_BIT( DMA->CHANNEL[channelNumber].CCR ,  3 );
-    DMA->CHANNEL[channelNumber].CCR |= channelerrorInTransferInt  ;
+    CLR_BIT( DMA->CHANNEL[(channelNumber)].CCR ,  3 );
+    DMA->CHANNEL[(channelNumber)].CCR |= channelerrorInTransferInt  ;
 
 }
 
@@ -150,11 +151,11 @@ void DMA_voidStatrTransfer(DMA_Channel_t channelNumber , u32 * PeripheralAddress
 	/* Clear Flags	*/
 	DMA->IFCR = 0xFFFFFFF ;
 	/* SetAdresses 	*/
-    DMA->CHANNEL[channelNumber].CNDTR = Copy_u16BlockSize ;
-    DMA->CHANNEL[channelNumber].CPAR = (u32)PeripheralAddress ;
-    DMA->CHANNEL[channelNumber].CMAR = (u32)MemoryAddress ;
-    DMA_PtrFunction[channelNumber] = Ptr ; 
-    SET_BIT( DMA->CHANNEL[channelNumber].CCR ,  0 );
+    DMA->CHANNEL[(channelNumber)].CNDTR = Copy_u16BlockSize ;
+    DMA->CHANNEL[(channelNumber)].CPAR = (u32)PeripheralAddress ;
+    DMA->CHANNEL[(channelNumber)].CMAR = (u32)MemoryAddress ;
+    DMA_PtrFunction[(channelNumber)] = Ptr ;
+    SET_BIT( DMA->CHANNEL[(channelNumber)].CCR ,  0 );
 
 }
 /**** ISR   ***/
