@@ -1,7 +1,7 @@
 /**************************************************************************/
 /* Author	: Mohamed                                               	  */
-/* Date		: 28 January 2021                                 		      */
-/* Version	: V01							  							  */
+/* Date		: 07 December 2022                                		      */
+/* Version	: V02							  							  */
 /**************************************************************************/
 #ifndef EXT_INT_interface_H
 #define EXT_INT_interface_H
@@ -64,5 +64,13 @@ void EXTINT_voidDisable(u8 copy_u8InterruptID );
 * Return type : void
 ******************************************************************************/
 void EXTINT_voidGlobalIntEnable(void);
+
+/******************************************************************************
+* Func Name   : EXTINT_voidGlobalIntDisable(void);
+* Description :	Disable Global Interrupt.
+* Parameters  : void
+* Return type : void
+******************************************************************************/
+void EXTINT_voidGlobalIntDisable (void); 
 
 #endif

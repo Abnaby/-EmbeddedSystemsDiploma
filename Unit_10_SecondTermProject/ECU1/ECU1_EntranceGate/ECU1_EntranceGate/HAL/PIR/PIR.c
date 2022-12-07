@@ -84,7 +84,7 @@ void PIR_voidExistMovement(void(*Callback)(void))
 u8 PIR_u8ExistMovement(void)
 {
     u8 LOC_u8Result = 0 ; 
-    LOC_u8Result = GPIO_u8GetPinValue(PIR_PORT_PIN ); 
+    LOC_u8Result = GPIO_u8GetPinValue(PIR_PORT_PIN); 
     return LOC_u8Result ; 
 }
 #endif 

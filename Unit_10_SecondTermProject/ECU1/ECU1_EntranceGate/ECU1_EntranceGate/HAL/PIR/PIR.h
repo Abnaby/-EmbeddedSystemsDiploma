@@ -16,6 +16,11 @@
 
 
 
+/******************************************************************************
+* Preprocessor Constants
+ *******************************************************************************/
+#define PIR_INTERRUPT	0
+#define PIR_POLLING		4
 
 /******************************************************************************
 * User Configuration
@@ -36,20 +41,16 @@
 							EXT_INT2  Support only EXT_INT2_FALLING_EDGE and EXT_INT2_RISING_EDGE
 								
 */
-#define PIR_BASED_ON	    PIR_INTERRUPT
+#define PIR_BASED_ON	    PIR_POLLING
 
 #if  PIR_BASED_ON == PIR_INTERRUPT
 #define PIR_USING_EXTIx		EXT_INT0
 #define PIR_INTERRUPT_AT	EXT_INT0_RISING_EDGE
 #else
-#define PIR_PORT_PIN        PORTD,PIN0
-
+#define PIR_PORT_PIN        PORTA,PIN1
 #endif 
-/******************************************************************************
-* Preprocessor Constants
- *******************************************************************************/
-#define PIR_INTERRUPT	0
-#define PIR_POLLING		4
+
+
 
 
 

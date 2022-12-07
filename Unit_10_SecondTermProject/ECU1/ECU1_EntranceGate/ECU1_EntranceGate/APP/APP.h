@@ -20,8 +20,14 @@
 // MCAL
 #include "../MCAL/GPIO/GPIO_interface.h"
 #include "../MCAL/EXTI/EXT_INT_interface.h"
+#include "../MCAL/UART/USART_interface.h"
+#include "../MCAL/PWM/PWM_Interface.h"
+#include "../MCAL/SPI/SPI_Interface.h"
 // HAL
 #include "../HAL/PIR/PIR.h"
+#include "../HAL/RFID/RFID.h"
+#include "../HAL/Gate/GateControl.h"
+
 
 
 

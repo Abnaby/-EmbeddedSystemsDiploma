@@ -1,7 +1,7 @@
 /**************************************************************************/
 /* Author	: Mohamed                                               	  */
-/* Date		: 28 January 2021                                 		      */
-/* Version	: V01							  							  */
+/* Date		: 07 December 2022                                		      */
+/* Version	: V02							  							  */
 /**************************************************************************/
 
 /******************************************************************************
@@ -183,6 +183,11 @@ void EXTINT_voidGlobalIntEnable(void)
 {
 	/*	ENABLE GLOBAL INTTERUPT	*/
 	SET_BIT(SREG,SREG_GIE);
+}
+void EXTINT_voidGlobalIntDisable(void)
+{
+	/*	ENABLE GLOBAL INTTERUPT	*/
+	CLR_BIT(SREG,SREG_GIE);
 }
 
 

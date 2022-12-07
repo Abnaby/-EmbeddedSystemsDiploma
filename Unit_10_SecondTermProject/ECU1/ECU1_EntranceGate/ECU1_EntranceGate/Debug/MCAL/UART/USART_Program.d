@@ -1,0 +1,17 @@
+MCAL/UART/USART_Program.d MCAL/UART/USART_Program.o: \
+ ../MCAL/UART/USART_Program.c ../MCAL/UART/../../LIB/BIT_MATH/BIT_MATH.h \
+ ../MCAL/UART/../../LIB/STD_TYPES/STD_TYPES.h \
+ ../MCAL/UART/../../LIB/MAPPING/MAPPING.h ../MCAL/UART/USART_Interface.h \
+ ../MCAL/UART/USART_Config.h ../MCAL/UART/USART_Private.h
+
+../MCAL/UART/../../LIB/BIT_MATH/BIT_MATH.h:
+
+../MCAL/UART/../../LIB/STD_TYPES/STD_TYPES.h:
+
+../MCAL/UART/../../LIB/MAPPING/MAPPING.h:
+
+../MCAL/UART/USART_Interface.h:
+
+../MCAL/UART/USART_Config.h:
+
+../MCAL/UART/USART_Private.h:

@@ -1,7 +1,7 @@
 /**************************************************************************/
 /* Author	: Mohamed                                               	  */
-/* Date		: 18 Oct 2022                                 		      */
-/* Version	: V04							  							  */
+/* Date		: 7 December 2022                                 		      */
+/* Version	: V05							  							  */
 /**************************************************************************/
 
 #ifndef MAPPING_H
@@ -56,6 +56,10 @@
 
 #define SREG              *((volatile u8 *) (0x5F))
 #define SREG_GIE            7
+
+
+#define ENABLE_GLOBAL_INTERRUPT()		SET_BIT(SREG,SREG_GIE)
+#define DISABLE_GLOBAL_INTERRUPT()		CLR_BIT(SREG,SREG_GIE)
 
 /****************************************************** Timers *********************************************/
 /**
