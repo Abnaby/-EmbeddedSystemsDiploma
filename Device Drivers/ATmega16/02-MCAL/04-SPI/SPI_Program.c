@@ -2,15 +2,17 @@
 * @file SPI_Program.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-08-23
+* @version 0.2
+* @date 2022-12-7
 *
 */
 /******************************************************************************
 * Includes
 *******************************************************************************/
-#include "STD_TYPES.h"
-#include "BIT_MATH.h"
+#include "../../LIB/BIT_MATH/BIT_MATH.h"
+#include "../../LIB/STD_TYPES/STD_TYPES.h"
+#include "../../LIB/MAPPING/MAPPING.h"
+
 #include "SPI_Interface.h"
 #include "SPI_Config.h"
 #include "SPI_Private.h"
@@ -76,9 +78,7 @@ void MCAL_SPI_voidInit(SPI_Config* ptr_SPI_Config)
              |  CNFG_ACCESS(SPI_IdleStateLevel)
              |  CNFG_ACCESS(SPI_DataSamplingEdge)
              |  (CNFG_ACCESS(SPI_SetClockRate) & 0b011) ;
-	//	Clear SPI Interrupt by reading SPSR AND SPDR
-	SPI_SPDR |= 0 ;
-	SPI_SPSR |= 0 ;
+
 }
 void MCAL_SPI_voidByteExchangeAsynch(u8 cpy_u8DataToBeTransmit, u8* ptr_dataToBeReceived)
 {
@@ -119,6 +119,8 @@ void MCAL_SPI_voidReceiveByteAsynch(u8* ptr_u8Data)
     /*          CHECK IF SPI ENABLED OR NOT     */
     if (SPI_SPCR & 0b01000000)
     {
+		
+		SPI_SPDR = 0xFF;
 		/* Wait for reception complete */
 		WAIT_TO_EXCHANGE() ; 
 		;

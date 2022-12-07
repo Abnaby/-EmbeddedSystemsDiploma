@@ -2,8 +2,8 @@
 * @file SPI_Interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-08-23
+* @version 0.2
+* @date 2022-12-7
 *
 */
 #ifndef SPI_INTERFACE_H 
