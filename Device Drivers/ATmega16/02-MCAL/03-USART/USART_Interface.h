@@ -2,8 +2,8 @@
 * @file USART_Interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-08-14
+* @version 0.3
+* @date 2022-12-7
 *
 */
 #ifndef USART_INTERFACE_H 
@@ -116,10 +116,10 @@ void MCAL_USART_TxByteAsynch(u8 copy_u8Data, void(*Tx_CallBack)(void));
 /**
  * @brief This is a function can receive a byte of data Asynchronously.
  * 
- * @param ptr_u8ReceivedData pointer to variable to hold received data on it
+ * @param Tx_CallBack pointer to functio holde recieved data;
  * @return void
  */
-void MCAL_USART_RxByteAsynch(u8 *ptr_u8ReceivedData);
+void MCAL_USART_RxByteAsynch(void(*Tx_CallBack)(u8)) ; 
 /**
  * @brief This is a function used to Disable Interrupt For Transmit.
  * 
@@ -134,6 +134,31 @@ void MCAL_voidDisableTxInterrupt(void);
  * @return void
  */
 void MCAL_voidDisableRxInterrupt(void);
+
+/**
+ * @brief This is a function used to Disable Interrupt .
+ * 
+ * @param void
+ * @return void
+ */
+void MCAL_voidDisableInterrupt(void);
+
+/**
+ * @brief This is a function used to Enable Interrupt .
+ * 
+ * @param void
+ * @return void
+ */
+
+void MCAL_voidEnableInterrupt(void);
+/**
+ * @brief This is a function used to Clear Rx Flags .
+ * 
+ * @param void
+ * @return void
+ */
+void MCAL_voidClearFlags(void);
+
 /**
  * @brief This is a function gets the statues of desired flag.
  * 

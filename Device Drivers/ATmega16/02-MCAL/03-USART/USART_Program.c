@@ -1,17 +1,17 @@
 /**
-* @file USART_Program.c
+* @file USART_Interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-08-14
+* @version 0.3
+* @date 2022-12-7
 *
 */
 /******************************************************************************
 * Includes
 *******************************************************************************/
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
-#include "MAPPING.h"
+#include "../../LIB/BIT_MATH/BIT_MATH.h"
+#include "../../LIB/STD_TYPES/STD_TYPES.h"
+#include "../../LIB/MAPPING/MAPPING.h"
 
 #include "USART_Interface.h"
 #include "USART_Private.h"
@@ -31,7 +31,7 @@
 *******************************************************************************/
 
 static UART_cnfg *Global_uartcfg = NULL ;
-static u8 *Global_u8Rx ;  
+
 
 
 /******************************************************************************
@@ -185,7 +185,8 @@ u8 MCAL_u8PrivateEffectiveData(u8 data)
 		case _5BIT : LOC_u8effectiveData = data & 0x1F; break ; 
 		case _6BIT : LOC_u8effectiveData = data & 0x3F; break ; 
 		case _7BIT : LOC_u8effectiveData = data & 0x7F; break ; 
-		case _8BIT : LOC_u8effectiveData = data & 0xFF; break ; 	
+		case _8BIT : LOC_u8effectiveData = data & 0xFF; break ; 
+		default : break ; 	
 	}
 	return LOC_u8effectiveData ; 
 }
@@ -197,18 +198,39 @@ void
 	USART_UCSRB |= UCSRB_TXCIE ; 
 }
 
-void MCAL_USART_RxByteAsynch(u8 *ptr_u8ReceivedData)
+void MCAL_USART_RxByteAsynch(void(*Rx_CallBack)(u8))
 {
-	Global_u8Rx = ptr_u8ReceivedData ; 
+	Global_RxComplate = Rx_CallBack ; 
 	USART_UCSRB |= UCSRB_RXCIE ; 
 }
 void MCAL_voidDisableTxInterrupt()
 {
 	USART_UCSRB &= ~UCSRB_TXCIE ;
 }
-void MCAL_voidDisableRxInterrupt()
+
+void MCAL_voidDisableRxInterrupt(void)
 {
 	USART_UCSRB &= ~UCSRB_RXCIE;
+}
+
+void MCAL_voidDisableInterrupt(void)
+{
+	USART_UCSRB &= ~UCSRB_TXCIE ;
+	USART_UCSRB &= ~UCSRB_RXCIE;	
+}
+
+void MCAL_voidEnableInterrupt(void)
+{
+	USART_UCSRB |= UCSRB_TXCIE ;
+	USART_UCSRB |= UCSRB_RXCIE;	
+}
+
+void MCAL_voidClearFlags(void)
+{
+	while(GET_BIT(USART_UCSRA,7) == 1 )
+	{
+		(void)USART_UDR ; 
+	}
 }
 
 USART_FlagsStatus MCAL_USART_GetFlagState(u8 cpy_u8Flag)
@@ -239,7 +261,8 @@ USART_FlagsStatus MCAL_USART_GetFlagState(u8 cpy_u8Flag)
 }
  void __vector_11(void)	//USART, Rx Complete
 {
-	*Global_u8Rx = USART_UDR;
+	u8 tempData = USART_UDR ; 
+	Global_RxComplate(tempData)  ;
 }
 
  void __vector_13(void)    //USART, Tx Complete

@@ -124,5 +124,7 @@ static u8 MCAL_u8PrivateEffectiveData(u8 data);
  void __vector_12(void) __attribute__(( signal , used ));   //USART Data Register Empty
 
 static void (*Global_TxComplate) (void) = NULL;
+static void (*Global_RxComplate) (u8) = NULL;
+
 #endif
 /************************************* End of File ******************************************/
