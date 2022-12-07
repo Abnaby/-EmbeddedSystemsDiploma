@@ -1,15 +1,15 @@
 /**************************************************************************/
 /* Author	: Mohamed                                               	  */
-/* Date		: 28 January 2021                                 		      */
-/* Version	: V01							  							  */
+/* Date		: 07 December 2022                                		      */
+/* Version	: V02							  							  */
 /**************************************************************************/
 
 /******************************************************************************
 * Includes
 *******************************************************************************/
-#include "BIT_MATH.h"
-#include "STD_TYPES.h"
-#include "MAPPING.h"
+#include "../../LIB/BIT_MATH/BIT_MATH.h"
+#include "../../LIB/STD_TYPES/STD_TYPES.h"
+#include "../../LIB/MAPPING/MAPPING.h"
 
 #include "EXT_INT_interface.h"
 #include "EXT_INT_private.h"
@@ -183,6 +183,11 @@ void EXTINT_voidGlobalIntEnable(void)
 {
 	/*	ENABLE GLOBAL INTTERUPT	*/
 	SET_BIT(SREG,SREG_GIE);
+}
+void EXTINT_voidGlobalIntDisable(void)
+{
+	/*	ENABLE GLOBAL INTTERUPT	*/
+	CLR_BIT(SREG,SREG_GIE);
 }
 
 
