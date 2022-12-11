@@ -1,6 +1,7 @@
 # **ECU3 Exit Gate**
 ## *Story*
 > The main goal of ECU3 is to control the exit gate by reading the ID of the Driver using an RFID card based on UART and sending the driver data ID to the admin dashboard ECU2 through SPI when ECU2 Responds with a valid ID then ECU3 starts to open the exit gate using Fast PWM Mode. While the PIR sensor reads there is a vehicle under the exit gate, the exit gate will never close until the vehicle exits the area under the exit gate and the PIR sensor read LOW. when the exit gate is open the RFID reader can't read any data until the gate is closed.
+
   In case of an invalid ID, the exit gate never opens until the driver enters a valid ID.
 
 ## *Architecture Diagram* 
