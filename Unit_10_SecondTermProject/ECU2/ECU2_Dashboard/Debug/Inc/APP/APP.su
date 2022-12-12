@@ -1,0 +1,2 @@
+APP.c:71:6:ECU3_Exit_APP_SETUP	4	static
+APP.c:77:6:ECU3_Exit_APP_LOOP	4	static

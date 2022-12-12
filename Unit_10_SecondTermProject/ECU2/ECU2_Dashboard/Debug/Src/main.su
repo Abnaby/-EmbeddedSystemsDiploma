@@ -1,0 +1,3 @@
+main.c:14:22:xDelay	24	static
+main.c:49:6:progressBar	24	static
+main.c:62:6:main	16	static

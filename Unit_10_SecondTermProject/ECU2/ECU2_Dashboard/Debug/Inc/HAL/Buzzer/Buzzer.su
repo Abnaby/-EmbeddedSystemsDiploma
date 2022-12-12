@@ -1,0 +1,3 @@
+Buzzer.c:49:6:Buzzer_voidInit	16	static
+Buzzer.c:53:6:Buzzer_voidPlay	16	static
+Buzzer.c:58:6:Buzzer_voidStop	16	static

@@ -1,0 +1,13 @@
+_7Segment.c:72:23:HAL_7SegmentInit	24	static
+_7Segment.c:103:23:HAL_7SegmentWriteNumber	24	static
+_7Segment.c:135:23:_7sevenSegmentErrorChecking	16	static
+_7Segment.c:152:13:_7SegZero	16	static
+_7Segment.c:173:13:_7SegOne	16	static
+_7Segment.c:194:13:_7SegTwo	16	static
+_7Segment.c:215:13:_7SegThree	16	static
+_7Segment.c:236:13:_7SegFour	16	static
+_7Segment.c:257:13:_7SegFive	16	static
+_7Segment.c:278:13:_7SegSix	16	static
+_7Segment.c:300:13:_7SegSeven	16	static
+_7Segment.c:322:13:_7SegEight	16	static
+_7Segment.c:344:13:_7SegNine	16	static
