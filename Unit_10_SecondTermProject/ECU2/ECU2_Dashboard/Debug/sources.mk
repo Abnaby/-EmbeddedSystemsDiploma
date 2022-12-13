@@ -27,6 +27,7 @@ Inc/HAL/LCD \
 Inc/HAL/_7Segment \
 Inc/MCAL/GPIO \
 Inc/MCAL/RCC \
+Inc/MCAL/SPI \
 Src \
 Startup \
 

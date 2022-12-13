@@ -3,7 +3,7 @@ Src/main.o: ../Src/main.c ../Src/../Inc/LIB/STD_TYPES/STD_TYPES.h \
  ../Src/../Inc/MCAL/RCC/RCC_interface.h \
  ../Src/../Inc/MCAL/GPIO/GPIO_interface.h \
  ../Src/../Inc/MCAL/GPIO/../../LIB/COMMON/COMMON.h \
- ../Src/../Inc/HAL/Buzzer/Buzzer.h \
+ ../Src/../Inc/MCAL/SPI/SPI_interface.h ../Src/../Inc/HAL/Buzzer/Buzzer.h \
  ../Src/../Inc/HAL/Buzzer/../../LIB/BIT_MATH/BIT_MATH.h \
  ../Src/../Inc/HAL/Buzzer/../../LIB/STD_TYPES/STD_TYPES.h \
  ../Src/../Inc/HAL/Buzzer/../../LIB/COMMON/COMMON.h \
@@ -23,6 +23,8 @@ Src/main.o: ../Src/main.c ../Src/../Inc/LIB/STD_TYPES/STD_TYPES.h \
 ../Src/../Inc/MCAL/GPIO/GPIO_interface.h:
 
 ../Src/../Inc/MCAL/GPIO/../../LIB/COMMON/COMMON.h:
+
+../Src/../Inc/MCAL/SPI/SPI_interface.h:
 
 ../Src/../Inc/HAL/Buzzer/Buzzer.h:
 

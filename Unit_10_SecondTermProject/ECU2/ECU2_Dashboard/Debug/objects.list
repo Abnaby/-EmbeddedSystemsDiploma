@@ -5,5 +5,6 @@
 "Inc/HAL/_7Segment/_7Segment.o"
 "Inc/MCAL/GPIO/GPIO_program.o"
 "Inc/MCAL/RCC/RCC_program.o"
+"Inc/MCAL/SPI/SPI_program.o"
 "Src/main.o"
 "Startup/startup_stm32f103c6tx.o"

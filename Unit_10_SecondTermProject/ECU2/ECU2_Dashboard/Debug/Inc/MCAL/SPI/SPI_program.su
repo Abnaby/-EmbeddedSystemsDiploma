@@ -1,0 +1,7 @@
+SPI_program.c:69:6:SPI_voidInit	24	static
+SPI_program.c:129:6:SPI_voidSendDataSynch	16	static
+SPI_program.c:148:6:SPI_voidRecieveDataSynch	16	static
+SPI_program.c:168:6:SPI_voidSend_RecieveDataSynch	24	static
+SPI_program.c:191:6:SPI_VoidGPIO_SetPins	16	static
+SPI_program.c:312:6:SPI1_IRQHandler	16	static
+SPI_program.c:323:6:SPI2_IRQHandler	16	static
