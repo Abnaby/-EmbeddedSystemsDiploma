@@ -253,9 +253,17 @@ void LCD_voidGotoXY(LCD_Config* ptrCnfg , u8 x , u8 y)
 		 *  D7 1
 		 * ADD
 		 */	
-		 address = y * 0x40 + x;		/*	If 0 --> Row 1 , If 0x40 Row 2	*/
-		 address = address ;		/* To Goto x position	*/
-		 address |= (1 << 7) ;
+		if(y  < 2 )
+		{
+			 address = y * 0x40 + x;		/*	If 0 --> Row 1 , If 0x40 Row 2	*/
+		}
+		else
+		{
+			address = (y-2) * 0x40 + 0x10  + x;
+
+		}
+		address |= (1 << 7) ;
+
 
 		LCD_voidWriteCmd(ptrCnfg , address);
 
@@ -297,6 +305,15 @@ void LCD_voidStoreCustomChar(LCD_Config*  ptrLCD ,u8* ptrToArray, u8 copy_u8Char
 	}
 	
 }
+
+void LCD_voidSendNumber(LCD_Config*  ptrLCD , u32 copy_u32Number)
+{
+	u8 Buffer[17] = {0} ;
+	itoa(copy_u32Number,Buffer,10) ;
+	LCD_voidSendString(ptrLCD , Buffer);
+
+
+}
 void LCD_voidDispCustomChar(LCD_Config*  ptrLCD , u8 storedCharIndex)
 {
 
@@ -304,6 +321,9 @@ void LCD_voidDispCustomChar(LCD_Config*  ptrLCD , u8 storedCharIndex)
 	
 	
 }
+
+
+
 /************************************ Static FCNs**********************************/
 void LCD_voidWriteCmd(LCD_Config* x , u8 copy_u8Cmd)
 {

@@ -187,5 +187,9 @@ void LCD_voidStoreCustomChar(LCD_Config*  ptrLCD ,u8* ptrToArray, u8 copy_u8Char
  * @param storedCharIndex the index of char 0->7 
  */
 void LCD_voidDispCustomChar(LCD_Config*  ptrLCD , u8 storedCharIndex);
+
+void LCD_voidSendNumber(LCD_Config*  ptrLCD , u32 copy_u32Number);
+
+
 #endif
 /************************************* End of File ******************************************/

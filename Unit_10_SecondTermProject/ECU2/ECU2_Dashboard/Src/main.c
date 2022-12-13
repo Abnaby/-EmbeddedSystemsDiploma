@@ -67,12 +67,18 @@ void main(void){
 	RCC_voidEnableClock(RCC_APB2, PORTA);
 	/*			init lcd			*/
 	LCD_Config myLCD ;
-	myLCD.LCD_SIZE_Rows = 2 ;
+	myLCD.LCD_SIZE_Rows = 4 ;
 	myLCD.LCD_SIZE_Cols = 16 ;
 	myLCD.LCD_PortPins = arr ;
 	LCD_voidInit(&myLCD);
-	LCD_voidSendString(&myLCD,addString(" "));
-	progressBar(&myLCD,100,500);
+	LCD_voidGotoXY(&myLCD, 6, 0);
+	LCD_voidSendString(&myLCD , (u8*)"Ahleen") ;
+	LCD_voidGotoXY(&myLCD, 6, 1);
+	LCD_voidSendString(&myLCD , (u8*)"Ahleen") ;
+	LCD_voidGotoXY(&myLCD, 6, 2);
+	LCD_voidSendString(&myLCD , (u8*)"Ahleen") ;
+	LCD_voidGotoXY(&myLCD, 6, 3);
+	LCD_voidSendString(&myLCD , (u8*)"Ahleen") ;
 	while(1){
 
 
