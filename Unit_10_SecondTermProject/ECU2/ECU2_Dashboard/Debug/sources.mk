@@ -26,6 +26,7 @@ Inc/HAL/KeyPad \
 Inc/HAL/LCD \
 Inc/HAL/_7Segment \
 Inc/MCAL/GPIO \
+Inc/MCAL/I2C \
 Inc/MCAL/RCC \
 Inc/MCAL/SPI \
 Src \

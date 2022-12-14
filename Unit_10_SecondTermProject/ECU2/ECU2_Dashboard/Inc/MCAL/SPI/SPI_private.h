@@ -53,10 +53,10 @@ typedef struct
 * Macros
 *******************************************************************************/
 #define SPI_1_BASE_ADDRESS   0x40013000UL
-#define SPI_2_BASE_ADDRESS	 0x40005800
+#define SPI_2_BASE_ADDRESS	 0x40003800UL
 
 #define SPI1          ((SPI_t *)SPI_1_BASE_ADDRESS)
-#define SPI2          ((volatile SPI_t *)(SPI_2_BASE_ADDRESS))
+#define SPI2          ((SPI_t *)(SPI_2_BASE_ADDRESS))
 
 
 

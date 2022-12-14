@@ -11,10 +11,10 @@
 *******************************************************************************/
 #include "../../LIB/STD_TYPES/STD_TYPES.h"
 #include "../../LIB/BIT_MATH/BIT_MATH.h"
+#include "../GPIO/GPIO_interface.h"
 
 #include "SPI_interface.h"
 #include "SPI_config.h"
-#include "../GPIO/GPIO_interface.h"
 #include "SPI_private.h"
 
 

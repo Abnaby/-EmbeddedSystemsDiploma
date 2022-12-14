@@ -4,6 +4,7 @@
 "Inc/HAL/LCD/LCD.o"
 "Inc/HAL/_7Segment/_7Segment.o"
 "Inc/MCAL/GPIO/GPIO_program.o"
+"Inc/MCAL/I2C/I2C_program.o"
 "Inc/MCAL/RCC/RCC_program.o"
 "Inc/MCAL/SPI/SPI_program.o"
 "Src/main.o"

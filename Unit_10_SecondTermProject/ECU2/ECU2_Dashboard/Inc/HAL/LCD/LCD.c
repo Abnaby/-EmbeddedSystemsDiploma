@@ -217,11 +217,13 @@ void LCD_voidSetCursorType(LCD_Config*  ptrLCD ,cursorType copy_cursorType)
 {
 	LCD_voidWriteCmd(ptrLCD, copy_cursorType) ;
 }
+
+
 void LCD_voidSetDisplayState (LCD_Config*  ptrLCD ,u8 displayState)
 {
 	switch(displayState)
 	{
-		case DISP_OFF : 
+		case DISP_OFF :
 			LCD_voidWriteCmd(ptrLCD,LCD_DISP_OFF);
 			break;
 		default:
@@ -311,7 +313,6 @@ void LCD_voidSendNumber(LCD_Config*  ptrLCD , u32 copy_u32Number)
 	u8 Buffer[17] = {0} ;
 	itoa(copy_u32Number,Buffer,10) ;
 	LCD_voidSendString(ptrLCD , Buffer);
-
 
 }
 void LCD_voidDispCustomChar(LCD_Config*  ptrLCD , u8 storedCharIndex)

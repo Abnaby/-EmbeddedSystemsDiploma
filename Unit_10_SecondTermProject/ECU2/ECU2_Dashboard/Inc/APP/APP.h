@@ -18,17 +18,22 @@
 #include "../LIB/COMMON/COMMON.h"
 
 // MCAL
-#include "../MCAL/RCC/RCC_interface.h"
-#include "../MCAL/GPIO/GPIO_interface.h"
+#include "../Inc/MCAL/RCC/RCC_interface.h"
+#include "../Inc/MCAL/GPIO/GPIO_interface.h"
+#include "../Inc/MCAL/SPI/SPI_interface.h"
+
 
 // HAL
 
-
+#include "../Inc/HAL/Buzzer/Buzzer.h"
+#include "../Inc/HAL/_7Segment/_7Segment.h"
+#include "../Inc/HAL/KeyPad/KeyPad.h"
+#include "../Inc/HAL/LCD/LCD.h"
 
 
 
 /***************************** APIs	 *****************************************/ 
-void ECU3_Exit_APP_SETUP(void) ; 
-void ECU3_Exit_APP_LOOP(void) ; 
+void ECU3_Dashboard_APP_SETUP(void) ;
+void ECU3_Dashboard_APP_LOOP(void) ;
 
 #endif /* APP_H_ */

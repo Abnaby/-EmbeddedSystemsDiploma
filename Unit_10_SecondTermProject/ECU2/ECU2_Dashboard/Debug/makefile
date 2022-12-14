@@ -12,6 +12,7 @@ RM := rm -rf
 -include Src/subdir.mk
 -include Inc/MCAL/SPI/subdir.mk
 -include Inc/MCAL/RCC/subdir.mk
+-include Inc/MCAL/I2C/subdir.mk
 -include Inc/MCAL/GPIO/subdir.mk
 -include Inc/HAL/_7Segment/subdir.mk
 -include Inc/HAL/LCD/subdir.mk
