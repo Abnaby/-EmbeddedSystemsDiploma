@@ -180,12 +180,13 @@ static void LCD_voidSetup(void);
 static void LCD_voidMainScreen(void);
 static void LCD_voidAdminOptions(void);
 static void LCD_voidStatusOptions(void);
-static void LCD_voidValidateDriverID(void);
 static void LCD_AddDriver(void);
 static u8 System_u8ValidateAdminData(void);
 static void System_voidFillAdminsData(void);
 static void System_voidAddNewUser(void);
 u8 compTwoStrings (u8*string1 , u8*string2);
+static void System_VoidDeleteUser(void);
+static void LCD_voidDeleteDriver(void);
 
 
 /******************************************************************************
@@ -422,12 +423,142 @@ static void System_voidAddNewUser(void)
 	else
 	{
 		// FULL
+		LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
+		LCD_voidClear(&myLCD);
+		LCD_voidSendString(&myLCD,addString("PARKING GARAGE"));
+		LCD_voidGotoXY(&myLCD,1,1);
+		LCD_voidSendString(&myLCD,addString("FULL CAPACITY"));
+		_delay_ms(200);
+		LCD_voidMainScreen();
 	}
 
 
 
 }
+static void System_VoidDeleteUser(void)
+{
+	if(Glob_u8NumberOfCurrentUsers != 0)
+	{
+		// Search For Users
+		LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
+		LCD_voidClear(&myLCD);
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* Delete Driver ****************************** \r\n\0"), '\0');
 
+		LCD_voidSendString(&myLCD,addString("Driver Username"));
+		LCD_voidGotoXY(&myLCD,0,1);
+		LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
+
+		u8 LOC_u8username[NAME_MAX_SIZE+1];
+		u8 LOC_u8ID[ID_SIZE+1];
+		u16 LOC_u8ReceivedData = 0 ;
+		u8 LOC_u8Counter = 0 ;
+
+		// Take Name
+		while((LOC_u8ReceivedData != UART_TERMINATE_CHAR) && LOC_u8Counter <= NAME_MAX_SIZE)
+		{
+			USART_voidReceiveDataSynch(USART_1, &LOC_u8ReceivedData);
+
+			if((LOC_u8ReceivedData >= 'a'  && LOC_u8ReceivedData <= 'z') || (LOC_u8ReceivedData >= 'A'  && LOC_u8ReceivedData <= 'Z'))
+			{
+				USART_voidSendDataSynch(USART_1, &LOC_u8ReceivedData);
+				LCD_voidSendChar(&myLCD, (u8)LOC_u8ReceivedData );
+				// Save it on Array
+				LOC_u8username[LOC_u8Counter] = (u8)LOC_u8ReceivedData ;
+				LOC_u8Counter++ ;
+			}
+			else
+			{
+				// Unsupported
+			}
+		}
+
+		LOC_u8username[LOC_u8Counter] = (u8)'\0' ;
+		LOC_u8ReceivedData = 0 ;
+		LOC_u8Counter = 0 ;
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n\0"), '\0');
+
+		LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
+		LCD_voidGotoXY(&myLCD,0,2);
+		LCD_voidSendString(&myLCD,addString("Driver ID"));
+		LCD_voidGotoXY(&myLCD,0,3);
+		LOC_u8Counter = 0 ;
+		LOC_u8ReceivedData = 0 ;
+
+		LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
+
+		do
+		{
+			USART_voidReceiveDataSynch(USART_1, &LOC_u8ReceivedData);
+			if((LOC_u8ReceivedData >= '0'  && LOC_u8ReceivedData <= '9'))
+			{
+				USART_voidSendDataSynch(USART_1, &LOC_u8ReceivedData);
+				LCD_voidSendChar(&myLCD, (u8)LOC_u8ReceivedData );
+				// Save it on Array
+				LOC_u8ID[LOC_u8Counter] = (u8)LOC_u8ReceivedData ;
+				LOC_u8Counter++ ;
+
+			}
+			else
+			{
+				// Unsupported
+			}
+		}
+		while((ID_SIZE >= LOC_u8Counter) && (UART_TERMINATE_CHAR != LOC_u8ReceivedData));
+		LOC_u8ID[LOC_u8Counter] = '\0' ;
+
+		/*	Searching	*/
+		LOC_u8Counter = 0 ;
+		u8 LOC_u8Result = 1 ;
+		u8 DriverIndex = 10  ;
+		for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
+		{
+			// Name Searching
+			LOC_u8Result = compTwoStrings(LOC_u8username, &Glob_u8DriverArr[LOC_u8Counter][0][0]);
+			if(LOC_u8Result == 0)
+			{
+				DriverIndex = LOC_u8Counter ;
+				break ;
+			}
+
+		}
+		if(LOC_u8Result == 0 && DriverIndex >= Glob_u8NumberOfCurrentUsers)
+		{
+			LOC_u8Result = 1 ;
+			// ID Verify
+			LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[DriverIndex][1][0]);
+		}
+
+		if(LOC_u8Result == 0)
+		{
+			// Valid Name and ID
+			Glob_u8DriverFreeIndex[DriverIndex] = 1 ;
+			Glob_u8NumberOfCurrentUsers-- ;
+			USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* SUCCESSFUL ****************************** \r\n\0"), '\0');
+			LCD_voidDeleteDriver();
+		}
+		else
+		{
+			LCD_voidClear(&myLCD);
+			LCD_voidGotoXY(&myLCD, 2, 2) ;
+			LCD_voidSendString(&myLCD, addString("UNSUCCESSFUL"));
+			USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* UNSUCCESSFUL ****************************** \r\n\0"), '\0');
+			LCD_voidMainScreen();
+		}
+	}
+	else
+	{
+		// No Users
+		LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
+		LCD_voidClear(&myLCD);
+		LCD_voidSendString(&myLCD,addString("PARKING GARAGE"));
+		LCD_voidGotoXY(&myLCD,2,1);
+		LCD_voidSendString(&myLCD,addString("No Existence"));
+		LCD_voidGotoXY(&myLCD,2,2);
+		LCD_voidSendString(&myLCD,addString("Drivers Data"));
+		_delay_ms(200);
+		LCD_voidMainScreen();
+	}
+}
 /*********************************** END SYSTEM FCN	*************************/
 
 u8 compTwoStrings (u8*string1 , u8*string2)
@@ -600,18 +731,7 @@ static void LCD_voidStatusOptions(void)
 
 }
 
-static void LCD_voidValidateDriverID(void)
-{
-	LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
-	LCD_voidClear(&myLCD);
-	LCD_voidSendString(&myLCD,addString("PARKING GARAGE"));
-	LCD_voidGotoXY(&myLCD,0,1);
-	LCD_voidSendString(&myLCD,addString("Enter Driver ID: "));
-	LCD_voidGotoXY(&myLCD,11,3);
-	LCD_voidSendString(&myLCD,addString("<BACK"));
-	LCD_voidGotoXY(&myLCD,5,2);
-	LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK ) ;
-}
+
 
 static void LCD_AddDriver(void)
 {
@@ -718,6 +838,7 @@ void ECU3_Dashboard_APP_LOOP(void)
 			else if(OPTION_DELETE_USER == Glob_u8Pressed_Key)
 			{
 				// Delete exist User
+				System_VoidDeleteUser();
 
 			}
 			else if(OPTION_EDIT_USER == Glob_u8Pressed_Key)
