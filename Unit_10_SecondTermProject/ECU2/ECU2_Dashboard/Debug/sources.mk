@@ -29,6 +29,7 @@ Inc/MCAL/GPIO \
 Inc/MCAL/I2C \
 Inc/MCAL/RCC \
 Inc/MCAL/SPI \
+Inc/MCAL/UART \
 Src \
 Startup \
 

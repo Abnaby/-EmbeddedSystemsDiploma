@@ -16,6 +16,7 @@
 /******************************************************************************
 * Module Preprocessor Constants
 *******************************************************************************/
+#define SPI1_PORT_PIN			PORTA, PIN4
 
 /******************************************************************************
 * Module Preprocessor Macros
@@ -28,8 +29,22 @@
 #define ID_SIZE					7
 #define NAME_MAX_SIZE			10
 
-#define MAX_SLOTS_IN_GARAGE		3
-#define SPI1_PORT_PIN			PORTA, PIN4
+
+
+
+#define OPTION_ADD_USER					'1'
+#define OPTION_EDIT_USER				'3'
+#define OPTION_DELETE_USER				'2'
+
+#define OPTION_ADMIN_SELECT				'1'
+#define OPTION_GARAGE_SELECT			'2'
+
+#define KEYPAD_BACK_SYMBOL		'#'
+
+#define UART_TERMINATE_CHAR		13
+
+
+
 
 
 /******************************************************************************
@@ -50,21 +65,38 @@ typedef enum
 ID_Check_t Glob_ID_Valid =  NOT_VALID_ID ; 
 // Garage Data
 
+
+/************************************ Predefined Admin Stage	***********************************/
+#define NUMBER_OF_ADMINS	2
+/**
+ * 					Each Admin has 2 Identifiers
+ * 									one of them username (with NAME_MAX_SIZE)
+ * 									another is password  (with NAME_MAX_SIZE)
+ */
+u8 Glob_u8AdminArr[NUMBER_OF_ADMINS][2][NAME_MAX_SIZE+1];
+
+u8 Glob_LogginSeesionExpired = 1 ;
+
+/************************************ Drivers Stage	***********************************/
+#define MAX_SLOTS_IN_GARAGE		3
+u8 Glob_u8NumberOfCurrentUsers ;
+u8 Glob_u8DriverArr[MAX_SLOTS_IN_GARAGE][2][NAME_MAX_SIZE+1];
 u8 Glob_u8NumberOfAvailableSlots = MAX_SLOTS_IN_GARAGE ;
+u8 Glob_u8DriverFreeIndex[MAX_SLOTS_IN_GARAGE] = {1,1,1};
 
 
-// LCD
+/*************************************	Start LCD Vars	*******************************************/
 u8 LCD_PortPin[]=
 {
 	// < Enable,rsPin, rwPort,d4Port,d4Pin ....... d7Port,d7Pin>
 	//EN
-	PORTA , PIN0 ,
+	PORTB , PIN5 ,
 	//RS
-	PORTA , PIN1 ,
+	PORTB , PIN4 ,
 	//D4
-	PORTA , PIN2 ,
+	PORTB , PIN3 ,
 	//D5
-	PORTA , PIN3 ,
+	PORTA , PIN15 ,
 	//D6
 	PORTA , PIN11 ,
 	//D7
@@ -101,6 +133,42 @@ u8 LCD_Adding[] = {
 		  0x04,
 		  0x00
 };
+static LCD_Config myLCD ;
+
+/************************************************* END LCD Vars	********************************************************/
+/************************************************* Start Keypad Vars	********************************************************/
+
+KeyPad_cnfg myKeypad;
+/*		Key Patterns	*/
+#define ROWS	4
+#define COLS	3
+u8 keys[ROWS][COLS] =
+{
+  {'1','2','3'},
+  {'4','5','6'},
+  {'7','8','9'},
+  {'*','0','#'}
+};
+/*		Key GPIOs		*/
+u8 RowsPins[] =
+{
+		PORTB,PIN12,
+		PORTB,PIN13,
+		PORTB,PIN14,
+		PORTB,PIN15
+};
+u8 ColsPins[] =
+{
+	PORTB,PIN8,
+	PORTB,PIN9,
+	PORTB,PIN11
+};
+
+
+/************************************************* END Keypad Vars	********************************************************/
+
+
+
 /******************************************************************************
 * private Function Prototypes
 *******************************************************************************/
@@ -112,8 +180,12 @@ static void LCD_voidSetup(void);
 static void LCD_voidMainScreen(void);
 static void LCD_voidAdminOptions(void);
 static void LCD_voidStatusOptions(void);
-static void LCD_voidValidateID(void);
+static void LCD_voidValidateDriverID(void);
 static void LCD_AddDriver(void);
+static u8 System_u8ValidateAdminData(void);
+static void System_voidFillAdminsData(void);
+static void System_voidAddNewUser(void);
+u8 compTwoStrings (u8*string1 , u8*string2);
 
 
 /******************************************************************************
@@ -126,13 +198,254 @@ void xDelay(u32 time)
 	u32 j;
 	for(i = time;i > 0;i--)
 		for(j = 1000;j > 0;j--);
-
 }
 
 #define _delay_ms(ms) xDelay(ms)
 /******************************************************************************
 * private Functions Definitions
 *******************************************************************************/
+
+/*********************************** START SYSTEM FCN	*************************/
+
+static void System_voidFillAdminsData(void)
+{
+	/*	1st Driver	*/
+	Glob_u8AdminArr[0][0][0] = 'M'	;
+	Glob_u8AdminArr[0][0][1] = 'o'	;
+	Glob_u8AdminArr[0][0][2] = 'h'	;
+	Glob_u8AdminArr[0][0][3] = 'a'	;
+	Glob_u8AdminArr[0][0][4] = 'm'	;
+	Glob_u8AdminArr[0][0][5] = 'e'	;
+	Glob_u8AdminArr[0][0][6] = 'd'	;
+	Glob_u8AdminArr[0][1][7] = '\0'	;
+
+	Glob_u8AdminArr[0][1][0] = '0'	;
+	Glob_u8AdminArr[0][1][1] = '0'	;
+	Glob_u8AdminArr[0][1][2] = '0'	;
+	Glob_u8AdminArr[0][1][3] = '0'	;
+	Glob_u8AdminArr[0][1][4] = '0'	;
+	Glob_u8AdminArr[0][1][5] = '0'	;
+	Glob_u8AdminArr[0][1][6] = '1'	;
+	Glob_u8AdminArr[0][1][7] = '\0'	;
+
+	/*	2nd Driver	*/
+	Glob_u8AdminArr[1][0][0] = 'a'	;
+	Glob_u8AdminArr[1][0][1] = 'l'	;
+	Glob_u8AdminArr[1][0][2] = 'i'	;
+	Glob_u8AdminArr[1][0][3] = '\0'	;
+
+	Glob_u8AdminArr[1][1][0] = '1'	;
+	Glob_u8AdminArr[1][1][1] = '2'	;
+	Glob_u8AdminArr[1][1][2] = '3'	;
+	Glob_u8AdminArr[1][1][3] = '4'	;
+	Glob_u8AdminArr[1][1][4] = '5'	;
+	Glob_u8AdminArr[1][1][5] = '6'	;
+	Glob_u8AdminArr[1][1][6] = '7'	;
+	Glob_u8AdminArr[1][1][7] = '\0'	;
+
+}
+
+static u8 System_u8ValidateAdminData(void)
+{
+	u16 LOC_u8ReceivedData = 0 , LOC_u8Counter = 0 ;
+	u8 LOC_u8userName[NAME_MAX_SIZE+1] = {0} ;
+	u8 LOC_u8Password[ID_SIZE+1] = {0} ;
+	u8 LOC_u8Flag = 0 ;
+
+	LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
+	LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD,addString("Admin Username"));
+	LCD_voidGotoXY(&myLCD,0,1);
+	LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
+
+	/*	Get User Name By USART	*/
+	do
+	{
+		USART_voidReceiveDataSynch(USART_1, &LOC_u8ReceivedData);
+		USART_voidSendDataSynch(USART_1, &LOC_u8ReceivedData);
+		LOC_u8userName[LOC_u8Counter] = (u8)LOC_u8ReceivedData;
+		LCD_voidSendChar(&myLCD, (u8)LOC_u8ReceivedData );
+		LOC_u8Counter++ ;
+	}
+	while((NAME_MAX_SIZE >= LOC_u8Counter) && (UART_TERMINATE_CHAR != LOC_u8ReceivedData));
+	LOC_u8userName[LOC_u8Counter-1] = '\0';
+	LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
+	LCD_voidGotoXY(&myLCD,0,2);
+	LCD_voidSendString(&myLCD,addString("Admin Password"));
+	LCD_voidGotoXY(&myLCD,0,3);
+	LOC_u8Counter = 0 ;
+	/*	Get Password By USART	*/
+	LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
+	do
+	{
+		USART_voidReceiveDataSynch(USART_1, &LOC_u8ReceivedData);
+		USART_voidSendDataSynch(USART_1, &LOC_u8ReceivedData);
+		LOC_u8Password[LOC_u8Counter] = (u8)LOC_u8ReceivedData;
+		LCD_voidSendChar(&myLCD, '*' );
+
+		LOC_u8Counter++ ;
+
+	}
+	while((ID_SIZE >= LOC_u8Counter) && (UART_TERMINATE_CHAR != LOC_u8ReceivedData));
+	LOC_u8Password[LOC_u8Counter-1] = '\0' ;
+
+	/*	Validate if Exist or not	*/
+	if(!(compTwoStrings(LOC_u8userName , &Glob_u8AdminArr[0][0][0])))
+	{
+		// Check password
+		if(!(compTwoStrings(LOC_u8Password , &Glob_u8AdminArr[0][1][0])))
+		{
+			// Valid User Name and password
+			LOC_u8Flag = 1 ;
+			Glob_LogginSeesionExpired = 0 ;
+			USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* SUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
+
+		}
+		else
+		{
+			// invalid-username
+			LCD_voidClear(&myLCD);
+			LCD_voidGotoXY(&myLCD, 2, 1);
+			LCD_voidSendString(&myLCD, addString("Wrong Admin")) ;
+			LCD_voidGotoXY(&myLCD, 4, 2);
+			LCD_voidSendString(&myLCD, addString("Password")) ;
+			_delay_ms(10);
+			LOC_u8Flag = 0 ;
+			USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* UNSUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
+			Glob_LogginSeesionExpired = 1;
+
+		}
+	}
+	else
+	{
+		// invalid-username
+		LCD_voidClear(&myLCD);
+		LCD_voidGotoXY(&myLCD, 2, 1);
+		LCD_voidSendString(&myLCD, addString("Wrong Admin")) ;
+		LCD_voidGotoXY(&myLCD, 6, 2);
+		LCD_voidSendString(&myLCD, addString("Name")) ;
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* UNSUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
+		Glob_LogginSeesionExpired = 1;
+		LOC_u8Flag = 0 ;
+	}
+
+	return LOC_u8Flag ;
+}
+
+
+static void System_voidAddNewUser(void)
+{
+
+
+	if(MAX_SLOTS_IN_GARAGE >= Glob_u8NumberOfCurrentUsers)
+	{
+		u16 LOC_u8ReceivedData = 0 ; u8 LOC_u8ArrayIndex ;
+		u8 LOC_u8Counter = 0 ;
+		// Get Free Array Index
+		for(LOC_u8Counter = 0 ; LOC_u8Counter < MAX_SLOTS_IN_GARAGE ; LOC_u8Counter++)
+		{
+			if(Glob_u8DriverFreeIndex[LOC_u8Counter] == 1)
+			{
+				LOC_u8ArrayIndex = LOC_u8Counter;
+				Glob_u8DriverFreeIndex[LOC_u8Counter] = 0 ;
+				LOC_u8Counter = 0 ;
+				break ;
+			}
+		}
+		// Can Add new Driver
+		LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
+		LCD_voidClear(&myLCD);
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* Adding Driver Data ****************************** \r\n\0"), '\0');
+
+		LCD_voidSendString(&myLCD,addString("Driver Username"));
+		LCD_voidGotoXY(&myLCD,0,1);
+		LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
+
+		// Take Name
+		while((LOC_u8ReceivedData != UART_TERMINATE_CHAR) && LOC_u8Counter <= NAME_MAX_SIZE)
+		{
+			USART_voidReceiveDataSynch(USART_1, &LOC_u8ReceivedData);
+
+			if((LOC_u8ReceivedData >= 'a'  && LOC_u8ReceivedData <= 'z') || (LOC_u8ReceivedData >= 'A'  && LOC_u8ReceivedData <= 'Z'))
+			{
+				USART_voidSendDataSynch(USART_1, &LOC_u8ReceivedData);
+				LCD_voidSendChar(&myLCD, (u8)LOC_u8ReceivedData );
+				// Save it on Array
+				Glob_u8DriverArr[LOC_u8ArrayIndex][0][LOC_u8Counter] = (u8)LOC_u8ReceivedData ;
+				LOC_u8Counter++ ;
+
+			}
+			else
+			{
+				// Unsupported
+			}
+		}
+		Glob_u8DriverArr[LOC_u8ArrayIndex][0][++LOC_u8Counter] = (u8)'\0' ;
+		// Take ID
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n\0"), '\0');
+
+		LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
+		LCD_voidGotoXY(&myLCD,0,2);
+		LCD_voidSendString(&myLCD,addString("Driver ID"));
+		LCD_voidGotoXY(&myLCD,0,3);
+		LOC_u8Counter = 0 ;
+		LOC_u8ReceivedData = 0 ;
+
+		LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
+
+		do
+		{
+			USART_voidReceiveDataSynch(USART_1, &LOC_u8ReceivedData);
+			if((LOC_u8ReceivedData >= '0'  && LOC_u8ReceivedData <= '9'))
+			{
+				USART_voidSendDataSynch(USART_1, &LOC_u8ReceivedData);
+				LCD_voidSendChar(&myLCD, (u8)LOC_u8ReceivedData );
+				// Save it on Array
+				Glob_u8DriverArr[LOC_u8ArrayIndex][1][LOC_u8Counter] = (u8)LOC_u8ReceivedData ;
+				LOC_u8Counter++ ;
+
+			}
+			else
+			{
+				// Unsupported
+			}
+		}
+		while((ID_SIZE >= LOC_u8Counter) && (UART_TERMINATE_CHAR != LOC_u8ReceivedData));
+		Glob_u8DriverArr[LOC_u8ArrayIndex][1][LOC_u8Counter] = '\0' ;
+
+
+		Glob_u8NumberOfCurrentUsers++ ;
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* DONE ****************************** \r\n\0"), '\0');
+		LCD_AddDriver();
+
+	}
+	else
+	{
+		// FULL
+	}
+
+
+
+}
+
+/*********************************** END SYSTEM FCN	*************************/
+
+u8 compTwoStrings (u8*string1 , u8*string2)
+{
+    u8 LOC_u8Counter=0 ;
+    u8 LOC_u8Flag = 0 ;
+    while(string1[LOC_u8Counter] != '\0' &&string2[LOC_u8Counter] != '\0')
+    {
+        if(string1[LOC_u8Counter] != string2[LOC_u8Counter])
+        {
+            LOC_u8Flag = 1;
+            break;
+        }
+        LOC_u8Counter++;
+    }
+    return LOC_u8Flag ;
+}
+
 static SPI_config SPI1_Communication ;
 
 static void SPI_voidSetup(void)
@@ -156,7 +469,8 @@ static void SPI_voidSetup(void)
 	SPI_VoidGPIO_SetPins(SPI_1);
 }
 
-static LCD_Config myLCD ;
+
+/********************************************** Start of LCD fcn	********************************************************/
 
 static void LCD_voidSetup(void)
 {
@@ -175,6 +489,27 @@ static void LCD_voidSetup(void)
 	/*	Main Screen	*/
 	LCD_voidMainScreen();
 #endif
+
+}
+static 	USART_Config myUART ;
+
+void UART_voidSetup(void)
+{
+	/*	GPIO	*/
+	USART__VoidGPIO_SetPins(USART_1);
+	/*	UART	*/
+	myUART.USART_OperationMode = USART_TRANCIVER ; ;
+	myUART.USART_BuadRate = 9600 ;
+	myUART.USART_DataLength = USART_8BIT ;
+	myUART.USART_Parity =USART_DISABLE_PARITY ;
+	myUART.USART_StopBit = USART_1_STOPBIT ;
+	myUART.USART_HWFlowControl = USART_HW_FLOW_CONTROLLED_DISALBED ;
+	myUART.USART_IdleLevel     =USART_IDLE_LOW ;
+	myUART.USART_DataSampling  = USART_LEADING_EDGE ;
+	myUART.P_IRQ_CallBack = NULL  ;
+	myUART.USART_IRQ_t =  USART_DISABLE_IRQs ;
+	USART_voidInit(USART_1, &myUART);
+	USART_voidSendStringWithDelimiterSynch(USART_1, addString("********************* ADMIN DASHBOARD ****************************** \r\n\0"), '\0');
 
 }
 static void progressBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar)
@@ -265,7 +600,7 @@ static void LCD_voidStatusOptions(void)
 
 }
 
-static void LCD_voidValidateID(void)
+static void LCD_voidValidateDriverID(void)
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
 	LCD_voidClear(&myLCD);
@@ -277,7 +612,6 @@ static void LCD_voidValidateID(void)
 	LCD_voidGotoXY(&myLCD,5,2);
 	LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK ) ;
 }
-
 
 static void LCD_AddDriver(void)
 {
@@ -299,6 +633,21 @@ static void LCD_voidDeleteDriver(void)
 	LCD_voidMainScreen();
 
 }
+/********************************************** End of LCD fcn	********************************************************/
+
+/********************************************** Start of Keypad fcn	********************************************************/
+static void keypad_voidSetup(void)
+{
+	/*	Keypad Init		*/
+	myKeypad.NumOfRows = ROWS ;	// Output
+	myKeypad.NumOfCols = COLS ;	//Input
+	myKeypad.Port_Pin_Rows = RowsPins ;
+	myKeypad.Port_Pin_Cols = ColsPins ;
+	myKeypad.KeysPattern = newKeyMap(keys) ;
+	HAL_KeyPadInit(&myKeypad);
+}
+
+
 /******************************************************************************
 * Function Definitions
 *******************************************************************************/
@@ -309,21 +658,119 @@ void ECU3_Dashboard_APP_SETUP(void)
 {
 	/*			Init MCU Clock			*/
 	RCC_voidInitSysClocks();
-	RCC_voidEnableClock(RCC_APB2,PORTA );
+	RCC_voidEnableClock(RCC_APB2, PORTA);
+	RCC_voidEnableClock(RCC_APB2, PORTB);
+	RCC_voidEnableClock(RCC_APB2,14 );		/*	USART1	*/
+
 
 
 	
 	/*			MCAL					*/
 	//SPI_voidSetup() ;
+	UART_voidSetup();
+
 
 	/*			HAL					*/
 	LCD_voidSetup();
-	LCD_AddDriver();
+	keypad_voidSetup();
+
+	/*			General				*/
+	System_voidFillAdminsData();
 }
 
-
+u8 Glob_u8Pressed_Key = KEYPAD_NOT_PRESSED_RETURN ;
 void ECU3_Dashboard_APP_LOOP(void)
 {
+	do
+	{
+		Glob_u8Pressed_Key = HAL_KeyPadGetPressedKey(&myKeypad);
+
+	}while(!(Glob_u8Pressed_Key>= '1' && Glob_u8Pressed_Key <= '2'));
+
+
+
+	// Get Option
+	if((u8)OPTION_ADMIN_SELECT == Glob_u8Pressed_Key)
+	{
+		// Validate Admin username and password
+		if(Glob_LogginSeesionExpired == 1)
+		{
+			System_u8ValidateAdminData() ;
+		}
+
+		if(Glob_LogginSeesionExpired == 0)
+		{
+			// admin privilege Screen
+			LCD_voidAdminOptions();
+			do
+			{
+				Glob_u8Pressed_Key = HAL_KeyPadGetPressedKey(&myKeypad);
+
+			}while(!((Glob_u8Pressed_Key>= '1' && Glob_u8Pressed_Key <= '3' ) || (Glob_u8Pressed_Key == (u8)KEYPAD_BACK_SYMBOL ))) ;
+
+			/* Check  Pressed Key */
+			if(OPTION_ADD_USER == Glob_u8Pressed_Key)
+			{
+				// Add New User
+				System_voidAddNewUser();
+
+			}
+			else if(OPTION_DELETE_USER == Glob_u8Pressed_Key)
+			{
+				// Delete exist User
+
+			}
+			else if(OPTION_EDIT_USER == Glob_u8Pressed_Key)
+			{
+				// Edit Exist User
+
+			}
+			else if(KEYPAD_BACK_SYMBOL == Glob_u8Pressed_Key)
+			{
+				// Return to Home
+				LCD_voidMainScreen();
+			}
+			else
+			{
+				//<TODO ERROR> Wrong in options of admin Screen Selection
+				LCD_voidMainScreen();
+			}
+		}
+		else
+		{
+			// Wrong Admin Data
+			LCD_voidMainScreen();
+		}
+	}
+	else if ((u8)OPTION_GARAGE_SELECT == Glob_u8Pressed_Key)
+	{
+		// Display Garage Status
+		LCD_voidStatusOptions() ;
+		// Check Go back char
+		do
+		{
+			Glob_u8Pressed_Key = HAL_KeyPadGetPressedKey(&myKeypad);
+
+		}while(!(Glob_u8Pressed_Key == (u8)KEYPAD_BACK_SYMBOL ))  ;
+
+		if(KEYPAD_BACK_SYMBOL == Glob_u8Pressed_Key)
+		{
+			// Return to Home
+			LCD_voidMainScreen();
+		}
+		else
+		{
+			//<TODO ERROR> Wrong in options of garage status Screen Selection.
+		}
+
+
+	}
+	else
+	{
+		//<TODO ERROR> Wrong Main Screen Selection
+		LCD_voidMainScreen();
+
+	}
 
 }
 	

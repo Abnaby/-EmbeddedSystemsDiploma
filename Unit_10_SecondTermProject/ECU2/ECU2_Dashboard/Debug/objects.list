@@ -7,5 +7,6 @@
 "Inc/MCAL/I2C/I2C_program.o"
 "Inc/MCAL/RCC/RCC_program.o"
 "Inc/MCAL/SPI/SPI_program.o"
+"Inc/MCAL/UART/USART_program.o"
 "Src/main.o"
 "Startup/startup_stm32f103c6tx.o"

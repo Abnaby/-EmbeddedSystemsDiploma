@@ -21,6 +21,7 @@
 #include "../Inc/MCAL/RCC/RCC_interface.h"
 #include "../Inc/MCAL/GPIO/GPIO_interface.h"
 #include "../Inc/MCAL/SPI/SPI_interface.h"
+#include "../Inc/MCAL/UART/USART_interface.h"
 
 
 // HAL

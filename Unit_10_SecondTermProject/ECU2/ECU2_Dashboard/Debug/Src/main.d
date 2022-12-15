@@ -4,7 +4,9 @@ Src/main.o: ../Src/main.c ../Inc/APP/APP.h \
  ../Inc/../Inc/MCAL/RCC/RCC_interface.h \
  ../Inc/../Inc/MCAL/GPIO/GPIO_interface.h \
  ../Inc/../Inc/MCAL/GPIO/../../LIB/COMMON/COMMON.h \
- ../Inc/../Inc/MCAL/SPI/SPI_interface.h ../Inc/../Inc/HAL/Buzzer/Buzzer.h \
+ ../Inc/../Inc/MCAL/SPI/SPI_interface.h \
+ ../Inc/../Inc/MCAL/UART/USART_interface.h \
+ ../Inc/../Inc/HAL/Buzzer/Buzzer.h \
  ../Inc/../Inc/HAL/Buzzer/../../LIB/BIT_MATH/BIT_MATH.h \
  ../Inc/../Inc/HAL/Buzzer/../../LIB/STD_TYPES/STD_TYPES.h \
  ../Inc/../Inc/HAL/Buzzer/../../LIB/COMMON/COMMON.h \
@@ -28,6 +30,8 @@ Src/main.o: ../Src/main.c ../Inc/APP/APP.h \
 ../Inc/../Inc/MCAL/GPIO/../../LIB/COMMON/COMMON.h:
 
 ../Inc/../Inc/MCAL/SPI/SPI_interface.h:
+
+../Inc/../Inc/MCAL/UART/USART_interface.h:
 
 ../Inc/../Inc/HAL/Buzzer/Buzzer.h:
 
