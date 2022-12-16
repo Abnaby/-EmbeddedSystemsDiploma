@@ -110,7 +110,7 @@ static void xDelay(u32 time)
 	u32 i;
 	u32 j;
 	for(i = time;i > 0;i--)
-		for(j = 1000;j > 0;j--);
+		for(j = 10;j > 0;j--);
 
 }
 

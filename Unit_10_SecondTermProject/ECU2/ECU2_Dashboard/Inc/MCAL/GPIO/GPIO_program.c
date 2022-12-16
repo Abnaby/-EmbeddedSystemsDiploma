@@ -11,8 +11,8 @@
 *******************************************************************************/
 #include "../../LIB/STD_TYPES/STD_TYPES.h"
 #include "../../LIB/BIT_MATH/BIT_MATH.h"
-
 #include "../../LIB/COMMON/COMMON.h"
+
 #include "GPIO_interface.h"
 #include "GPIO_config.h"
 #include "GPIO_private.h"

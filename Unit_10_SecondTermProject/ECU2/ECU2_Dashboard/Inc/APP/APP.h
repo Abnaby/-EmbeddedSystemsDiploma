@@ -22,6 +22,9 @@
 #include "../Inc/MCAL/GPIO/GPIO_interface.h"
 #include "../Inc/MCAL/SPI/SPI_interface.h"
 #include "../Inc/MCAL/UART/USART_interface.h"
+#include "../Inc/MCAL/NVIC/NVIC_interface.h"
+#include "../Inc/MCAL/AFIO/AFIO_interface.h"
+#include "../Inc/MCAL/EXTI/EXTI_interface.h"
 
 
 // HAL

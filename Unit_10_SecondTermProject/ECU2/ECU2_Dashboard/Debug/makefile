@@ -13,8 +13,11 @@ RM := rm -rf
 -include Inc/MCAL/UART/subdir.mk
 -include Inc/MCAL/SPI/subdir.mk
 -include Inc/MCAL/RCC/subdir.mk
+-include Inc/MCAL/NVIC/subdir.mk
 -include Inc/MCAL/I2C/subdir.mk
 -include Inc/MCAL/GPIO/subdir.mk
+-include Inc/MCAL/EXTI/subdir.mk
+-include Inc/MCAL/AFIO/subdir.mk
 -include Inc/HAL/_7Segment/subdir.mk
 -include Inc/HAL/LCD/subdir.mk
 -include Inc/HAL/KeyPad/subdir.mk
