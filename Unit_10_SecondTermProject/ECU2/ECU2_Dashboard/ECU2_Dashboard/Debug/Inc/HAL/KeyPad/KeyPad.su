@@ -1,0 +1,2 @@
+KeyPad.c:70:6:HAL_KeyPadInit	24	static
+KeyPad.c:99:4:HAL_KeyPadGetPressedKey	32	static,ignoring_inline_asm

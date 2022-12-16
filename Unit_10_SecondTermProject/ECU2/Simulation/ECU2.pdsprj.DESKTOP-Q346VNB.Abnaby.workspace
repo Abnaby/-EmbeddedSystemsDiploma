@@ -59,11 +59,10 @@
      <ITEM name="nItems">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="1054" x="78" flags="00008023" y="169" h="662" pid="0" iid="3">
+   <POPUP w="450" x="78" flags="00000023" y="169" h="250" pid="0" iid="4">
     <PROPERTIES>
-     <ITEM name="ComboBox1000">'a'</ITEM>
-     <ITEM name="HSplitter1Pos">100</ITEM>
-     <ITEM name="VSplitter1Pos">238</ITEM>
+     <ITEM name="AutoEcho">0</ITEM>
+     <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
    <POPUP w="16" x="98" flags="0000000a" y="189" h="32" pid="200" iid="1">
@@ -376,15 +375,15 @@
      <ITEM name="TopLineAddress">E000E000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="600" x="718" flags="0000000b" y="680" h="400" pid="100" iid="1">
+   <POPUP w="697" x="140" flags="0000000b" y="422" h="400" pid="100" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="300" x="738" flags="0000000b" y="780" h="300" pid="101" iid="1">
+   <POPUP w="621" x="1069" flags="0000000b" y="492" h="300" pid="101" iid="1">
     <PROPERTIES>
      <ITEM name="Address Column Width">94</ITEM>
      <ITEM name="AutoResize">No</ITEM>
      <ITEM name="Gridlines">Yes</ITEM>
-     <ITEM name="Name Column Width">94</ITEM>
+     <ITEM name="Name Column Width">306</ITEM>
      <ITEM name="ShowAddresses">Yes</ITEM>
      <ITEM name="ShowGlobals">Yes</ITEM>
      <ITEM name="ShowPreviousValues">No</ITEM>
@@ -399,12 +398,45 @@
    <POPUP w="30" x="758" flags="00000008" y="849" h="20" pid="102" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="320" x="778" flags="0000000b" y="840" h="240" pid="104" iid="1">
+   <POPUP w="320" x="988" flags="0000000b" y="578" h="240" pid="104" iid="1">
     <PROPERTIES/>
    </POPUP>
    <POPUP w="22" x="798" flags="00000008" y="889" h="18" pid="350" iid="1">
     <PROPERTIES/>
    </POPUP>
+   <POPUP w="863" x="0" flags="00000023" y="109" h="451" pid="0" iid="3">
+    <PROPERTIES>
+     <ITEM name="ComboBox1000">'M'</ITEM>
+     <ITEM name="ComboBox1001">'A'</ITEM>
+     <ITEM name="ComboBox1002">'O'</ITEM>
+     <ITEM name="ComboBox1003">'A'</ITEM>
+     <ITEM name="ComboBox1004">'A'</ITEM>
+     <ITEM name="ComboBox1005">'A'</ITEM>
+     <ITEM name="ComboBox1006">'A'</ITEM>
+     <ITEM name="ComboBox1007">'A'</ITEM>
+     <ITEM name="ComboBox1008">'A'</ITEM>
+     <ITEM name="ComboBox1009">'A'</ITEM>
+     <ITEM name="HSplitter1Pos">100</ITEM>
+     <ITEM name="VSplitter1Pos">238</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="8" x="58" flags="0000000a" y="149" h="32" pid="1" iid="14">
+    <PROPERTIES>
+     <ITEM name="DataType">2</ITEM>
+     <ITEM name="DispChars">Yes</ITEM>
+     <ITEM name="DispFormat">2</ITEM>
+     <ITEM name="ShowChanges">Yes</ITEM>
+     <ITEM name="ShowToolTips">Yes</ITEM>
+     <ITEM name="TopLineAddress">00000000</ITEM>
+    </PROPERTIES>
+   </POPUP>
+   <POPUP w="666" x="587" flags="00008023" y="312" h="420" pid="0" iid="6">
+    <PROPERTIES>
+     <ITEM name="AutoEcho">0</ITEM>
+     <ITEM name="HexMode">0</ITEM>
+    </PROPERTIES>
+   </POPUP>
   </PWI>
+  <BREAKPOINT LINE="248" FILE="../../../STM32CubeIDE/workspace_1.4.0/ECU2_Dashboard/Inc/HAL/LCD/LCD.c" ADDRESS="4294967295" PROJECT="1"/>
  </MODULE>
 </WORKSPACE>

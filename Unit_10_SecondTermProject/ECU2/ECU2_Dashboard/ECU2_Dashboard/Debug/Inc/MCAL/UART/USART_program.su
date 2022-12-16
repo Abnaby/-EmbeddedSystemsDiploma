@@ -1,0 +1,13 @@
+USART_program.c:70:6:USART_voidInit	32	static
+USART_program.c:118:6:USART_voidSendDataSynch	16	static
+USART_program.c:142:6:USART_voidSendDataAsynch	16	static
+USART_program.c:161:6:USART_voidReceiveDataSynch	16	static
+USART_program.c:256:6:USART_voidReceiveDataAsynch	16	static
+USART_program.c:262:6:USART_voidBuadRateCalc	56	static
+USART_program.c:283:6:USART__VoidGPIO_SetPins	16	static
+USART_program.c:452:6:USART1_IRQHandler	8	static
+USART_program.c:480:6:USART2_IRQHandler	8	static
+USART_program.c:507:6:USART3_IRQHandler	8	static
+USART_program.c:536:6:USART_voidGetDMA_PeripheralAddress	24	static
+USART_program.c:551:6:USART_voidSendStringWithFixedSizeSynch	24	static
+USART_program.c:559:6:USART_voidSendStringWithDelimiterSynch	24	static
