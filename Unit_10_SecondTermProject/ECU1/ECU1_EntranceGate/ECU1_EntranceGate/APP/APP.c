@@ -27,6 +27,10 @@
 #define LCD_WAITING_TIME		150
 #define SPI_START_SEND()	GPIO_voidTogglePin(PORTA,PIN0);
 #define SPI_STOP_SEND()		1 
+
+#define GREEN_LED	PORTC,PIN7
+#define RED_LED		PORTD,PIN2
+
 /******************************************************************************
 * Typedefs
 *******************************************************************************/
@@ -58,7 +62,7 @@ SPI_Config mySPI =
 };
 // Buzzer
 
-static void Buzzer( u8 copyNumberOfRepeatations)
+static void Buzzer(u8 copyNumberOfRepeatations)
 {
 	u8 LOC_u8Counter = 0 ;
 	for(LOC_u8Counter ; LOC_u8Counter<copyNumberOfRepeatations ; LOC_u8Counter++)
@@ -108,7 +112,7 @@ static void LCD_voidSetup(void)
 	LCD_voidMainScreen();
 }
 
-static void LCD_voidStateScreen(u8 copy_u8Selection)
+static void System_voidStates(u8 copy_u8Selection)
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
 	LCD_voidClear(&myLCD);
@@ -117,14 +121,23 @@ static void LCD_voidStateScreen(u8 copy_u8Selection)
 	switch(copy_u8Selection)
 	{
 		case 0 : 
+		GPIO_voidSetPinValue(GREEN_LED, HIGH);
+		GPIO_voidSetPinValue(RED_LED, LOW);
 		LCD_voidSendString(&myLCD,addString("Your ID is Valid "));	
 		_delay_ms(200);
+		GPIO_voidSetPinValue(GREEN_LED, LOW);
+		GPIO_voidSetPinValue(RED_LED, LOW);
 		LCD_voidSetDisplayState(&myLCD,DISP_OFF);
 		break ; 
 		case 1 : 
+		GPIO_voidSetPinValue(GREEN_LED, LOW);
+		GPIO_voidSetPinValue(RED_LED, HIGH);
 		LCD_voidSendString(&myLCD,addString("Invalid ID"));
 		Buzzer(3);
+		GPIO_voidSetPinValue(GREEN_LED, LOW);
+		GPIO_voidSetPinValue(RED_LED, LOW);
 		LCD_voidSetDisplayState(&myLCD,DISP_OFF);
+		MCAL_USART_SendString((u8*)"\r\n***** ENTER RFID CARD *****\r\n");
 		break ; 
 		default : break ; 
 	}
@@ -167,6 +180,9 @@ void ECU1_Entance_APP_SETUP(void)
 	GPIO_voidInit(); 
 	GPIO_voidSetPinDirection(PORTA,PIN0,OUTPUT); //	For Trigger Master 
 	GPIO_voidSetPinDirection(PORTC,PIN6,OUTPUT); // For Buzzer
+	GPIO_voidSetPinDirection(GREEN_LED,OUTPUT); // For Green Led
+	GPIO_voidSetPinDirection(RED_LED,OUTPUT); // For Red Led 
+	
 
 	
 	// SPI
@@ -182,6 +198,8 @@ void ECU1_Entance_APP_SETUP(void)
 	GateControl_voidInit(); 
 	
 	LCD_voidSetup();
+	MCAL_USART_SendString((u8*)"\r\n***** ENTER RFID CARD *****\r\n");
+
 	
 	
 	/*	Global Interrupt	*/
@@ -213,6 +231,8 @@ void ECU1_Entance_APP_LOOP(void)
 		MCAL_voidClearFlags();
 		/* Renable Interrupts	*/ 
 		ENABLE_GLOBAL_INTERRUPT();
+		MCAL_USART_SendString((u8*)"\r\n***** ENTER RFID CARD *****\r\n");
+
 	}
 
 
@@ -272,7 +292,7 @@ void APP_IsValidID(void)
 		MCAL_SPI_voidByteExchangeAsynch(VALID_ID_SYMBOL , &LOC_Result);
 	}while(!( LOC_Result == '1' || LOC_Result == '0') );
 	Glob_ID_Valid = LOC_Result ; 
-	(Glob_ID_Valid == VALID_ID) ? (LCD_voidStateScreen(0)) : (LCD_voidStateScreen(1)) ; 
+	(Glob_ID_Valid == VALID_ID) ? (System_voidStates(0)) : (System_voidStates(1)) ; 
 
 }
 void APP_voidSendStringThroughSPI(u8 *ptr_String)

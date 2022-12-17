@@ -139,10 +139,6 @@ Discarded input sections
                 0x00000000       0x38 MCAL/UART/USART_Program.o
  .text.MCAL_USART_RxSynch
                 0x00000000       0xde MCAL/UART/USART_Program.o
- .text.MCAL_USART_TxChar
-                0x00000000       0x1c MCAL/UART/USART_Program.o
- .text.MCAL_USART_SendString
-                0x00000000       0x54 MCAL/UART/USART_Program.o
  .text.MCAL_USART_TxByteAsynch
                 0x00000000       0x48 MCAL/UART/USART_Program.o
  .text.MCAL_voidDisableTxInterrupt
@@ -455,7 +451,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2fcc
+.text           0x00000000     0x30b8
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
                 0x00000000                __vector_default
@@ -538,196 +534,202 @@ END GROUP
                 0x000002bc      0x14c APP/APP.o
  .text.LCD_voidSetup
                 0x00000408       0x34 APP/APP.o
- .text.LCD_voidStateScreen
-                0x0000043c      0x180 APP/APP.o
+ .text.System_voidStates
+                0x0000043c      0x1d8 APP/APP.o
  .text.ECU1_Entance_APP_SETUP
-                0x000005bc       0x5e APP/APP.o
-                0x000005bc                ECU1_Entance_APP_SETUP
+                0x00000614       0x7a APP/APP.o
+                0x00000614                ECU1_Entance_APP_SETUP
  .text.ECU1_Entance_APP_LOOP
-                0x0000061a       0x5a APP/APP.o
-                0x0000061a                ECU1_Entance_APP_LOOP
+                0x0000068e       0x62 APP/APP.o
+                0x0000068e                ECU1_Entance_APP_LOOP
  .text.RFID_Callback
-                0x00000674       0x32 APP/APP.o
-                0x00000674                RFID_Callback
+                0x000006f0       0x32 APP/APP.o
+                0x000006f0                RFID_Callback
  .text.APP_voidSendDataThroughSPI
-                0x000006a6       0x40 APP/APP.o
-                0x000006a6                APP_voidSendDataThroughSPI
+                0x00000722       0x40 APP/APP.o
+                0x00000722                APP_voidSendDataThroughSPI
  .text.APP_IsValidID
-                0x000006e6       0x4c APP/APP.o
-                0x000006e6                APP_IsValidID
+                0x00000762       0x4c APP/APP.o
+                0x00000762                APP_IsValidID
  .text.APP_voidSendStringThroughSPI
-                0x00000732       0x66 APP/APP.o
-                0x00000732                APP_voidSendStringThroughSPI
+                0x000007ae       0x66 APP/APP.o
+                0x000007ae                APP_voidSendStringThroughSPI
  .text.GateControl_voidInit
-                0x00000798       0x38 HAL/Gate/GateControl.o
-                0x00000798                GateControl_voidInit
+                0x00000814       0x38 HAL/Gate/GateControl.o
+                0x00000814                GateControl_voidInit
  .text.GateControl_voidOpenGate
-                0x000007d0       0x28 HAL/Gate/GateControl.o
-                0x000007d0                GateControl_voidOpenGate
+                0x0000084c       0x28 HAL/Gate/GateControl.o
+                0x0000084c                GateControl_voidOpenGate
  .text.GateControl_voidCloseGate
-                0x000007f8       0x28 HAL/Gate/GateControl.o
-                0x000007f8                GateControl_voidCloseGate
+                0x00000874       0x28 HAL/Gate/GateControl.o
+                0x00000874                GateControl_voidCloseGate
  .text.LCD_voidInit
-                0x00000820      0x230 HAL/LCD/LCD.o
-                0x00000820                LCD_voidInit
+                0x0000089c      0x230 HAL/LCD/LCD.o
+                0x0000089c                LCD_voidInit
  .text.LCD_voidSendChar
-                0x00000a50      0x638 HAL/LCD/LCD.o
-                0x00000a50                LCD_voidSendChar
+                0x00000acc      0x638 HAL/LCD/LCD.o
+                0x00000acc                LCD_voidSendChar
  .text.LCD_voidSendString
-                0x00001088       0x64 HAL/LCD/LCD.o
-                0x00001088                LCD_voidSendString
+                0x00001104       0x64 HAL/LCD/LCD.o
+                0x00001104                LCD_voidSendString
  .text.LCD_voidSetCursorType
-                0x000010ec       0x2a HAL/LCD/LCD.o
-                0x000010ec                LCD_voidSetCursorType
+                0x00001168       0x2a HAL/LCD/LCD.o
+                0x00001168                LCD_voidSetCursorType
  .text.LCD_voidSetDisplayState
-                0x00001116       0x40 HAL/LCD/LCD.o
-                0x00001116                LCD_voidSetDisplayState
+                0x00001192       0x40 HAL/LCD/LCD.o
+                0x00001192                LCD_voidSetDisplayState
  .text.LCD_voidGotoXY
-                0x00001156       0x68 HAL/LCD/LCD.o
-                0x00001156                LCD_voidGotoXY
+                0x000011d2       0x68 HAL/LCD/LCD.o
+                0x000011d2                LCD_voidGotoXY
  .text.LCD_voidClear
-                0x000011be      0x124 HAL/LCD/LCD.o
-                0x000011be                LCD_voidClear
+                0x0000123a      0x124 HAL/LCD/LCD.o
+                0x0000123a                LCD_voidClear
  .text.LCD_voidWriteCmd
-                0x000012e2      0x638 HAL/LCD/LCD.o
+                0x0000135e      0x638 HAL/LCD/LCD.o
  .text.PIR_voidInit
-                0x0000191a       0x1a HAL/PIR/PIR.o
-                0x0000191a                PIR_voidInit
+                0x00001996       0x1a HAL/PIR/PIR.o
+                0x00001996                PIR_voidInit
  .text.PIR_u8ExistMovement
-                0x00001934       0x20 HAL/PIR/PIR.o
-                0x00001934                PIR_u8ExistMovement
+                0x000019b0       0x20 HAL/PIR/PIR.o
+                0x000019b0                PIR_u8ExistMovement
  .text.RFID_ReceivedData
-                0x00001954      0x104 HAL/RFID/RFID.o
+                0x000019d0      0x104 HAL/RFID/RFID.o
  .text.RFID_voidInit
-                0x00001a58       0x18 HAL/RFID/RFID.o
-                0x00001a58                RFID_voidInit
+                0x00001ad4       0x18 HAL/RFID/RFID.o
+                0x00001ad4                RFID_voidInit
  .text.RFID_voidGetData_Asynch
-                0x00001a70       0x2e HAL/RFID/RFID.o
-                0x00001a70                RFID_voidGetData_Asynch
- .text.main     0x00001a9e       0x12 main.o
-                0x00001a9e                main
+                0x00001aec       0x2e HAL/RFID/RFID.o
+                0x00001aec                RFID_voidGetData_Asynch
+ .text.main     0x00001b1a       0x12 main.o
+                0x00001b1a                main
  .text.__vector_1
-                0x00001ab0       0x62 MCAL/EXTI/EXT_INT_program.o
-                0x00001ab0                __vector_1
+                0x00001b2c       0x62 MCAL/EXTI/EXT_INT_program.o
+                0x00001b2c                __vector_1
  .text.__vector_2
-                0x00001b12       0x62 MCAL/EXTI/EXT_INT_program.o
-                0x00001b12                __vector_2
+                0x00001b8e       0x62 MCAL/EXTI/EXT_INT_program.o
+                0x00001b8e                __vector_2
  .text.__vector_18
-                0x00001b74       0x62 MCAL/EXTI/EXT_INT_program.o
-                0x00001b74                __vector_18
+                0x00001bf0       0x62 MCAL/EXTI/EXT_INT_program.o
+                0x00001bf0                __vector_18
  .text.GPIO_voidInit
-                0x00001bd6       0x70 MCAL/GPIO/GPIO_program.o
-                0x00001bd6                GPIO_voidInit
+                0x00001c52       0x70 MCAL/GPIO/GPIO_program.o
+                0x00001c52                GPIO_voidInit
  .text.GPIO_voidSetPinDirection
-                0x00001c46      0x412 MCAL/GPIO/GPIO_program.o
-                0x00001c46                GPIO_voidSetPinDirection
+                0x00001cc2      0x412 MCAL/GPIO/GPIO_program.o
+                0x00001cc2                GPIO_voidSetPinDirection
  .text.GPIO_voidSetPinValue
-                0x00002058      0x1f2 MCAL/GPIO/GPIO_program.o
-                0x00002058                GPIO_voidSetPinValue
+                0x000020d4      0x1f2 MCAL/GPIO/GPIO_program.o
+                0x000020d4                GPIO_voidSetPinValue
  .text.GPIO_u8GetPinValue
-                0x0000224a       0xd4 MCAL/GPIO/GPIO_program.o
-                0x0000224a                GPIO_u8GetPinValue
+                0x000022c6       0xd4 MCAL/GPIO/GPIO_program.o
+                0x000022c6                GPIO_u8GetPinValue
  .text.GPIO_voidTogglePin
-                0x0000231e       0xf0 MCAL/GPIO/GPIO_program.o
-                0x0000231e                GPIO_voidTogglePin
+                0x0000239a       0xf0 MCAL/GPIO/GPIO_program.o
+                0x0000239a                GPIO_voidTogglePin
  .text.GPIO_voidSPI_SlaveInit
-                0x0000240e       0x38 MCAL/GPIO/GPIO_program.o
-                0x0000240e                GPIO_voidSPI_SlaveInit
+                0x0000248a       0x38 MCAL/GPIO/GPIO_program.o
+                0x0000248a                GPIO_voidSPI_SlaveInit
  .text.PWM_voidInit
-                0x00002446      0x2ee MCAL/PWM/PWM_Program.o
-                0x00002446                PWM_voidInit
+                0x000024c2      0x2ee MCAL/PWM/PWM_Program.o
+                0x000024c2                PWM_voidInit
  .text.PWM_voidSetOCPin
-                0x00002734       0x80 MCAL/PWM/PWM_Program.o
-                0x00002734                PWM_voidSetOCPin
+                0x000027b0       0x80 MCAL/PWM/PWM_Program.o
+                0x000027b0                PWM_voidSetOCPin
  .text.PWM_voidPhaseFrequencyCorrectSetValues
-                0x000027b4       0xc2 MCAL/PWM/PWM_Program.o
-                0x000027b4                PWM_voidPhaseFrequencyCorrectSetValues
+                0x00002830       0xc2 MCAL/PWM/PWM_Program.o
+                0x00002830                PWM_voidPhaseFrequencyCorrectSetValues
  .text.MCAL_SPI_voidInit
-                0x00002876       0x9e MCAL/SPI/SPI_Program.o
-                0x00002876                MCAL_SPI_voidInit
+                0x000028f2       0x9e MCAL/SPI/SPI_Program.o
+                0x000028f2                MCAL_SPI_voidInit
  .text.MCAL_SPI_voidByteExchangeAsynch
-                0x00002914       0x5c MCAL/SPI/SPI_Program.o
-                0x00002914                MCAL_SPI_voidByteExchangeAsynch
+                0x00002990       0x5c MCAL/SPI/SPI_Program.o
+                0x00002990                MCAL_SPI_voidByteExchangeAsynch
  .text.__vector_10
-                0x00002970       0x62 MCAL/SPI/SPI_Program.o
-                0x00002970                __vector_10
+                0x000029ec       0x62 MCAL/SPI/SPI_Program.o
+                0x000029ec                __vector_10
  .text.MCAL_USART_init
-                0x000029d2      0x18c MCAL/UART/USART_Program.o
-                0x000029d2                MCAL_USART_init
+                0x00002a4e      0x18c MCAL/UART/USART_Program.o
+                0x00002a4e                MCAL_USART_init
  .text.MCAL_USART_TxByteSynch
-                0x00002b5e       0x3e MCAL/UART/USART_Program.o
-                0x00002b5e                MCAL_USART_TxByteSynch
+                0x00002bda       0x3e MCAL/UART/USART_Program.o
+                0x00002bda                MCAL_USART_TxByteSynch
+ .text.MCAL_USART_TxChar
+                0x00002c18       0x1c MCAL/UART/USART_Program.o
+                0x00002c18                MCAL_USART_TxChar
+ .text.MCAL_USART_SendString
+                0x00002c34       0x54 MCAL/UART/USART_Program.o
+                0x00002c34                MCAL_USART_SendString
  .text.MCAL_u8PrivateEffectiveData
-                0x00002b9c       0x66 MCAL/UART/USART_Program.o
+                0x00002c88       0x66 MCAL/UART/USART_Program.o
  .text.MCAL_USART_RxByteAsynch
-                0x00002c02       0x38 MCAL/UART/USART_Program.o
-                0x00002c02                MCAL_USART_RxByteAsynch
+                0x00002cee       0x38 MCAL/UART/USART_Program.o
+                0x00002cee                MCAL_USART_RxByteAsynch
  .text.MCAL_voidClearFlags
-                0x00002c3a       0x34 MCAL/UART/USART_Program.o
-                0x00002c3a                MCAL_voidClearFlags
+                0x00002d26       0x34 MCAL/UART/USART_Program.o
+                0x00002d26                MCAL_voidClearFlags
  .text.__vector_11
-                0x00002c6e       0x72 MCAL/UART/USART_Program.o
-                0x00002c6e                __vector_11
+                0x00002d5a       0x72 MCAL/UART/USART_Program.o
+                0x00002d5a                __vector_11
  .text.__vector_13
-                0x00002ce0       0x62 MCAL/UART/USART_Program.o
-                0x00002ce0                __vector_13
+                0x00002dcc       0x62 MCAL/UART/USART_Program.o
+                0x00002dcc                __vector_13
  .text.avr-libc.fplib
-                0x00002d42        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
-                0x00002d42                __nesf2
-                0x00002d42                __eqsf2
-                0x00002d42                __cmpsf2
-                0x00002d42                __ltsf2
-                0x00002d42                __lesf2
+                0x00002e2e        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
+                0x00002e2e                __nesf2
+                0x00002e2e                __eqsf2
+                0x00002e2e                __cmpsf2
+                0x00002e2e                __ltsf2
+                0x00002e2e                __lesf2
  .text.avr-libc.fplib
-                0x00002d4c       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x00002d4c                __fixunssfsi
+                0x00002e38       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x00002e38                __fixunssfsi
  .text.avr-libc.fplib
-                0x00002daa       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
-                0x00002daa                __fp_cmp
+                0x00002e96       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                0x00002e96                __fp_cmp
  .text.avr-libc.fplib
-                0x00002df2       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00002df2                __fp_split3
-                0x00002e02                __fp_splitA
+                0x00002ede       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00002ede                __fp_split3
+                0x00002eee                __fp_splitA
  .text.avr-libc.fplib
-                0x00002e36        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x00002e36                __fp_zero
-                0x00002e38                __fp_szero
+                0x00002f22        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00002f22                __fp_zero
+                0x00002f24                __fp_szero
  .text.avr-libc.fplib
-                0x00002e44        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(gesf2.o)
-                0x00002e44                __gesf2
-                0x00002e44                __gtsf2
+                0x00002f30        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                0x00002f30                __gesf2
+                0x00002f30                __gtsf2
  .text.avr-libc.fplib
-                0x00002e4e        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x00002e4e                __mulsf3
+                0x00002f3a        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x00002f3a                __mulsf3
  .text.avr-libc.fplib
-                0x00002e56       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x00002e74                __mulsf3x
-                0x00002e7a                __mulsf3_pse
+                0x00002f42       0xd2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00002f60                __mulsf3x
+                0x00002f66                __mulsf3_pse
  .text.avr-libc.fplib
-                0x00002f28        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x00002f28                __fp_inf
+                0x00003014        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00003014                __fp_inf
  .text.avr-libc.fplib
-                0x00002f34        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x00002f34                __fp_nan
+                0x00003020        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00003020                __fp_nan
  .text.avr-libc.fplib
-                0x00002f3a        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x00002f3a                __fp_pscA
+                0x00003026        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x00003026                __fp_pscA
  .text.avr-libc.fplib
-                0x00002f48        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x00002f48                __fp_pscB
+                0x00003034        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00003034                __fp_pscB
  .text.avr-libc.fplib
-                0x00002f56       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x00002f56                __fp_round
+                0x00003042       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x00003042                __fp_round
  .text.libgcc.div
-                0x00002f78       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00002f78                __udivmodsi4
- .text.libgcc   0x00002fbc        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00002fbc                __tablejump2__
-                0x00002fc8                . = ALIGN (0x2)
+                0x00003064       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x00003064                __udivmodsi4
+ .text.libgcc   0x000030a8        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x000030a8                __tablejump2__
+                0x000030b4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002fc8        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00002fc8                _exit
-                0x00002fc8                exit
+ .fini9         0x000030b4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000030b4                _exit
+                0x000030b4                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -746,11 +748,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002fc8        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000030b4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002fcc                _etext = .
+                0x000030b8                _etext = .
 
-.data           0x00800060       0x5a load address 0x00002fcc
+.data           0x00800060       0x7a load address 0x000030b8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -774,60 +776,60 @@ END GROUP
                 0x0080007e                Global_RFID_State
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x0080007f       0x3b APP/APP.o
+ .rodata        0x0080007f       0x5b APP/APP.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
-                0x008000ba                . = ALIGN (0x2)
-                0x008000ba                _edata = .
-                0x008000ba                PROVIDE (__data_end, .)
+                0x008000da                . = ALIGN (0x2)
+                0x008000da                _edata = .
+                0x008000da                PROVIDE (__data_end, .)
 
-.bss            0x008000ba       0x2f
-                0x008000ba                PROVIDE (__bss_start, .)
+.bss            0x008000da       0x2f
+                0x008000da                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.myLCD     0x008000ba        0x4 APP/APP.o
+ .bss.myLCD     0x008000da        0x4 APP/APP.o
  .bss._UART_RFID_Callback
-                0x008000be        0x2 HAL/RFID/RFID.o
-                0x008000be                _UART_RFID_Callback
+                0x008000de        0x2 HAL/RFID/RFID.o
+                0x008000de                _UART_RFID_Callback
  .bss.Global_Name_Counter
-                0x008000c0        0x1 HAL/RFID/RFID.o
-                0x008000c0                Global_Name_Counter
+                0x008000e0        0x1 HAL/RFID/RFID.o
+                0x008000e0                Global_Name_Counter
  .bss.Global_ID_Counter
-                0x008000c1        0x1 HAL/RFID/RFID.o
-                0x008000c1                Global_ID_Counter
+                0x008000e1        0x1 HAL/RFID/RFID.o
+                0x008000e1                Global_ID_Counter
  .bss.Callback_INT0
-                0x008000c2        0x2 MCAL/EXTI/EXT_INT_program.o
+                0x008000e2        0x2 MCAL/EXTI/EXT_INT_program.o
  .bss.Callback_INT1
-                0x008000c4        0x2 MCAL/EXTI/EXT_INT_program.o
+                0x008000e4        0x2 MCAL/EXTI/EXT_INT_program.o
  .bss.Callback_INT2
-                0x008000c6        0x2 MCAL/EXTI/EXT_INT_program.o
+                0x008000e6        0x2 MCAL/EXTI/EXT_INT_program.o
  .bss.TIMER0_Prescaler
-                0x008000c8        0x2 MCAL/PWM/PWM_Program.o
+                0x008000e8        0x2 MCAL/PWM/PWM_Program.o
  .bss.TIMER1_Prescaler
-                0x008000ca        0x2 MCAL/PWM/PWM_Program.o
+                0x008000ea        0x2 MCAL/PWM/PWM_Program.o
  .bss.TIMER2_Prescaler
-                0x008000cc        0x2 MCAL/PWM/PWM_Program.o
+                0x008000ec        0x2 MCAL/PWM/PWM_Program.o
  .bss.Global_ExchangeComplate
-                0x008000ce        0x2 MCAL/SPI/SPI_Program.o
+                0x008000ee        0x2 MCAL/SPI/SPI_Program.o
  .bss.Global_TxComplate
-                0x008000d0        0x2 MCAL/UART/USART_Program.o
+                0x008000f0        0x2 MCAL/UART/USART_Program.o
  .bss.Global_RxComplate
-                0x008000d2        0x2 MCAL/UART/USART_Program.o
+                0x008000f2        0x2 MCAL/UART/USART_Program.o
  .bss.Global_uartcfg
-                0x008000d4        0x2 MCAL/UART/USART_Program.o
+                0x008000f4        0x2 MCAL/UART/USART_Program.o
  *(COMMON)
- COMMON         0x008000d6       0x13 HAL/RFID/RFID.o
-                0x008000d6                Global_RFID_u8Name
-                0x008000e1                Global_RFID_u8ID
-                0x008000e9                PROVIDE (__bss_end, .)
-                0x00002fcc                __data_load_start = LOADADDR (.data)
-                0x00003026                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008000f6       0x13 HAL/RFID/RFID.o
+                0x008000f6                Global_RFID_u8Name
+                0x00800101                Global_RFID_u8ID
+                0x00800109                PROVIDE (__bss_end, .)
+                0x000030b8                __data_load_start = LOADADDR (.data)
+                0x00003132                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000e9        0x0
+.noinit         0x00800109        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008000e9                _end = .
+                0x00800109                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -960,20 +962,20 @@ END GROUP
  .debug_abbrev  0x00000e64       0xf2 MCAL/SPI/SPI_Program.o
  .debug_abbrev  0x00000f56      0x1ad MCAL/UART/USART_Program.o
 
-.debug_line     0x00000000     0x27aa
+.debug_line     0x00000000     0x27f9
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_line    0x00000116      0x594 APP/APP.o
- .debug_line    0x000006aa      0x100 HAL/Gate/GateControl.o
- .debug_line    0x000007aa      0x6ef HAL/LCD/LCD.o
- .debug_line    0x00000e99       0xa2 HAL/PIR/PIR.o
- .debug_line    0x00000f3b      0x229 HAL/RFID/RFID.o
- .debug_line    0x00001164       0x53 main.o
- .debug_line    0x000011b7      0x323 MCAL/EXTI/EXT_INT_program.o
- .debug_line    0x000014da      0x66a MCAL/GPIO/GPIO_program.o
- .debug_line    0x00001b44      0x49f MCAL/PWM/PWM_Program.o
- .debug_line    0x00001fe3      0x26e MCAL/SPI/SPI_Program.o
- .debug_line    0x00002251      0x559 MCAL/UART/USART_Program.o
+ .debug_line    0x00000116      0x5e3 APP/APP.o
+ .debug_line    0x000006f9      0x100 HAL/Gate/GateControl.o
+ .debug_line    0x000007f9      0x6ef HAL/LCD/LCD.o
+ .debug_line    0x00000ee8       0xa2 HAL/PIR/PIR.o
+ .debug_line    0x00000f8a      0x229 HAL/RFID/RFID.o
+ .debug_line    0x000011b3       0x53 main.o
+ .debug_line    0x00001206      0x323 MCAL/EXTI/EXT_INT_program.o
+ .debug_line    0x00001529      0x66a MCAL/GPIO/GPIO_program.o
+ .debug_line    0x00001b93      0x49f MCAL/PWM/PWM_Program.o
+ .debug_line    0x00002032      0x26e MCAL/SPI/SPI_Program.o
+ .debug_line    0x000022a0      0x559 MCAL/UART/USART_Program.o
 
 .debug_frame    0x00000000      0xcd8
  *(.debug_frame)
@@ -989,30 +991,30 @@ END GROUP
  .debug_frame   0x00000874      0x178 MCAL/SPI/SPI_Program.o
  .debug_frame   0x000009ec      0x2ec MCAL/UART/USART_Program.o
 
-.debug_str      0x00000000     0x1903
+.debug_str      0x00000000     0x1901
  *(.debug_str)
  .debug_str     0x00000000      0x1af C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_str     0x000001af      0x675 APP/APP.o
-                                0x6d0 (size before relaxing)
- .debug_str     0x00000824      0x3b6 HAL/Gate/GateControl.o
+ .debug_str     0x000001af      0x673 APP/APP.o
+                                0x6ce (size before relaxing)
+ .debug_str     0x00000822      0x3b6 HAL/Gate/GateControl.o
                                 0x5ff (size before relaxing)
- .debug_str     0x00000bda      0x172 HAL/LCD/LCD.o
+ .debug_str     0x00000bd8      0x172 HAL/LCD/LCD.o
                                 0x392 (size before relaxing)
- .debug_str     0x00000d4c       0x3f HAL/PIR/PIR.o
+ .debug_str     0x00000d4a       0x3f HAL/PIR/PIR.o
                                 0x17b (size before relaxing)
- .debug_str     0x00000d8b      0x26c HAL/RFID/RFID.o
+ .debug_str     0x00000d89      0x26c HAL/RFID/RFID.o
                                 0x3b6 (size before relaxing)
- .debug_str     0x00000ff7       0x11 main.o
+ .debug_str     0x00000ff5       0x11 main.o
                                 0x190 (size before relaxing)
- .debug_str     0x00001008      0x120 MCAL/EXTI/EXT_INT_program.o
+ .debug_str     0x00001006      0x120 MCAL/EXTI/EXT_INT_program.o
                                 0x25c (size before relaxing)
- .debug_str     0x00001128      0x141 MCAL/GPIO/GPIO_program.o
+ .debug_str     0x00001126      0x141 MCAL/GPIO/GPIO_program.o
                                 0x27d (size before relaxing)
- .debug_str     0x00001269      0x177 MCAL/PWM/PWM_Program.o
+ .debug_str     0x00001267      0x177 MCAL/PWM/PWM_Program.o
                                 0x6ac (size before relaxing)
- .debug_str     0x000013e0      0x182 MCAL/SPI/SPI_Program.o
+ .debug_str     0x000013de      0x182 MCAL/SPI/SPI_Program.o
                                 0x49d (size before relaxing)
- .debug_str     0x00001562      0x3a1 MCAL/UART/USART_Program.o
+ .debug_str     0x00001560      0x3a1 MCAL/UART/USART_Program.o
                                 0x611 (size before relaxing)
 
 .debug_loc      0x00000000     0x1a36

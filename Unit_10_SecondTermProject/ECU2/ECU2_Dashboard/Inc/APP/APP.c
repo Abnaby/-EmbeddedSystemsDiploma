@@ -16,7 +16,9 @@
 /******************************************************************************
 * Module Preprocessor Constants
 *******************************************************************************/
-#define SPI1_PORT_PIN			PORTA, PIN4
+#define ECU1_PORT_PIN			PORTA, PIN4
+#define ECU3_PORT_PIN			PORTB, PIN0
+
 #define ECU1_EXTI_PORT		PORTA
 #define ECU3_EXTI_PORT		PORTA
 /******************************************************************************
@@ -213,9 +215,10 @@ void xDelay(u32 time)
 static void ECU1_Callback(void)
 {
 
+
 #if _APP_DEBUG_ == 1
-	// LCD_voidClear(&myLCD);
-	//LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
+	 LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
 #endif
 
 	u16 LOC_u8TxBuffer = MASTER_ACK ;
@@ -226,7 +229,7 @@ static void ECU1_Callback(void)
 	u8 LOC_u8Counter = 0 ,LOC_u8NameCounter = 0 ,LOC_u8IDCounter = 0 ;
 
 	// Make Slave Pin Low to initiate transaction
-	GPIO_voidSetPinValue(SPI1_PORT_PIN, LOW);
+	GPIO_voidSetPinValue(ECU1_PORT_PIN, LOW);
 	// Send Master NACK
 	SPI_voidSend_RecieveDataSynch(SPI_1, NULL , &LOC_u8RxBuffer);
 	// Send Master Ack
@@ -329,7 +332,7 @@ static void ECU1_Callback(void)
 	}
 
 	// Make Slave Pin High to end transaction
-	GPIO_voidSetPinValue(SPI1_PORT_PIN, HIGH);
+	GPIO_voidSetPinValue(ECU1_PORT_PIN, HIGH);
 
 
 
@@ -337,8 +340,130 @@ static void ECU1_Callback(void)
 }
 static void ECU3_Callback(void)
 {
-	LCD_voidClear(&myLCD);
-	LCD_voidSendString(&myLCD, addString("Ana ECU3 Ya Bro"));
+
+
+#if _APP_DEBUG_ == 1
+	 LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
+#endif
+
+	u16 LOC_u8TxBuffer = MASTER_ACK ;
+	u16 LOC_u8RxBuffer = 0 ;
+	u8 LOC_u8userName[NAME_MAX_SIZE+1] = {0} ;
+	u8 LOC_u8ID[ID_SIZE+1] = {0} ;
+
+	u8 LOC_u8Counter = 0 ,LOC_u8NameCounter = 0 ,LOC_u8IDCounter = 0 ;
+
+	// Make Slave Pin Low to initiate transaction
+	GPIO_voidSetPinValue(ECU3_PORT_PIN, LOW);
+	// Send Master NACK
+	SPI_voidSend_RecieveDataSynch(SPI_1, NULL , &LOC_u8RxBuffer);
+	// Send Master Ack
+	do
+	{
+		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		if( (LOC_u8RxBuffer >= 'a'  && LOC_u8RxBuffer <= 'z') || (LOC_u8RxBuffer >= 'A'  && LOC_u8RxBuffer <= 'Z') )
+		{
+			// UserName Field
+			LOC_u8userName[LOC_u8NameCounter] = LOC_u8RxBuffer ;
+			LOC_u8NameCounter++ ;
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		}
+		else if (LOC_u8RxBuffer >= '0' && LOC_u8RxBuffer <= '9')
+		{
+			// ID Field
+			LOC_u8ID[LOC_u8IDCounter] = LOC_u8RxBuffer ;
+			LOC_u8IDCounter++ ;
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		}
+		else
+		{
+			// Invalid
+		}
+	}while(LOC_u8RxBuffer != VALID_ID_SYMBOL);
+	LOC_u8userName[LOC_u8NameCounter] = '\0';
+	LOC_u8ID[LOC_u8IDCounter] ='\0';
+
+	// When Come VALID_ID_SYMBOL check username exist or not
+	if(Glob_u8NumberOfCurrentUsers == 0 )
+	{
+		// Send invaild
+		// NOT_VALID_ID
+		LOC_u8TxBuffer = NOT_VALID_ID ;
+		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+	}
+	else
+	{
+		/*	Searching	*/
+		LOC_u8Counter = 0 ;
+		u8 LOC_u8Result = 1 ;
+		u8 userIdx = 10  ;
+		for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
+		{
+			// Name Searching
+			LOC_u8Result = compTwoStrings(LOC_u8userName, &Glob_u8DriverArr[LOC_u8Counter][0][0]);
+			if(LOC_u8Result == 0)
+			{
+				userIdx = LOC_u8Counter ;
+				break ;
+			}
+
+		}
+		if(LOC_u8Result == 0 && userIdx <= Glob_u8NumberOfCurrentUsers)
+		{
+			LOC_u8Result = 1 ;
+			// ID Verify
+			LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[userIdx][1][0]);
+		}
+
+		if(LOC_u8Result == 0)
+		{
+#if _APP_DEBUG_ == 1
+	//LCD_voidClear(&myLCD);
+	//LCD_voidSendString(&myLCD, addString("VALID"));
+#endif
+			// Valid Name and ID Send VALID_ID
+			do
+			{
+				LOC_u8TxBuffer = VALID_ID ;
+				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+
+
+		}
+		else
+		{
+			// invalid Name and ID Send NOT_VALID_ID
+			LOC_u8TxBuffer = NOT_VALID_ID ;
+			do
+			{
+				LOC_u8TxBuffer = '0' ;
+				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+
+		#if _APP_DEBUG_ == 1
+			//LCD_voidClear(&myLCD);
+		//	LCD_voidSendString(&myLCD, addString("IN-VALID")) ;
+
+		#endif
+		}
+
+	}
+
+	// Make Slave Pin High to end transaction
+	GPIO_voidSetPinValue(ECU3_PORT_PIN, HIGH);
+
+
+
+
+
 
 }
 
@@ -775,9 +900,12 @@ static SPI_config SPI1_Communication ;
 
 static void SPI_voidSetup(void)
 {
-	GPIO_voidSetPinDirection(SPI1_PORT_PIN,GPIO_OUTPUT_2MHZ_PUSH_PULL) ;
+	GPIO_voidSetPinDirection(ECU1_PORT_PIN,GPIO_OUTPUT_2MHZ_PUSH_PULL) ;
+	GPIO_voidSetPinDirection(ECU3_PORT_PIN,GPIO_OUTPUT_2MHZ_PUSH_PULL) ;
+
 	// Force the Slave Select (HIGH) for idle Mode
-	GPIO_voidSetPinValue(SPI1_PORT_PIN, HIGH);
+	GPIO_voidSetPinValue(ECU1_PORT_PIN, HIGH);
+	GPIO_voidSetPinValue(ECU3_PORT_PIN, HIGH);
 
 
 	SPI1_Communication.SPI_CommMode = SPI_FULL_DOUPLEX ;
@@ -788,7 +916,7 @@ static void SPI_voidSetup(void)
 	SPI1_Communication.SPI_BuadRate = SPI_BUAD_PRESCALED_BY_16;
 	SPI1_Communication.SPI_Mode = SPI_MASTER ;
 	SPI1_Communication.SPI_IRQ =SPI_IRQ_DISABLED ;
-	SPI1_Communication.SPI_SlaveSelectMangment =SPI_SSM_SW_SLAVE_SET ;
+	SPI1_Communication.SPI_SlaveSelectMangment =SPI_SSM_HW_SLAVE ;
 	SPI1_Communication.P_IRQ_CallBack = NULL ;
 	SPI_voidInit(SPI_1, &SPI1_Communication) ;
 	SPI_VoidGPIO_SetPins(SPI_1);

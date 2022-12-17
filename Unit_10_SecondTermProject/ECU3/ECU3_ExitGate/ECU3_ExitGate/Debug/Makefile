@@ -36,6 +36,7 @@ SUBDIRS :=  \
 ../APP/ \
 ../HAL/ \
 ../HAL/Gate/ \
+../HAL/LCD \
 ../HAL/PIR/ \
 ../HAL/RFID/ \
 ../LIB/ \
@@ -54,6 +55,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../APP/APP.c \
 ../HAL/Gate/GateControl.c \
+../HAL/LCD/LCD.c \
 ../HAL/PIR/PIR.c \
 ../HAL/RFID/RFID.c \
 ../main.c \
@@ -73,6 +75,7 @@ ASM_SRCS +=
 OBJS +=  \
 APP/APP.o \
 HAL/Gate/GateControl.o \
+HAL/LCD/LCD.o \
 HAL/PIR/PIR.o \
 HAL/RFID/RFID.o \
 main.o \
@@ -85,6 +88,7 @@ MCAL/UART/USART_Program.o
 OBJS_AS_ARGS +=  \
 APP/APP.o \
 HAL/Gate/GateControl.o \
+HAL/LCD/LCD.o \
 HAL/PIR/PIR.o \
 HAL/RFID/RFID.o \
 main.o \
@@ -97,6 +101,7 @@ MCAL/UART/USART_Program.o
 C_DEPS +=  \
 APP/APP.d \
 HAL/Gate/GateControl.d \
+HAL/LCD/LCD.d \
 HAL/PIR/PIR.d \
 HAL/RFID/RFID.d \
 main.d \
@@ -109,6 +114,7 @@ MCAL/UART/USART_Program.d
 C_DEPS_AS_ARGS +=  \
 APP/APP.d \
 HAL/Gate/GateControl.d \
+HAL/LCD/LCD.d \
 HAL/PIR/PIR.d \
 HAL/RFID/RFID.d \
 main.d \
@@ -140,6 +146,13 @@ APP/APP.o: ../APP/APP.c
 	
 
 HAL/Gate/GateControl.o: ../HAL/Gate/GateControl.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../APP" -I"../HAL" -I"../LIB" -I"../MCAL"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega16 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega16" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/LCD/LCD.o: ../HAL/LCD/LCD.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../APP" -I"../HAL" -I"../LIB" -I"../MCAL"  -O0 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega16 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega16" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
