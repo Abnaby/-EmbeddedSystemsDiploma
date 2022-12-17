@@ -6,6 +6,8 @@ APP\APP.c
 
 HAL\Gate\GateControl.c
 
+HAL\LCD\LCD.c
+
 HAL\PIR\PIR.c
 
 HAL\RFID\RFID.c

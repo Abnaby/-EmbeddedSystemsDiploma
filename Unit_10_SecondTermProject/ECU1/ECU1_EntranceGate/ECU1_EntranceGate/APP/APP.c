@@ -24,6 +24,9 @@
 #define VALID_ID_SYMBOL			'$'
 #define MASTER_ACK				'+'
 #define WAIT_SYMBOL				'.'
+#define LCD_WAITING_TIME		150
+#define SPI_START_SEND()	GPIO_voidTogglePin(PORTA,PIN0);
+#define SPI_STOP_SEND()		1 
 /******************************************************************************
 * Typedefs
 *******************************************************************************/
@@ -53,9 +56,81 @@ SPI_Config mySPI =
     SPI_Fosc_OVER_16	
 
 };
+// Buzzer
 
-#define SPI_START_SEND()	GPIO_voidTogglePin(PORTA,PIN0);
-#define SPI_STOP_SEND()		1 
+static void Buzzer( u8 copyNumberOfRepeatations)
+{
+	u8 LOC_u8Counter = 0 ;
+	for(LOC_u8Counter ; LOC_u8Counter<copyNumberOfRepeatations ; LOC_u8Counter++)
+	{
+		GPIO_voidSetPinValue(PORTC,PIN6,HIGH);
+		_delay_ms(100);
+		GPIO_voidSetPinValue(PORTC,PIN6,LOW);
+		_delay_ms(100);		
+	}	
+}
+// LCD
+static LCD_Config myLCD ;
+u8 LCD_PortPin[]=
+{
+	// < Enable,rsPin, rwPort,d4Port,d4Pin ....... d7Port,d7Pin>
+	//EN
+	PORTC , PIN1 ,
+	//RS
+	PORTC , PIN0 ,
+	//D4
+	PORTC , PIN2 ,
+	//D5
+	PORTC , PIN3 ,
+	//D6
+	PORTC , PIN4 ,
+	//D7
+	PORTC , PIN5
+};
+static void LCD_voidMainScreen()
+{
+	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
+	LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD,addString("Entrance Gate"));
+	LCD_voidGotoXY(&myLCD,0,1);
+	LCD_voidSendString(&myLCD,addString("Low Power Mode "));
+	_delay_ms(LCD_WAITING_TIME);
+	LCD_voidSetDisplayState(&myLCD,DISP_OFF);
+}
+
+static void LCD_voidSetup(void)
+{
+	myLCD.LCD_SIZE_Rows = 2 ;
+	myLCD.LCD_SIZE_Cols = 16 ;
+	myLCD.LCD_PortPins = LCD_PortPin ;
+	LCD_voidInit(&myLCD);
+	/*	Main Screen	*/
+	LCD_voidMainScreen();
+}
+
+static void LCD_voidStateScreen(u8 copy_u8Selection)
+{
+	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
+	LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD,addString("Entrance Gate"));
+	LCD_voidGotoXY(&myLCD,0,1);
+	switch(copy_u8Selection)
+	{
+		case 0 : 
+		LCD_voidSendString(&myLCD,addString("Your ID is Valid "));	
+		_delay_ms(200);
+		LCD_voidSetDisplayState(&myLCD,DISP_OFF);
+		break ; 
+		case 1 : 
+		LCD_voidSendString(&myLCD,addString("Invalid ID"));
+		Buzzer(3);
+		LCD_voidSetDisplayState(&myLCD,DISP_OFF);
+		break ; 
+		default : break ; 
+	}
+
+}
+
 
 /******************************************************************************
 * private Function Prototypes
@@ -90,7 +165,9 @@ void ECU1_Entance_APP_SETUP(void)
 	/*	MCAL INIT	*/
 	// GPIO 
 	GPIO_voidInit(); 
-	GPIO_voidSetPinDirection(PORTA,PIN0,OUTPUT); 
+	GPIO_voidSetPinDirection(PORTA,PIN0,OUTPUT); //	For Trigger Master 
+	GPIO_voidSetPinDirection(PORTC,PIN6,OUTPUT); // For Buzzer
+
 	
 	// SPI
 	GPIO_voidSPI_SlaveInit();
@@ -104,6 +181,9 @@ void ECU1_Entance_APP_SETUP(void)
 	
 	GateControl_voidInit(); 
 	
+	LCD_voidSetup();
+	
+	
 	/*	Global Interrupt	*/
 	ENABLE_GLOBAL_INTERRUPT();
 
@@ -116,7 +196,12 @@ void ECU1_Entance_APP_SETUP(void)
 
 void ECU1_Entance_APP_LOOP(void) 
 {
-	while(Glob_ID_Valid ==  VALID_ID)
+	// Stuck Here Until Get Valid ID
+	while(Glob_ID_Valid !=  VALID_ID)
+	{
+		GateControl_voidCloseGate() ;
+	}
+	// If Glob_ID_Valid == VALID_ID
 	{
 		/* Disable Interrupts	*/
 		DISABLE_GLOBAL_INTERRUPT();
@@ -129,11 +214,10 @@ void ECU1_Entance_APP_LOOP(void)
 		/* Renable Interrupts	*/ 
 		ENABLE_GLOBAL_INTERRUPT();
 	}
-	GateControl_voidCloseGate() ;
+
+
 }
 	
-	
-
 /******************************************************************************
 * Callbacks Definitions
 *******************************************************************************/
@@ -188,6 +272,8 @@ void APP_IsValidID(void)
 		MCAL_SPI_voidByteExchangeAsynch(VALID_ID_SYMBOL , &LOC_Result);
 	}while(!( LOC_Result == '1' || LOC_Result == '0') );
 	Glob_ID_Valid = LOC_Result ; 
+	(Glob_ID_Valid == VALID_ID) ? (LCD_voidStateScreen(0)) : (LCD_voidStateScreen(1)) ; 
+
 }
 void APP_voidSendStringThroughSPI(u8 *ptr_String)
 {

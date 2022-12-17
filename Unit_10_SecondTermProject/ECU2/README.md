@@ -14,13 +14,17 @@ one of the functions of ECU2 is storing drivers' data on EEPROM to save it from 
 
 ## *Sprints Details* 
 - [PPG Sprint3]([Sprint3_Details](../SprintsDetails/Sprint_3/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint4]([Sprint4_Details](../SprintsDetails/Sprint_4/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint5]([Sprint5_Details](../SprintsDetails/Sprint_5_/README.md)) ![image](https://progress-bar.dev/100/)
+
+
 
 ## *ECU2 Testing*
 - [ECU2 Unit Testing]([ECU2_Testing](TestCases/ECU2_AdminDashboard.xlsx)) ![image](https://progress-bar.dev/100/)
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=1kl0-AhxnfNEpgqPbQ-GWo2GPI3mTQuf_)
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=11qIEXYE6fNceYRcg_RkBHCu-HTtrYBKy)
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=1bARrP7q8o5haxn_hwQTGY75yM0c97XIv)
-- [ECU2 Functionl Test]([ECU2_Testing](TestCases/ECU2_AdminDashboard.xlsx)) ![image](https://progress-bar.dev/50/)
+- [ECU2 Functionl Test]([ECU2_Testing](TestCases/ECU2_AdminDashboard.xlsx)) ![image](https://progress-bar.dev/70/)
 
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=1rbWdO4Xn1XJ5dIP7kanCAxpmOaOcdoDC)
 

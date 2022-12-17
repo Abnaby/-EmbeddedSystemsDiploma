@@ -27,9 +27,9 @@
 #include "../HAL/PIR/PIR.h"
 #include "../HAL/RFID/RFID.h"
 #include "../HAL/Gate/GateControl.h"
+#include "../HAL/LCD/LCD.h"
 
-
-
+#include <util/delay.h>
 
 
 /***************************** APIs	 *****************************************/ 
