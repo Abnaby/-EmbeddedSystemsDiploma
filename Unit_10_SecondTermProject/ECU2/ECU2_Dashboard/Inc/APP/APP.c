@@ -73,6 +73,8 @@ typedef enum
 ID_Check_t Glob_ID_Valid =  NOT_VALID_ID ; 
 // Garage Data
 
+static _7Segment_Config mySegment = {COMN_ANODE , _7_SEG_4_PIN_IC } ;
+
 
 /************************************ Predefined Admin Stage	***********************************/
 #define NUMBER_OF_ADMINS	2
@@ -91,6 +93,12 @@ u8 Glob_u8NumberOfCurrentUsers ;
 u8 Glob_u8DriverArr[MAX_SLOTS_IN_GARAGE][2][NAME_MAX_SIZE+1];
 u8 Glob_u8NumberOfAvailableSlots = MAX_SLOTS_IN_GARAGE ;
 u8 Glob_u8DriverFreeIndex[MAX_SLOTS_IN_GARAGE] = {1,1,1};
+
+// Arr of Vehicle in garage
+u8 Glob_u8InGarage[MAX_SLOTS_IN_GARAGE] = {0,0,0};
+
+// Arr of  Vechile out of garage
+u8 Glob_u8OutGarage[MAX_SLOTS_IN_GARAGE] = {1,1,1};
 
 
 /*************************************	Start LCD Vars	*******************************************/
@@ -266,7 +274,7 @@ static void ECU1_Callback(void)
 	LOC_u8ID[LOC_u8IDCounter] ='\0';
 
 	// When Come VALID_ID_SYMBOL check username exist or not
-	if(Glob_u8NumberOfCurrentUsers == 0 )
+	if(Glob_u8NumberOfCurrentUsers == 0  || Glob_u8NumberOfAvailableSlots == 0)
 	{
 		// Send invaild
 		// NOT_VALID_ID
@@ -286,6 +294,12 @@ static void ECU1_Callback(void)
 			if(LOC_u8Result == 0)
 			{
 				userIdx = LOC_u8Counter ;
+				if(Glob_u8InGarage[userIdx] == 1)
+				{
+					// Wrong Gate
+					LOC_u8Result = 1 ;
+
+				}
 				break ;
 			}
 
@@ -299,10 +313,7 @@ static void ECU1_Callback(void)
 
 		if(LOC_u8Result == 0)
 		{
-#if _APP_DEBUG_ == 1
-	//LCD_voidClear(&myLCD);
-	//LCD_voidSendString(&myLCD, addString("VALID"));
-#endif
+
 			// Valid Name and ID Send VALID_ID
 			do
 			{
@@ -310,6 +321,10 @@ static void ECU1_Callback(void)
 				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
 			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
 
+			Glob_u8NumberOfAvailableSlots-- ;
+			HAL_7SegmentWriteNumber(&mySegment, Glob_u8NumberOfAvailableSlots);
+			Glob_u8InGarage[userIdx] = 1;
+			Glob_u8OutGarage[userIdx] = 0;
 
 		}
 		else
@@ -322,11 +337,6 @@ static void ECU1_Callback(void)
 				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
 			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
 
-		#if _APP_DEBUG_ == 1
-			//LCD_voidClear(&myLCD);
-		//	LCD_voidSendString(&myLCD, addString("IN-VALID")) ;
-
-		#endif
 		}
 
 	}
@@ -392,7 +402,7 @@ static void ECU3_Callback(void)
 	LOC_u8ID[LOC_u8IDCounter] ='\0';
 
 	// When Come VALID_ID_SYMBOL check username exist or not
-	if(Glob_u8NumberOfCurrentUsers == 0 )
+	if(Glob_u8NumberOfCurrentUsers == 0 || Glob_u8NumberOfAvailableSlots == MAX_SLOTS_IN_GARAGE)
 	{
 		// Send invaild
 		// NOT_VALID_ID
@@ -412,6 +422,11 @@ static void ECU3_Callback(void)
 			if(LOC_u8Result == 0)
 			{
 				userIdx = LOC_u8Counter ;
+				if(Glob_u8OutGarage[userIdx] == 1)
+				{
+					// Wrong Out Gate ببيخرج من مكان الدخول
+					LOC_u8Result = 1 ;
+				}
 				break ;
 			}
 
@@ -435,6 +450,10 @@ static void ECU3_Callback(void)
 				LOC_u8TxBuffer = VALID_ID ;
 				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
 			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+			Glob_u8NumberOfAvailableSlots++ ;
+			HAL_7SegmentWriteNumber(&mySegment, Glob_u8NumberOfAvailableSlots);
+			Glob_u8InGarage[userIdx] = 0;
+			Glob_u8OutGarage[userIdx] = 1;
 
 
 		}
@@ -665,7 +684,6 @@ static void System_voidAddNewUser(void)
 		LCD_voidSendString(&myLCD,addString("Driver Username"));
 		LCD_voidGotoXY(&myLCD,0,1);
 		LCD_voidSetCursorType(&myLCD, CURS_ON_BLINK) ;
-
 		// Take Name
 		while((LOC_u8ReceivedData != UART_TERMINATE_CHAR) && LOC_u8Counter <= NAME_MAX_SIZE)
 		{
@@ -1105,7 +1123,6 @@ static void keypad_voidSetup(void)
 /********************************************** End of Keypad fcn	********************************************************/
 
 /********************************************** Start of Seven Segment fcn	********************************************************/
-static _7Segment_Config mySegment = {COMN_ANODE , _7_SEG_4_PIN_IC } ;
 void _7Segnent_voidSetup(void)
 {
 	mySegment._7SegmentMode = _7_SEG_4_PIN_IC ;
