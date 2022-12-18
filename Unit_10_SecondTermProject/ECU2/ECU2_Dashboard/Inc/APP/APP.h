@@ -25,6 +25,7 @@
 #include "../Inc/MCAL/NVIC/NVIC_interface.h"
 #include "../Inc/MCAL/AFIO/AFIO_interface.h"
 #include "../Inc/MCAL/EXTI/EXTI_interface.h"
+#include "../Inc/MCAL/SYSTICK/STK_interface.h"
 
 
 // HAL

@@ -86,7 +86,9 @@ static _7Segment_Config mySegment = {COMN_ANODE , _7_SEG_4_PIN_IC } ;
 u8 Glob_u8AdminArr[NUMBER_OF_ADMINS][2][NAME_MAX_SIZE+1];
 
 u8 Glob_LogginSeesionExpired = 1 ;
-
+u8 LOC_u8TimerCounter = 0 ;
+#define EXPIRITION_TIME_IN_MS		5
+#define	TIME_OF_ONE_INTTERRUPT		5000
 /************************************ Drivers Stage	***********************************/
 #define MAX_SLOTS_IN_GARAGE		3
 u8 Glob_u8NumberOfCurrentUsers ;
@@ -220,272 +222,10 @@ void xDelay(u32 time)
 #define _delay_ms(ms) xDelay(ms)
 
 
-static void ECU1_Callback(void)
-{
+static void ECU1_Callback(void);
 
-
-#if _APP_DEBUG_ == 1
-	 LCD_voidClear(&myLCD);
-	LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
-#endif
-
-	u16 LOC_u8TxBuffer = MASTER_ACK ;
-	u16 LOC_u8RxBuffer = 0 ;
-	u8 LOC_u8userName[NAME_MAX_SIZE+1] = {0} ;
-	u8 LOC_u8ID[ID_SIZE+1] = {0} ;
-
-	u8 LOC_u8Counter = 0 ,LOC_u8NameCounter = 0 ,LOC_u8IDCounter = 0 ;
-
-	// Make Slave Pin Low to initiate transaction
-	GPIO_voidSetPinValue(ECU1_PORT_PIN, LOW);
-	// Send Master NACK
-	SPI_voidSend_RecieveDataSynch(SPI_1, NULL , &LOC_u8RxBuffer);
-	// Send Master Ack
-	do
-	{
-		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-#if _APP_DEBUG_ == 1
-		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
-#endif
-		if( (LOC_u8RxBuffer >= 'a'  && LOC_u8RxBuffer <= 'z') || (LOC_u8RxBuffer >= 'A'  && LOC_u8RxBuffer <= 'Z') )
-		{
-			// UserName Field
-			LOC_u8userName[LOC_u8NameCounter] = LOC_u8RxBuffer ;
-			LOC_u8NameCounter++ ;
-#if _APP_DEBUG_ == 1
-		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
-#endif
-		}
-		else if (LOC_u8RxBuffer >= '0' && LOC_u8RxBuffer <= '9')
-		{
-			// ID Field
-			LOC_u8ID[LOC_u8IDCounter] = LOC_u8RxBuffer ;
-			LOC_u8IDCounter++ ;
-#if _APP_DEBUG_ == 1
-		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
-#endif
-		}
-		else
-		{
-			// Invalid
-		}
-	}while(LOC_u8RxBuffer != VALID_ID_SYMBOL);
-	LOC_u8userName[LOC_u8NameCounter] = '\0';
-	LOC_u8ID[LOC_u8IDCounter] ='\0';
-
-	// When Come VALID_ID_SYMBOL check username exist or not
-	if(Glob_u8NumberOfCurrentUsers == 0  || Glob_u8NumberOfAvailableSlots == 0)
-	{
-		// Send invaild
-		// NOT_VALID_ID
-		LOC_u8TxBuffer = NOT_VALID_ID ;
-		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-	}
-	else
-	{
-		/*	Searching	*/
-		LOC_u8Counter = 0 ;
-		u8 LOC_u8Result = 1 ;
-		u8 userIdx = 10  ;
-		for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
-		{
-			// Name Searching
-			LOC_u8Result = compTwoStrings(LOC_u8userName, &Glob_u8DriverArr[LOC_u8Counter][0][0]);
-			if(LOC_u8Result == 0)
-			{
-				userIdx = LOC_u8Counter ;
-				if(Glob_u8InGarage[userIdx] == 1)
-				{
-					// Wrong Gate
-					LOC_u8Result = 1 ;
-
-				}
-				break ;
-			}
-
-		}
-		if(LOC_u8Result == 0 && userIdx <= Glob_u8NumberOfCurrentUsers)
-		{
-			LOC_u8Result = 1 ;
-			// ID Verify
-			LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[userIdx][1][0]);
-		}
-
-		if(LOC_u8Result == 0)
-		{
-
-			// Valid Name and ID Send VALID_ID
-			do
-			{
-				LOC_u8TxBuffer = VALID_ID ;
-				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
-
-			Glob_u8NumberOfAvailableSlots-- ;
-			HAL_7SegmentWriteNumber(&mySegment, Glob_u8NumberOfAvailableSlots);
-			Glob_u8InGarage[userIdx] = 1;
-			Glob_u8OutGarage[userIdx] = 0;
-
-		}
-		else
-		{
-			// invalid Name and ID Send NOT_VALID_ID
-			LOC_u8TxBuffer = NOT_VALID_ID ;
-			do
-			{
-				LOC_u8TxBuffer = '0' ;
-				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
-
-		}
-
-	}
-
-	// Make Slave Pin High to end transaction
-	GPIO_voidSetPinValue(ECU1_PORT_PIN, HIGH);
-
-
-
-
-}
-static void ECU3_Callback(void)
-{
-
-
-#if _APP_DEBUG_ == 1
-	 LCD_voidClear(&myLCD);
-	LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
-#endif
-
-	u16 LOC_u8TxBuffer = MASTER_ACK ;
-	u16 LOC_u8RxBuffer = 0 ;
-	u8 LOC_u8userName[NAME_MAX_SIZE+1] = {0} ;
-	u8 LOC_u8ID[ID_SIZE+1] = {0} ;
-
-	u8 LOC_u8Counter = 0 ,LOC_u8NameCounter = 0 ,LOC_u8IDCounter = 0 ;
-
-	// Make Slave Pin Low to initiate transaction
-	GPIO_voidSetPinValue(ECU3_PORT_PIN, LOW);
-	// Send Master NACK
-	SPI_voidSend_RecieveDataSynch(SPI_1, NULL , &LOC_u8RxBuffer);
-	// Send Master Ack
-	do
-	{
-		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-#if _APP_DEBUG_ == 1
-		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
-#endif
-		if( (LOC_u8RxBuffer >= 'a'  && LOC_u8RxBuffer <= 'z') || (LOC_u8RxBuffer >= 'A'  && LOC_u8RxBuffer <= 'Z') )
-		{
-			// UserName Field
-			LOC_u8userName[LOC_u8NameCounter] = LOC_u8RxBuffer ;
-			LOC_u8NameCounter++ ;
-#if _APP_DEBUG_ == 1
-		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
-#endif
-		}
-		else if (LOC_u8RxBuffer >= '0' && LOC_u8RxBuffer <= '9')
-		{
-			// ID Field
-			LOC_u8ID[LOC_u8IDCounter] = LOC_u8RxBuffer ;
-			LOC_u8IDCounter++ ;
-#if _APP_DEBUG_ == 1
-		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
-#endif
-		}
-		else
-		{
-			// Invalid
-		}
-	}while(LOC_u8RxBuffer != VALID_ID_SYMBOL);
-	LOC_u8userName[LOC_u8NameCounter] = '\0';
-	LOC_u8ID[LOC_u8IDCounter] ='\0';
-
-	// When Come VALID_ID_SYMBOL check username exist or not
-	if(Glob_u8NumberOfCurrentUsers == 0 || Glob_u8NumberOfAvailableSlots == MAX_SLOTS_IN_GARAGE)
-	{
-		// Send invaild
-		// NOT_VALID_ID
-		LOC_u8TxBuffer = NOT_VALID_ID ;
-		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-	}
-	else
-	{
-		/*	Searching	*/
-		LOC_u8Counter = 0 ;
-		u8 LOC_u8Result = 1 ;
-		u8 userIdx = 10  ;
-		for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
-		{
-			// Name Searching
-			LOC_u8Result = compTwoStrings(LOC_u8userName, &Glob_u8DriverArr[LOC_u8Counter][0][0]);
-			if(LOC_u8Result == 0)
-			{
-				userIdx = LOC_u8Counter ;
-				if(Glob_u8OutGarage[userIdx] == 1)
-				{
-					// Wrong Out Gate ببيخرج من مكان الدخول
-					LOC_u8Result = 1 ;
-				}
-				break ;
-			}
-
-		}
-		if(LOC_u8Result == 0 && userIdx <= Glob_u8NumberOfCurrentUsers)
-		{
-			LOC_u8Result = 1 ;
-			// ID Verify
-			LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[userIdx][1][0]);
-		}
-
-		if(LOC_u8Result == 0)
-		{
-#if _APP_DEBUG_ == 1
-	//LCD_voidClear(&myLCD);
-	//LCD_voidSendString(&myLCD, addString("VALID"));
-#endif
-			// Valid Name and ID Send VALID_ID
-			do
-			{
-				LOC_u8TxBuffer = VALID_ID ;
-				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
-			Glob_u8NumberOfAvailableSlots++ ;
-			HAL_7SegmentWriteNumber(&mySegment, Glob_u8NumberOfAvailableSlots);
-			Glob_u8InGarage[userIdx] = 0;
-			Glob_u8OutGarage[userIdx] = 1;
-
-
-		}
-		else
-		{
-			// invalid Name and ID Send NOT_VALID_ID
-			LOC_u8TxBuffer = NOT_VALID_ID ;
-			do
-			{
-				LOC_u8TxBuffer = '0' ;
-				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
-			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
-
-		#if _APP_DEBUG_ == 1
-			//LCD_voidClear(&myLCD);
-		//	LCD_voidSendString(&myLCD, addString("IN-VALID")) ;
-
-		#endif
-		}
-
-	}
-
-	// Make Slave Pin High to end transaction
-	GPIO_voidSetPinValue(ECU3_PORT_PIN, HIGH);
-
-
-
-
-
-
-}
-
+static void ECU3_Callback(void);
+static void Tiner_voidCallback(void);
 /******************************************************************************
 * private Functions Definitions
 *******************************************************************************/
@@ -568,7 +308,6 @@ static void System_voidFillDriverssData(void)
 	Glob_u8NumberOfCurrentUsers = 2 ;
 
 }
-
 static u8 System_u8ValidateAdminData(void)
 {
 	u16 LOC_u8ReceivedData = 0 , LOC_u8Counter = 0 ;
@@ -614,31 +353,40 @@ static u8 System_u8ValidateAdminData(void)
 	LOC_u8Password[LOC_u8Counter-1] = '\0' ;
 
 	/*	Validate if Exist or not	*/
-	if(!(compTwoStrings(LOC_u8userName , &Glob_u8AdminArr[0][0][0])))
+
+	/*	Searching	*/
+	LOC_u8Counter = 0 ;
+	u8 LOC_u8Result = 1 ;
+	u8 adminIndex = 10  ;
+	for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
 	{
-		// Check password
-		if(!(compTwoStrings(LOC_u8Password , &Glob_u8AdminArr[0][1][0])))
+		// Name Searching
+		LOC_u8Result = compTwoStrings(LOC_u8userName, &Glob_u8AdminArr[LOC_u8Counter][0][0]);
+		if(LOC_u8Result == 0)
 		{
-			// Valid User Name and password
-			LOC_u8Flag = 1 ;
-			Glob_LogginSeesionExpired = 0 ;
-			USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* SUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
-
+			adminIndex = LOC_u8Counter ;
+			break ;
 		}
-		else
-		{
-			// invalid-username
-			LCD_voidClear(&myLCD);
-			LCD_voidGotoXY(&myLCD, 2, 1);
-			LCD_voidSendString(&myLCD, addString("Wrong Admin")) ;
-			LCD_voidGotoXY(&myLCD, 4, 2);
-			LCD_voidSendString(&myLCD, addString("Password")) ;
-			_delay_ms(10);
-			LOC_u8Flag = 0 ;
-			USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* UNSUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
-			Glob_LogginSeesionExpired = 1;
 
-		}
+	}
+	if(LOC_u8Result == 0 && adminIndex <= NUMBER_OF_ADMINS)
+	{
+		LOC_u8Result = 1 ;
+		// Pass Verify
+		LOC_u8Result = compTwoStrings(LOC_u8Password, &Glob_u8AdminArr[adminIndex][1][0]);
+	}
+	else
+	{
+		LOC_u8Result = 1 ;
+	}
+
+
+	if(LOC_u8Result == 0)
+	{
+		// Valid User Name and password
+		LOC_u8Flag = 1 ;
+		Glob_LogginSeesionExpired = 0 ;
+		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* SUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
 	}
 	else
 	{
@@ -646,16 +394,18 @@ static u8 System_u8ValidateAdminData(void)
 		LCD_voidClear(&myLCD);
 		LCD_voidGotoXY(&myLCD, 2, 1);
 		LCD_voidSendString(&myLCD, addString("Wrong Admin")) ;
-		LCD_voidGotoXY(&myLCD, 6, 2);
-		LCD_voidSendString(&myLCD, addString("Name")) ;
+		LCD_voidGotoXY(&myLCD, 4, 2);
+		LCD_voidSendString(&myLCD, addString("Password")) ;
+		_delay_ms(10);
+		LOC_u8Flag = 0 ;
 		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* UNSUCCESSFUL LOGIN ****************************** \r\n\0"), '\0');
 		Glob_LogginSeesionExpired = 1;
-		LOC_u8Flag = 0 ;
 	}
+
+	/*******************************/
 
 	return LOC_u8Flag ;
 }
-
 
 static void System_voidAddNewUser(void)
 {
@@ -1071,8 +821,6 @@ static void LCD_voidStatusOptions(void)
 
 }
 
-
-
 static void LCD_AddDriver(void)
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
@@ -1190,12 +938,15 @@ void ECU3_Dashboard_APP_SETUP(void)
 	UART_voidSetup();
 	EXTI_voidSetup();
 	SPI_voidSetup() ;
+	STK_voidInit();
 
 
 	/*			HAL					*/
 	keypad_voidSetup();
 	_7Segnent_voidSetup();
 	LCD_voidSetup();
+	STK_voidSetIntervalPeriodic_MS(TIME_OF_ONE_INTTERRUPT, Tiner_voidCallback);
+
 
 
 	/*			General				*/
@@ -1320,4 +1071,281 @@ void ECU3_Dashboard_APP_LOOP(void)
 /******************************************************************************
 * Callbacks Definitions
 *******************************************************************************/
+
+static void ECU1_Callback(void)
+{
+
+
+#if _APP_DEBUG_ == 1
+	 LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
+#endif
+
+	u16 LOC_u8TxBuffer = MASTER_ACK ;
+	u16 LOC_u8RxBuffer = 0 ;
+	u8 LOC_u8userName[NAME_MAX_SIZE+1] = {0} ;
+	u8 LOC_u8ID[ID_SIZE+1] = {0} ;
+
+	u8 LOC_u8Counter = 0 ,LOC_u8NameCounter = 0 ,LOC_u8IDCounter = 0 ;
+
+	// Make Slave Pin Low to initiate transaction
+	GPIO_voidSetPinValue(ECU1_PORT_PIN, LOW);
+	// Send Master NACK
+	SPI_voidSend_RecieveDataSynch(SPI_1, NULL , &LOC_u8RxBuffer);
+	// Send Master Ack
+	do
+	{
+		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+#if _APP_DEBUG_ == 1
+		LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		if( (LOC_u8RxBuffer >= 'a'  && LOC_u8RxBuffer <= 'z') || (LOC_u8RxBuffer >= 'A'  && LOC_u8RxBuffer <= 'Z') )
+		{
+			// UserName Field
+			LOC_u8userName[LOC_u8NameCounter] = LOC_u8RxBuffer ;
+			LOC_u8NameCounter++ ;
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		}
+		else if (LOC_u8RxBuffer >= '0' && LOC_u8RxBuffer <= '9')
+		{
+			// ID Field
+			LOC_u8ID[LOC_u8IDCounter] = LOC_u8RxBuffer ;
+			LOC_u8IDCounter++ ;
+#if _APP_DEBUG_ == 1
+		LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		}
+		else
+		{
+			// Invalid
+		}
+	}while(LOC_u8RxBuffer != VALID_ID_SYMBOL);
+	LOC_u8userName[LOC_u8NameCounter] = '\0';
+	LOC_u8ID[LOC_u8IDCounter] ='\0';
+
+	// When Come VALID_ID_SYMBOL check username exist or not
+	if(Glob_u8NumberOfCurrentUsers == 0  || Glob_u8NumberOfAvailableSlots == 0)
+	{
+		// Send invaild
+		// NOT_VALID_ID
+		LOC_u8TxBuffer = NOT_VALID_ID ;
+		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+	}
+	else
+	{
+		/*	Searching	*/
+		LOC_u8Counter = 0 ;
+		u8 LOC_u8Result = 1 ;
+		u8 userIdx = 10  ;
+		for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
+		{
+			// Name Searching
+			LOC_u8Result = compTwoStrings(LOC_u8userName, &Glob_u8DriverArr[LOC_u8Counter][0][0]);
+			if(LOC_u8Result == 0)
+			{
+				userIdx = LOC_u8Counter ;
+				if(Glob_u8InGarage[userIdx] == 1)
+				{
+					// Wrong Gate
+					LOC_u8Result = 1 ;
+
+				}
+				break ;
+			}
+
+		}
+		if(LOC_u8Result == 0 && userIdx <= Glob_u8NumberOfCurrentUsers)
+		{
+			LOC_u8Result = 1 ;
+			// ID Verify
+			LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[userIdx][1][0]);
+		}
+
+		if(LOC_u8Result == 0)
+		{
+
+			// Valid Name and ID Send VALID_ID
+			do
+			{
+				LOC_u8TxBuffer = VALID_ID ;
+				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+
+			Glob_u8NumberOfAvailableSlots-- ;
+			HAL_7SegmentWriteNumber(&mySegment, Glob_u8NumberOfAvailableSlots);
+			Glob_u8InGarage[userIdx] = 1;
+			Glob_u8OutGarage[userIdx] = 0;
+
+		}
+		else
+		{
+			// invalid Name and ID Send NOT_VALID_ID
+			LOC_u8TxBuffer = NOT_VALID_ID ;
+			do
+			{
+				LOC_u8TxBuffer = '0' ;
+				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+
+		}
+
+	}
+
+	// Make Slave Pin High to end transaction
+	GPIO_voidSetPinValue(ECU1_PORT_PIN, HIGH);
+
+
+
+
+}
+static void ECU3_Callback(void)
+{
+
+
+#if _APP_DEBUG_ == 1
+	 LCD_voidClear(&myLCD);
+	LCD_voidSendString(&myLCD, addString("Ana ECU1 Ya Bro"));
+#endif
+
+	u16 LOC_u8TxBuffer = MASTER_ACK ;
+	u16 LOC_u8RxBuffer = 0 ;
+	u8 LOC_u8userName[NAME_MAX_SIZE+1] = {0} ;
+	u8 LOC_u8ID[ID_SIZE+1] = {0} ;
+
+	u8 LOC_u8Counter = 0 ,LOC_u8NameCounter = 0 ,LOC_u8IDCounter = 0 ;
+
+	// Make Slave Pin Low to initiate transaction
+	GPIO_voidSetPinValue(ECU3_PORT_PIN, LOW);
+	// Send Master NACK
+	SPI_voidSend_RecieveDataSynch(SPI_1, NULL , &LOC_u8RxBuffer);
+	// Send Master Ack
+	do
+	{
+		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		if( (LOC_u8RxBuffer >= 'a'  && LOC_u8RxBuffer <= 'z') || (LOC_u8RxBuffer >= 'A'  && LOC_u8RxBuffer <= 'Z') )
+		{
+			// UserName Field
+			LOC_u8userName[LOC_u8NameCounter] = LOC_u8RxBuffer ;
+			LOC_u8NameCounter++ ;
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		}
+		else if (LOC_u8RxBuffer >= '0' && LOC_u8RxBuffer <= '9')
+		{
+			// ID Field
+			LOC_u8ID[LOC_u8IDCounter] = LOC_u8RxBuffer ;
+			LOC_u8IDCounter++ ;
+#if _APP_DEBUG_ == 1
+		//LCD_voidSendChar(&myLCD, LOC_u8RxBuffer) ;
+#endif
+		}
+		else
+		{
+			// Invalid
+		}
+	}while(LOC_u8RxBuffer != VALID_ID_SYMBOL);
+	LOC_u8userName[LOC_u8NameCounter] = '\0';
+	LOC_u8ID[LOC_u8IDCounter] ='\0';
+
+	// When Come VALID_ID_SYMBOL check username exist or not
+	if(Glob_u8NumberOfCurrentUsers == 0 || Glob_u8NumberOfAvailableSlots == MAX_SLOTS_IN_GARAGE)
+	{
+		// Send invaild
+		// NOT_VALID_ID
+		LOC_u8TxBuffer = NOT_VALID_ID ;
+		SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+	}
+	else
+	{
+		/*	Searching	*/
+		LOC_u8Counter = 0 ;
+		u8 LOC_u8Result = 1 ;
+		u8 userIdx = 10  ;
+		for(LOC_u8Counter = 0 ; LOC_u8Counter < Glob_u8NumberOfCurrentUsers ; LOC_u8Counter++)
+		{
+			// Name Searching
+			LOC_u8Result = compTwoStrings(LOC_u8userName, &Glob_u8DriverArr[LOC_u8Counter][0][0]);
+			if(LOC_u8Result == 0)
+			{
+				userIdx = LOC_u8Counter ;
+				if(Glob_u8OutGarage[userIdx] == 1)
+				{
+					// Wrong Out Gate ببيخرج من مكان الدخول
+					LOC_u8Result = 1 ;
+				}
+				break ;
+			}
+
+		}
+		if(LOC_u8Result == 0 && userIdx <= Glob_u8NumberOfCurrentUsers)
+		{
+			LOC_u8Result = 1 ;
+			// ID Verify
+			LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[userIdx][1][0]);
+		}
+
+		if(LOC_u8Result == 0)
+		{
+#if _APP_DEBUG_ == 1
+	//LCD_voidClear(&myLCD);
+	//LCD_voidSendString(&myLCD, addString("VALID"));
+#endif
+			// Valid Name and ID Send VALID_ID
+			do
+			{
+				LOC_u8TxBuffer = VALID_ID ;
+				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+			Glob_u8NumberOfAvailableSlots++ ;
+			HAL_7SegmentWriteNumber(&mySegment, Glob_u8NumberOfAvailableSlots);
+			Glob_u8InGarage[userIdx] = 0;
+			Glob_u8OutGarage[userIdx] = 1;
+
+
+		}
+		else
+		{
+			// invalid Name and ID Send NOT_VALID_ID
+			LOC_u8TxBuffer = NOT_VALID_ID ;
+			do
+			{
+				LOC_u8TxBuffer = '0' ;
+				SPI_voidSend_RecieveDataSynch(SPI_1, &LOC_u8TxBuffer, &LOC_u8RxBuffer);
+			}while(VALID_ID_SYMBOL == LOC_u8RxBuffer) ;
+
+		#if _APP_DEBUG_ == 1
+			//LCD_voidClear(&myLCD);
+		//	LCD_voidSendString(&myLCD, addString("IN-VALID")) ;
+
+		#endif
+		}
+
+	}
+
+	// Make Slave Pin High to end transaction
+	GPIO_voidSetPinValue(ECU3_PORT_PIN, HIGH);
+
+}
+
+static void Tiner_voidCallback (void)
+{
+
+	// (EXPIRITION_TIME_IN_MS * TIME_OF_ONE_INTTERRUPT (each interrupt cones after 5 sec) ) / 0.1 ;
+	if(EXPIRITION_TIME_IN_MS*60 > LOC_u8TimerCounter)
+	{
+		LOC_u8TimerCounter++ ;
+	}
+	else
+	{
+		Glob_LogginSeesionExpired = 1 ;
+		LOC_u8TimerCounter = 0 ;
+	}
+
+}
 

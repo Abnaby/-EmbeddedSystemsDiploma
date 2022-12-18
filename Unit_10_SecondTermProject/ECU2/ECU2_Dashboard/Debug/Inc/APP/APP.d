@@ -9,6 +9,7 @@ Inc/APP/APP.o: ../Inc/APP/APP.c ../Inc/APP/APP.h \
  ../Inc/../Inc/MCAL/NVIC/NVIC_interface.h \
  ../Inc/../Inc/MCAL/AFIO/AFIO_interface.h \
  ../Inc/../Inc/MCAL/EXTI/EXTI_interface.h \
+ ../Inc/../Inc/MCAL/SYSTICK/STK_interface.h \
  ../Inc/../Inc/HAL/Buzzer/Buzzer.h \
  ../Inc/../Inc/HAL/Buzzer/../../LIB/BIT_MATH/BIT_MATH.h \
  ../Inc/../Inc/HAL/Buzzer/../../LIB/STD_TYPES/STD_TYPES.h \
@@ -41,6 +42,8 @@ Inc/APP/APP.o: ../Inc/APP/APP.c ../Inc/APP/APP.h \
 ../Inc/../Inc/MCAL/AFIO/AFIO_interface.h:
 
 ../Inc/../Inc/MCAL/EXTI/EXTI_interface.h:
+
+../Inc/../Inc/MCAL/SYSTICK/STK_interface.h:
 
 ../Inc/../Inc/HAL/Buzzer/Buzzer.h:
 

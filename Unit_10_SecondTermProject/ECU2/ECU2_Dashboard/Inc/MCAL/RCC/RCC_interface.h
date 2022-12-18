@@ -24,6 +24,15 @@
 * Preprocessor Constants
  *******************************************************************************/
 
+#define RCC_AHB_PRESCALER_DEV_1				0
+#define RCC_AHB_PRESCALER_DEV_2				2
+#define RCC_AHB_PRESCALER_DEV_4				4
+#define RCC_AHB_PRESCALER_DEV_8				6
+#define RCC_AHB_PRESCALER_DEV_16			8
+#define RCC_AHB_PRESCALER_DEV_32			10
+#define RCC_AHB_PRESCALER_DEV_128			12
+#define RCC_AHB_PRESCALER_DEV_256			14
+#define RCC_AHB_PRESCALER_DEV_512			16
 
 
 
