@@ -198,7 +198,7 @@ void ECU1_Entance_APP_SETUP(void)
 	GateControl_voidInit(); 
 	
 	LCD_voidSetup();
-	MCAL_USART_SendString((u8*)"\r\n***** ENTER RFID CARD *****\r\n");
+	MCAL_USART_SendString((u8*)"\r\n***** ENTRANCE GATE *****\r\n*****ENTER RFID CARD *****\r\n");
 
 	
 	

@@ -14,7 +14,9 @@ In case of an invalid ID, the exit gate never opens until the driver enters a va
 
 
 ## *Sprints Details* 
-- [PPG Sprint2]([Sprint2_Details](../SprintsDetails/Sprint_2/README.md) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint2]([Sprint2_Details](../SprintsDetails/Sprint_2/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint6]([Sprint6_Details](../SprintsDetails/Sprint_6/README.md)) ![image](https://progress-bar.dev/100/)
+
 
 ## *ECU3 Testing*
 - [ECU3 Testing]([ECU3_Testing](TestCases/ECU3_ExitGate_TestCases.xlsx) ![image](https://progress-bar.dev/100/)

@@ -17,7 +17,9 @@
 ## *Sprints Details* 
 - [PPG Sprint1]([Sprint1_Details](../SprintsDetails/Sprint_1/README.md)) ![image](https://progress-bar.dev/100/)
 - [PPG Sprint2]([Sprint2_Details](../SprintsDetails/Sprint_2/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint5]([Sprint2_Details](../SprintsDetails/Sprint_5/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint5]([Sprint5_Details](../SprintsDetails/Sprint_5/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint6]([Sprint6_Details](../SprintsDetails/Sprint_6/README.md)) ![image](https://progress-bar.dev/100/)
+
 
 ## *ECU1 Testing*
 - [ECU1 Testing]([ECU1_Testing](TestCases/ECU1_EntranceGate_TestCases.xlsx)) ![image](https://progress-bar.dev/100/)

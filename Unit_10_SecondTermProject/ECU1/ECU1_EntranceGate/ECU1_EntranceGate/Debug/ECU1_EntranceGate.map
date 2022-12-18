@@ -752,7 +752,7 @@ END GROUP
  *(.fini0)
                 0x000030b8                _etext = .
 
-.data           0x00800060       0x7a load address 0x000030b8
+.data           0x00800060       0xb4 load address 0x000030b8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -776,60 +776,60 @@ END GROUP
                 0x0080007e                Global_RFID_State
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x0080007f       0x5b APP/APP.o
+ .rodata        0x0080007f       0x95 APP/APP.o
  *(.rodata*)
  *(.gnu.linkonce.r*)
-                0x008000da                . = ALIGN (0x2)
-                0x008000da                _edata = .
-                0x008000da                PROVIDE (__data_end, .)
+                0x00800114                . = ALIGN (0x2)
+                0x00800114                _edata = .
+                0x00800114                PROVIDE (__data_end, .)
 
-.bss            0x008000da       0x2f
-                0x008000da                PROVIDE (__bss_start, .)
+.bss            0x00800114       0x2f
+                0x00800114                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.myLCD     0x008000da        0x4 APP/APP.o
+ .bss.myLCD     0x00800114        0x4 APP/APP.o
  .bss._UART_RFID_Callback
-                0x008000de        0x2 HAL/RFID/RFID.o
-                0x008000de                _UART_RFID_Callback
+                0x00800118        0x2 HAL/RFID/RFID.o
+                0x00800118                _UART_RFID_Callback
  .bss.Global_Name_Counter
-                0x008000e0        0x1 HAL/RFID/RFID.o
-                0x008000e0                Global_Name_Counter
+                0x0080011a        0x1 HAL/RFID/RFID.o
+                0x0080011a                Global_Name_Counter
  .bss.Global_ID_Counter
-                0x008000e1        0x1 HAL/RFID/RFID.o
-                0x008000e1                Global_ID_Counter
+                0x0080011b        0x1 HAL/RFID/RFID.o
+                0x0080011b                Global_ID_Counter
  .bss.Callback_INT0
-                0x008000e2        0x2 MCAL/EXTI/EXT_INT_program.o
+                0x0080011c        0x2 MCAL/EXTI/EXT_INT_program.o
  .bss.Callback_INT1
-                0x008000e4        0x2 MCAL/EXTI/EXT_INT_program.o
+                0x0080011e        0x2 MCAL/EXTI/EXT_INT_program.o
  .bss.Callback_INT2
-                0x008000e6        0x2 MCAL/EXTI/EXT_INT_program.o
+                0x00800120        0x2 MCAL/EXTI/EXT_INT_program.o
  .bss.TIMER0_Prescaler
-                0x008000e8        0x2 MCAL/PWM/PWM_Program.o
+                0x00800122        0x2 MCAL/PWM/PWM_Program.o
  .bss.TIMER1_Prescaler
-                0x008000ea        0x2 MCAL/PWM/PWM_Program.o
+                0x00800124        0x2 MCAL/PWM/PWM_Program.o
  .bss.TIMER2_Prescaler
-                0x008000ec        0x2 MCAL/PWM/PWM_Program.o
+                0x00800126        0x2 MCAL/PWM/PWM_Program.o
  .bss.Global_ExchangeComplate
-                0x008000ee        0x2 MCAL/SPI/SPI_Program.o
+                0x00800128        0x2 MCAL/SPI/SPI_Program.o
  .bss.Global_TxComplate
-                0x008000f0        0x2 MCAL/UART/USART_Program.o
+                0x0080012a        0x2 MCAL/UART/USART_Program.o
  .bss.Global_RxComplate
-                0x008000f2        0x2 MCAL/UART/USART_Program.o
+                0x0080012c        0x2 MCAL/UART/USART_Program.o
  .bss.Global_uartcfg
-                0x008000f4        0x2 MCAL/UART/USART_Program.o
+                0x0080012e        0x2 MCAL/UART/USART_Program.o
  *(COMMON)
- COMMON         0x008000f6       0x13 HAL/RFID/RFID.o
-                0x008000f6                Global_RFID_u8Name
-                0x00800101                Global_RFID_u8ID
-                0x00800109                PROVIDE (__bss_end, .)
+ COMMON         0x00800130       0x13 HAL/RFID/RFID.o
+                0x00800130                Global_RFID_u8Name
+                0x0080013b                Global_RFID_u8ID
+                0x00800143                PROVIDE (__bss_end, .)
                 0x000030b8                __data_load_start = LOADADDR (.data)
-                0x00003132                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000316c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800109        0x0
+.noinit         0x00800143        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800109                _end = .
+                0x00800143                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
