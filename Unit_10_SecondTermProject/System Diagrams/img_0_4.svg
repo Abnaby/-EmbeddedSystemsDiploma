@@ -1,0 +1,259 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="2512" height="1630" viewbox="203 50 2309 1580">
+<line  x1="364" y1="185" x2="705" y2="183" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="705,183 696,188 696,178 " fill="#000000"/>
+<polygon  points="705,183 696,188 696,178 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="443" y="179" style="font-size:12; font-family:SansSerif.plain; fill=#000000">AdminData(UsrName,Password)</text>
+<line  x1="705" y1="203" x2="1746" y2="205" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,205 1737,209 1737,199 " fill="#000000"/>
+<polygon  points="1746,205 1737,209 1737,199 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1120" y="199" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SendAdminData(UsrName,Password)</text>
+<line  x1="1080" y1="254" x2="1319" y2="255" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,255 1310,259 1310,249 " fill="#000000"/>
+<polygon  points="1319,255 1310,259 1310,249 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1126" y="249" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;Welcome Admin&quot;)</text>
+<line  x1="1080" y1="344" x2="1319" y2="345" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,345 1310,349 1310,339 " fill="#000000"/>
+<polygon  points="1319,345 1310,349 1310,339 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1161" y="339" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ClearScreen()</text>
+<line  x1="1080" y1="374" x2="1319" y2="375" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,375 1310,379 1310,369 " fill="#000000"/>
+<polygon  points="1319,375 1310,379 1310,369 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1126" y="369" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;1-Add New User&quot;)</text>
+<line  x1="1080" y1="404" x2="1319" y2="405" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,405 1310,409 1310,399 " fill="#000000"/>
+<polygon  points="1319,405 1310,409 1310,399 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1125" y="399" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;2-Edit Exist User&quot;)</text>
+<line  x1="1080" y1="434" x2="1319" y2="435" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,435 1310,439 1310,429 " fill="#000000"/>
+<polygon  points="1319,435 1310,439 1310,429 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1127" y="429" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;3-Remove User&quot;)</text>
+<line  x1="364" y1="535" x2="1422" y2="534" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1422,534 1413,539 1413,529 " fill="#000000"/>
+<polygon  points="1422,534 1413,539 1413,529 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="837" y="529" style="font-size:12; font-family:SansSerif.plain; fill=#000000">PressedNumber = 3</text>
+<line  x1="1422" y1="554" x2="1746" y2="555" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,555 1737,559 1737,549 " fill="#000000"/>
+<polygon  points="1746,555 1737,559 1737,549 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1529" y="549" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SendPressedKey=3</text>
+<line  x1="1746" y1="585" x2="1319" y2="585" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,585 1327,580 1327,589 " fill="#000000"/>
+<polygon  points="1319,585 1327,580 1327,589 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1483" y="580" style="font-size:12; font-family:SansSerif.plain; fill=#000000">listCurrentUsers()</text>
+<line  x1="1746" y1="605" x2="1319" y2="605" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,605 1327,600 1327,609 " fill="#000000"/>
+<polygon  points="1319,605 1327,600 1327,609 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1494" y="600" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ClearScrean()</text>
+<line  x1="1746" y1="635" x2="1319" y2="635" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,635 1327,630 1327,639 " fill="#000000"/>
+<polygon  points="1319,635 1327,630 1327,639 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1437" y="630" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;2- Name: Driver2 , ID = 3&quot;)</text>
+<line  x1="1746" y1="665" x2="1319" y2="665" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,665 1327,660 1327,669 " fill="#000000"/>
+<polygon  points="1319,665 1327,660 1327,669 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1437" y="660" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;3- Name: DriverX , ID = 1&quot;)</text>
+<line  x1="364" y1="725" x2="1422" y2="724" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1422,724 1413,729 1413,719 " fill="#000000"/>
+<polygon  points="1422,724 1413,729 1413,719 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="837" y="719" style="font-size:12; font-family:SansSerif.plain; fill=#000000">PressedNumber = 6</text>
+<line  x1="1746" y1="685" x2="1319" y2="685" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,685 1327,680 1327,689 " fill="#000000"/>
+<polygon  points="1319,685 1327,680 1327,689 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1437" y="680" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;1- Name: Driver1 , ID = 2&quot;)</text>
+<line  x1="1746" y1="765" x2="1319" y2="765" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,765 1327,760 1327,769 " fill="#000000"/>
+<polygon  points="1319,765 1327,760 1327,769 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1454" y="760" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;Not Valid Selection)</text>
+<line  x1="364" y1="805" x2="1422" y2="804" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1422,804 1413,809 1413,799 " fill="#000000"/>
+<polygon  points="1422,804 1413,809 1413,799 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="837" y="799" style="font-size:12; font-family:SansSerif.plain; fill=#000000">PressedNumber = 1</text>
+<line  x1="1422" y1="734" x2="1746" y2="735" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,735 1737,739 1737,729 " fill="#000000"/>
+<polygon  points="1746,735 1737,739 1737,729 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1529" y="729" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SendPressedKey=6</text>
+<line  x1="1422" y1="824" x2="1746" y2="825" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,825 1737,829 1737,819 " fill="#000000"/>
+<polygon  points="1746,825 1737,829 1737,819 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1529" y="819" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SendPressedKey=1</text>
+<line  x1="1746" y1="855" x2="1319" y2="855" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,855 1327,850 1327,859 " fill="#000000"/>
+<polygon  points="1319,855 1327,850 1327,859 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1494" y="850" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ClearScrean()</text>
+<line  x1="1746" y1="875" x2="1319" y2="875" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,875 1327,870 1327,879 " fill="#000000"/>
+<polygon  points="1319,875 1327,870 1327,879 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1435" y="870" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;User Found Successfully&quot;)</text>
+<line  x1="1746" y1="905" x2="1319" y2="905" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,905 1327,900 1327,909 " fill="#000000"/>
+<polygon  points="1319,905 1327,900 1327,909 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1470" y="900" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;Deleting.......&quot;)</text>
+<line  x1="1746" y1="925" x2="2040" y2="925" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="2040,925 2031,929 2031,920 " fill="#000000"/>
+<polygon  points="2040,925 2031,929 2031,920 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1775" y="920" style="font-size:12; font-family:SansSerif.plain; fill=#000000">DeleteUserFromRom(UserAddressInRom)</text>
+<line  x1="1746" y1="955" x2="1319" y2="955" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,955 1327,950 1327,959 " fill="#000000"/>
+<polygon  points="1319,955 1327,950 1327,959 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1494" y="950" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ClearScrean()</text>
+<line  x1="1746" y1="985" x2="1319" y2="985" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,985 1327,980 1327,989 " fill="#000000"/>
+<polygon  points="1319,985 1327,980 1327,989 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1447" y="980" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(&quot;Deleted successfully&quot;)</text>
+<line  x1="1746" y1="1005" x2="1319" y2="1005" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1319,1005 1327,1000 1327,1009 " fill="#000000"/>
+<polygon  points="1319,1005 1327,1000 1327,1009 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1474" y="1000" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Display(AdminPanel)</text>
+<line  x1="224" y1="1033" x2="544" y2="1033" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="544,1033 535,1037 535,1028 " fill="#000000"/>
+<polygon  points="544,1033 535,1037 535,1028 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="299" y="1028" style="font-size:12; font-family:SansSerif.plain; fill=#000000">RequestEntrance(usrName,ID)</text>
+<line  x1="544" y1="1063" x2="705" y2="1063" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="705,1063 696,1067 696,1058 " fill="#000000"/>
+<polygon  points="705,1063 696,1067 696,1058 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="554" y="1058" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SPI_sendData(usrName)</text>
+<line  x1="705" y1="1093" x2="544" y2="1093" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="544,1093 552,1088 552,1097 " fill="#000000"/>
+<polygon  points="544,1093 552,1088 552,1097 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="572" y="1088" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SPI_ReceivedAck()</text>
+<line  x1="544" y1="1143" x2="705" y2="1143" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="705,1143 696,1147 696,1138 " fill="#000000"/>
+<polygon  points="705,1143 696,1147 696,1138 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="574" y="1138" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SPI_SendData(ID)</text>
+<line  x1="705" y1="1173" x2="544" y2="1173" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="544,1173 552,1168 552,1177 " fill="#000000"/>
+<polygon  points="544,1173 552,1168 552,1177 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="572" y="1168" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SPI_ReceivedAck()</text>
+<line  x1="544" y1="1243" x2="705" y2="1243" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="705,1243 696,1247 696,1238 " fill="#000000"/>
+<polygon  points="705,1243 696,1247 696,1238 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="602" y="1238" style="font-size:12; font-family:SansSerif.plain; fill=#000000">isValid()</text>
+<line  x1="705" y1="1273" x2="1746" y2="1275" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,1275 1737,1279 1737,1269 " fill="#000000"/>
+<polygon  points="1746,1275 1737,1279 1737,1269 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1143" y="1269" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SendDriverData(UsrName,ID)</text>
+<line  x1="1746" y1="225" x2="1080" y2="224" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1080,224 1088,219 1088,229 " fill="#000000"/>
+<polygon  points="1080,224 1088,219 1088,229 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1356" y="219" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Send(VALID_ADMIN)</text>
+<line  x1="1746" y1="1305" x2="942" y2="1303" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="942,1303 950,1298 950,1308 " fill="#000000"/>
+<polygon  points="942,1303 950,1298 950,1308 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1285" y="1299" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Send(DriverName,ID)</text>
+<line  x1="1080" y1="464" x2="1746" y2="465" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,465 1737,469 1737,459 " fill="#000000"/>
+<polygon  points="1746,465 1737,469 1737,459 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1395" y="459" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return</text>
+<line  x1="1319" y1="705" x2="1746" y2="705" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,705 1737,709 1737,700 " fill="#000000"/>
+<polygon  points="1746,705 1737,709 1737,700 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1514" y="700" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return</text>
+<line  x1="1319" y1="785" x2="1746" y2="785" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,785 1737,789 1737,780 " fill="#000000"/>
+<polygon  points="1746,785 1737,789 1737,780 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1514" y="780" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return</text>
+<line  x1="1319" y1="1025" x2="1746" y2="1025" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,1025 1737,1029 1737,1020 " fill="#000000"/>
+<polygon  points="1746,1025 1737,1029 1737,1020 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1514" y="1020" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return</text>
+<line  x1="544" y1="1383" x2="2258" y2="1380" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="2258,1380 2249,1385 2249,1375 " fill="#000000"/>
+<polygon  points="2258,1380 2249,1385 2249,1375 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1350" y="1376" style="font-size:12; font-family:SansSerif.plain; fill=#000000">gateControl(Open)</text>
+<line  x1="2258" y1="1400" x2="2469" y2="1401" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="2469,1401 2460,1405 2460,1395 " fill="#000000"/>
+<polygon  points="2469,1401 2460,1405 2460,1395 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="2301" y="1395" style="font-size:12; font-family:SansSerif.plain; fill=#000000">waitUntilFullCarEnter()</text>
+<line  x1="2469" y1="1431" x2="2258" y2="1430" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="2258,1430 2266,1425 2266,1435 " fill="#000000"/>
+<polygon  points="2258,1430 2266,1425 2266,1435 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="2347" y="1425" style="font-size:12; font-family:SansSerif.plain; fill=#000000">return</text>
+<line  x1="2258" y1="1450" x2="544" y2="1453" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="544,1453 552,1447 552,1457 " fill="#000000"/>
+<polygon  points="544,1453 552,1447 552,1457 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1383" y="1446" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return</text>
+<line  x1="544" y1="1473" x2="2469" y2="1471" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="2469,1471 2460,1476 2460,1466 " fill="#000000"/>
+<polygon  points="2469,1471 2460,1476 2460,1466 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1454" y="1467" style="font-size:12; font-family:SansSerif.plain; fill=#000000">gateControl(Close)</text>
+<line  x1="2469" y1="1491" x2="544" y2="1493" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="544,1493 552,1487 552,1497 " fill="#000000"/>
+<polygon  points="544,1493 552,1487 552,1497 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1488" y="1487" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return</text>
+<line  x1="705" y1="1373" x2="544" y2="1373" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="544,1373 552,1368 552,1377 " fill="#000000"/>
+<polygon  points="544,1373 552,1368 552,1377 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="543" y="1368" style="font-size:12; font-family:SansSerif.plain; fill=#000000">SPI_Receive(VALID_DRIVER)</text>
+<line  x1="942" y1="1333" x2="1746" y2="1325" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1746,1325 1737,1330 1737,1320 " fill="#000000"/>
+<polygon  points="1746,1325 1737,1330 1737,1320 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1279" y="1324" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return(VALID_DRIVER)</text>
+<line  x1="1746" y1="1355" x2="705" y2="1353" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="705,1353 713,1348 713,1358 " fill="#000000"/>
+<polygon  points="705,1353 713,1348 713,1358 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1160" y="1349" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Return(VALID_DRIVER)</text>
+<text  x="208" y="120" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Driver</text>
+<line  x1="208" y1="121" x2="240" y2="121" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="224" y1="123" x2="224" y2="1623" stroke="#000000" stroke-width="1" fill="none"/>
+<ellipse  cx="224" cy="82" rx="5" ry="5" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="224" y1="97" x2="224" y2="87" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="216" y1="90" x2="232" y2="90" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="232" y1="107" x2="224" y2="97" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="216" y1="107" x2="224" y2="97" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="347" y="122" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Admin</text>
+<line  x1="347" y1="123" x2="381" y2="123" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="364" y1="125" x2="364" y2="1625" stroke="#000000" stroke-width="1" fill="none"/>
+<ellipse  cx="364" cy="84" rx="5" ry="5" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="364" y1="99" x2="364" y2="89" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="356" y1="92" x2="372" y2="92" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="372" y1="109" x2="364" y2="99" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="356" y1="109" x2="364" y2="99" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="528" y="110" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ECU1</text>
+<line  x1="528" y1="111" x2="560" y2="111" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="544" y1="113" x2="544" y2="1613" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="689" y="120" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ECU2</text>
+<line  x1="689" y1="121" x2="721" y2="121" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="705" y1="123" x2="705" y2="1623" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="819" y="120" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ECU3</text>
+<line  x1="819" y1="121" x2="851" y2="121" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="835" y1="123" x2="835" y2="1623" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1029" y="121" style="font-size:12; font-family:SansSerif.plain; fill=#000000">validateAdminData</text>
+<line  x1="1029" y1="122" x2="1131" y2="122" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1080" y1="124" x2="1080" y2="1624" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1307" y="112" style="font-size:12; font-family:SansSerif.plain; fill=#000000">LCD</text>
+<line  x1="1307" y1="113" x2="1331" y2="113" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1319" y1="115" x2="1319" y2="1615" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1108" y="281" style="font-size:12; font-family:SansSerif.plain; fill=#000000">{timer=LCD_WaitingTime, duration=2}</text>
+<line  x1="1093" y1="266" x2="1108" y2="291" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1093" y1="266" x2="1108" y2="266" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1093" y1="291" x2="1108" y2="291" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1108" y1="266" x2="1093" y2="291" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1080" y1="278" x2="1100" y2="278" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1110" y="321" style="font-size:12; font-family:SansSerif.plain; fill=#000000">{timer=myTimer}</text>
+<line  x1="1095" y1="306" x2="1110" y2="331" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1095" y1="306" x2="1110" y2="306" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1095" y1="331" x2="1110" y2="331" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1110" y1="306" x2="1095" y2="331" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1082" y1="318" x2="1102" y2="318" stroke="#000000" stroke-width="1" fill="none"/>
+<polygon  points="1082,318 1090,313 1090,322 " fill="#000000"/>
+<polygon  points="1082,318 1090,313 1090,322 " fill="none" stroke="#000000" stroke-width="1"/>
+<text  x="1402" y="111" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Keypad</text>
+<line  x1="1402" y1="112" x2="1442" y2="112" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1422" y1="114" x2="1422" y2="1614" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1690" y="112" style="font-size:12; font-family:SansSerif.plain; fill=#000000">DashboardMainAlgo</text>
+<line  x1="1690" y1="113" x2="1802" y2="113" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1746" y1="115" x2="1746" y2="1615" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2015" y="112" style="font-size:12; font-family:SansSerif.plain; fill=#000000">EEPROM</text>
+<line  x1="2015" y1="113" x2="2065" y2="113" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2040" y1="115" x2="2040" y2="1615" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="882" y="120" style="font-size:12; font-family:SansSerif.plain; fill=#000000">AuthenticateUserData</text>
+<line  x1="882" y1="121" x2="1002" y2="121" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="942" y1="123" x2="942" y2="1623" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2226" y="107" style="font-size:12; font-family:SansSerif.plain; fill=#000000">gateControl</text>
+<line  x1="2226" y1="108" x2="2290" y2="108" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2258" y1="110" x2="2258" y2="1610" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2431" y="98" style="font-size:12; font-family:SansSerif.plain; fill=#000000">MotionSensor</text>
+<line  x1="2431" y1="99" x2="2507" y2="99" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2469" y1="101" x2="2469" y2="1601" stroke="#000000" stroke-width="1" fill="none"/>
+</svg>
