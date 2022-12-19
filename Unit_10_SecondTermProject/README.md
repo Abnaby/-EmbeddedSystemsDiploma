@@ -44,20 +44,27 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 
 ## *Sprints Details* 
-- [PPG Sprint1]([Sprint1_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_1)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint2]([Sprint2_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_2)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint3]([Sprint3_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_3)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint4]([Sprint4_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_4)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint5]([Sprint5_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_5)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint6]([Sprint6_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_6)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint7]([Sprint7_Details](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_)) ![image](https://progress-bar.dev/100/)
+[PPG Sprint1](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_1) ![image](https://progress-bar.dev/100/)
 
+[PPG Sprint2](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_2) ![image](https://progress-bar.dev/100/)
 
+[PPG Sprint3](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_3) ![image](https://progress-bar.dev/100/)
+
+[PPG Sprint4](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_4) ![image](https://progress-bar.dev/100/)
+
+[PPG Sprint5](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_5) ![image](https://progress-bar.dev/100/)
+
+[PPG Sprint6](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_6) ![image](https://progress-bar.dev/100/)
+
+[PPG Sprint7](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_7) ![image](https://progress-bar.dev/100/)
 
 ## *ECU3 Testing*
-- [ECU1 Testing]([ECU1_Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU1/TestCases))  ![image](https://progress-bar.dev/100/)
-- [ECU2 Testing]([ECU2_Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU2/TestCases)) ![image](https://progress-bar.dev/100/)
-- [ECU3 Testing]([ECU3_Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/blob/main/Unit_10_SecondTermProject/ECU3/TestCases/ECU3_ExitGate_TestCases.xlsx)) ![image](https://progress-bar.dev/100/)
+[ECU1 Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU1/TestCases) ![image](https://progress-bar.dev/100/)
+
+[ECU2 Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU2/TestCases) ![image](https://progress-bar.dev/100/)
+
+[ECU3 Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/blob/main/Unit_10_SecondTermProject/ECU3/TestCases/ECU3_ExitGate_TestCases.xlsx) ![image](https://progress-bar.dev/100/)
+
 
 
 ## *Contributing*  
