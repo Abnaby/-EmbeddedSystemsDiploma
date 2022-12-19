@@ -55,7 +55,7 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 
 ## *ECU3 Testing*
-- [ECU1 Testing]([ECU1_Testing](/ECU1/TestCases/ECU1_EntranceGate_TestCases.xlsx))  ![image](https://progress-bar.dev/100/)
+- [ECU1 Testing]([ECU1_Testing](ECU1/TestCases/ECU1_EntranceGate_TestCases.xlsx))  ![image](https://progress-bar.dev/100/)
 - [ECU2 Testing]([ECU2_Testing](/ECU2/TestCases/ECU2_AdminDashboard.xlsx)) ![image](https://progress-bar.dev/100/)
 - [ECU3 Testing]([ECU3_Testing](TestCases/ECU3_ExitGate_TestCases.xlsx)) ![image](https://progress-bar.dev/100/)
 
