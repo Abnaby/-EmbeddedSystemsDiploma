@@ -47,7 +47,7 @@
 #define PIR_USING_EXTIx		EXT_INT0
 #define PIR_INTERRUPT_AT	EXT_INT0_RISING_EDGE
 #else
-#define PIR_PORT_PIN        PORTA,PIN1
+#define PIR_PORT_PIN        PORTA,PIN3
 #endif 
 
 

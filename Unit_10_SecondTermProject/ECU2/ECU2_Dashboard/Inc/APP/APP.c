@@ -54,12 +54,21 @@
 * Typedefs
 *******************************************************************************/
 
+/**
+ * @brief This enum is used for the return value of ECU2 to ECU1 or ECU3
+ * 
+ */
 typedef enum 
 {
 	NOT_VALID_ID = '0'	,	
 	VALID_ID	= '1'
 }ID_Check_t ; 
 
+
+/**
+ * @brief This enum hold the available options for deleting
+ * 
+ */
 typedef enum
 {
 	DELT_ONE_DRIVER	,
@@ -73,37 +82,81 @@ typedef enum
 ID_Check_t Glob_ID_Valid =  NOT_VALID_ID ; 
 // Garage Data
 
+/**
+ * @brief This is seven-segment instent 
+ * 
+ */
 static _7Segment_Config mySegment = {COMN_ANODE , _7_SEG_4_PIN_IC } ;
 
 
 /************************************ Predefined Admin Stage	***********************************/
 #define NUMBER_OF_ADMINS	2
 /**
+ * @brief This array is used to hold the admin data 
+ * @details
  * 					Each Admin has 2 Identifiers
  * 									one of them username (with NAME_MAX_SIZE)
  * 									another is password  (with NAME_MAX_SIZE)
  */
 u8 Glob_u8AdminArr[NUMBER_OF_ADMINS][2][NAME_MAX_SIZE+1];
 
+/**
+ * @brief This Variable holds the state of admin logging
+ * 
+ */
 u8 Glob_LogginSeesionExpired = 1 ;
 u8 LOC_u8TimerCounter = 0 ;
 #define EXPIRITION_TIME_IN_MS		5
 #define	TIME_OF_ONE_INTTERRUPT		5000
 /************************************ Drivers Stage	***********************************/
+
 #define MAX_SLOTS_IN_GARAGE		3
+/**
+ * @brief This Variable holds the number of current registered users
+ * 
+ */
 u8 Glob_u8NumberOfCurrentUsers ;
+
+/**
+ * @brief This array is used to hold the driver data 
+ * @details
+ * 					Each Driver has 2 Identifiers
+ * 									one of them username (with NAME_MAX_SIZE)
+ * 									another is password  (with NAME_MAX_SIZE)
+ */
 u8 Glob_u8DriverArr[MAX_SLOTS_IN_GARAGE][2][NAME_MAX_SIZE+1];
+
+/**
+ * @brief This Variable Holds Number of avaliable slots inside garage.
+ * 
+ */
 u8 Glob_u8NumberOfAvailableSlots = MAX_SLOTS_IN_GARAGE ;
+/**
+ * @brief This Array holds the state of Free index of @ref Glob_u8DriverArr  to be adding new drivers on it
+ * 
+ */
 u8 Glob_u8DriverFreeIndex[MAX_SLOTS_IN_GARAGE] = {1,1,1};
 
-// Arr of Vehicle in garage
+/**
+ * @brief This Array has the state of vehicle is inside garage or not
+ * 
+ */
 u8 Glob_u8InGarage[MAX_SLOTS_IN_GARAGE] = {0,0,0};
 
-// Arr of  Vechile out of garage
+/**
+ * @brief This Array has the state of vehicle is outside garage or not
+ * 
+ */
 u8 Glob_u8OutGarage[MAX_SLOTS_IN_GARAGE] = {1,1,1};
 
 
 /*************************************	Start LCD Vars	*******************************************/
+
+/**
+ * @brief This array holds the LCD Port Pin Numbers
+ * @details	< Enable,rsPin, rwPort,d4Port,d4Pin ....... d7Port,d7Pin>
+ * 
+ */
 u8 LCD_PortPin[]=
 {
 	// < Enable,rsPin, rwPort,d4Port,d4Pin ....... d7Port,d7Pin>
@@ -121,6 +174,10 @@ u8 LCD_PortPin[]=
 	PORTA , PIN12
 };
  // LCD Special Char
+ /**
+  * @brief This array holds the special character of progress bar.
+  * 
+  */
 u8 LCD_ProgrssBarChar[] = {
 		  0x1F,
 		  0x11,
@@ -131,6 +188,10 @@ u8 LCD_ProgrssBarChar[] = {
 		  0x1F,
 		  0x1F
 };
+/**
+ * @brief This array holds the special character of deleting char.
+ * 
+ */
 u8 LCD_Deleting[] = {
 		  0x00,
 		  0x00,
@@ -141,6 +202,10 @@ u8 LCD_Deleting[] = {
 		  0x11,
 		  0x00
 };
+/**
+ * @brief This array holds the special character of adding bar.
+ * 
+ */
 u8 LCD_Adding[] = {
 		  0x00,
 		  0x0E,
@@ -160,6 +225,10 @@ KeyPad_cnfg myKeypad;
 /*		Key Patterns	*/
 #define ROWS	4
 #define COLS	3
+/**
+ * @brief This 2D array holds the pattern of Keypad
+ * 
+ */
 u8 keys[ROWS][COLS] =
 {
   {'1','2','3'},
@@ -167,7 +236,11 @@ u8 keys[ROWS][COLS] =
   {'7','8','9'},
   {'*','0','#'}
 };
-/*		Key GPIOs		*/
+
+/**
+ * @brief This Array Holds the Port Pin of Keypad Rows
+ * 
+ */
 u8 RowsPins[] =
 {
 		PORTB,PIN12,
@@ -175,6 +248,12 @@ u8 RowsPins[] =
 		PORTB,PIN14,
 		PORTB,PIN15
 };
+
+/**
+ * @brief This Array Holds the Port Pin of Keypad Columns
+ * 
+ */
+
 u8 ColsPins[] =
 {
 	PORTB,PIN8,
@@ -190,20 +269,96 @@ u8 ColsPins[] =
 /******************************************************************************
 * private Function Prototypes
 *******************************************************************************/
+
+/**
+ * @brief This Fumction is used to Display the progress bar
+ * 
+ * @param myLCD 		pointer to instent of @ref LCD_Config
+ * @param prcentage 	This is have the percentage needed to be displayed
+ * @param delayOfBar 	Delay between each bar
+ */
 static void progressBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar);
+
+/**
+ * @brief This Fumction is used to Display the deleting bar
+ * 
+ * @param myLCD 		pointer to instent of @ref LCD_Config
+ * @param prcentage 	This is have the percentage needed to be displayed
+ * @param delayOfBar 	Delay between each bar
+ */
 static void DeletingBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar);
 
+/**
+ * @brief This Function hold the initialization of SPI different parameters that selected in @ref SPI1_Communication instent
+ * 
+ */
 static void SPI_voidSetup(void);
+
+/**
+ * @brief This Function hold the initialization of LCD different parameters that selected in @ref myLCD instent
+ * 
+ */
 static void LCD_voidSetup(void);
+
+/**
+ * @brief This Function is used to display the Home Screen of system 
+ * 
+ */
 static void LCD_voidMainScreen(void);
+
+/**
+ * @brief This Function is used to display the different admin option available
+ * 
+ */
 static void LCD_voidAdminOptions(void);
+/**
+ * @brief This Function is used to display the statues of garage
+ * 
+ */
 static void LCD_voidStatusOptions(void);
+/**
+ * @brief This Function is used ti display add driver screen on LCD
+ * 
+ */
 static void LCD_AddDriver(void);
+/**
+ * @brief This Function is used to validate the admin username and password.
+ * 
+ * @return u8  0 ---> invalid data
+ * 			   1 ---> valid data
+ */
 static u8 System_u8ValidateAdminData(void);
+/**
+ * @brief This Function is used to fill predefined admins data
+ * 
+ */
 static void System_voidFillAdminsData(void);
+/**
+ * @brief This Function is used to add new driver to the garage system
+ * 
+ */
 static void System_voidAddNewUser(void);
+/**
+ * @brief This Function is used to comperaing between two strings
+ * 
+ * @param string1 pointer to first string
+ * @param string2 pointer to second string
+ * @return u8 	  the result of comperaing 
+ * 				  0		--> two string is the same 
+ * 				  1     --> distinct 
+ */
 u8 compTwoStrings (u8*string1 , u8*string2);
+/**
+ * @brief This Function is used to delete current driver from the garage system.
+ * 
+ * @param copy_DeleteType select of of @ref DeletingDrivers_t
+ */
 static void System_VoidDeleteUser(DeletingDrivers_t copy_DeleteType);
+
+/**
+ * @brief This Function is used to display the deleting animation.
+ * 
+ */
 static void LCD_voidDeleteDriver(void);
 
 
@@ -211,6 +366,11 @@ static void LCD_voidDeleteDriver(void);
 * private Callbacks Definitions
 *******************************************************************************/
 
+/**
+ * @brief Simple Delay Function
+ * 
+ * @param time number of outer loop vlue 
+ */
 void xDelay(u32 time)
 {
 	u32 i;
@@ -222,9 +382,22 @@ void xDelay(u32 time)
 #define _delay_ms(ms) xDelay(ms)
 
 
+/**
+ * @brief This Function used to receive the incoming data from ECU1 and validate the comming data
+ * 
+ */
 static void ECU1_Callback(void);
 
+/**
+ * @brief This Function used to receive the incoming data from ECU3 and validate the comming data
+ * 
+ */
 static void ECU3_Callback(void);
+
+/**
+ * @brief This Function is used to expire admin login
+ * 
+ */
 static void Tiner_voidCallback(void);
 /******************************************************************************
 * private Functions Definitions
@@ -268,31 +441,35 @@ static void System_voidFillAdminsData(void)
 	Glob_u8AdminArr[1][1][7] = '\0'	;
 
 }
+/**
+ * @brief This Function is used to fill predefined drivers data
+ * 
+ */
 static void System_voidFillDriverssData(void)
 {
 	/*	1st Driver	*/
-	Glob_u8DriverArr[0][0][0] = 'M'	;
-	Glob_u8DriverArr[0][0][1] = 'o'	;
-	Glob_u8DriverArr[0][0][2] = 'h'	;
-	Glob_u8DriverArr[0][0][3] = 'a'	;
-	Glob_u8DriverArr[0][0][4] = 'm'	;
-	Glob_u8DriverArr[0][0][5] = 'e'	;
-	Glob_u8DriverArr[0][0][6] = 'd'	;
+	Glob_u8DriverArr[0][0][0] = 'j'	;
+	Glob_u8DriverArr[0][0][1] = 'e'	;
+	Glob_u8DriverArr[0][0][2] = 'r'	;
+	Glob_u8DriverArr[0][0][3] = 'r'	;
+	Glob_u8DriverArr[0][0][4] = 'y'	;
+	Glob_u8DriverArr[0][0][5] = '\0'	;
+	Glob_u8DriverArr[0][0][6] = '\0'	;
 	Glob_u8DriverArr[0][1][7] = '\0'	;
 
-	Glob_u8DriverArr[0][1][0] = '0'	;
-	Glob_u8DriverArr[0][1][1] = '0'	;
-	Glob_u8DriverArr[0][1][2] = '0'	;
-	Glob_u8DriverArr[0][1][3] = '0'	;
-	Glob_u8DriverArr[0][1][4] = '0'	;
-	Glob_u8DriverArr[0][1][5] = '0'	;
+	Glob_u8DriverArr[0][1][0] = '1'	;
+	Glob_u8DriverArr[0][1][1] = '2'	;
+	Glob_u8DriverArr[0][1][2] = '1'	;
+	Glob_u8DriverArr[0][1][3] = '2'	;
+	Glob_u8DriverArr[0][1][4] = '1'	;
+	Glob_u8DriverArr[0][1][5] = '2'	;
 	Glob_u8DriverArr[0][1][6] = '1'	;
 	Glob_u8DriverArr[0][1][7] = '\0'	;
 
 	/*	2nd Driver	*/
-	Glob_u8DriverArr[1][0][0] = 'a'	;
-	Glob_u8DriverArr[1][0][1] = 'l'	;
-	Glob_u8DriverArr[1][0][2] = 'i'	;
+	Glob_u8DriverArr[1][0][0] = 'b'	;
+	Glob_u8DriverArr[1][0][1] = 'e'	;
+	Glob_u8DriverArr[1][0][2] = 'e'	;
 	Glob_u8DriverArr[1][0][3] = '\0'	;
 
 	Glob_u8DriverArr[1][1][0] = '1'	;
@@ -306,7 +483,6 @@ static void System_voidFillDriverssData(void)
 
 	// Data
 	Glob_u8NumberOfCurrentUsers = 2 ;
-
 }
 static u8 System_u8ValidateAdminData(void)
 {
@@ -714,6 +890,10 @@ static void LCD_voidSetup(void)
 
 }
 
+/**
+ * @brief This Function is used to init the UART Driver from selected option in @ref myUART
+ * 
+ */
 void UART_voidSetup(void)
 {
 	/*	GPIO	*/
@@ -760,6 +940,13 @@ static void DeletingBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar)
 	LCD_voidGotoXY(myLCD,6,3);
 	LCD_voidSendString(myLCD, addString("DONE"));
 }
+/**
+ * @brief This Function is used to display adding animation 
+ * 
+ * @param myLCD 	pointer to instent of @ref LCD_Config options.
+ * @param prcentage 	This is have the percentage needed to be displayed
+ * @param delayOfBar 	Delay between each bar
+ */
 static void AddinggBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar)
 {
 	LCD_voidStoreCustomChar(myLCD ,LCD_Adding , 4);
@@ -841,6 +1028,11 @@ static void LCD_voidDeleteDriver(void)
 	LCD_voidMainScreen();
 
 }
+
+/**
+ * @brief This Function is used to display the deleting options.
+ * 
+ */
 static void LCD_voidDeletingOptions(void)
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF) ;
@@ -858,6 +1050,11 @@ static void LCD_voidDeletingOptions(void)
 /********************************************** End of LCD fcn	********************************************************/
 
 /********************************************** Start of Keypad fcn	********************************************************/
+
+/**
+ * @brief This Function is used to init the Keypad with @ref myKeypad options.
+ * 
+ */
 static void keypad_voidSetup(void)
 {
 	/*	Keypad Init		*/
@@ -871,6 +1068,11 @@ static void keypad_voidSetup(void)
 /********************************************** End of Keypad fcn	********************************************************/
 
 /********************************************** Start of Seven Segment fcn	********************************************************/
+
+/**
+ * @brief This Function is used to init the seven-segment with @ref mySegment options.
+ * 
+ */
 void _7Segnent_voidSetup(void)
 {
 	mySegment._7SegmentMode = _7_SEG_4_PIN_IC ;
@@ -892,6 +1094,13 @@ void _7Segnent_voidSetup(void)
 
 /********************************************** End of Seven Segment fcn	********************************************************/
 /********************************************** Start of EXTI fcn	********************************************************/
+
+/**
+ * @brief This Function is used to init the external interrupts
+ * @details 	PA0 interrupt for ECU1
+ * 				PA1 interrupt for ECU3
+ * 
+ */
 static void EXTI_voidSetup(void)
 {
 	// EXTI0

@@ -24,7 +24,7 @@ one of the functions of ECU2 is storing drivers' data on EEPROM to save it from 
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=1kl0-AhxnfNEpgqPbQ-GWo2GPI3mTQuf_)
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=11qIEXYE6fNceYRcg_RkBHCu-HTtrYBKy)
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=1bARrP7q8o5haxn_hwQTGY75yM0c97XIv)
-- [ECU2 Functionl Test]([ECU2_Testing](TestCases/ECU2_AdminDashboard.xlsx)) ![image](https://progress-bar.dev/70/)
+- [ECU2 Functionl Test]([ECU2_Testing](TestCases/ECU2_AdminDashboard.xlsx)) ![image](https://progress-bar.dev/100/)
 
 - ![ECU2_Testing](https://drive.google.com/uc?export=download&id=1rbWdO4Xn1XJ5dIP7kanCAxpmOaOcdoDC)
 

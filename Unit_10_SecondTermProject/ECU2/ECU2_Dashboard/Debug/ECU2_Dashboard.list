@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020084  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00003a9e  00000000  00000000  000200ad  2**0
+ 12 .debug_info   00003aa4  00000000  00000000  000200ad  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 00000f92  00000000  00000000  00023b4b  2**0
+ 13 .debug_abbrev 00000f5e  00000000  00000000  00023b51  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_loc    0000261c  00000000  00000000  00024add  2**0
+ 14 .debug_loc    0000261c  00000000  00000000  00024aaf  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_aranges 00000580  00000000  00000000  00027100  2**3
+ 15 .debug_aranges 00000580  00000000  00000000  000270d0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_ranges 000004e0  00000000  00000000  00027680  2**3
+ 16 .debug_ranges 000004e0  00000000  00000000  00027650  2**3
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_macro  00001719  00000000  00000000  00027b60  2**0
+ 17 .debug_macro  00001719  00000000  00000000  00027b30  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_line   000028ed  00000000  00000000  00029279  2**0
+ 18 .debug_line   000028ef  00000000  00000000  00029249  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .debug_str    000072fa  00000000  00000000  0002bb66  2**0
+ 19 .debug_str    000072fa  00000000  00000000  0002bb38  2**0
                   CONTENTS, READONLY, DEBUGGING
- 20 .comment      0000007b  00000000  00000000  00032e60  2**0
+ 20 .comment      0000007b  00000000  00000000  00032e32  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000014c0  00000000  00000000  00032edc  2**2
+ 21 .debug_frame  000014c0  00000000  00000000  00032eb0  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -728,10 +728,10 @@ Disassembly of section .text:
  800094a:	4770      	bx	lr
 
 0800094c <xDelay>:
-/******************************************************************************
-* private Callbacks Definitions
-*******************************************************************************/
-
+ * @brief Simple Delay Function
+ * 
+ * @param time number of outer loop vlue 
+ */
 void xDelay(u32 time)
 {
  800094c:	b480      	push	{r7}
@@ -904,67 +904,71 @@ static void System_voidFillAdminsData(void)
  8000a48:	20000148 	.word	0x20000148
 
 08000a4c <System_voidFillDriverssData>:
+/**
+ * @brief This Function is used to fill predefined drivers data
+ * 
+ */
 static void System_voidFillDriverssData(void)
 {
  8000a4c:	b480      	push	{r7}
  8000a4e:	af00      	add	r7, sp, #0
 	/*	1st Driver	*/
-	Glob_u8DriverArr[0][0][0] = 'M'	;
+	Glob_u8DriverArr[0][0][0] = 'j'	;
  8000a50:	4b31      	ldr	r3, [pc, #196]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a52:	224d      	movs	r2, #77	; 0x4d
+ 8000a52:	226a      	movs	r2, #106	; 0x6a
  8000a54:	701a      	strb	r2, [r3, #0]
-	Glob_u8DriverArr[0][0][1] = 'o'	;
+	Glob_u8DriverArr[0][0][1] = 'e'	;
  8000a56:	4b30      	ldr	r3, [pc, #192]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a58:	226f      	movs	r2, #111	; 0x6f
+ 8000a58:	2265      	movs	r2, #101	; 0x65
  8000a5a:	705a      	strb	r2, [r3, #1]
-	Glob_u8DriverArr[0][0][2] = 'h'	;
+	Glob_u8DriverArr[0][0][2] = 'r'	;
  8000a5c:	4b2e      	ldr	r3, [pc, #184]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a5e:	2268      	movs	r2, #104	; 0x68
+ 8000a5e:	2272      	movs	r2, #114	; 0x72
  8000a60:	709a      	strb	r2, [r3, #2]
-	Glob_u8DriverArr[0][0][3] = 'a'	;
+	Glob_u8DriverArr[0][0][3] = 'r'	;
  8000a62:	4b2d      	ldr	r3, [pc, #180]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a64:	2261      	movs	r2, #97	; 0x61
+ 8000a64:	2272      	movs	r2, #114	; 0x72
  8000a66:	70da      	strb	r2, [r3, #3]
-	Glob_u8DriverArr[0][0][4] = 'm'	;
+	Glob_u8DriverArr[0][0][4] = 'y'	;
  8000a68:	4b2b      	ldr	r3, [pc, #172]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a6a:	226d      	movs	r2, #109	; 0x6d
+ 8000a6a:	2279      	movs	r2, #121	; 0x79
  8000a6c:	711a      	strb	r2, [r3, #4]
-	Glob_u8DriverArr[0][0][5] = 'e'	;
+	Glob_u8DriverArr[0][0][5] = '\0'	;
  8000a6e:	4b2a      	ldr	r3, [pc, #168]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a70:	2265      	movs	r2, #101	; 0x65
+ 8000a70:	2200      	movs	r2, #0
  8000a72:	715a      	strb	r2, [r3, #5]
-	Glob_u8DriverArr[0][0][6] = 'd'	;
+	Glob_u8DriverArr[0][0][6] = '\0'	;
  8000a74:	4b28      	ldr	r3, [pc, #160]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a76:	2264      	movs	r2, #100	; 0x64
+ 8000a76:	2200      	movs	r2, #0
  8000a78:	719a      	strb	r2, [r3, #6]
 	Glob_u8DriverArr[0][1][7] = '\0'	;
  8000a7a:	4b27      	ldr	r3, [pc, #156]	; (8000b18 <System_voidFillDriverssData+0xcc>)
  8000a7c:	2200      	movs	r2, #0
  8000a7e:	749a      	strb	r2, [r3, #18]
 
-	Glob_u8DriverArr[0][1][0] = '0'	;
+	Glob_u8DriverArr[0][1][0] = '1'	;
  8000a80:	4b25      	ldr	r3, [pc, #148]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a82:	2230      	movs	r2, #48	; 0x30
+ 8000a82:	2231      	movs	r2, #49	; 0x31
  8000a84:	72da      	strb	r2, [r3, #11]
-	Glob_u8DriverArr[0][1][1] = '0'	;
+	Glob_u8DriverArr[0][1][1] = '2'	;
  8000a86:	4b24      	ldr	r3, [pc, #144]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a88:	2230      	movs	r2, #48	; 0x30
+ 8000a88:	2232      	movs	r2, #50	; 0x32
  8000a8a:	731a      	strb	r2, [r3, #12]
-	Glob_u8DriverArr[0][1][2] = '0'	;
+	Glob_u8DriverArr[0][1][2] = '1'	;
  8000a8c:	4b22      	ldr	r3, [pc, #136]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a8e:	2230      	movs	r2, #48	; 0x30
+ 8000a8e:	2231      	movs	r2, #49	; 0x31
  8000a90:	735a      	strb	r2, [r3, #13]
-	Glob_u8DriverArr[0][1][3] = '0'	;
+	Glob_u8DriverArr[0][1][3] = '2'	;
  8000a92:	4b21      	ldr	r3, [pc, #132]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a94:	2230      	movs	r2, #48	; 0x30
+ 8000a94:	2232      	movs	r2, #50	; 0x32
  8000a96:	739a      	strb	r2, [r3, #14]
-	Glob_u8DriverArr[0][1][4] = '0'	;
+	Glob_u8DriverArr[0][1][4] = '1'	;
  8000a98:	4b1f      	ldr	r3, [pc, #124]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000a9a:	2230      	movs	r2, #48	; 0x30
+ 8000a9a:	2231      	movs	r2, #49	; 0x31
  8000a9c:	73da      	strb	r2, [r3, #15]
-	Glob_u8DriverArr[0][1][5] = '0'	;
+	Glob_u8DriverArr[0][1][5] = '2'	;
  8000a9e:	4b1e      	ldr	r3, [pc, #120]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000aa0:	2230      	movs	r2, #48	; 0x30
+ 8000aa0:	2232      	movs	r2, #50	; 0x32
  8000aa2:	741a      	strb	r2, [r3, #16]
 	Glob_u8DriverArr[0][1][6] = '1'	;
  8000aa4:	4b1c      	ldr	r3, [pc, #112]	; (8000b18 <System_voidFillDriverssData+0xcc>)
@@ -976,17 +980,17 @@ static void System_voidFillDriverssData(void)
  8000aae:	749a      	strb	r2, [r3, #18]
 
 	/*	2nd Driver	*/
-	Glob_u8DriverArr[1][0][0] = 'a'	;
+	Glob_u8DriverArr[1][0][0] = 'b'	;
  8000ab0:	4b19      	ldr	r3, [pc, #100]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000ab2:	2261      	movs	r2, #97	; 0x61
+ 8000ab2:	2262      	movs	r2, #98	; 0x62
  8000ab4:	759a      	strb	r2, [r3, #22]
-	Glob_u8DriverArr[1][0][1] = 'l'	;
+	Glob_u8DriverArr[1][0][1] = 'e'	;
  8000ab6:	4b18      	ldr	r3, [pc, #96]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000ab8:	226c      	movs	r2, #108	; 0x6c
+ 8000ab8:	2265      	movs	r2, #101	; 0x65
  8000aba:	75da      	strb	r2, [r3, #23]
-	Glob_u8DriverArr[1][0][2] = 'i'	;
+	Glob_u8DriverArr[1][0][2] = 'e'	;
  8000abc:	4b16      	ldr	r3, [pc, #88]	; (8000b18 <System_voidFillDriverssData+0xcc>)
- 8000abe:	2269      	movs	r2, #105	; 0x69
+ 8000abe:	2265      	movs	r2, #101	; 0x65
  8000ac0:	761a      	strb	r2, [r3, #24]
 	Glob_u8DriverArr[1][0][3] = '\0'	;
  8000ac2:	4b15      	ldr	r3, [pc, #84]	; (8000b18 <System_voidFillDriverssData+0xcc>)
@@ -1031,7 +1035,6 @@ static void System_voidFillDriverssData(void)
  8000b08:	4b04      	ldr	r3, [pc, #16]	; (8000b1c <System_voidFillDriverssData+0xd0>)
  8000b0a:	2202      	movs	r2, #2
  8000b0c:	701a      	strb	r2, [r3, #0]
-
 }
  8000b0e:	bf00      	nop
  8000b10:	46bd      	mov	sp, r7
@@ -2356,7 +2359,10 @@ static void LCD_voidSetup(void)
  80013f4:	08004a74 	.word	0x08004a74
 
 080013f8 <UART_voidSetup>:
-
+/**
+ * @brief This Function is used to init the UART Driver from selected option in @ref myUART
+ * 
+ */
 void UART_voidSetup(void)
 {
  80013f8:	b580      	push	{r7, lr}
@@ -2567,6 +2573,10 @@ static void DeletingBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar)
  8001560:	08004adc 	.word	0x08004adc
 
 08001564 <AddinggBar>:
+ * @param myLCD 	pointer to instent of @ref LCD_Config options.
+ * @param prcentage 	This is have the percentage needed to be displayed
+ * @param delayOfBar 	Delay between each bar
+ */
 static void AddinggBar(LCD_Config *myLCD, u8 prcentage, u16 delayOfBar)
 {
  8001564:	b580      	push	{r7, lr}
@@ -2899,6 +2909,10 @@ static void LCD_voidDeleteDriver(void)
  80017d4:	08004940 	.word	0x08004940
 
 080017d8 <LCD_voidDeletingOptions>:
+/**
+ * @brief This Function is used to display the deleting options.
+ * 
+ */
 static void LCD_voidDeletingOptions(void)
 {
  80017d8:	b580      	push	{r7, lr}
@@ -2955,10 +2969,10 @@ static void LCD_voidDeletingOptions(void)
  8001844:	08004ba4 	.word	0x08004ba4
 
 08001848 <keypad_voidSetup>:
-
-/********************************************** End of LCD fcn	********************************************************/
-
-/********************************************** Start of Keypad fcn	********************************************************/
+/**
+ * @brief This Function is used to init the Keypad with @ref myKeypad options.
+ * 
+ */
 static void keypad_voidSetup(void)
 {
  8001848:	b580      	push	{r7, lr}
@@ -2996,9 +3010,10 @@ static void keypad_voidSetup(void)
  8001880:	20000040 	.word	0x20000040
 
 08001884 <_7Segnent_voidSetup>:
-/********************************************** End of Keypad fcn	********************************************************/
-
-/********************************************** Start of Seven Segment fcn	********************************************************/
+/**
+ * @brief This Function is used to init the seven-segment with @ref mySegment options.
+ * 
+ */
 void _7Segnent_voidSetup(void)
 {
  8001884:	b580      	push	{r7, lr}
@@ -3063,9 +3078,10 @@ void _7Segnent_voidSetup(void)
  80018e0:	20000011 	.word	0x20000011
 
 080018e4 <EXTI_voidSetup>:
-
-/********************************************** End of Seven Segment fcn	********************************************************/
-/********************************************** Start of EXTI fcn	********************************************************/
+ * @details 	PA0 interrupt for ECU1
+ * 				PA1 interrupt for ECU3
+ * 
+ */
 static void EXTI_voidSetup(void)
 {
  80018e4:	b580      	push	{r7, lr}
@@ -10254,10 +10270,11 @@ void USART_voidSendStringWithDelimiterSynch(USART_Number_t USART_Number , u8 *P_
  8004648:	bd80      	pop	{r7, pc}
 
 0800464a <main>:
-
-#include "APP/APP.h"
-
-
+/**
+ * @brief This is the main etery point of app.
+ * 
+ * @return will never return 
+ */
 int main(void){
  800464a:	b580      	push	{r7, lr}
  800464c:	af00      	add	r7, sp, #0

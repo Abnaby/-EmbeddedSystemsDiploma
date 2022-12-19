@@ -38,7 +38,19 @@
 
 
 /***************************** APIs	 *****************************************/ 
+
+/**
+ * @brief This function is used to make peripherals initialization.
+ * 
+ * @return void
+ */
 void ECU3_Dashboard_APP_SETUP(void) ;
+
+/**
+ * @brief This function will perform the main functionality of ECU2
+ *
+ * @return void
+ */
 void ECU3_Dashboard_APP_LOOP(void) ;
 
 #endif /* APP_H_ */

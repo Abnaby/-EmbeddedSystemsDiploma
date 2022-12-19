@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000398  00000000  00000000  0000326c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00002c14  00000000  00000000  00003604  2**0
+  6 .debug_info   00002c18  00000000  00000000  00003604  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001103  00000000  00000000  00006218  2**0
+  7 .debug_abbrev 00001101  00000000  00000000  0000621c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000027f9  00000000  00000000  0000731b  2**0
+  8 .debug_line   000027f8  00000000  00000000  0000731d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000cd8  00000000  00000000  00009b14  2**2
+  9 .debug_frame  00000cd8  00000000  00000000  00009b18  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00001901  00000000  00000000  0000a7ec  2**0
+ 10 .debug_str    00001901  00000000  00000000  0000a7f0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001a36  00000000  00000000  0000c0ed  2**0
+ 11 .debug_loc    00001a36  00000000  00000000  0000c0f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000330  00000000  00000000  0000db23  2**0
+ 12 .debug_ranges 00000330  00000000  00000000  0000db27  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -104,10 +104,10 @@ Disassembly of section .text:
       9e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000a2 <Buzzer>:
-
-};
-// Buzzer
-
+ * @brief This function is used to make  beep sound 
+ * 
+ * @param copyNumberOfRepeatations number of repeated beep sound.
+ */
 static void Buzzer(u8 copyNumberOfRepeatations)
 {
       a2:	cf 93       	push	r28
@@ -417,8 +417,8 @@ _delay_loop_2(uint16_t __count)
      292:	f1 f7       	brne	.-4      	; 0x290 <__EEPROM_REGION_LENGTH__+0x90>
      294:	9b 8b       	std	Y+19, r25	; 0x13
      296:	8a 8b       	std	Y+18, r24	; 0x12
-// Buzzer
-
+ * @param copyNumberOfRepeatations number of repeated beep sound.
+ */
 static void Buzzer(u8 copyNumberOfRepeatations)
 {
 	u8 LOC_u8Counter = 0 ;
@@ -449,10 +449,10 @@ static void Buzzer(u8 copyNumberOfRepeatations)
      2ba:	08 95       	ret
 
 000002bc <LCD_voidMainScreen>:
-	PORTC , PIN4 ,
-	//D7
-	PORTC , PIN5
-};
+/**
+ * @brief This Function is used to display the main screen
+ * 
+ */
 static void LCD_voidMainScreen()
 {
      2bc:	cf 93       	push	r28
@@ -648,7 +648,10 @@ static void LCD_voidMainScreen()
      406:	08 95       	ret
 
 00000408 <LCD_voidSetup>:
-
+/**
+ * @brief This function is used to initialize the LCD driver 
+ * 
+ */
 static void LCD_voidSetup(void)
 {
      408:	cf 93       	push	r28
@@ -680,7 +683,10 @@ static void LCD_voidSetup(void)
      43a:	08 95       	ret
 
 0000043c <System_voidStates>:
-
+ * @param copy_u8Selection Select one of 0 or 1
+ * 							0 --> For Valid ID
+ * 							1 --> For Invalid ID
+ */
 static void System_voidStates(u8 copy_u8Selection)
 {
      43c:	cf 93       	push	r28
@@ -3638,31 +3644,53 @@ void LCD_voidWriteCmd(LCD_Config* x , u8 copy_u8Cmd)
     1994:	08 95       	ret
 
 00001996 <PIR_voidInit>:
+/******************************************************************************
+* Function Definitions
+*******************************************************************************/
+
+void PIR_voidInit(void)
+{
     1996:	cf 93       	push	r28
     1998:	df 93       	push	r29
     199a:	cd b7       	in	r28, 0x3d	; 61
     199c:	de b7       	in	r29, 0x3e	; 62
+	#if PIR_BASED_ON == PIR_INTERRUPT 
+	#else 
+		GPIO_voidSetPinDirection(PIR_PORT_PIN,INPUT_FLOAT);
     199e:	40 e0       	ldi	r20, 0x00	; 0
-    19a0:	61 e0       	ldi	r22, 0x01	; 1
+    19a0:	63 e0       	ldi	r22, 0x03	; 3
     19a2:	80 e0       	ldi	r24, 0x00	; 0
     19a4:	0e 94 61 0e 	call	0x1cc2	; 0x1cc2 <GPIO_voidSetPinDirection>
+	#endif 
+    
+} 
     19a8:	00 00       	nop
     19aa:	df 91       	pop	r29
     19ac:	cf 91       	pop	r28
     19ae:	08 95       	ret
 
 000019b0 <PIR_u8ExistMovement>:
+	/*    Enable Peripheral Flag For INT0  */
+	EXTINT_voidEnable(PIR_USING_EXTIx);
+}
+#else
+u8 PIR_u8ExistMovement(void)
+{
     19b0:	cf 93       	push	r28
     19b2:	df 93       	push	r29
     19b4:	1f 92       	push	r1
     19b6:	cd b7       	in	r28, 0x3d	; 61
     19b8:	de b7       	in	r29, 0x3e	; 62
+    u8 LOC_u8Result = 0 ; 
     19ba:	19 82       	std	Y+1, r1	; 0x01
-    19bc:	61 e0       	ldi	r22, 0x01	; 1
+    LOC_u8Result = GPIO_u8GetPinValue(PIR_PORT_PIN); 
+    19bc:	63 e0       	ldi	r22, 0x03	; 3
     19be:	80 e0       	ldi	r24, 0x00	; 0
     19c0:	0e 94 63 11 	call	0x22c6	; 0x22c6 <GPIO_u8GetPinValue>
     19c4:	89 83       	std	Y+1, r24	; 0x01
+    return LOC_u8Result ; 
     19c6:	89 81       	ldd	r24, Y+1	; 0x01
+}
     19c8:	0f 90       	pop	r0
     19ca:	df 91       	pop	r29
     19cc:	cf 91       	pop	r28
@@ -3814,10 +3842,10 @@ void LCD_voidWriteCmd(LCD_Config* x , u8 copy_u8Cmd)
     1b18:	08 95       	ret
 
 00001b1a <main>:
-
-#include "APP/APP.h" 
-
-
+ * @brief This is the main etery point of app.
+ * 
+ * @return will never return 
+ */
 int main(void)
 {
     1b1a:	cf 93       	push	r28

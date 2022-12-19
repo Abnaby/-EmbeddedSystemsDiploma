@@ -1,6 +1,5 @@
 /*
  * APP.h
- *
  * Created: 12/4/2022 2:42:07 PM
  *  Author: Abnaby
  */ 
@@ -33,7 +32,19 @@
 
 
 /***************************** APIs	 *****************************************/ 
+
+/**
+ * @brief This function is used to make peripherals initialization.
+ * 
+ * @return void
+ */
 void ECU1_Entance_APP_SETUP(void) ; 
+
+/**
+ * @brief This function will perform the main functionality of ECU1
+ *
+ * @return void
+ */
 void ECU1_Entance_APP_LOOP(void) ; 
 
 #endif /* APP_H_ */

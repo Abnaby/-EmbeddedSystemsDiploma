@@ -22,6 +22,7 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 ## *System Diagrams* 
  [HTML page for system diagrams ](/System%20Diagrams/doc.html) 
+ 
 
 ## *Documentations* 
 - [Doxygen]([Doxygen]()) ![image](https://progress-bar.dev/0/)
@@ -29,7 +30,11 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 
 ## *Simulation Design* 
+ ![System Design ](https://drive.google.com/uc?export=download&id=1j_PZ72jvhawWOxwV914IH_VAXoQZM_k5) 
+ 
 ![SimulationDesign](https://drive.google.com/uc?export=download&id=1FAMmp33Dq8oArrLlqkcdsdRqNVTlWEXP)
+
+
 
 ## Requirement Diagram
 ![RequirementDiagram](https://drive.google.com/uc?export=download&id=12t4j4HahuhJd27lik5dbc7H875zRNw_T)
@@ -40,12 +45,12 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 ## *Sprints Details* 
 - [PPG Sprint1]([Sprint1_Details](../SprintsDetails/Sprint_1/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint1]([Sprint2_Details](../SprintsDetails/Sprint_2/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint1]([Sprint3_Details](../SprintsDetails/Sprint_3/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint1]([Sprint4_Details](../SprintsDetails/Sprint_4/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint1]([Sprint5_Details](../SprintsDetails/Sprint_5/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint1]([Sprint6_Details](../SprintsDetails/Sprint_6/README.md)) ![image](https://progress-bar.dev/100/)
-- [PPG Sprint1]([Sprint7_Details](../SprintsDetails/Sprint_7/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint2]([Sprint2_Details](../SprintsDetails/Sprint_2/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint3]([Sprint3_Details](../SprintsDetails/Sprint_3/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint4]([Sprint4_Details](../SprintsDetails/Sprint_4/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint5]([Sprint5_Details](../SprintsDetails/Sprint_5/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint6]([Sprint6_Details](../SprintsDetails/Sprint_6/README.md)) ![image](https://progress-bar.dev/100/)
+- [PPG Sprint7]([Sprint7_Details](../SprintsDetails/Sprint_7/README.md)) ![image](https://progress-bar.dev/100/)
 
 
 

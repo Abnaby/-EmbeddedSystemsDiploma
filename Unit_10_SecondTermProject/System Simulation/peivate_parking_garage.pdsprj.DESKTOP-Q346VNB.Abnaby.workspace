@@ -3,10 +3,10 @@
  <FRAME activewindow="0">
   <PLACEMENT>2c0000000200000003000000ffffffffffffffffffffffffffffffff100000000d000000bf0300002c040000</PLACEMENT>
   <WINDOW type="default" module="ISIS">
-   <editor metric="0" gridmajor="25400000" mode="00000000" zoom="-1" scale="42" flipped="0" gridminor="508000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="302380">
+   <editor metric="0" gridmajor="25400000" mode="00000000" zoom="0" scale="62" flipped="0" gridminor="508000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="1" snaprange="204838">
     <world y1="-19050000" x1="-26670000" y2="19050000" x2="26670000"/>
-    <centre x="8636000" y="-10668000"/>
-    <origin x="0" y="0"/>
+    <centre x="0" y="0"/>
+    <origin x="6858000" y="-1270000"/>
    </editor>
   </WINDOW>
  </FRAME>
@@ -18,10 +18,10 @@
   </editor>
  </MODULE>
  <MODULE name="ISIS">
-  <editor metric="0" gridmajor="25400000" mode="00000000" zoom="-1" scale="42" flipped="0" gridminor="508000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="0" snaprange="302380">
+  <editor metric="0" gridmajor="25400000" mode="00000000" zoom="0" scale="62" flipped="0" gridminor="508000" gridmode="32" snapidx="2" snap="254000" xcursor="0" orgmode="1" snaprange="204838">
    <world y1="-19050000" x1="-26670000" y2="19050000" x2="26670000"/>
-   <centre x="8636000" y="-10668000"/>
-   <origin x="0" y="0"/>
+   <centre x="0" y="0"/>
+   <origin x="6858000" y="-1270000"/>
   </editor>
  </MODULE>
  <MODULE name="VSMDEBUG">
@@ -539,19 +539,19 @@
    <POPUP w="22" x="738" flags="00000008" y="829" h="18" pid="350" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="450" x="38" flags="00000023" y="129" h="250" pid="0" iid="6">
+   <POPUP w="391" x="765" flags="00000023" y="155" h="208" pid="0" iid="6">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="450" x="941" flags="00008023" y="248" h="250" pid="0" iid="7">
+   <POPUP w="450" x="1208" flags="00008023" y="225" h="250" pid="0" iid="7">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="450" x="383" flags="00000023" y="464" h="250" pid="0" iid="23">
+   <POPUP w="367" x="240" flags="00000023" y="455" h="250" pid="0" iid="23">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>
@@ -590,7 +590,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="178" flags="80000000" y="269" h="32" pid="14" iid="27">
+   <POPUP w="16" x="178" flags="00000000" y="269" h="32" pid="14" iid="27">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -673,7 +673,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="358" flags="80000000" y="449" h="32" pid="14" iid="5">
+   <POPUP w="16" x="358" flags="00000000" y="449" h="32" pid="14" iid="5">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -756,7 +756,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="538" flags="80000000" y="629" h="32" pid="14" iid="24">
+   <POPUP w="16" x="538" flags="00000000" y="629" h="32" pid="14" iid="24">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -819,7 +819,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="678" flags="80000000" y="769" h="32" pid="14" iid="14">
+   <POPUP w="16" x="678" flags="00000000" y="769" h="32" pid="14" iid="14">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>

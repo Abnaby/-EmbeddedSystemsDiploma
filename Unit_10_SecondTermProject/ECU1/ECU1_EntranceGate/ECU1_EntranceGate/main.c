@@ -7,7 +7,11 @@
 
 #include "APP/APP.h" 
 
-
+/**
+ * @brief This is the main etery point of app.
+ * 
+ * @return will never return 
+ */
 int main(void)
 {
 	ECU1_Entance_APP_SETUP() ; 

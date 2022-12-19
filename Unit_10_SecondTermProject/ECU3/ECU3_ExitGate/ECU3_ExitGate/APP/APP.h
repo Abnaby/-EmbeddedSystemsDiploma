@@ -36,7 +36,19 @@
 
 
 /***************************** APIs	 *****************************************/ 
+
+/**
+ * @brief This function is used to make peripherals initialization.
+ * 
+ * @return void
+ */
 void ECU3_Exit_APP_SETUP(void) ; 
+
+/**
+ * @brief This function will perform the main functionality of ECU3
+ *
+ * @return void
+ */
 void ECU3_Exit_APP_LOOP(void) ; 
 
 #endif /* APP_H_ */

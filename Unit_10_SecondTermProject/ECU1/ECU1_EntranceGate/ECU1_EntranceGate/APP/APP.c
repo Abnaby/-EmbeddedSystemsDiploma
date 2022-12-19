@@ -35,6 +35,10 @@
 * Typedefs
 *******************************************************************************/
 
+/**
+ * @brief This enum hold the possible result values from ECU2
+ * 
+ */
 typedef enum 
 {
 	NOT_VALID_ID = '0'	,	
@@ -46,10 +50,14 @@ typedef enum
 * Module Variable Definitions
 *******************************************************************************/
 
-// 
+
 ID_Check_t Glob_ID_Valid =  NOT_VALID_ID ; 
 
 // SPI
+/**
+ * @brief This struct holds SPI configuration 
+ * 
+ */
 SPI_Config mySPI =	
 {
     SPI_INTERRUPT_DISABLE  ,
@@ -62,6 +70,11 @@ SPI_Config mySPI =
 };
 // Buzzer
 
+/**
+ * @brief This function is used to make  beep sound 
+ * 
+ * @param copyNumberOfRepeatations number of repeated beep sound.
+ */
 static void Buzzer(u8 copyNumberOfRepeatations)
 {
 	u8 LOC_u8Counter = 0 ;
@@ -75,6 +88,11 @@ static void Buzzer(u8 copyNumberOfRepeatations)
 }
 // LCD
 static LCD_Config myLCD ;
+
+/**
+ * @brief This array holds the PORT PIN number for LCD 
+ * 
+ */
 u8 LCD_PortPin[]=
 {
 	// < Enable,rsPin, rwPort,d4Port,d4Pin ....... d7Port,d7Pin>
@@ -91,6 +109,11 @@ u8 LCD_PortPin[]=
 	//D7
 	PORTC , PIN5
 };
+
+/**
+ * @brief This Function is used to display the main screen
+ * 
+ */
 static void LCD_voidMainScreen()
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
@@ -102,6 +125,10 @@ static void LCD_voidMainScreen()
 	LCD_voidSetDisplayState(&myLCD,DISP_OFF);
 }
 
+/**
+ * @brief This function is used to initialize the LCD driver 
+ * 
+ */
 static void LCD_voidSetup(void)
 {
 	myLCD.LCD_SIZE_Rows = 2 ;
@@ -112,6 +139,13 @@ static void LCD_voidSetup(void)
 	LCD_voidMainScreen();
 }
 
+/**
+ * @brief This Function is used to Display the state of ID after return one of @see ID_Check_t 
+ * 
+ * @param copy_u8Selection Select one of 0 or 1
+ * 							0 --> For Valid ID
+ * 							1 --> For Invalid ID
+ */
 static void System_voidStates(u8 copy_u8Selection)
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
@@ -153,6 +187,12 @@ static void System_voidStates(u8 copy_u8Selection)
 * private Callbacks Definitions
 *******************************************************************************/
 
+/**
+ * @brief The Function is used to get driver data 
+ * 
+ * @param ptr_Name pointer to the driver name
+ * @param ptr_ID   pointer to the driver ID number.
+ */
 void RFID_Callback(u8 *ptr_Name , u8 *ptr_ID);
 
 
@@ -160,9 +200,28 @@ void RFID_Callback(u8 *ptr_Name , u8 *ptr_ID);
 * private Functions Definitions
 *******************************************************************************/
 
+/**
+ * @brief This Function is used to send the comming RFID data to the ECU2 through SPI
+ * 
+ * @param ptr_Name pointer to the driver name
+ * @param ptr_ID   pointer to the driver ID number.
+ */
 void APP_voidSendDataThroughSPI(u8 *ptr_Name , u8 *ptr_ID); 
+
+/**
+ * @brief This Function is used to validate the username and ID number of driver 
+ * 
+ */
 void APP_IsValidID(void) ;
+
+/**
+ * @brief This Function is used to send specific string to ECU2 through SPI
+ * 
+ * @param ptr_String pointer to string
+ */
 void APP_voidSendStringThroughSPI(u8 *ptr_String); 
+
+
 void APP_voidGetSPI_Data(u8 recievedData);
 
 

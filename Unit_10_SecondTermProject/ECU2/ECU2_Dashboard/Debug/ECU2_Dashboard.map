@@ -1061,37 +1061,37 @@ LOAD c:/st/stm32cubeide_1.4.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
                 0x00000000000003e0       0x1d c:/st/stm32cubeide_1.4.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.4.0.202007081208/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7-m/crtn.o
 OUTPUT(ECU2_Dashboard.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x3a9e
- .debug_info    0x0000000000000000     0x116e Inc/APP/APP.o
- .debug_info    0x000000000000116e      0x206 Inc/HAL/KeyPad/KeyPad.o
- .debug_info    0x0000000000001374      0x432 Inc/HAL/LCD/LCD.o
- .debug_info    0x00000000000017a6      0x474 Inc/HAL/_7Segment/_7Segment.o
- .debug_info    0x0000000000001c1a      0x18d Inc/MCAL/AFIO/AFIO_program.o
- .debug_info    0x0000000000001da7      0x415 Inc/MCAL/EXTI/EXTI_program.o
- .debug_info    0x00000000000021bc      0x39f Inc/MCAL/GPIO/GPIO_program.o
- .debug_info    0x000000000000255b      0x197 Inc/MCAL/NVIC/NVIC_program.o
- .debug_info    0x00000000000026f2      0x103 Inc/MCAL/RCC/RCC_program.o
- .debug_info    0x00000000000027f5      0x5f2 Inc/MCAL/SPI/SPI_program.o
- .debug_info    0x0000000000002de7      0x4db Inc/MCAL/SYSTICK/STK_program.o
- .debug_info    0x00000000000032c2      0x748 Inc/MCAL/UART/USART_program.o
- .debug_info    0x0000000000003a0a       0x72 Src/main.o
- .debug_info    0x0000000000003a7c       0x22 Startup/startup_stm32f103c6tx.o
+.debug_info     0x0000000000000000     0x3aa4
+ .debug_info    0x0000000000000000     0x1174 Inc/APP/APP.o
+ .debug_info    0x0000000000001174      0x206 Inc/HAL/KeyPad/KeyPad.o
+ .debug_info    0x000000000000137a      0x432 Inc/HAL/LCD/LCD.o
+ .debug_info    0x00000000000017ac      0x474 Inc/HAL/_7Segment/_7Segment.o
+ .debug_info    0x0000000000001c20      0x18d Inc/MCAL/AFIO/AFIO_program.o
+ .debug_info    0x0000000000001dad      0x415 Inc/MCAL/EXTI/EXTI_program.o
+ .debug_info    0x00000000000021c2      0x39f Inc/MCAL/GPIO/GPIO_program.o
+ .debug_info    0x0000000000002561      0x197 Inc/MCAL/NVIC/NVIC_program.o
+ .debug_info    0x00000000000026f8      0x103 Inc/MCAL/RCC/RCC_program.o
+ .debug_info    0x00000000000027fb      0x5f2 Inc/MCAL/SPI/SPI_program.o
+ .debug_info    0x0000000000002ded      0x4db Inc/MCAL/SYSTICK/STK_program.o
+ .debug_info    0x00000000000032c8      0x748 Inc/MCAL/UART/USART_program.o
+ .debug_info    0x0000000000003a10       0x72 Src/main.o
+ .debug_info    0x0000000000003a82       0x22 Startup/startup_stm32f103c6tx.o
 
-.debug_abbrev   0x0000000000000000      0xf92
- .debug_abbrev  0x0000000000000000      0x21d Inc/APP/APP.o
- .debug_abbrev  0x000000000000021d       0xcf Inc/HAL/KeyPad/KeyPad.o
- .debug_abbrev  0x00000000000002ec      0x195 Inc/HAL/LCD/LCD.o
- .debug_abbrev  0x0000000000000481      0x14c Inc/HAL/_7Segment/_7Segment.o
- .debug_abbrev  0x00000000000005cd       0xc3 Inc/MCAL/AFIO/AFIO_program.o
- .debug_abbrev  0x0000000000000690      0x12e Inc/MCAL/EXTI/EXTI_program.o
- .debug_abbrev  0x00000000000007be      0x161 Inc/MCAL/GPIO/GPIO_program.o
- .debug_abbrev  0x000000000000091f       0xc4 Inc/MCAL/NVIC/NVIC_program.o
- .debug_abbrev  0x00000000000009e3       0xb1 Inc/MCAL/RCC/RCC_program.o
- .debug_abbrev  0x0000000000000a94      0x16f Inc/MCAL/SPI/SPI_program.o
- .debug_abbrev  0x0000000000000c03      0x1bc Inc/MCAL/SYSTICK/STK_program.o
- .debug_abbrev  0x0000000000000dbf      0x178 Inc/MCAL/UART/USART_program.o
- .debug_abbrev  0x0000000000000f37       0x49 Src/main.o
- .debug_abbrev  0x0000000000000f80       0x12 Startup/startup_stm32f103c6tx.o
+.debug_abbrev   0x0000000000000000      0xf5e
+ .debug_abbrev  0x0000000000000000      0x1e9 Inc/APP/APP.o
+ .debug_abbrev  0x00000000000001e9       0xcf Inc/HAL/KeyPad/KeyPad.o
+ .debug_abbrev  0x00000000000002b8      0x195 Inc/HAL/LCD/LCD.o
+ .debug_abbrev  0x000000000000044d      0x14c Inc/HAL/_7Segment/_7Segment.o
+ .debug_abbrev  0x0000000000000599       0xc3 Inc/MCAL/AFIO/AFIO_program.o
+ .debug_abbrev  0x000000000000065c      0x12e Inc/MCAL/EXTI/EXTI_program.o
+ .debug_abbrev  0x000000000000078a      0x161 Inc/MCAL/GPIO/GPIO_program.o
+ .debug_abbrev  0x00000000000008eb       0xc4 Inc/MCAL/NVIC/NVIC_program.o
+ .debug_abbrev  0x00000000000009af       0xb1 Inc/MCAL/RCC/RCC_program.o
+ .debug_abbrev  0x0000000000000a60      0x16f Inc/MCAL/SPI/SPI_program.o
+ .debug_abbrev  0x0000000000000bcf      0x1bc Inc/MCAL/SYSTICK/STK_program.o
+ .debug_abbrev  0x0000000000000d8b      0x178 Inc/MCAL/UART/USART_program.o
+ .debug_abbrev  0x0000000000000f03       0x49 Src/main.o
+ .debug_abbrev  0x0000000000000f4c       0x12 Startup/startup_stm32f103c6tx.o
 
 .debug_loc      0x0000000000000000     0x261c
  .debug_loc     0x0000000000000000      0x66c Inc/APP/APP.o
@@ -1188,7 +1188,7 @@ OUTPUT(ECU2_Dashboard.elf elf32-littlearm)
  .debug_macro   0x0000000000001623       0x2e Inc/MCAL/UART/USART_program.o
  .debug_macro   0x0000000000001651       0xc8 Src/main.o
 
-.debug_line     0x0000000000000000     0x28ed
+.debug_line     0x0000000000000000     0x28ef
  .debug_line    0x0000000000000000      0xa34 Inc/APP/APP.o
  .debug_line    0x0000000000000a34      0x222 Inc/HAL/KeyPad/KeyPad.o
  .debug_line    0x0000000000000c56      0x2a7 Inc/HAL/LCD/LCD.o
@@ -1201,8 +1201,8 @@ OUTPUT(ECU2_Dashboard.elf elf32-littlearm)
  .debug_line    0x0000000000001b5f      0x266 Inc/MCAL/SPI/SPI_program.o
  .debug_line    0x0000000000001dc5      0x2ad Inc/MCAL/SYSTICK/STK_program.o
  .debug_line    0x0000000000002072      0x3dd Inc/MCAL/UART/USART_program.o
- .debug_line    0x000000000000244f      0x41a Src/main.o
- .debug_line    0x0000000000002869       0x84 Startup/startup_stm32f103c6tx.o
+ .debug_line    0x000000000000244f      0x41c Src/main.o
+ .debug_line    0x000000000000286b       0x84 Startup/startup_stm32f103c6tx.o
 
 .debug_str      0x0000000000000000     0x72fa
  .debug_str     0x0000000000000000     0x43be Inc/APP/APP.o
