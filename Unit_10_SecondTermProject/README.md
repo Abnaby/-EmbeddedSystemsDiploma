@@ -21,6 +21,10 @@ The Whole system is connected together when a driver enters a valid ID the ECU1 
 When the driver wants to exit the garage space and enter the ID the ECU3 sends the driver data to ECU2, and the ECU2 starts checking if the ID is valid or not and checking if it is outside the garage and wants to enter from the exit gate then the ECU2 return the result of checking to ECU1 to display the result of computing on the LCD is valid ID or invalid ID.
 
 
+## *EPICs Roadmap* 
+I used an adaptive model - agile scrum - in this project
+![EPICs Roadmap](https://drive.google.com/uc?export=download&id=1OBQcJj__V-K57v-WGB2MY9RDYTp9mtl3)
+
 ## *Project Overview* 
  ![ProjectOverview](https://drive.google.com/uc?export=download&id=19YwZc3M16f4vLemHgEzKwErMsVJz_CFh) 
  - ECU1 Calls
@@ -35,8 +39,7 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
      ![ECU2 CALLS](https://drive.google.com/uc?export=download&id=1s53giUzwLCDT81wgGZgFoqPMbuF4L6kL)
 
-## *EPICs Roadmap* 
-     ![EPICs Roadmap](https://drive.google.com/uc?export=download&id=1s53giUzwLCDT81wgGZgFoqPMbuF4L6kL)
+
 
 ## *System Diagrams* 
  [HTML page for system diagrams ](https://github.com/Abnaby/EmbeddedSystemsDiploma/blob/main/Unit_10_SecondTermProject/System%20Diagrams/doc.html) 
