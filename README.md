@@ -22,6 +22,7 @@
 - [Unit 7: MCU Essential Peripherals]() ![image](https://progress-bar.dev/100/)
 - [Unit 8: MCU Interfacing]() ![image](https://progress-bar.dev/100/)
 - [Unit 9: MCU Timers/ADC]() ![image](https://progress-bar.dev/100/)
+- [Unit 10: Second Term Project](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject) ![image](https://progress-bar.dev/100/)
 
 
 
