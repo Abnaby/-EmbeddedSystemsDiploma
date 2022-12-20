@@ -41,12 +41,13 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 - [PDF](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/Documentations/PDF) ![image](https://progress-bar.dev/100/)
 
-## *Simulation Design* 
- ![System Design ](https://drive.google.com/uc?export=download&id=1j_PZ72jvhawWOxwV914IH_VAXoQZM_k5) 
- 
+
+ ## *Simulation Design* 
 ![SimulationDesign](https://drive.google.com/uc?export=download&id=1FAMmp33Dq8oArrLlqkcdsdRqNVTlWEXP)
 
 
+## *System Partitioning* 
+ ![System Design ](https://drive.google.com/uc?export=download&id=1j_PZ72jvhawWOxwV914IH_VAXoQZM_k5) 
 
 ## Requirement Diagram
 ![RequirementDiagram](https://drive.google.com/uc?export=download&id=12t4j4HahuhJd27lik5dbc7H875zRNw_T)
