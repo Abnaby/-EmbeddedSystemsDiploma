@@ -16,7 +16,7 @@
 
 ---
 
-### Second Term ![image](https://progress-bar.dev/100/?title=Done&color=ff00ff)
+### Second Term ![image](https://progress-bar.dev/100/?title=Done)
 
 - [Unit 6: MCU Fundamentals]() ![image](https://progress-bar.dev/100/)
 - [Unit 7: MCU Essential Peripherals]() ![image](https://progress-bar.dev/100/)
