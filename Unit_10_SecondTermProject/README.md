@@ -4,18 +4,18 @@ This Project aims to make a design for a private parking garage area for people 
 This system is split into three ECUs:
  > [First ECU for the entrance gate](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU1) 
 
-    This ECU is responsible for the gate that is based on the servo motor, the RFID reader based on UART for the user interface, Buzzer for the beep sound when the driver enters an unauthorized ID, and Some LEDs like green and red for authorized and unauthorized ID.
-    LCD will display some messages for the driver to determine what will do.
+> This ECU is responsible for the gate that is based on the servo motor, the RFID reader based on UART for the user interface, Buzzer for the beep sound when the driver enters an unauthorized ID, and Some LEDs like green and red for authorized and unauthorized ID.
+LCD will display some messages for the driver to determine what will do.
 
 > [Second ECU for admin dashboard ](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU2) 
 
-    This ECU is responsible for the admin privileges to add, delete, and edit driver data. the system may have more than one admin each one of them has its username and password. 
-    The ECU has an LCD and keypad as an admin interface, a UART device for entering admin data, and a seven-segment to display the number of available slots in the garage.
+>This ECU is responsible for the admin privileges to add, delete, and edit driver data. the system may have more than one admin each one of them has its username and password. 
+The ECU has an LCD and keypad as an admin interface, a UART device for entering admin data, and a seven-segment to display the number of available slots in the garage.
 
 > [Third ECU for the exit gate ](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU3) 
 
-    This ECU is responsible for the gate that is based on the servo motor, the RFID reader based on UART for the user interface, Buzzer for the beep sound when the driver enters an unauthorized ID, and Some LEDs like green and red for authorized and unauthorized ID.
-    LCD will display some messages for the driver to determine what will do.
+>This ECU is responsible for the gate that is based on the servo motor, the RFID reader based on UART for the user interface, Buzzer for the beep sound when the driver enters an unauthorized ID, and Some LEDs like green and red for authorized and unauthorized ID.
+LCD will display some messages for the driver to determine what will do.
 
 The Whole system is connected together when a driver enters a valid ID the ECU1 sends data through SPI to ECU2, and the ECU2 starts checking if the ID is valid or not and checking if it is inside the garage and wants to exit from the entrance gate then the ECU2 return the result of checking to ECU1 to display the result of computing on the LCD is valid ID or invalid ID.
 When the driver wants to exit the garage space and enter the ID the ECU3 sends the driver data to ECU2, and the ECU2 starts checking if the ID is valid or not and checking if it is outside the garage and wants to enter from the exit gate then the ECU2 return the result of checking to ECU1 to display the result of computing on the LCD is valid ID or invalid ID.
@@ -34,8 +34,8 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
  
 
 ## *Documentations* 
-- [Doxygen]([Doxygen]()) ![image](https://progress-bar.dev/100/)
-- [Word File]([Word_File]()) ![image](https://progress-bar.dev/0/)
+- [Doxygen]([Doxygen](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/Documentations/Doxgyen)) ![image](https://progress-bar.dev/100/)
+- [PDF File]([Word_File](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/Documentations/PDF)) ![image](https://progress-bar.dev/0/)
 
 
 ## *Simulation Design* 
@@ -49,17 +49,20 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 ![RequirementDiagram](https://drive.google.com/uc?export=download&id=12t4j4HahuhJd27lik5dbc7H875zRNw_T)
 
 ## Sequance Diagram
-- ECU1 Simplified UML
-![SequanceDiagram](https://drive.google.com/uc?export=download&id=1_DSOFTHKYi_RzpVg1BZUeSVKk1EWuJ1T)  
+ - ECU1 Simplified UML
+   ![SequanceDiagram](https://drive.google.com/uc?export=download&id=1_DSOFTHKYi_RzpVg1BZUeSVKk1EWuJ1T) 
 
-- ECU2 Simplified UML
-![SequanceDiagram](https://drive.google.com/uc?export=download&id=1Oaol9UfESK9_CJoJVRfzGUjLhNER3kck)  
+ - ECU2 Simplified UML
+   
+   ![SequanceDiagram](https://drive.google.com/uc?export=download&id=1Oaol9UfESK9_CJoJVRfzGUjLhNER3kck)  
 
-- ECU3 Simplified UML
-![SequanceDiagram](https://drive.google.com/uc?export=download&id=1oopwEmx-GwoPcXKGPp8wjcuOpqUfg80E)  
+ - ECU3 Simplified UML
+    
+    ![SequanceDiagram](https://drive.google.com/uc?export=download&id=1oopwEmx-GwoPcXKGPp8wjcuOpqUfg80E)  
 
 - System Sequence Diagram 
-![SequanceDiagram](https://drive.google.com/uc?export=download&id=1xhucH4LorB8i_Pav6T9dfesSjEZY5ERV)  
+    
+    ![SequanceDiagram](https://drive.google.com/uc?export=download&id=1xhucH4LorB8i_Pav6T9dfesSjEZY5ERV)  
 
 
 ## *Sprints Details* 
