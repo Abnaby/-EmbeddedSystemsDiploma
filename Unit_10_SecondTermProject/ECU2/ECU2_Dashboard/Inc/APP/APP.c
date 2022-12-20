@@ -465,6 +465,7 @@ static void System_voidFillDriverssData(void)
 	Glob_u8DriverArr[0][1][5] = '2'	;
 	Glob_u8DriverArr[0][1][6] = '1'	;
 	Glob_u8DriverArr[0][1][7] = '\0'	;
+	Glob_u8DriverFreeIndex[0] = 0 ;
 
 	/*	2nd Driver	*/
 	Glob_u8DriverArr[1][0][0] = 'b'	;
@@ -480,6 +481,8 @@ static void System_voidFillDriverssData(void)
 	Glob_u8DriverArr[1][1][5] = '6'	;
 	Glob_u8DriverArr[1][1][6] = '7'	;
 	Glob_u8DriverArr[1][1][7] = '\0'	;
+	Glob_u8DriverFreeIndex[1] = 0 ;
+
 
 	// Data
 	Glob_u8NumberOfCurrentUsers = 2 ;
@@ -662,7 +665,7 @@ static void System_voidAddNewUser(void)
 		while((ID_SIZE >= LOC_u8Counter) && (UART_TERMINATE_CHAR != LOC_u8ReceivedData));
 		Glob_u8DriverArr[LOC_u8ArrayIndex][1][LOC_u8Counter] = '\0' ;
 
-
+		Glob_u8DriverFreeIndex[LOC_u8ArrayIndex] = 0 ;
 		Glob_u8NumberOfCurrentUsers++ ;
 		USART_voidSendStringWithDelimiterSynch(USART_1, addString("\r\n********************* DONE ****************************** \r\n\0"), '\0');
 		LCD_AddDriver();
@@ -772,11 +775,16 @@ static void System_VoidDeleteUser(DeletingDrivers_t copy_DeleteType)
 				}
 
 			}
-			if(LOC_u8Result == 0 && DriverIndex >= Glob_u8NumberOfCurrentUsers)
+			if(LOC_u8Result == 0 && DriverIndex <= Glob_u8NumberOfCurrentUsers && Glob_u8DriverFreeIndex[DriverIndex] == 0)
 			{
 				LOC_u8Result = 1 ;
 				// ID Verify
 				LOC_u8Result = compTwoStrings(LOC_u8ID, &Glob_u8DriverArr[DriverIndex][1][0]);
+			}
+			else
+			{
+				LOC_u8Result = 1 ;
+
 			}
 
 			if(LOC_u8Result == 0)
@@ -985,9 +993,9 @@ static void LCD_voidAdminOptions(void)
 	LCD_voidSendString(&myLCD,addString("1- Add Driver"));
 	LCD_voidGotoXY(&myLCD,0,2);
 	LCD_voidSendString(&myLCD,addString("2- Delete Driver"));
-	LCD_voidGotoXY(&myLCD,0,3);
-	LCD_voidSendString(&myLCD,addString("3- Edit Data"));
-	LCD_voidSendString(&myLCD,addString("  <B"));
+	LCD_voidGotoXY(&myLCD,8,3);
+	//LCD_voidSendString(&myLCD,addString("3- Edit Data"));
+	LCD_voidSendString(&myLCD,addString("  <BACK"));
 }
 
 static void LCD_voidStatusOptions(void)
@@ -1192,7 +1200,7 @@ void ECU3_Dashboard_APP_LOOP(void)
 			{
 				Glob_u8Pressed_Key = HAL_KeyPadGetPressedKey(&myKeypad);
 
-			}while(!((Glob_u8Pressed_Key>= '1' && Glob_u8Pressed_Key <= '3' ) || (Glob_u8Pressed_Key == (u8)KEYPAD_BACK_SYMBOL ))) ;
+			}while(!((Glob_u8Pressed_Key>= '1' && Glob_u8Pressed_Key <= '2' ) || (Glob_u8Pressed_Key == (u8)KEYPAD_BACK_SYMBOL ))) ;
 
 			/* Check  Pressed Key */
 			if(OPTION_ADD_USER == Glob_u8Pressed_Key)

@@ -121,7 +121,7 @@ static void LCD_voidMainScreen()
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
 	LCD_voidClear(&myLCD);
-	LCD_voidSendString(&myLCD,addString("Entrance Gate"));
+	LCD_voidSendString(&myLCD,addString("Exit Gate"));
 	LCD_voidGotoXY(&myLCD,0,1);
 	LCD_voidSendString(&myLCD,addString("Low Power Mode "));
 	_delay_ms(LCD_WAITING_TIME);
@@ -154,7 +154,7 @@ static void System_voidStates(u8 copy_u8Selection)
 {
 	LCD_voidSetCursorType(&myLCD, CURS_OFF ) ;
 	LCD_voidClear(&myLCD);
-	LCD_voidSendString(&myLCD,addString("Entrance Gate"));
+	LCD_voidSendString(&myLCD,addString("Exit Gate"));
 	LCD_voidGotoXY(&myLCD,0,1);
 	switch(copy_u8Selection)
 	{
