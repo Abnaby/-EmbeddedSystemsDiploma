@@ -1,0 +1,11 @@
+digraph "LIB/BIT_MATH"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_c49787b21523dfcd643eafa322448430 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,dashed,", label="LIB", fontname="Helvetica", fontsize="10", URL="dir_c49787b21523dfcd643eafa322448430.html"]
+  dir_fe6dad5c66ebc492a4da2a9daba898c3 [shape=box, label="BIT_MATH", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_fe6dad5c66ebc492a4da2a9daba898c3.html"];
+  }
+}

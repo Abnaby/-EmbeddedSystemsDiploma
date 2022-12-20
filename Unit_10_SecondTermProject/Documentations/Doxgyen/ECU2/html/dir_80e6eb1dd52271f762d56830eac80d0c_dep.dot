@@ -1,0 +1,15 @@
+digraph "Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU2/ECU2_Dashboard/Inc/MCAL/SPI"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_e9a0d3b8d102ce52e6c93b4a232ee02c {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="MCAL", fontname="Helvetica", fontsize="10", URL="dir_e9a0d3b8d102ce52e6c93b4a232ee02c.html"]
+  dir_715473645394d75e391df1f76991ed74 [shape=box, label="GPIO", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_715473645394d75e391df1f76991ed74.html"];
+  dir_80e6eb1dd52271f762d56830eac80d0c [shape=box, label="SPI", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_80e6eb1dd52271f762d56830eac80d0c.html"];
+  }
+  dir_d22e1ea2fc680c6f0dcd19c090781ff5 [shape=box, label="LIB", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_d22e1ea2fc680c6f0dcd19c090781ff5.html"];
+  dir_80e6eb1dd52271f762d56830eac80d0c->dir_715473645394d75e391df1f76991ed74 [headlabel="1", labeldistance=1.5 headhref="dir_000019_000009.html"];
+  dir_80e6eb1dd52271f762d56830eac80d0c->dir_d22e1ea2fc680c6f0dcd19c090781ff5 [headlabel="2", labeldistance=1.5 headhref="dir_000019_000015.html"];
+}

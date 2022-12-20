@@ -1,0 +1,15 @@
+digraph "Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU2"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_4ead88dd426b75b7fd802afec257107f {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Unit_10_SecondTermProject", fontname="Helvetica", fontsize="10", URL="dir_4ead88dd426b75b7fd802afec257107f.html"]
+  subgraph clusterdir_702a847f80c2a2d2243101435b9340e9 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_702a847f80c2a2d2243101435b9340e9.html"]
+    dir_702a847f80c2a2d2243101435b9340e9 [shape=plaintext, label="ECU2"];
+  dir_50692e18057b42a48fb8386fba0182a1 [shape=box, label="ECU2_Dashboard", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_50692e18057b42a48fb8386fba0182a1.html"];
+  }
+  }
+}

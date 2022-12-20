@@ -1,4 +1,4 @@
-# **ECU3 Exit Gate**
+# **Private Parking Garage**
 ## *Description*
 This Project aims to make a design for a private parking garage area for people in a specific area or garage for a company.
 This system is split into three ECUs:
@@ -20,12 +20,21 @@ This system is split into three ECUs:
 The Whole system is connected together when a driver enters a valid ID the ECU1 sends data through SPI to ECU2, and the ECU2 starts checking if the ID is valid or not and checking if it is inside the garage and wants to exit from the entrance gate then the ECU2 return the result of checking to ECU1 to display the result of computing on the LCD is valid ID or invalid ID.
 When the driver wants to exit the garage space and enter the ID the ECU3 sends the driver data to ECU2, and the ECU2 starts checking if the ID is valid or not and checking if it is outside the garage and wants to enter from the exit gate then the ECU2 return the result of checking to ECU1 to display the result of computing on the LCD is valid ID or invalid ID.
 
+## *Project Overview* 
+ ![ProjectOverview](https://drive.google.com/uc?export=download&id=19YwZc3M16f4vLemHgEzKwErMsVJz_CFh) 
+ - ECU1 Calls
+  ![ECU1 Calls]( https://drive.google.com/uc?export=download&id=1WMzGYZMEJb30pcN8q_XpnvaNUUKMUHOB) 
+  - ECU2 Calls
+    ![ECU2 CALLS](https://drive.google.com/uc?export=download&id=1q_qkUGXkS0rCOSJLBIxbIuL0c0AMwQlj)
+ - ECU3 Calls
+     ![ECU2 CALLS](https://drive.google.com/uc?export=download&id=1s53giUzwLCDT81wgGZgFoqPMbuF4L6kL)
+
 ## *System Diagrams* 
  [HTML page for system diagrams ](https://github.com/Abnaby/EmbeddedSystemsDiploma/blob/main/Unit_10_SecondTermProject/System%20Diagrams/doc.html) 
  
 
 ## *Documentations* 
-- [Doxygen]([Doxygen]()) ![image](https://progress-bar.dev/0/)
+- [Doxygen]([Doxygen]()) ![image](https://progress-bar.dev/100/)
 - [Word File]([Word_File]()) ![image](https://progress-bar.dev/0/)
 
 
@@ -40,7 +49,17 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 ![RequirementDiagram](https://drive.google.com/uc?export=download&id=12t4j4HahuhJd27lik5dbc7H875zRNw_T)
 
 ## Sequance Diagram
-![SequanceDiagram](https://drive.google.com/uc?export=download&id=1xhucH4LorB8i_Pav6T9dfesSjEZY5ERV)
+- ECU1 Simplified UML
+![SequanceDiagram](https://drive.google.com/uc?export=download&id=1_DSOFTHKYi_RzpVg1BZUeSVKk1EWuJ1T)  
+
+- ECU2 Simplified UML
+![SequanceDiagram](https://drive.google.com/uc?export=download&id=1Oaol9UfESK9_CJoJVRfzGUjLhNER3kck)  
+
+- ECU3 Simplified UML
+![SequanceDiagram](https://drive.google.com/uc?export=download&id=1oopwEmx-GwoPcXKGPp8wjcuOpqUfg80E)  
+
+- System Sequence Diagram 
+![SequanceDiagram](https://drive.google.com/uc?export=download&id=1xhucH4LorB8i_Pav6T9dfesSjEZY5ERV)  
 
 
 ## *Sprints Details* 
@@ -58,6 +77,9 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 [PPG Sprint7](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_7) ![image](https://progress-bar.dev/100/)
 
+[PPG Sprint7](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/SprintsDetails/Sprint_8) ![image](https://progress-bar.dev/100/)
+
+
 ## *ECU3 Testing*
 [ECU1 Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_10_SecondTermProject/ECU1/TestCases) ![image](https://progress-bar.dev/100/)
 
@@ -65,6 +87,9 @@ When the driver wants to exit the garage space and enter the ID the ECU3 sends t
 
 [ECU3 Testing](https://github.com/Abnaby/EmbeddedSystemsDiploma/blob/main/Unit_10_SecondTermProject/ECU3/TestCases/ECU3_ExitGate_TestCases.xlsx) ![image](https://progress-bar.dev/100/)
 
+## **Demo**
+
+[![Watch the video](https://drive.google.com/uc?export=download&id=1eCF_gKzckSzueEvqEV9ns8dZomcR8Zj5)](https://youtu.be/0oEr_Qcj3Wc)
 
 
 ## *Contributing*  

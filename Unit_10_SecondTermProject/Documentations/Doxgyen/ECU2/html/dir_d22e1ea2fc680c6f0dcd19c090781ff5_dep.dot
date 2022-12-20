@@ -1,0 +1,17 @@
+digraph "Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU2/ECU2_Dashboard/Inc/LIB"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_e92539377af93bf542fbdce6be32f72e {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Inc", fontname="Helvetica", fontsize="10", URL="dir_e92539377af93bf542fbdce6be32f72e.html"]
+  subgraph clusterdir_d22e1ea2fc680c6f0dcd19c090781ff5 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_d22e1ea2fc680c6f0dcd19c090781ff5.html"]
+    dir_d22e1ea2fc680c6f0dcd19c090781ff5 [shape=plaintext, label="LIB"];
+  dir_900b9d87d0484c1298867e7770ed58bc [shape=box, label="BIT_MATH", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_900b9d87d0484c1298867e7770ed58bc.html"];
+  dir_a479706001f578a4c8324c953233b5b6 [shape=box, label="COMMON", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_a479706001f578a4c8324c953233b5b6.html"];
+  dir_7141c067d901e84e4615b4b35fef2186 [shape=box, label="STD_TYPES", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_7141c067d901e84e4615b4b35fef2186.html"];
+  }
+  }
+}

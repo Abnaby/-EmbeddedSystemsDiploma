@@ -1,0 +1,15 @@
+digraph "C:/Users/Abnaby/Desktop/Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU1/ECU1_EntranceGate"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_690fc0bfe67626e35ae4a8330c6ec3ba {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,dashed,", label="ECU1", fontname="Helvetica", fontsize="10", URL="dir_690fc0bfe67626e35ae4a8330c6ec3ba.html"]
+  subgraph clusterdir_0e83eda946c08f383e086703cca42555 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_0e83eda946c08f383e086703cca42555.html"]
+    dir_0e83eda946c08f383e086703cca42555 [shape=plaintext, label="ECU1_EntranceGate"];
+  dir_33bab7d1727f8a4a779bc0254a0db2f6 [shape=box, label="ECU1_EntranceGate", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_33bab7d1727f8a4a779bc0254a0db2f6.html"];
+  }
+  }
+}

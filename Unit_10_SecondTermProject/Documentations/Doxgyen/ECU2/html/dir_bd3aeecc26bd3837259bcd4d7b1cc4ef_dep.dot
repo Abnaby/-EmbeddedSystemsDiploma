@@ -1,0 +1,13 @@
+digraph "Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU2/ECU2_Dashboard/Inc/MCAL/NVIC"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_e9a0d3b8d102ce52e6c93b4a232ee02c {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="MCAL", fontname="Helvetica", fontsize="10", URL="dir_e9a0d3b8d102ce52e6c93b4a232ee02c.html"]
+  dir_bd3aeecc26bd3837259bcd4d7b1cc4ef [shape=box, label="NVIC", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_bd3aeecc26bd3837259bcd4d7b1cc4ef.html"];
+  }
+  dir_d22e1ea2fc680c6f0dcd19c090781ff5 [shape=box, label="LIB", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_d22e1ea2fc680c6f0dcd19c090781ff5.html"];
+  dir_bd3aeecc26bd3837259bcd4d7b1cc4ef->dir_d22e1ea2fc680c6f0dcd19c090781ff5 [headlabel="3", labeldistance=1.5 headhref="dir_000017_000015.html"];
+}

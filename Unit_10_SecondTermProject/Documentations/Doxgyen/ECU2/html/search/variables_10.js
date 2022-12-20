@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['spi1_5fcommunication_0',['SPI1_Communication',['../_a_p_p_8c.html#a9b753d2a6c5eda688931c5c0d4932f88',1,'APP.c']]],
+  ['spi_5fbuadrate_1',['SPI_BuadRate',['../struct_s_p_i__config.html#a31628b1c61b6acc602b2fa65293669b0',1,'SPI_config']]],
+  ['spi_5fcommmode_2',['SPI_CommMode',['../struct_s_p_i__config.html#a9cdb155a697621485bb807ab830dec22',1,'SPI_config']]],
+  ['spi_5fdataorder_3',['SPI_DataOrder',['../struct_s_p_i__config.html#a519c8ab1e37fb1d9bdb906d2b4dd8004',1,'SPI_config']]],
+  ['spi_5fdatasampling_4',['SPI_DataSampling',['../struct_s_p_i__config.html#a961001125e8538bf018d8399fa9fe422',1,'SPI_config']]],
+  ['spi_5fdatasize_5',['SPI_DataSize',['../struct_s_p_i__config.html#a2c939ee2c6af9bcd27fa83c55167067f',1,'SPI_config']]],
+  ['spi_5ferror_6',['SPI_ERROR',['../struct_s_p_i___i_r_q___s_r_c.html#a9b0e3d73758283425c7b1e53568da52c',1,'SPI_IRQ_SRC']]],
+  ['spi_5fidlelevel_7',['SPI_IdleLevel',['../struct_s_p_i__config.html#a2b9d368922e626acc0ddba95f116d5e1',1,'SPI_config']]],
+  ['spi_5firq_8',['SPI_IRQ',['../struct_s_p_i__config.html#a34e641d0d454fd7f2da313a1c73f1927',1,'SPI_config']]],
+  ['spi_5fmode_9',['SPI_Mode',['../struct_s_p_i__config.html#a675c7832c379fd7ba7895e2f9f3a5a55',1,'SPI_config']]],
+  ['spi_5freserved_10',['SPI_Reserved',['../struct_s_p_i___i_r_q___s_r_c.html#a255788b3379a8479250a8ec6a84d8991',1,'SPI_IRQ_SRC']]],
+  ['spi_5frxne_11',['SPI_RXNE',['../struct_s_p_i___i_r_q___s_r_c.html#a16498169a534449a7869a6ce15a7cd29',1,'SPI_IRQ_SRC']]],
+  ['spi_5fslaveselectmangment_12',['SPI_SlaveSelectMangment',['../struct_s_p_i__config.html#a878a60b931e54d7348be04a0aa809b3b',1,'SPI_config']]],
+  ['spi_5ftxe_13',['SPI_TXE',['../struct_s_p_i___i_r_q___s_r_c.html#a9614f9ca2b18ce0568da85381b99c502',1,'SPI_IRQ_SRC']]],
+  ['sr_14',['SR',['../struct_s_p_i__t.html#a44cb4e40fa6d41e94413b6a78a610b4b',1,'SPI_t::SR()'],['../struct_u_s_a_r_t___type.html#a44cb4e40fa6d41e94413b6a78a610b4b',1,'USART_Type::SR()']]],
+  ['sr1_15',['SR1',['../struct_i2_c__t.html#a22ba10e5ac437ac30b347532d5eae221',1,'I2C_t']]],
+  ['sr2_16',['SR2',['../struct_i2_c__t.html#a0d301e4ff0cd243af4e789cb2a0ebd7c',1,'I2C_t']]],
+  ['stk_5fu8modeofinterval_17',['STK_u8ModeOfInterval',['../_s_t_k__program_8c.html#acbc58011e5881cbfe7c8b674ab702df4',1,'STK_program.c']]],
+  ['swier_18',['SWIER',['../struct_e_x_t_i__regs.html#af9f392f9e92161d1d3e2edd1915eb689',1,'EXTI_regs']]]
+];
