@@ -2,9 +2,8 @@
 * @file SCB_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-10-28
-*
+* @version 0.2
+* @date 2023-01-02
 */
 #ifndef SCB_INTERFACE_H 
 #define SCB_INTERFACE_H 
@@ -67,7 +66,18 @@
  */
 void SCB_voidSetPriorityGrouping(PriorityGrouping_t  copy_selectGroupingSettings);
 
+/**
+ * @brief This Function is used to make offset on vector table
+ * 
+ * @param P_STARTUP passing pointer to startup code address 
+ */
+void SCB_voidOffesetVectorTable(u32 *PTR_STARTUP);
 
-
+/**
+ * @brief This Function is used to jump on application
+ * 
+ * @param P_APP pointer to application layer 
+ */
+void SCB_voidJumptoApp(void(* P_APP)(void));
 #endif
 /************************************* End of File ******************************************/

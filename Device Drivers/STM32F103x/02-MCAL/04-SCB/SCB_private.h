@@ -2,8 +2,8 @@
 * @file SCB_private.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief 
-* @version 0.1
-* @date 2022-10-28
+* @version 0.2
+* @date 2023-01-02
 *
 */
 #ifndef SCB_PRIVATE_H 
@@ -48,7 +48,7 @@
 #define SCB_AIRCR 			*((volatile u32 *) SCB_BASE_ADDRESS + 0x0C)
 #define SCB_SCR			    *((volatile u32 *) SCB_BASE_ADDRESS + 0x10)
 #define SCB_CCR			    *((volatile u32 *) SCB_BASE_ADDRESS + 0x14)
-#define SCB_SHPR			 ((volatile u32 *) SCB_BASE_ADDRESS + 0x18)
+#define SCB_SHPR			*((volatile u32 *) SCB_BASE_ADDRESS + 0x18)
 #define SCB_SHCRS			*((volatile u32 *) SCB_BASE_ADDRESS + 0x24)
 #define SCB_CFSR			*((volatile u32 *) SCB_BASE_ADDRESS + 0X28)
 #define SCB_HFSR			*((volatile u32 *) SCB_BASE_ADDRESS + 0x2C)
