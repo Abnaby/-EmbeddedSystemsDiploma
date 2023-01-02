@@ -1,0 +1,506 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="4405" height="993" viewbox="13 18 4392 975">
+<line  x1="4265" y1="643" x2="4250" y2="558" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="4250" y1="558" x2="4256" y2="565" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="4250" y1="558" x2="4246" y2="567" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="4228" y="600" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="4265" y1="757" x2="4268" y2="874" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="4268" y1="874" x2="4262" y2="865" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="4268" y1="874" x2="4272" y2="865" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="4223" y="815" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="728" y1="265" x2="912" y2="137" stroke="#000000" stroke-width="1" fill="none"/>
+<ellipse  cx="913" cy="143" rx="5" ry="5" fill="#ffffff"/>
+<ellipse  cx="912" cy="142" rx="5" ry="5" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="912" y1="137" x2="912" y2="147" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="907" y1="142" x2="917" y2="142" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1833" y1="244" x2="969" y2="137" stroke="#000000" stroke-width="1" fill="none"/>
+<ellipse  cx="970" cy="143" rx="5" ry="5" fill="#ffffff"/>
+<ellipse  cx="969" cy="142" rx="5" ry="5" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="969" y1="137" x2="969" y2="147" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="964" y1="142" x2="974" y2="142" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3322" y1="251" x2="1026" y2="137" stroke="#000000" stroke-width="1" fill="none"/>
+<ellipse  cx="1027" cy="143" rx="5" ry="5" fill="#ffffff"/>
+<ellipse  cx="1026" cy="142" rx="5" ry="5" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1026" y1="137" x2="1026" y2="147" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1021" y1="142" x2="1031" y2="142" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="340" y1="482" x2="669" y2="379" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="669" y1="379" x2="662" y2="386" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="669" y1="379" x2="659" y2="376" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="475" y="430" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="736" y1="486" x2="728" y2="379" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="728" y1="379" x2="733" y2="387" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="728" y1="379" x2="723" y2="388" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="702" y="432" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="256" y1="859" x2="261" y2="596" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="261" y1="596" x2="265" y2="604" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="261" y1="596" x2="255" y2="604" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="215" y="727" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="3256" y1="450" x2="3271" y2="365" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3271" y1="365" x2="3274" y2="374" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3271" y1="365" x2="3264" y2="372" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="3234" y="407" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="3791" y1="453" x2="3373" y2="365" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3373" y1="365" x2="3382" y2="361" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3373" y1="365" x2="3380" y2="371" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="3552" y="409" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="727" y1="863" x2="736" y2="600" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="736" y1="600" x2="740" y2="608" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="736" y1="600" x2="730" y2="608" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="688" y="731" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="3413" y1="867" x2="3368" y2="564" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3368" y1="564" x2="3374" y2="571" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3368" y1="564" x2="3364" y2="573" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="3347" y="715" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="3881" y1="860" x2="3863" y2="567" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3863" y1="567" x2="3868" y2="575" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3863" y1="567" x2="3858" y2="575" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="3828" y="713" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="1757" y1="659" x2="1856" y2="577" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1856" y1="577" x2="1852" y2="586" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1856" y1="577" x2="1846" y2="578" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1777" y="618" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="1975" y1="658" x2="1911" y2="577" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1911" y1="577" x2="1920" y2="580" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1911" y1="577" x2="1912" y2="586" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1913" y="617" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="2190" y1="656" x2="1966" y2="577" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1966" y1="577" x2="1975" y2="575" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1966" y1="577" x2="1972" y2="584" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2048" y="616" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="1719" y1="856" x2="1712" y2="785" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1712" y1="785" x2="1717" y2="793" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1712" y1="785" x2="1707" y2="794" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1672" y="820" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="1766" y1="856" x2="1930" y2="784" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1930" y1="784" x2="1924" y2="792" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1930" y1="784" x2="1920" y2="782" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1804" y="820" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="1813" y1="856" x2="2145" y2="782" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2145" y1="782" x2="2137" y2="788" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2145" y1="782" x2="2135" y2="779" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1935" y="819" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="2065" y1="857" x2="2085" y2="832" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2085" y1="832" x2="1927" y2="832" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1927" y1="832" x2="1927" y2="831" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1927" y1="831" x2="1789" y2="831" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1789" y1="831" x2="1757" y2="785" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1757" y1="785" x2="1766" y2="789" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1757" y1="785" x2="1757" y2="794" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1729" y="808" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="2169" y1="857" x2="2190" y2="782" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2190" y1="782" x2="2192" y2="791" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2190" y1="782" x2="2182" y2="788" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2136" y="819" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="2117" y1="857" x2="2066" y2="752" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2066" y1="752" x2="2074" y2="757" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2066" y1="752" x2="2065" y2="761" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2048" y="804" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="2891" y1="563" x2="2882" y2="866" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2882" y1="866" x2="2877" y2="857" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2882" y1="866" x2="2887" y2="857" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2843" y="714" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="2393" y1="578" x2="2401" y2="860" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2401" y1="860" x2="2395" y2="851" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="2401" y1="860" x2="2405" y2="851" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2353" y="719" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="2891" y1="449" x2="1962" y2="272" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1962" y1="272" x2="1971" y2="268" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1962" y1="272" x2="1969" y2="278" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2397" y="360" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="1447" y1="592" x2="1471" y2="858" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1471" y1="858" x2="1465" y2="849" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1471" y1="858" x2="1475" y2="848" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1415" y="725" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="1102" y1="674" x2="1080" y2="604" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1080" y1="604" x2="1087" y2="610" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1080" y1="604" x2="1077" y2="613" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1061" y="639" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="1102" y1="788" x2="1100" y2="860" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1100" y1="860" x2="1095" y2="851" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1100" y1="860" x2="1105" y2="851" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1057" y="824" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;deriveReqt&gt;&gt;</text>
+<line  x1="1080" y1="490" x2="786" y2="379" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="786" y1="379" x2="795" y2="377" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="786" y1="379" x2="792" y2="386" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="903" y="434" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="1447" y1="478" x2="1769" y2="358" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1769" y1="358" x2="1762" y2="365" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1769" y1="358" x2="1759" y2="356" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1578" y="418" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="1911" y1="463" x2="1833" y2="358" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1833" y1="358" x2="1842" y2="361" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1833" y1="358" x2="1834" y2="367" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="1842" y="410" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="2393" y1="464" x2="1897" y2="358" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1897" y1="358" x2="1906" y2="354" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="1897" y1="358" x2="1904" y2="364" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="2115" y="411" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<line  x1="4250" y1="444" x2="3424" y2="308" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3424" y1="308" x2="3433" y2="304" stroke="#000000" stroke-width="1" fill="none"/>
+<line  x1="3424" y1="308" x2="3431" y2="314" stroke="#000000" stroke-width="1" fill="none"/>
+<text  x="3807" y="376" style="font-size:12; font-family:SansSerif.plain; fill=#000000">&lt;&lt;refine&gt;&gt;</text>
+<rect  x="4150" y="444" width="200" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="4150" y1="474" x2="4350" y2="474" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="4151" y="445" width="198" height="28" fill="#e4f1f2"/>
+<rect  x="4151" y="475" width="198" height="82" fill="#cdc46d"/>
+<text  x="4207" y="454" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="4205" y="466" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ReadDriverData</text>
+<text  x="4155" y="486" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=24</text>
+<text  x="4155" y="498" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="4155" y="510" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall to read user card.&quot;</text>
+<text  x="4155" y="522" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="4155" y="534" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="4155" y="546" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="4130" y="643" width="270" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="4130" y1="673" x2="4400" y2="673" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="4131" y="644" width="268" height="28" fill="#e4f1f2"/>
+<rect  x="4131" y="674" width="268" height="82" fill="#cdc46d"/>
+<text  x="4222" y="653" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="4233" y="665" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">RFID_UART</text>
+<text  x="4135" y="685" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=25</text>
+<text  x="4135" y="697" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="4135" y="709" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall read RFID card through UART.&quot;</text>
+<text  x="4135" y="721" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="4135" y="733" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="4135" y="745" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="4136" y="874" width="264" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="4136" y1="904" x2="4400" y2="904" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="4137" y="875" width="262" height="28" fill="#e4f1f2"/>
+<rect  x="4137" y="905" width="262" height="82" fill="#cdc46d"/>
+<text  x="4225" y="884" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="4209" y="896" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ValidatedInformation</text>
+<text  x="4141" y="916" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=26</text>
+<text  x="4141" y="928" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="4141" y="940" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall validate the input information.&quot;</text>
+<text  x="4141" y="952" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="4141" y="964" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="4141" y="976" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1885" y="658" width="181" height="126" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1885" y1="688" x2="2066" y2="688" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1886" y="659" width="179" height="28" fill="#e4f1f2"/>
+<rect  x="1886" y="689" width="179" height="94" fill="#cdc46d"/>
+<text  x="1933" y="668" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1947" y="680" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">AddDriver</text>
+<text  x="1890" y="700" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=16</text>
+<text  x="1890" y="712" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1890" y="724" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall add new</text>
+<text  x="1890" y="736" style="font-size:12; font-family:SansSerif.plain; fill=#000000"> driver information.&quot;</text>
+<text  x="1890" y="748" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1890" y="760" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="1890" y="772" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="2100" y="656" width="181" height="126" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="2100" y1="686" x2="2281" y2="686" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="2101" y="657" width="179" height="28" fill="#e4f1f2"/>
+<rect  x="2101" y="687" width="179" height="94" fill="#cdc46d"/>
+<text  x="2148" y="666" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="2150" y="678" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">RemoveDriver</text>
+<text  x="2105" y="698" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=17</text>
+<text  x="2105" y="710" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="2105" y="722" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall add new</text>
+<text  x="2105" y="734" style="font-size:12; font-family:SansSerif.plain; fill=#000000"> driver information.&quot;</text>
+<text  x="2105" y="746" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="2105" y="758" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="2105" y="770" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1667" y="659" width="181" height="126" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1667" y1="689" x2="1848" y2="689" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1668" y="660" width="179" height="28" fill="#e4f1f2"/>
+<rect  x="1668" y="690" width="179" height="94" fill="#cdc46d"/>
+<text  x="1715" y="669" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1719" y="681" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">EditDriverInfo</text>
+<text  x="1672" y="701" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=15</text>
+<text  x="1672" y="713" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1672" y="725" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall </text>
+<text  x="1672" y="737" style="font-size:12; font-family:SansSerif.plain; fill=#000000">edit driver information.&quot;</text>
+<text  x="1672" y="749" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1672" y="761" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="1672" y="773" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1673" y="856" width="187" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1673" y1="886" x2="1860" y2="886" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1674" y="857" width="185" height="28" fill="#e4f1f2"/>
+<rect  x="1674" y="887" width="185" height="82" fill="#cdc46d"/>
+<text  x="1724" y="866" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1740" y="878" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">Driver_ID</text>
+<text  x="1678" y="898" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=18</text>
+<text  x="1678" y="910" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1678" y="922" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall edit ID of Driver&quot;</text>
+<text  x="1678" y="934" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1678" y="946" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="1678" y="958" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="2014" y="857" width="207" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="2014" y1="887" x2="2221" y2="887" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="2015" y="858" width="205" height="28" fill="#e4f1f2"/>
+<rect  x="2015" y="888" width="205" height="82" fill="#cdc46d"/>
+<text  x="2075" y="867" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="2080" y="879" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">Driver_Name</text>
+<text  x="2019" y="899" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=19</text>
+<text  x="2019" y="911" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="2019" y="923" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall edit name of Driver&quot;</text>
+<text  x="2019" y="935" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="2019" y="947" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="2019" y="959" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="610" y="863" width="234" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="610" y1="893" x2="844" y2="893" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="611" y="864" width="232" height="28" fill="#e4f1f2"/>
+<rect  x="611" y="894" width="232" height="82" fill="#cdc46d"/>
+<text  x="684" y="873" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="662" y="885" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">EntranceMotionSensor</text>
+<text  x="615" y="905" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=7</text>
+<text  x="615" y="917" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="615" y="929" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall read for the PIR sensor.&quot;</text>
+<text  x="615" y="941" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="615" y="953" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="615" y="965" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="3734" y="860" width="295" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="3734" y1="890" x2="4029" y2="890" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="3735" y="861" width="293" height="28" fill="#e4f1f2"/>
+<rect  x="3735" y="891" width="293" height="82" fill="#cdc46d"/>
+<text  x="3839" y="870" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="3831" y="882" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ExitMotionSensor</text>
+<text  x="3739" y="902" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=11</text>
+<text  x="3739" y="914" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="3739" y="926" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall read for the PIR sensor of exit gate.&quot;</text>
+<text  x="3739" y="938" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="3739" y="950" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="3739" y="962" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="18" y="859" width="476" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="18" y1="889" x2="494" y2="889" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="19" y="860" width="474" height="28" fill="#e4f1f2"/>
+<rect  x="19" y="890" width="474" height="82" fill="#cdc46d"/>
+<text  x="213" y="869" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="197" y="881" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">EntranceServoMotor</text>
+<text  x="23" y="901" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=6</text>
+<text  x="23" y="913" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="23" y="925" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall write the angle on the servo motor that attached to the entrance gate.&quot;</text>
+<text  x="23" y="937" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="23" y="949" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="23" y="961" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="3190" y="867" width="446" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="3190" y1="897" x2="3636" y2="897" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="3191" y="868" width="444" height="28" fill="#e4f1f2"/>
+<rect  x="3191" y="898" width="444" height="82" fill="#cdc46d"/>
+<text  x="3370" y="877" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="3369" y="889" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ExitServoMotor</text>
+<text  x="3195" y="909" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=10</text>
+<text  x="3195" y="921" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="3195" y="933" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall write the angle on the servo motor that attached to the exit gate.&quot;</text>
+<text  x="3195" y="945" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="3195" y="957" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="3195" y="969" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="3145" y="450" width="446" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="3145" y1="480" x2="3591" y2="480" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="3146" y="451" width="444" height="28" fill="#e4f1f2"/>
+<rect  x="3146" y="481" width="444" height="82" fill="#cdc46d"/>
+<text  x="3325" y="460" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="3325" y="472" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ExitGateMotion</text>
+<text  x="3150" y="492" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=8</text>
+<text  x="3150" y="504" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="3150" y="516" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall write the angle on the servo motor that attached to the exit gate.&quot;</text>
+<text  x="3150" y="528" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="3150" y="540" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="3150" y="552" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="182" y="482" width="316" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="182" y1="512" x2="498" y2="512" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="183" y="483" width="314" height="28" fill="#e4f1f2"/>
+<rect  x="183" y="513" width="314" height="82" fill="#cdc46d"/>
+<text  x="297" y="492" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="282" y="504" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">EntranceGateMotion</text>
+<text  x="187" y="524" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=4</text>
+<text  x="187" y="536" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="187" y="548" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall control the motion of the entrance gate.&quot;</text>
+<text  x="187" y="560" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="187" y="572" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="187" y="584" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="3720" y="453" width="286" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="3720" y1="483" x2="4006" y2="483" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="3721" y="454" width="284" height="28" fill="#e4f1f2"/>
+<rect  x="3721" y="484" width="284" height="82" fill="#cdc46d"/>
+<text  x="3820" y="463" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="3820" y="475" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ExitGateMotion</text>
+<text  x="3725" y="495" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=9</text>
+<text  x="3725" y="507" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="3725" y="519" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall control the motion of the exit gate.&quot;</text>
+<text  x="3725" y="531" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="3725" y="543" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="3725" y="555" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="611" y="265" width="234" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="611" y1="295" x2="845" y2="295" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="612" y="266" width="232" height="28" fill="#e4f1f2"/>
+<rect  x="612" y="296" width="232" height="82" fill="#cdc46d"/>
+<text  x="685" y="275" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="713" y="287" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ECU1</text>
+<text  x="616" y="307" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=1</text>
+<text  x="616" y="319" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="616" y="331" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The ECU1 shall control the entrance gate.&quot;</text>
+<text  x="616" y="343" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="616" y="355" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="616" y="367" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="3220" y="251" width="204" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="3220" y1="281" x2="3424" y2="281" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="3221" y="252" width="202" height="28" fill="#e4f1f2"/>
+<rect  x="3221" y="282" width="202" height="82" fill="#cdc46d"/>
+<text  x="3279" y="261" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="3307" y="273" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ECU3</text>
+<text  x="3225" y="293" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=3</text>
+<text  x="3225" y="305" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="3225" y="317" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The ECU3 shall control the exit gate.&quot;</text>
+<text  x="3225" y="329" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="3225" y="341" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="3225" y="353" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1705" y="244" width="257" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1705" y1="274" x2="1962" y2="274" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1706" y="245" width="255" height="28" fill="#e4f1f2"/>
+<rect  x="1706" y="275" width="255" height="82" fill="#cdc46d"/>
+<text  x="1791" y="254" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1818" y="266" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ECU2</text>
+<text  x="1710" y="286" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=2</text>
+<text  x="1710" y="298" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1710" y="310" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The ECU1 shall control the admin dashboard.&quot;</text>
+<text  x="1710" y="322" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1710" y="334" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;High&quot;</text>
+<text  x="1710" y="346" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="855" y="23" width="229" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="855" y1="53" x2="1084" y2="53" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="856" y="24" width="227" height="28" fill="#e4f1f2"/>
+<rect  x="856" y="54" width="227" height="82" fill="#cdc46d"/>
+<text  x="927" y="33" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="907" y="45" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">PrivateGarageSystem</text>
+<text  x="860" y="65" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=0</text>
+<text  x="860" y="77" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="860" y="89" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall make a private garage.&quot;</text>
+<text  x="860" y="101" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="860" y="113" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="860" y="125" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="586" y="486" width="301" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="586" y1="516" x2="887" y2="516" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="587" y="487" width="299" height="28" fill="#e4f1f2"/>
+<rect  x="587" y="517" width="299" height="82" fill="#cdc46d"/>
+<text  x="694" y="496" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="665" y="508" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">EntranceMotionDetection</text>
+<text  x="591" y="528" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=5</text>
+<text  x="591" y="540" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="591" y="552" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall detect the motion in front of the gate.&quot;</text>
+<text  x="591" y="564" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="591" y="576" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="591" y="588" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1306" y="478" width="283" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1306" y1="508" x2="1589" y2="508" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1307" y="479" width="281" height="28" fill="#e4f1f2"/>
+<rect  x="1307" y="509" width="281" height="82" fill="#cdc46d"/>
+<text  x="1405" y="488" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1387" y="500" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">DisplayAvailableSlots</text>
+<text  x="1311" y="520" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=12</text>
+<text  x="1311" y="532" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1311" y="544" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall display available slots in garage.&quot;</text>
+<text  x="1311" y="556" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1311" y="568" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="1311" y="580" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1303" y="858" width="336" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1303" y1="888" x2="1639" y2="888" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1304" y="859" width="334" height="28" fill="#e4f1f2"/>
+<rect  x="1304" y="889" width="334" height="82" fill="#cdc46d"/>
+<text  x="1428" y="868" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1407" y="880" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">SevenSegmentDisplay</text>
+<text  x="1308" y="900" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=13</text>
+<text  x="1308" y="912" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1308" y="924" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall display available slots in seven segments.&quot;</text>
+<text  x="1308" y="936" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1308" y="948" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="1308" y="960" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="1801" y="463" width="220" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="1801" y1="493" x2="2021" y2="493" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="1802" y="464" width="218" height="28" fill="#e4f1f2"/>
+<rect  x="1802" y="494" width="218" height="82" fill="#cdc46d"/>
+<text  x="1868" y="473" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1861" y="485" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">UsersInformation</text>
+<text  x="1806" y="505" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=14</text>
+<text  x="1806" y="517" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="1806" y="529" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall edit user information.&quot;</text>
+<text  x="1806" y="541" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="1806" y="553" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="1806" y="565" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="2333" y="464" width="240" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="2333" y1="494" x2="2573" y2="494" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="2334" y="465" width="238" height="28" fill="#e4f1f2"/>
+<rect  x="2334" y="495" width="238" height="82" fill="#cdc46d"/>
+<text  x="2410" y="474" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="2405" y="486" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">StoreInformation</text>
+<text  x="2338" y="506" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=20</text>
+<text  x="2338" y="518" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="2338" y="530" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall store drivers information.&quot;</text>
+<text  x="2338" y="542" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="2338" y="554" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="2338" y="566" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="2301" y="860" width="401" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="2301" y1="890" x2="2702" y2="890" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="2302" y="861" width="399" height="28" fill="#e4f1f2"/>
+<rect  x="2302" y="891" width="399" height="82" fill="#cdc46d"/>
+<text  x="2459" y="870" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="2477" y="882" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">EEPROM</text>
+<text  x="2306" y="902" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=21</text>
+<text  x="2306" y="914" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="2306" y="926" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System Shall store data in non-volatile memory to store drivers data.&quot;</text>
+<text  x="2306" y="938" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="2306" y="950" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="2306" y="962" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="2758" y="449" width="266" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="2758" y1="479" x2="3024" y2="479" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="2759" y="450" width="264" height="28" fill="#e4f1f2"/>
+<rect  x="2759" y="480" width="264" height="82" fill="#cdc46d"/>
+<text  x="2848" y="459" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="2826" y="471" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">DisplayDashboardData</text>
+<text  x="2763" y="491" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=22</text>
+<text  x="2763" y="503" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="2763" y="515" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall to display current system info.&quot;</text>
+<text  x="2763" y="527" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="2763" y="539" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="2763" y="551" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="2820" y="866" width="249" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="2820" y1="896" x2="3069" y2="896" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="2821" y="867" width="247" height="28" fill="#e4f1f2"/>
+<rect  x="2821" y="897" width="247" height="82" fill="#cdc46d"/>
+<text  x="2902" y="876" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="2909" y="888" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">LCD_Display</text>
+<text  x="2825" y="908" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=23</text>
+<text  x="2825" y="920" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="2825" y="932" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall to display its info into LCD.&quot;</text>
+<text  x="2825" y="944" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="2825" y="956" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="2825" y="968" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="980" y="490" width="200" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="980" y1="520" x2="1180" y2="520" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="981" y="491" width="198" height="28" fill="#e4f1f2"/>
+<rect  x="981" y="521" width="198" height="82" fill="#cdc46d"/>
+<text  x="1037" y="500" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1035" y="512" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ReadDriverData</text>
+<text  x="985" y="532" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=24</text>
+<text  x="985" y="544" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="985" y="556" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall to read user card.&quot;</text>
+<text  x="985" y="568" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="985" y="580" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="985" y="592" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="967" y="674" width="270" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="967" y1="704" x2="1237" y2="704" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="968" y="675" width="268" height="28" fill="#e4f1f2"/>
+<rect  x="968" y="705" width="268" height="82" fill="#cdc46d"/>
+<text  x="1059" y="684" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1070" y="696" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">RFID_UART</text>
+<text  x="972" y="716" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=25</text>
+<text  x="972" y="728" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="972" y="740" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall read RFID card through UART.&quot;</text>
+<text  x="972" y="752" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="972" y="764" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="972" y="776" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+<rect  x="968" y="860" width="264" height="114" fill="none" stroke="#000000" stroke-width="1"/>
+<line  x1="968" y1="890" x2="1232" y2="890" stroke="#000000" stroke-width="1" fill="none"/>
+<rect  x="969" y="861" width="262" height="28" fill="#e4f1f2"/>
+<rect  x="969" y="891" width="262" height="82" fill="#cdc46d"/>
+<text  x="1057" y="870" style="font-size:10; font-family:SansSerif.plain; fill=#000000">&lt;&lt;Requirement&gt;&gt;</text>
+<text  x="1041" y="882" style="font-size:12; font-family:SansSerif.bold; font-weight=bold; fill=#000000">ValidatedInformation</text>
+<text  x="973" y="902" style="font-size:12; font-family:SansSerif.plain; fill=#000000">ID=26</text>
+<text  x="973" y="914" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Text=&quot;Requirement description:</text>
+<text  x="973" y="926" style="font-size:12; font-family:SansSerif.plain; fill=#000000">The System shall validate the input information.&quot;</text>
+<text  x="973" y="938" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Kind=&quot;Functional&quot;</text>
+<text  x="973" y="950" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Risk=&quot;Low&quot;</text>
+<text  x="973" y="962" style="font-size:12; font-family:SansSerif.plain; fill=#000000">Reference elements=&quot;&quot;</text>
+</svg>

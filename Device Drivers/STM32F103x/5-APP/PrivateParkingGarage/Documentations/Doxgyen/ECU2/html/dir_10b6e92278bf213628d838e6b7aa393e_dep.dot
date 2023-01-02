@@ -1,0 +1,15 @@
+digraph "Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU2/ECU2_Dashboard/Inc/HAL/Buzzer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_ac04882b3ec6dcf518a4267f82380e4f {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="HAL", fontname="Helvetica", fontsize="10", URL="dir_ac04882b3ec6dcf518a4267f82380e4f.html"]
+  dir_10b6e92278bf213628d838e6b7aa393e [shape=box, label="Buzzer", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_10b6e92278bf213628d838e6b7aa393e.html"];
+  }
+  dir_d22e1ea2fc680c6f0dcd19c090781ff5 [shape=box, label="LIB", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_d22e1ea2fc680c6f0dcd19c090781ff5.html"];
+  dir_e9a0d3b8d102ce52e6c93b4a232ee02c [shape=box, label="MCAL", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_e9a0d3b8d102ce52e6c93b4a232ee02c.html"];
+  dir_10b6e92278bf213628d838e6b7aa393e->dir_d22e1ea2fc680c6f0dcd19c090781ff5 [headlabel="3", labeldistance=1.5 headhref="dir_000004_000015.html"];
+  dir_10b6e92278bf213628d838e6b7aa393e->dir_e9a0d3b8d102ce52e6c93b4a232ee02c [headlabel="2", labeldistance=1.5 headhref="dir_000004_000016.html"];
+}

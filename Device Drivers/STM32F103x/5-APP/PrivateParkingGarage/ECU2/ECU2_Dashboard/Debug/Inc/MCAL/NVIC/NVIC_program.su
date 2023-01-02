@@ -1,0 +1,5 @@
+NVIC_program.c:67:6:NVIC_voidEnableInterrupt	16	static
+NVIC_program.c:84:6:NVIC_voidSetPenddingFlag	16	static
+NVIC_program.c:102:6:NVIC_voidClearPenddingFlag	16	static
+NVIC_program.c:120:19:NVIC_u8GetInterruptStatus	24	static
+NVIC_program.c:140:6:NVIC_voidSetIRQ_PriorityGrouping	24	static

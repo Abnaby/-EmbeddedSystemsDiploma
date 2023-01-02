@@ -1,0 +1,15 @@
+digraph "C:/Users/Abnaby/Desktop/Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU1/ECU1_EntranceGate/ECU1_EntranceGate/HAL/RFID"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_0b6e2f7991ed6c9681b8c1f096215994 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="HAL", fontname="Helvetica", fontsize="10", URL="dir_0b6e2f7991ed6c9681b8c1f096215994.html"]
+  dir_e40c7fdfc60b93f6280063acb403e2ed [shape=box, label="RFID", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_e40c7fdfc60b93f6280063acb403e2ed.html"];
+  }
+  dir_8903c2bd059caa9672fba71be9c92043 [shape=box, label="LIB", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_8903c2bd059caa9672fba71be9c92043.html"];
+  dir_8b93ceca14766a598076175380dcc417 [shape=box, label="MCAL", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_8b93ceca14766a598076175380dcc417.html"];
+  dir_e40c7fdfc60b93f6280063acb403e2ed->dir_8903c2bd059caa9672fba71be9c92043 [headlabel="3", labeldistance=1.5 headhref="dir_000016_000011.html"];
+  dir_e40c7fdfc60b93f6280063acb403e2ed->dir_8b93ceca14766a598076175380dcc417 [headlabel="2", labeldistance=1.5 headhref="dir_000016_000013.html"];
+}

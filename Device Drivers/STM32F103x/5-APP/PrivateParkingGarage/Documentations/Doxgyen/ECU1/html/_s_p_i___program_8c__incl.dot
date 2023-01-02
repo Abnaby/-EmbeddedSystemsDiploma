@@ -1,0 +1,20 @@
+digraph "C:/Users/Abnaby/Desktop/Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU1/ECU1_EntranceGate/ECU1_EntranceGate/MCAL/SPI/SPI_Program.c"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="C:/Users/Abnaby/Desktop\l/Unit_10_SecondTermProject\l/Unit_10_SecondTermProject\l/ECU1/ECU1_EntranceGate/ECU1\l_EntranceGate/MCAL/SPI/SPI_Program.c",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="../../LIB/BIT_MATH\l/BIT_MATH.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_b_i_t___m_a_t_h_8h.html",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="../../LIB/STD_TYPES\l/STD_TYPES.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_s_t_d___t_y_p_e_s_8h.html",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="../../LIB/MAPPING/MAPPING.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_m_a_p_p_i_n_g_8h.html",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SPI_Interface.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_s_p_i___interface_8h.html",tooltip=" "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SPI_Config.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_s_p_i___config_8h.html",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SPI_Private.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_s_p_i___private_8h.html",tooltip=" "];
+}

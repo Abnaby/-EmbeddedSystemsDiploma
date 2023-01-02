@@ -1,0 +1,17 @@
+digraph "Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU2/ECU2_Dashboard"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_702a847f80c2a2d2243101435b9340e9 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="ECU2", fontname="Helvetica", fontsize="10", URL="dir_702a847f80c2a2d2243101435b9340e9.html"]
+  subgraph clusterdir_50692e18057b42a48fb8386fba0182a1 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_50692e18057b42a48fb8386fba0182a1.html"]
+    dir_50692e18057b42a48fb8386fba0182a1 [shape=plaintext, label="ECU2_Dashboard"];
+  dir_e92539377af93bf542fbdce6be32f72e [shape=box, label="Inc", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_e92539377af93bf542fbdce6be32f72e.html"];
+  dir_47fc55553970669394692059158ab373 [shape=box, label="Src", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_47fc55553970669394692059158ab373.html"];
+  }
+  }
+  dir_47fc55553970669394692059158ab373->dir_e92539377af93bf542fbdce6be32f72e [headlabel="1", labeldistance=1.5 headhref="dir_000020_000012.html"];
+}

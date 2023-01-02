@@ -1,0 +1,25 @@
+digraph "C:/Users/Abnaby/Desktop/Unit_10_SecondTermProject/Unit_10_SecondTermProject/ECU1/ECU1_EntranceGate/ECU1_EntranceGate/MCAL"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_33bab7d1727f8a4a779bc0254a0db2f6 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="ECU1_EntranceGate", fontname="Helvetica", fontsize="10", URL="dir_33bab7d1727f8a4a779bc0254a0db2f6.html"]
+  dir_8903c2bd059caa9672fba71be9c92043 [shape=box, label="LIB", style="filled,", fillcolor="#a2b4d6", color="red", URL="dir_8903c2bd059caa9672fba71be9c92043.html"];
+  subgraph clusterdir_8b93ceca14766a598076175380dcc417 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Helvetica", fontsize="10", URL="dir_8b93ceca14766a598076175380dcc417.html"]
+    dir_8b93ceca14766a598076175380dcc417 [shape=plaintext, label="MCAL"];
+  dir_34fdd9884b6ef2af896342bef6581eff [shape=box, label="EXTI", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_34fdd9884b6ef2af896342bef6581eff.html"];
+  dir_340ae5840b7e51e216b26a4fe00d5e29 [shape=box, label="GPIO", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_340ae5840b7e51e216b26a4fe00d5e29.html"];
+  dir_1c42341bc05152336dbe12d926716f47 [shape=box, label="PWM", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_1c42341bc05152336dbe12d926716f47.html"];
+  dir_a78f6c73391f6307532060b7fb5c1646 [shape=box, label="SPI", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_a78f6c73391f6307532060b7fb5c1646.html"];
+  dir_6c09faecb02d066bd575954010c59d17 [shape=box, label="UART", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_6c09faecb02d066bd575954010c59d17.html"];
+  }
+  }
+  dir_34fdd9884b6ef2af896342bef6581eff->dir_8903c2bd059caa9672fba71be9c92043 [headlabel="3", labeldistance=1.5 headhref="dir_000006_000011.html"];
+  dir_340ae5840b7e51e216b26a4fe00d5e29->dir_8903c2bd059caa9672fba71be9c92043 [headlabel="3", labeldistance=1.5 headhref="dir_000008_000011.html"];
+  dir_1c42341bc05152336dbe12d926716f47->dir_8903c2bd059caa9672fba71be9c92043 [headlabel="3", labeldistance=1.5 headhref="dir_000015_000011.html"];
+  dir_a78f6c73391f6307532060b7fb5c1646->dir_8903c2bd059caa9672fba71be9c92043 [headlabel="3", labeldistance=1.5 headhref="dir_000017_000011.html"];
+  dir_6c09faecb02d066bd575954010c59d17->dir_8903c2bd059caa9672fba71be9c92043 [headlabel="3", labeldistance=1.5 headhref="dir_000019_000011.html"];
+}
