@@ -1,0 +1,4 @@
+main.c:11:6:xDelay	24	static
+main.c:23:5:main	16	static
+main.c:65:6:HardFault_Handler	4	static
+main.c:71:6:EXTI0_Handler	4	static
