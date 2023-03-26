@@ -2,7 +2,7 @@
 * @file PSRC_config.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief Processor Special Register Control
-* @version 0.1
+* @version 0.2
 * @date 2023-03-09
 *
 */

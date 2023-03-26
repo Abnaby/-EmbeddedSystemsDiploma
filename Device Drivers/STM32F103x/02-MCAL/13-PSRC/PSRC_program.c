@@ -2,7 +2,7 @@
 * @file PSRC_program.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief Processor Special Register Control 
-* @version 0.1
+* @version 0.2
 * @date 2023-03-09
 *
 */
@@ -122,6 +122,44 @@ PSRC_Return_t PSRC_voidSetAccessLevel(PSRC_AccessLevel_t copy_AccessLevel , u8  
     return LOC_u8ReturnType ; 
 }
 
-
-
+PSRC_Return_t PSRC_voidSetUsageStackPointer(PSRC_StackPointer_t copy_StackPointer , u8    copy_u8HandleExceptions)
+{
+    PSRC_Return_t LOC_u8ReturnType = PSRC_SUCCESSFUL_OPER ;
+    switch(copy_StackPointer)
+    {
+		case PSRC_MSP :
+		{
+			/*
+			 * Clear SP Bit
+			 * 2                0
+			 * LSB              MSB
+			 * FPU     SP	    nPRIV
+			 * 1		0		1            (And with 0b101)
+			 */
+            __asm(
+                    "MRS R0,CONTROL \n\t"
+                    "AND R0,R0,#0b101   \n\t"
+                    "MSR CONTROL,R0 "
+                );
+		}
+    	break;
+		case PSRC_PSP:
+		{
+			/*
+			 * Set SP Bit
+			 * 2                0
+			 * LSB              MSB
+			 * FPU     SP	    nPRIV
+			 * 0		1		0			(Or With 0b010)
+			 */
+            __asm(
+                    "MRS R0,CONTROL \n\t"
+                    "ORR R0,R0,#0b010   \n\t"
+                    "MSR CONTROL,R0 "
+                );
+		}
+    	break;
+    }
+    return LOC_u8ReturnType ;
+}
 /************************************* End of File ******************************************/

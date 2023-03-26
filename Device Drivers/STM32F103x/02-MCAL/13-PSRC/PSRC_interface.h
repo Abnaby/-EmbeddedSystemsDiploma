@@ -2,7 +2,7 @@
 * @file PSRC_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief Processor Special Register Control
-* @version 0.1
+* @version 0.2
 * @date 2023-03-09
 *
 */
@@ -54,6 +54,17 @@ typedef enum
 }PSRC_AccessLevel_t ; 
 
 /**
+ * @brief This enum holds the shadowed stack pointers
+ *
+ */
+typedef enum
+{
+	PSRC_MSP ,
+	PSRC_PSP
+}PSRC_StackPointer_t;
+
+
+/**
  * @brief This Enum Holds the possible return type for PSRC driver.
  * 
  */
@@ -62,6 +73,7 @@ typedef enum
     PSRC_UNSUCCESSFUL_OPER,
     PSRC_SUCCESSFUL_OPER
 }PSRC_Return_t ; 
+
 
 /******************************************************************************
 * Variables
@@ -89,6 +101,14 @@ typedef enum
 PSRC_Return_t PSRC_voidSetAccessLevel(PSRC_AccessLevel_t copy_AccessLevel , u8    copy_u8HandleExceptions);
 
 
+/**
+ * @brief This function is used to switch from MSP to PSP and vice versa.
+ * @note  Need to Privileged access level to change the stack pointer.
+ * @param PSRC_StackPointer_t select the usage pointer form @ref PSRC_StackPointer_t.
+ * @param copy_u8HandleExceptions Not Supported - Has no effect 
+ * @return PSRC_Return_t Always return PSRC_SUCCESSFUL_OPER even if operation not happen. 
+ */
+PSRC_Return_t PSRC_voidSetUsageStackPointer(PSRC_StackPointer_t copy_StackPointer , u8    copy_u8HandleExceptions);
 
 #endif
 /************************************* End of File ******************************************/
