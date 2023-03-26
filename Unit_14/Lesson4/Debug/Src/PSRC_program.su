@@ -1,0 +1,2 @@
+PSRC_program.c:65:15:PSRC_voidSetAccessLevel	24	static,ignoring_inline_asm
+PSRC_program.c:125:15:PSRC_voidSetUsageStackPointer	24	static,ignoring_inline_asm

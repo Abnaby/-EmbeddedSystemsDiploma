@@ -1,0 +1,7 @@
+main.c:11:6:xDelay	24	static
+main.c:49:5:TASKA	32	static
+main.c:54:5:TASKB	32	static
+main.c:61:6:MainOS	16	static,ignoring_inline_asm
+main.c:128:5:main	8	static
+main.c:152:6:SVC_Handler	8	static
+main.c:158:6:EXTI0_Handler	4	static
