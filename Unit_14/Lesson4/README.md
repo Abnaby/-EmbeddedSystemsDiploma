@@ -104,7 +104,7 @@ So, Due to Context Switching using Main Stack Area and changing the stack pointe
 ![FunctionCall](./Img/msp_psp.JPG)
 
 ## **Solve Problem**
-Change `PSRC_voidSetUsageStackPointer` to Macro. 
+Change `PSRC_voidSetUsageStackPointer` to Macro or be naked function. 
 ![mACROS](./Img/mACROS.png)
 
 ## **Another Problem**
@@ -112,9 +112,9 @@ Here we used PSP for stacking operations but there is a con, the `PSRC_voidSetAc
 ![Problem](./Img/Another%20Problem.png)
 
 ## **Solve it**
-Update the functions instead of using a normal function that makes switch context and switch restore, Use the inline function, nacked attribute, or make a macro function to avoid the calling/restoring stack, and don't build stacks doesn't matter the task stack.
-So Will Update the `PSRC_interface` Library for Version 2 that will support the nacked attribuite while calling the Function
-The compiler does not generate prologue and epilogue sequences for functions with `__attribute__((naked)).`
+Update the functions instead of using a normal function that makes switch context and switch restore, Use it as inline function, or make a macro function to avoid the calling/restoring stack, and don't build stacks doesn't matter the task stack.
+So Will Update the `PSRC_interface` Library for Version 2.0 that will support the nacked attribuite while calling the Function
+The compiler does not generate prologue and epilogue sequences for functions with `__attribute__((naked)).` and always will support inline functions.
 
 ## *Contributing*  
 Bug reports, feature requests, and so on are always welcome. Feel free to leave a note in the Issues section.
