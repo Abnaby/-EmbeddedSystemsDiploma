@@ -1,13 +1,13 @@
 /**
-* @file PSRC_config.h
+* @file STK_config.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
-* @brief Processor Special Register Control Driver
-* @version 2.0
-* @date 2023-04-11
+* @brief 
+* @version 0.1
+* @date 2022-10-30
 *
 */
-#ifndef PSRC_CONFIG_H 
-#define PSRC_CONFIG_H 
+#ifndef STK_CONFIG_H 
+#define STK_CONFIG_H 
 
 
 
@@ -35,9 +35,18 @@
 
 
 /******************************************************************************
-* Configuration Constants
+* Configuration 
 *******************************************************************************/
+ 
+/*  GET AHP Frequency   */
+#define AHB_CLOCK_FREQ (8000000UL)
 
+/*
+	* OPTIONS :
+			STK_AHB
+			STK_AHB_OVER_8 
+*/
+#define STK_CLK_SOURCE_SELECTION	STK_AHB_OVER_8
 
 
 

@@ -1,13 +1,13 @@
 /**
-* @file PSRC_private.h
+* @file EXTI_private.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
-* @brief Processor Special Register Control Driver
-* @version 2.0
-* @date 2023-04-11
+* @brief 
+* @version 0.1
+* @date 2022-10-28
 *
 */
-#ifndef PSRC_PRIVATE_H 
-#define PSRC_PRIVATE_H 
+#ifndef EXTI_PRIVATE_H 
+#define EXTI_PRIVATE_H 
 
 
 
@@ -32,18 +32,30 @@
 *******************************************************************************/
 
 
+/******************************************************************************
+* Typedefs
+*******************************************************************************/
+		/*		REGISTER BOUNDARY ADDRESSES 		*/		
+typedef struct
+{
+	volatile u32 IMR	;
+	volatile u32 EMR	;
+	volatile u32 RTSR	;
+	volatile u32 FTSR	;
+	volatile u32 SWIER	;
+	volatile u32 PR	;
+}EXTI_regs;
 
 
 /******************************************************************************
 * Macros
 *******************************************************************************/
+#define EXTI_BASE_ADDRESS	0x40010400 
+
+#define EXTI  ((EXTI_regs *)EXTI_BASE_ADDRESS)
 
 
 
-
-/******************************************************************************
-* Typedefs
-*******************************************************************************/
 
 
 
@@ -58,6 +70,7 @@
 /******************************************************************************
 * Module Variable Definitions
 *******************************************************************************/
+
 
 
 

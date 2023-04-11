@@ -1,13 +1,13 @@
 /**
-* @file PSRC_config.h
+* @file GPIO_config.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
-* @brief Processor Special Register Control Driver
-* @version 2.0
-* @date 2023-04-11
+* @brief 
+* @version 0.1
+* @date 2022-10-25
 *
 */
-#ifndef PSRC_CONFIG_H 
-#define PSRC_CONFIG_H 
+#ifndef GPIO_CONFIG_H 
+#define GPIO_CONFIG_H 
 
 
 

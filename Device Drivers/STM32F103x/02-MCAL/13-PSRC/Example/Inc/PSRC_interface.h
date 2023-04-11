@@ -46,7 +46,7 @@
  * @param Select one of  @ref PSRC_AccessLevel_t.
  * @return void
  */
-#define PSRC_voidSetUsageStackPointer(copy_StackPointer)	PSRC_voidSetWorkingStack##copy_StackPointer()
+#define PSRC_voidSetUsageStackPointer(STACK)	PSRC_voidSetWorkingStack##STACK()
 
 /******************************************************************************
 * Typedefs
@@ -73,7 +73,15 @@ typedef enum
 }PSRC_StackPointer_t;
 
 
-
+/**
+ * @brief This Enum Holds the possible return type for PSRC driver.
+ *
+ */
+typedef enum
+{
+    PSRC_UNSUCCESSFUL_OPER,
+    PSRC_SUCCESSFUL_OPER
+}PSRC_Return_t ;
 
 
 /******************************************************************************
@@ -129,7 +137,7 @@ FORCE_INLINE void PSRC_voidSetWorkingStack_PSP(void)
  * @brief This function is used to switch to use main stack
  * @note  This Function is inline function so will take place in the caller line .
  * @note  Need Privileged Access Level.
- * @note to change it Need Thread Mode with privileged access.
+ * @note to change it Need Thread Mode with privileged access.b
  * @param void
  * @return void
  */
@@ -154,7 +162,7 @@ FORCE_INLINE void PSRC_voidSetWorkingStack_MSP(void)
  * @brief This function is used to set the top of process stack pointer
  * @note  This Function is inline function so will take place in the caller line .
  * @note  Need Privileged Access Level.
- * @param copy_u32topOfPSP: the address of the top of process stack
+ * @param copy_u32topOfPSP: the address of the top op process stack
  * @return void
  */
 FORCE_INLINE void PSRC_voidSetPSP(u32 copy_u32topOfPSP)

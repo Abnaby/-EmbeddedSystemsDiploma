@@ -1,13 +1,13 @@
 /**
-* @file PSRC_private.h
+* @file AFIO_interface.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
-* @brief Processor Special Register Control Driver
-* @version 2.0
-* @date 2023-04-11
+* @brief 
+* @version 0.1
+* @date 2022-10-28
 *
 */
-#ifndef PSRC_PRIVATE_H 
-#define PSRC_PRIVATE_H 
+#ifndef AFIO_INTERFACE_H 
+#define AFIO_INTERFACE_H 
 
 
 
@@ -56,15 +56,17 @@
 
 
 /******************************************************************************
-* Module Variable Definitions
+* Function Prototypes
 *******************************************************************************/
 
 
-
-
-/******************************************************************************
-* Private Function Prototypes
-*******************************************************************************/
+/**
+ * @brief This Function is used to set AFIO config for EXTI 
+ * 
+ * @param Copy_LineID           Line Number
+ * @param Copy_u8PortNumber     Port (PORTA,PORTBB,PORTC)
+ */
+void AFIO_voidEXTIConfiguration(EXTI_Lines Copy_LineID , u8 Copy_u8PortNumber );
 
 
 

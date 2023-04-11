@@ -1,13 +1,13 @@
 /**
-* @file PSRC_private.h
+* @file AFIO_private.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
-* @brief Processor Special Register Control Driver
-* @version 2.0
-* @date 2023-04-11
+* @brief 
+* @version 0.1
+* @date 2022-10-28
 *
 */
-#ifndef PSRC_PRIVATE_H 
-#define PSRC_PRIVATE_H 
+#ifndef AFIO_PRIVATE_H 
+#define AFIO_PRIVATE_H 
 
 
 
@@ -32,18 +32,29 @@
 *******************************************************************************/
 
 
+/******************************************************************************
+* Typedefs
+*******************************************************************************/
+		/*		REGISTER BOUNDARY ADDRESSES 		*/		
+typedef struct
+{
+	volatile u32 AFIO_EVCR	;
+	volatile u32 AFIO_MAPR	;
+	volatile u32 AFIO_EXTICR[4]	;
+	volatile u32 AFIO_MAPR2	;
+}AFIO_Type;
 
 
 /******************************************************************************
 * Macros
 *******************************************************************************/
 
+#define AFIO_BASE_ADDRESS	0x40010400 
 
 
+#define AFIO ((volatile AFIO_Type * )AFIO_BASE_ADDRESS)
 
-/******************************************************************************
-* Typedefs
-*******************************************************************************/
+
 
 
 
