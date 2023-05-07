@@ -11,13 +11,13 @@ This repository containsss the necessary files for MRTOS
 $ MRTOS
 .
 ├── inc
-│   ├── MRTOS_Porting.h 			-->	Is Used to Port MRTOS to different Processors/MCUs
-|	├── MRTOS_Scheduler.h 			--> Function Prototypes of What is TASK and Supported APIs 
-│   └── Queue Files					-->	Needed Files For Queue Implementation
+│   ├── MRTOS_Porting.h 		-->	Is Used to Port MRTOS to different Processors/MCUs
+|	├── MRTOS_Scheduler.h 		--> Function Prototypes of What is TASK and Supported APIs 
+│   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── src
-│   ├── MRTOS_Porting.c				-->	Is Used to define all processor faults as weak fcn.
-|	├── MRTOS_Scheduler.c			--> APIs Definition DO NOT EDIT ANYTHING HERE 
-│   └── Queue Files					-->	Needed Files For Queue Implementation
+│   ├── MRTOS_Porting.c			-->	Is Used to define all processor faults as weak fcn.
+|	├── MRTOS_Scheduler.c		--> APIs Definition DO NOT EDIT ANYTHING HERE 
+│   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── HW 
 |	└── Like Systick timer files	-->	Needed Files For the Ticker
 ├── examples					
@@ -26,17 +26,17 @@ $ MRTOS
 
 ## Porting Between Different Microprocessors.
 If you Opened The `MRTOS_Porting.h` will find some of the tunable parameters. <br/>
-the default parameters for MRTOS that designed to is, `Cortex M3` and `Cortex M4` but you can port `MRTOS` if use a different microprocessor. <br/>
+the default parameters for MRTOS that designed to `Cortex M3` and `Cortex M4` but you can port `MRTOS` if use a different microprocessor. <br/>
 in `MRTOS_Porting.h` exist 
 | Param Name | Usage |  Options |
 | ------ | ------ | ----- |
-| __ CPU __ | This Macro is Used to select the processor to include <br/> the suitable APIs to access the processor register  | `CORTEX_M3` <br/> `CORTEX_M4` | 
+| __ CPU __ | This Macro is Used to select the processor to include the suitable APIs to access the processor register  | `CORTEX_M3` <br/> `CORTEX_M4` | 
 | MAX_NUM_OF_TASKS | Write down maximum number of tasks | if define tasks more than defined will return error `ExceedMaxNumberOfTasks`|
 | TICK_TIME | This Macro is used to define the tick time in microsecond | the default is 1 millisecond |
-| _estack | TThis Symbol is defined for the top of stack defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_estack` |
+| _estack | This Symbol is defined for the top of stack defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_estack` |
 | _eheap | This Symbol is defined for the top of heap defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_eheap` | 
 
-in `MRTOS_Porting.h` if using another processor, then add your processor information
+in `MRTOS_Porting.h` if using another processor add your processor information in that section.
 
 ```c 
 #if  !((__CPU__ == CORTEX_M3) ||( __CPU__ == CORTEX_M4))
@@ -65,20 +65,20 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 ## Development   
 | Function Name | Usage |  Parameter | return |
 | ------ | ------ |  ------ |  ------ |
-| MRTOS_voidInit(void)  | This Function is used to initialize MRTOS. <br/> This Function Will initialize some of HW like systick timer of some of SW codes.| void | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>  |
+| MRTOS_voidInit(void)  | This Function is used to initialize MRTOS. <br/> This function will initialize some of HW like systick timer and some of SW like initializing idle task.| void | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>  |
 | MRTOS_voidCreateTask(p2Task) | This Function is used to Create task stack area  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 
 
 ### Error-Id
 | Error Name | Usage | 
 | ------ | ------ | 
-|  NoError | When The function executed successfully | 
-| StackOverflow | When happen overflow during creating task  | 
-| ErrorInQueueInit | Error in Queue Initialization | 
-| ExceedMaxNumberOfTasks | Happens when number of tasks larger than defined in macro `MAX_NUM_OF_TASKS` in file `MRTOS_Porting.h` | 
+|  NoError | When The function executed successfully. | 
+| StackOverflow | When happen overflow during creating task.  | 
+| ErrorInQueueInit | Error in Queue Initialization. | 
+| ExceedMaxNumberOfTasks | Happens when number of tasks larger than defined in macro `MAX_NUM_OF_TASKS` in file `MRTOS_Porting.h`. | 
 
 ### Task-Definition  
-This struct defined as task with some User Accessible parameters and some of it Non Accessible by user.
+This struct defined as task, with some User Accessible parameters and some of it Non Accessible by user.
 ```c
 typedef struct
 {
@@ -95,7 +95,7 @@ typedef struct
 | Member Name | Usage | Notes |
 | ------ | ------ | ----- |
 | taskID | The ID of the Task | Select Number from `0` to `255`|
-| taskStackSize |  Size Of Task in Bytes | |
+| taskStackSize |  Size of task in bytes | |
 | taskPriority | Priority of task |  Lowest number is Lowest Priority | 
 | pTaskFcn | Pointer to Task  | 
 | taskPeriodicity | The time intervals that the function should run on it| 
@@ -103,7 +103,7 @@ typedef struct
 
 
 ### Task-Creation
-The Task is defined in <a href="#Task-Definition">struct</a> with some user-accessible members and some of them are non-accessible by the user. but is this part we will explain what the `MRTOS_ErrorID MRTOS_voidCreateTask(MRTOS_Task* pTask)` do in details 
+The Task is defined in <a href="#Task-Definition">struct</a> with some user-accessible members and some of them are non-accessible by the user. but in this part we will explain what the `MRTOS_ErrorID MRTOS_voidCreateTask(MRTOS_Task* pTask)` do in details 
 First of all,I need to explain what is the `taskPrivateStates` struct contains 
 
 ``` taskPrivateStates Struct ```   
@@ -114,6 +114,7 @@ First of all,I need to explain what is the `taskPrivateStates` struct contains
 | _S_PSP_Task | Start Address of task in hardware stack | 
 | _E_PSP_Task | End Address of task in hardware stack |  
 | pCurrentPSP | Current stack pointer in function to know the last pushed item | 
+  
 Before Going Deep into The function implementation I need to explain a static struct that is related to OS to keep track the updates in OS.  
 
 
@@ -132,13 +133,13 @@ Before Going Deep into The function implementation I need to explain a static st
 
 To Create a Task, Will Walking some Steps to initialize it 	
 - Set The Start of Task Stack <-  HW Stack Locator in OS_Control
-```c
+	```c
 	pTask->taskPrivateStates._S_PSP_Task	=	OS_Control.HW_Stack_Locator	;
-```
+	```
 - Set The End of Stack  using eqn `E =	S - Stack Size of Task`
-```c
-pTask->taskPrivateStates._E_PSP_Task = pTask->taskPrivateStates._S_PSP_Task - pTask->taskStackSize	;
-```
+	```c
+	pTask->taskPrivateStates._E_PSP_Task = pTask->taskPrivateStates._S_PSP_Task - pTask->taskStackSize	;
+	```
 - Check Overflow   
     == _S_PSP_Task	=  
 	==	Task Stack	=  
@@ -146,14 +147,14 @@ pTask->taskPrivateStates._E_PSP_Task = pTask->taskPrivateStates._S_PSP_Task - pT
 	==				=  
 	== _eheap		=  
 
-```c
-if( pTask->taskPrivateStates._E_PSP_Task < (u32)&START_OF_HEAP_IN_HW)
-		LOC_MRTOS_ErrorID = StackOverflow
-```
+	```c
+	if( pTask->taskPrivateStates._E_PSP_Task < (u32)&START_OF_HEAP_IN_HW)
+			LOC_MRTOS_ErrorID = StackOverflow
+	```
 - Align Some Safty Space by 1 byte
-```c
+	```c
 	OS_Control.HW_Stack_Locator = pTask->taskPrivateStates._E_PSP_Task - 4	;
-```
+	```
 - Initialize stack area  
 	Task Frame When Creating a Task For the First Time Will Add the Initial values after Reset
 	 * XPSR <- 0x01000000	DUMMY_XPSR should T =1 to avoid BUS fault
@@ -180,7 +181,8 @@ if( pTask->taskPrivateStates._E_PSP_Task < (u32)&START_OF_HEAP_IN_HW)
 	*(pTask->taskPrivateStates.pCurrentPSP) =	RST_xPSR	;
 
 	DECREASE_PC_BY(pTask,1) ;
-	*(pTask->taskPrivateStates.pCurrentPSP) = (u32)pTask->pTaskFcn ;	//	PC Has the address of the Task to start execution
+	//	PC Has the address of the Task to start execution
+	*(pTask->taskPrivateStates.pCurrentPSP) = (u32)pTask->pTaskFcn ;	
 
 	DECREASE_PC_BY(pTask,1) ;
 	*(pTask->taskPrivateStates.pCurrentPSP) = RST_LR	;
@@ -192,7 +194,7 @@ if( pTask->taskPrivateStates._E_PSP_Task < (u32)&START_OF_HEAP_IN_HW)
 	}
 	 ```
 - 	Check the Current Number of Tasks comparing between the number of defined tasks
-```c
+	```c
 	if(OS_Control.CurrentNumberofTasks <= MAX_NUM_OF_TASKS)
 	{
 		// Some Code 
@@ -202,22 +204,22 @@ if( pTask->taskPrivateStates._E_PSP_Task < (u32)&START_OF_HEAP_IN_HW)
 		// Exceed Max Number of Tasks Defined by the user
 		LOC_MRTOS_ErrorID =	ExceedMaxNumberOfTasks ;
 	}
-```
+	```
 -	If the last condition is true start updating the scheduling table
-```c
+	```c
 	OS_Control.OS_Tasks[OS_Control.CurrentNumberofTasks]= pTask ;
 	OS_Control.CurrentNumberofTasks++ ;
-```
+	```
 -	Update the task state to suspend according to <a href="#Task-States">Task States</a>
-```c
-pTask->taskPrivateStates.taskState = TS_Suspend ;
-```
+	```c
+	pTask->taskPrivateStates.taskState = TS_Suspend ;
+	```
 ***So After All of That*** you must know there are 16(CPU_Reg) * (4 bytes) = 64 bytes that exist in any created task but ignore this info when creating stack size.
 
 ### Task-States
 
 
-### OS-Explanation
+## OS-Explanation
 ```c
 MRTOS_Task T1_PushButton;
 MRTOS_Task T2_LED;
@@ -264,7 +266,7 @@ it just an `while(1)` doesn't need any space in stack.
 ![image](https://drive.google.com/uc?export=download&id=1GJ-0l9_-nRTzZQ4kTcyyEPeGM_GoxjeZ)  
 Task 1 
 ![image](https://drive.google.com/uc?export=download&id=1r3-X-2guwQE5656b0FejRXCixM9gGwtS)
-All Tasks will be in the same way 
+All Tasks will be in the same way  
 ![image](https://drive.google.com/uc?export=download&id=1omwG-_u1cerwNZ2oYRlQAX19w4Cwg-Fm)
 
 ### Full Example  
