@@ -11,15 +11,7 @@ typedef struct queue
 	int _counter;
 	queueEntery _queueArr[queueSize];
 }queue_t;
-/*
-	################################ READ ONLY DON'T EDIT ###############################
-*/
-typedef enum {
-	QUEUE_NO_ERROR,
-	QUEUE_FULL,
-	QUEUE_EMPTY,
-	QUEUE_NULL_OPERATION
-}STACK_STATE;
+
 
 
 #endif

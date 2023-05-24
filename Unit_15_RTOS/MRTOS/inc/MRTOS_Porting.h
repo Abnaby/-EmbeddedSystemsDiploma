@@ -17,6 +17,9 @@
 * Includes
 *******************************************************************************/
 
+#include "../Inc/SCB_interface.h"			// For Trig PendSV
+#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
+
 
 
 
@@ -35,7 +38,7 @@
  * @brief Write down maximum number of tasks
  *
  */
-#define MAX_NUM_OF_TASKS	100
+#define MAX_NUM_OF_TASKS	4
 
 /**
  * @brief This Macro is used to define the tick time in microsecond 
@@ -70,12 +73,22 @@ extern int _eheap  ;
 
 #define MainStackSize 	3072
 
+#define PEND_SV_HANDLER_NAME	PendSV_Handler
+
 
 /******************************************************************************
 * Typedefs
 *******************************************************************************/
 
+/******************************************************************************
+* Function Prototypes
+*******************************************************************************/
 
+ void MRTOS_voidHardwareInit(void);
+
+void MRTOS_voidCallService(u8 copy_u8ServiceID);
+
+ void MRTOS_voidStartTicker(void (*callBack)(void));
 
 
 /******************************************************************************

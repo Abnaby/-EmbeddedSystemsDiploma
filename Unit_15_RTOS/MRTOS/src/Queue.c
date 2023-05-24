@@ -3,14 +3,14 @@
 #include "../MRTOS/inc/queuePrivate.h"
 
 
-STACK_STATE queue_create(queue_t *ptq)
+QUEUE_STATE queue_create(queue_t *ptq)
 {
     ptq->_rear = 0 ;
     ptq->_front = 0 ;
     ptq->_counter = 0 ;
     return QUEUE_NO_ERROR ;
 }
-STACK_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq)
+QUEUE_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq)
 {
     /* Check if it full */
     if(ptq->_counter >= queueSize)
@@ -21,19 +21,18 @@ STACK_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq)
     ptq->_counter++;
     return QUEUE_NO_ERROR ;
 }
-STACK_STATE queue_get(queueEntery *dataEnqueue ,queue_t *ptq)
+QUEUE_STATE queue_get(queueEntery *dataEnqueue ,queue_t *ptq)
 {
     /* Check if it empty */
     if(ptq->_counter == 0)
         return QUEUE_EMPTY ;
     ptq->_front = (ptq->_front) % queueSize ;
-
     *dataEnqueue = ptq->_queueArr[ptq->_front]  ;
     ptq->_front++ ;
     ptq->_counter--;
     return QUEUE_NO_ERROR ;
 }
-int queue_size(queue_t *ptq)
+u8 queue_size(queue_t *ptq)
 {
     return ptq->_counter ;
 }

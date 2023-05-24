@@ -117,4 +117,8 @@ MRTOS_ErrorID MRTOS_voidInit(void);
 MRTOS_ErrorID MRTOS_voidCreateTask(MRTOS_Task* pTask);
 
 
+MRTOS_ErrorID MRTOS_voidActiveTask(MRTOS_Task* pTask);
+
+MRTOS_ErrorID MRTOS_voidStartScheduler(void);
+
 #endif /* INC_MRTOS_SCHEDULER_H_ */
