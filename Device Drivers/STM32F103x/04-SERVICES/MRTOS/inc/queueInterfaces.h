@@ -2,9 +2,28 @@
 #define QUEUE_APIS_H
 #include "queuePrivate.h"
 
-STACK_STATE queue_create(queue_t *ptq);
-STACK_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq);
-STACK_STATE queue_get(queueEntery *dataEnqueue ,queue_t *ptq);
+/*
+	################################ READ ONLY DON'T EDIT ###############################
+*/
+typedef enum {
+	QUEUE_NO_ERROR,
+	QUEUE_FULL,
+	QUEUE_EMPTY,
+	QUEUE_NULL_OPERATION
+}QUEUE_STATE;
+
+
+
+
+
+QUEUE_STATE queue_create(queue_t *ptq);
+QUEUE_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq);
+QUEUE_STATE queue_get(queueEntery *dataEnqueue ,queue_t *ptq);
+QUEUE_STATE queue_add_withoutPop(queueEntery dataEnqueue ,queue_t *ptq);
+u8 queue_size(queue_t *ptq);
+
+
+
 
 #endif
 

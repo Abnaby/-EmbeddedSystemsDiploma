@@ -21,6 +21,7 @@ $ MRTOS
 ├── HW 
 |	└── Like Systick timer files	-->	Needed Files For the Ticker
 ├── examples					
+|   └── Round-Robin			
 └── README.md
 ```
 
@@ -67,6 +68,9 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 | ------ | ------ |  ------ |  ------ |
 | MRTOS_voidInit(void)  | This Function is used to initialize MRTOS. <br/> This function will initialize some of HW like systick timer and some of SW like initializing idle task.| void | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>  |
 | MRTOS_voidCreateTask(p2Task) | This Function is used to Create task stack area  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_ErrorID(p2Task) | This Function is used for Active tasks and makes them ready to execute  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_voidStartScheduler(void) | This Function is used to start OS kernal  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+
 
 
 ### Error-Id
@@ -151,7 +155,7 @@ To Create a Task, Will Walking some Steps to initialize it
 	if( pTask->taskPrivateStates._E_PSP_Task < (u32)&START_OF_HEAP_IN_HW)
 			LOC_MRTOS_ErrorID = StackOverflow
 	```
-- Align Some Safty Space by 1 byte
+- Align Some Safty Space by 4 byte
 	```c
 	OS_Control.HW_Stack_Locator = pTask->taskPrivateStates._E_PSP_Task - 4	;
 	```
@@ -166,9 +170,12 @@ To Create a Task, Will Walking some Steps to initialize it
 	 * r3
 	 * r2
 	 * r1
-	 * r0
-	 *r5, r6 , r7 ,r8 ,r9, r10,r11 (Saved/Restore) Manual    
-	 ![CPU_REG](https://drive.google.com/uc?export=download&id=1Mccwymij9dtYbKaC3IH12wlC_J7Yv_6N)
+	 * r0  
+	 * r5, r6 , r7 ,r8 ,r9, r10,r11 (Saved/Restore) Manual  
+
+		<div align="center">
+		<img src="https://drive.google.com/uc?export=download&id=1Mccwymij9dtYbKaC3IH12wlC_J7Yv_6N">
+		</div>
 
 	 **Noted That** The processor uses a full descending stack
 	 ```c
@@ -214,9 +221,96 @@ To Create a Task, Will Walking some Steps to initialize it
 	```c
 	pTask->taskPrivateStates.taskState = TS_Suspend ;
 	```
-***So After All of That*** you must know there are 16(CPU_Reg) * (4 bytes) = 64 bytes that exist in any created task but ignore this info when creating stack size.
+***So After All of That*** you must know there are 16(CPU_Reg) * (4 bytes) = 64 bytes + Same size for saving/restoring context that exist in any created task but ignore this info when creating stack size.
 
 ### Task-States
+
+
+### Context-Switching 
+The ARM Cortex-M3/4 architecture is designed with special features to facilitate implementing a pre-emptive RTOS. The system code takes advantage of these features when implementing context switching code.  
+The stack pointers for the ARM Cortex-M include the main stack pointer (MSP) and the process stack pointer (PSP). The MSP is always used when handling interrupts. The PSP is only used during regular task execution. ARM recommends using the MSP for the kernel as well as interrupts and recommends the PSP for executing other tasks.
+The context switcher needs to:  
+* Save Context of current task .
+* update the current task by the next task to be executed.  
+* load the context of the task which is about to execute.  
+
+The following code is an example of a context switching
+```c
+void PEND_SV_HANDLER_NAME (void)
+{
+	/**************************************	Critical Section	*************************************/
+	// Save Current Context
+	// xPSR,............,R0 automatically Pushed
+	pCurrentPSP = (u32*)PSRC_voidGetPSP();
+
+	// Store Rest of Registers R11,R10,R9,R8,R7,R6,R5,R4
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R4	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R5	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R6	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R7	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R8	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R9	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R10	" : "=r"(*(pCurrentPSP)));
+
+	DECREASE_PC_BY(OS_Control.OS_currentTask,1);	// Decrease Current SP by one
+	__asm volatile ("MOV %0,R11	" : "=r"(*(pCurrentPSP)));
+
+	// Restore the Next Task
+	if(OS_Control.OS_nextTask != NULL)
+	{
+		OS_Control.OS_currentTask = OS_Control.OS_nextTask;
+		OS_Control.OS_nextTask = NULL ;
+	}
+
+	__asm volatile ("MOV R11,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R10,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R9,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R8,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R7,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R6,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R5,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	__asm volatile ("MOV R4,%0" : :"r"(*(pCurrentPSP)));
+	INCREASE_PC_BY(OS_Control.OS_currentTask,1);	// increase Current SP by one
+
+	// Update PSP <<-- SP
+	PSRC_voidSetPSP((u32)pCurrentPSP);
+
+	__asm("BX LR");
+
+}
+```
+So the whole image of context switching is:  
+
+![image](https://drive.google.com/uc?export=download&id=14ALUlynlclWpJ-hqPauzicGANL7ghZ_y)
+
+
 
 
 ## OS-Explanation
@@ -256,6 +350,15 @@ int main(void){
 	T3_ToggleLED.taskStackSize		=		100 ;
 	T3_ToggleLED.pTaskFcn			=		ToggleLed ;
 	(void)MRTOS_voidCreateTask(&T3_ToggleLED);
+	
+	/*****************		Active Tasks		*****************/
+	(void)MRTOS_voidActiveTask(&T1_PushButton);
+	(void)MRTOS_voidActiveTask(&T2_LED);
+	(void)MRTOS_voidActiveTask(&T3_ToggleLED);
+
+
+	/*****************		Start Scheduler		*****************/
+	MRTOS_voidStartScheduler();
 }
 ```
 Main Stack Area 
@@ -265,9 +368,14 @@ Idle Task
 it just an `while(1)` doesn't need any space in stack.
 ![image](https://drive.google.com/uc?export=download&id=1GJ-0l9_-nRTzZQ4kTcyyEPeGM_GoxjeZ)  
 Task 1 
-![image](https://drive.google.com/uc?export=download&id=1r3-X-2guwQE5656b0FejRXCixM9gGwtS)
+![image](https://drive.google.com/uc?export=download&id=1r3-X-2guwQE5656b0FejRXCixM9gGwtS)  
+
 All Tasks will be in the same way  
-![image](https://drive.google.com/uc?export=download&id=1omwG-_u1cerwNZ2oYRlQAX19w4Cwg-Fm)
+<div align="center">
+<img src="https://drive.google.com/uc?export=download&id=1omwG-_u1cerwNZ2oYRlQAX19w4Cwg-Fm">
+</div>
+
+and you can see the context switching process in detail in this section <a href="#Context-Switching">Context-Switching</a> 
 
 ### Full Example  
 Display numbers from 0 to 9 in Common Anode
