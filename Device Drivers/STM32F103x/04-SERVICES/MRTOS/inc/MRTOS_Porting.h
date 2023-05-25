@@ -46,6 +46,18 @@
  */
 #define TICK_TIME 1000
 
+/**
+ * @brief This Macro is used to define the SIZE of main stack area
+ * @details This area is used by Kernal, Interrupts, and Exceptions
+ *
+ */
+#define MainStackSize   3072
+
+/**
+ * @brief This Macro is used to define the handler name of pendSV
+ *
+ */
+#define PEND_SV_HANDLER_NAME    PendSV_Handler
 
 /******************************************************************************
 *  Preprocessor Constants
@@ -71,10 +83,6 @@ extern int _estack ;
  */
 extern int _eheap  ;
 
-#define MainStackSize 	3072
-
-#define PEND_SV_HANDLER_NAME	PendSV_Handler
-
 
 /******************************************************************************
 * Typedefs
@@ -84,11 +92,28 @@ extern int _eheap  ;
 * Function Prototypes
 *******************************************************************************/
 
- void MRTOS_voidHardwareInit(void);
+/**
+ * @brief This Function is used to initialize the HW.
+ * @details This Function Will initialize some of HW like systick timer.
+ * @param  void
+ * @return void
+ */
+void MRTOS_voidHardwareInit(void);
 
+/**
+ * @brief This Function is used to make SVC calls.
+ * @details Just Edit SVC assembly code.
+ * @param  void
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
 void MRTOS_voidCallService(u8 copy_u8ServiceID);
 
- void MRTOS_voidStartTicker(void (*callBack)(void));
+/**
+ * @brief This Function is used to initialize the start the ticker.
+ * @param  void
+ * @return callBack pointer to scheduler.
+ */
+void MRTOS_voidStartTicker(void (*callBack)(void));
 
 
 /******************************************************************************

@@ -20,6 +20,7 @@
 * Module Preprocessor Constants
 *******************************************************************************/
 
+
 #define SAFTY_SPACE_BETWEEN_STACKS	4
 #define START_OF_STACK_IN_HW	_estack
 #define START_OF_HEAP_IN_HW	    _eheap
@@ -73,7 +74,8 @@ typedef enum
 
 typedef enum
 {
-	SVC_ID_ACTIVE_TASK
+	SVC_ID_ACTIVE_TASK,
+	SVC_ID_TASK_DELAY
 }OS_Services;
 
 /**
@@ -101,13 +103,13 @@ static struct
 *******************************************************************************/
 
 /**
- * @brief 
+ * @brief This variable holds the highest ready tasks
  * 
  */
 queue_t	Global_QueueOfReadyTasks;
 
 /**
- * @brief 
+ * @brief This Varible hold the whole tasks in system
  * 
  */
 MRTOS_Task*	Global_pTasks[MAX_NUM_OF_TASKS]	;
@@ -324,6 +326,24 @@ MRTOS_ErrorID MRTOS_voidActiveTask(MRTOS_Task* pTask)
 	return LOC_MRTOS_ErrorID ;
 }
 
+
+MRTOS_ErrorID MRTOS_voidTaskDelay(MRTOS_Task* pTask, u32 copy_u32NumberofTicks)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	// Change Task state to be Suspend
+	pTask->taskPrivateStates.taskState = TS_Suspend;
+	// Enable Function Delay
+	pTask->taskPrivateStates.TimeDelayFlag = 1 ;
+	// Add number of ticks
+	pTask->taskPrivateStates._taskDelayTime = copy_u32NumberofTicks;
+	// Call its SVC
+	MRTOS_voidCallService((u8)SVC_ID_TASK_DELAY);
+
+
+
+	return LOC_MRTOS_ErrorID ;
+}
+
 MRTOS_ErrorID MRTOS_voidStartScheduler(void)
 {
 	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
@@ -439,7 +459,6 @@ static void MRTROS_staticDispatcher()
 	// I 've a queue of Ready tasks need to be executed
 	u8 LOC_u8QueueSize = queue_size(&Global_QueueOfReadyTasks);
 	u8 LOC_u8Counter = 0 ;
-	u8 LOC_u8Flag = 0 ;
 	MRTOS_Task *LOC_currentTask = NULL ;
 	// Queue LOC_u8Counter == 1 if there is one task that has the highest priority
 	if(1 == LOC_u8Counter)
@@ -454,6 +473,8 @@ static void MRTROS_staticDispatcher()
 		else
 		{
 			// Shouldn't be running--> Suspended Task
+			// Run Idle Task
+			OS_Control.OS_nextTask = &Global_IdleTask ;
 		}
 	}
 	// Queue LOC_u8Counter > 0 if more than oneTask has the same highest priority
@@ -590,6 +611,12 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
     		}
 
     	}
+    	break;
+    case SVC_ID_TASK_DELAY :
+    	// Decide Next Task Should be Run
+		MRTROS_staticDispatcher();
+		// Context Switching
+		SCB_voidTrigPendSV();
 
       break;
     default:    /* unknown SVC */
@@ -597,15 +624,44 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
   }
 
 }
+u32 counter = 0;
+FORCE_INLINE static void MRTOS_staticCheckDelayedTasks (void)
+{
+	u8 LOC_u8Counter = 0 ;
+	// Iterate Through Total Number of Tasks
+	for(LOC_u8Counter = 0 ; LOC_u8Counter < OS_Control.CurrentNumberofTasks; LOC_u8Counter++)
+	{
+		// Check if The task Suspended and Waiting Time Flag is Enabled
+		if((OS_Control.OS_Tasks[LOC_u8Counter]->taskPrivateStates.taskState == TS_Suspend) && (OS_Control.OS_Tasks[LOC_u8Counter]->taskPrivateStates.TimeDelayFlag == 1))
+		{
+			// Waited Task so decrement the counter
+			OS_Control.OS_Tasks[LOC_u8Counter]->taskPrivateStates._taskDelayTime-- ;
+			if(OS_Control.OS_Tasks[LOC_u8Counter]->taskPrivateStates._taskDelayTime == 0)
+			{
+				// Disable Waiting
+				OS_Control.OS_Tasks[LOC_u8Counter]->taskPrivateStates.TimeDelayFlag = 0 ;
+				// Move it to Waiting State
+				OS_Control.OS_Tasks[LOC_u8Counter]->taskPrivateStates.taskState= TS_Waiting ;
+			}
 
+		}
+
+	}
+
+
+}
 static void MRTOS_voidTickerHandler(void)
 {
+	// With Every Tick, Check Delayed Tasks First
+	MRTOS_staticCheckDelayedTasks();
 	// With Every Tick Evaluate the scheduler table
 	MRTOS_staticSchedular();
 	// Select Tasks
 	MRTROS_staticDispatcher();
 	// Context Switching
 	SCB_voidTrigPendSV();
+	counter++;
 }
+
 
 /************************************* End of File ******************************************/

@@ -20,7 +20,8 @@ $ MRTOS
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── HW 
 |	└── Like Systick timer files	-->	Needed Files For the Ticker
-├── examples					
+├── examples
+|   ├── TaskDelay					
 |   └── Round-Robin			
 └── README.md
 ```
@@ -68,10 +69,9 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 | ------ | ------ |  ------ |  ------ |
 | MRTOS_voidInit(void)  | This Function is used to initialize MRTOS. <br/> This function will initialize some of HW like systick timer and some of SW like initializing idle task.| void | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>  |
 | MRTOS_voidCreateTask(p2Task) | This Function is used to Create task stack area  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_ErrorID(p2Task) | This Function is used for Active tasks and makes them ready to execute  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_voidActiveTask(p2Task) | This Function is used for Active tasks and makes them ready to execute  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_voidTaskDelay(p2Task,u32) | Delay a task for a given number of ticks. The actual time that the task remains blocked depends on the tick rate.  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> <br/>`u32 copy_u32NumberofTicks` The amount of ticks, that the calling task should block.| `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidStartScheduler(void) | This Function is used to start OS kernal  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-
-
 
 ### Error-Id
 | Error Name | Usage | 
