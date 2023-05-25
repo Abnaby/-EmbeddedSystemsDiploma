@@ -12,11 +12,11 @@ $ MRTOS
 .
 ├── inc
 │   ├── MRTOS_Porting.h 		-->	Is Used to Port MRTOS to different Processors/MCUs
-|	├── MRTOS_Scheduler.h 		--> Function Prototypes of What is TASK and Supported APIs 
+|   ├── MRTOS_Scheduler.h 		--> Function Prototypes of What is TASK and Supported APIs 
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── src
 │   ├── MRTOS_Porting.c			-->	Is Used to define all processor faults as weak fcn.
-|	├── MRTOS_Scheduler.c		--> APIs Definition DO NOT EDIT ANYTHING HERE 
+|   ├── MRTOS_Scheduler.c		--> APIs Definition DO NOT EDIT ANYTHING HERE 
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── HW 
 |	└── Like Systick timer files	-->	Needed Files For the Ticker
