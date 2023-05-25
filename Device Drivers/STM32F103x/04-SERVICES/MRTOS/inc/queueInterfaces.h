@@ -19,7 +19,6 @@ typedef enum {
 QUEUE_STATE queue_create(queue_t *ptq);
 QUEUE_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq);
 QUEUE_STATE queue_get(queueEntery *dataEnqueue ,queue_t *ptq);
-QUEUE_STATE queue_add_withoutPop(queueEntery dataEnqueue ,queue_t *ptq);
 u8 queue_size(queue_t *ptq);
 
 

@@ -39,8 +39,8 @@ typedef enum
 	NoError	,					//	The function executed successfully
 	StackOverflow	,			//	Return when happen overflow in function
 	ErrorInQueueInit	,		// 	Error in Queue Initialization
-	ExceedMaxNumberOfTasks		//	Happens when number of tasks larger than defined in @ref AX_NUM_OF_TASKS in @ref MRTOS_Porting.h
-
+	ExceedMaxNumberOfTasks,		//	Happens when number of tasks larger than defined in @ref AX_NUM_OF_TASKS in @ref MRTOS_Porting.h
+	NULL_ARGs					// User Passed Null Argument
 }MRTOS_ErrorID;
 
 
@@ -124,6 +124,16 @@ MRTOS_ErrorID MRTOS_voidCreateTask(MRTOS_Task* pTask);
  * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
  */
 MRTOS_ErrorID MRTOS_voidActiveTask(MRTOS_Task* pTask);
+
+
+/**
+ * @brief This Function is used to Terminate task  .
+ *
+ * @param pTask 	pointer to task that has attributes @ref MRTOS_Task
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+
+MRTOS_ErrorID MRTOS_voidTerminateTask(MRTOS_Task* pTask);
 
 
 /**

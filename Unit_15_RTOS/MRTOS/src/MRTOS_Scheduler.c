@@ -75,7 +75,8 @@ typedef enum
 typedef enum
 {
 	SVC_ID_ACTIVE_TASK,
-	SVC_ID_TASK_DELAY
+	SVC_ID_TASK_DELAY,
+	SVC_ID_TERMINATE_TASk,
 }OS_Services;
 
 /**
@@ -317,15 +318,40 @@ MRTOS_ErrorID MRTOS_voidCreateTask(MRTOS_Task* pTask)
 
 MRTOS_ErrorID MRTOS_voidActiveTask(MRTOS_Task* pTask)
 {
-	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
-	// Add It in Waiting State
-	pTask->taskPrivateStates.taskState = TS_Waiting;
-	// Call Service Called SVC_ID_ACTIVE_TASk
-	MRTOS_voidCallService((u8)SVC_ID_ACTIVE_TASK);
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NULL_ARGs ;
+	if(pTask != NULL)
+	{
+		LOC_MRTOS_ErrorID =	NoError  ;
+		// Add It in Waiting State
+		pTask->taskPrivateStates.taskState = TS_Waiting;
+		// Call Service Called SVC_ID_ACTIVE_TASk
+		MRTOS_voidCallService((u8)SVC_ID_ACTIVE_TASK);
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID =	NULL_ARGs ;
+	}
 
 	return LOC_MRTOS_ErrorID ;
 }
+MRTOS_ErrorID MRTOS_voidTerminateTask(MRTOS_Task* pTask)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NULL_ARGs ;
+	if(pTask != NULL)
+	{
+		LOC_MRTOS_ErrorID =	NoError  ;
+		// Add It in Suspend State
+		pTask->taskPrivateStates.taskState = TS_Suspend;
+		// Call Service Called SVC_ID_TERMINATE_TASk
+		MRTOS_voidCallService((u8)SVC_ID_TERMINATE_TASk);
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID =	NULL_ARGs ;
+	}
 
+	return LOC_MRTOS_ErrorID ;
+}
 
 MRTOS_ErrorID MRTOS_voidTaskDelay(MRTOS_Task* pTask, u32 copy_u32NumberofTicks)
 {
@@ -597,6 +623,9 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
   switch( svc_number)
   {
     case SVC_ID_ACTIVE_TASK:
+    case SVC_ID_TERMINATE_TASk :
+    case SVC_ID_TASK_DELAY :
+
     	// Update Scheduler Table and Ready Queue
     	MRTOS_staticSchedular();
     	// Check if OS Working
@@ -612,13 +641,6 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
 
     	}
     	break;
-    case SVC_ID_TASK_DELAY :
-    	// Decide Next Task Should be Run
-		MRTROS_staticDispatcher();
-		// Context Switching
-		SCB_voidTrigPendSV();
-
-      break;
     default:    /* unknown SVC */
       break;
   }

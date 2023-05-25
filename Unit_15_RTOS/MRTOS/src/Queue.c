@@ -21,11 +21,7 @@ QUEUE_STATE queue_add(queueEntery dataEnqueue ,queue_t *ptq)
     ptq->_counter++;
     return QUEUE_NO_ERROR ;
 }
-QUEUE_STATE queue_add_withoutPop(queueEntery dataEnqueue ,queue_t *ptq)
-{
-    ptq->_rear = (ptq->_rear) % queueSize ;
-    ptq->_queueArr[ptq->_rear] = dataEnqueue ;
-}
+
 
 QUEUE_STATE queue_get(queueEntery *dataEnqueue ,queue_t *ptq)
 {
