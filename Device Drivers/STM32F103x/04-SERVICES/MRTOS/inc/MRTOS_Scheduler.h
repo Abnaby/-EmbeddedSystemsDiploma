@@ -2,8 +2,8 @@
 * @file MRTOS_Scheduler.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 0.1
-* @date 2023-05-01
+* @version 1.0
+* @date 2023-05-26
 *
 */
 
@@ -69,8 +69,6 @@ typedef struct
 	u32*				pCurrentPSP ;	//	Current stack pointer in function
 	u8					TimeDelayFlag;	// Enable/Disable Function Delay
 	u32					_taskDelayTime;			  // Task periodicity.
-
-
 }MRTOS_PrivTaskRef;
 
 /**

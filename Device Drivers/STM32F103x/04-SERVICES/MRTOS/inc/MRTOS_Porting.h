@@ -2,23 +2,14 @@
 * @file MRTOS_Porting.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file consist of some of APIs that controls and hold CPU registers
-* @version 0.1
-* @date 2023-05-01
+* @version 1.0
+* @date 2023-05-26
 *
 */
 
 
 #ifndef INC_MRTOS_PORTING_H_
 #define INC_MRTOS_PORTING_H_
-
-
-
-/******************************************************************************
-* Includes
-*******************************************************************************/
-
-#include "../Inc/SCB_interface.h"			// For Trig PendSV
-#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
 
 
 
@@ -44,11 +35,11 @@
  * @brief This Macro is used to define the tick time in microsecond 
  * 
  */
-#define TICK_TIME 1000
+#define TICK_TIME 3000
 
 /**
  * @brief This Macro is used to define the SIZE of main stack area
- * @details This area is used by Kernal, Interrupts, and Exceptions
+ * @details This area is used by Kernel, Interrupts, and Exceptions
  *
  */
 #define MainStackSize   3072
@@ -59,13 +50,26 @@
  */
 #define PEND_SV_HANDLER_NAME    PendSV_Handler
 
+
+/**
+ * @brief This Macro is used to define symbol of end of stack
+ *
+ */
+#define END_OF_STACK_SYMBOL	_estack
+
+/**
+ * @brief This Macro is used to define symbol of end of heap
+ *
+ */
+#define END_OF_HEAP_SYMBOL	_eheap
+
 /******************************************************************************
 *  Preprocessor Constants
  *******************************************************************************/
 
 /**
- * @brief This Macro is used to inline function 
- * 
+ * @brief This Macro is used to inline function
+ *
  */
 # define FORCE_INLINE __attribute__((always_inline)) inline
 /******************************************************************************
@@ -76,12 +80,30 @@
  * @brief This Symbol is defined for the top of stack defined by linkerscript (.ld) File
  * 
  */
-extern int _estack ;
+extern int END_OF_STACK_SYMBOL ;
 /**
  * @brief This Symbol is defined for the top of heap defined by linkerscript (.ld) File
  * 
  */
-extern int _eheap  ;
+extern int END_OF_HEAP_SYMBOL  ;
+
+/******************************************************************************
+* Includes
+*******************************************************************************/
+
+#if (__CPU__ == CORTEX_M3) ||( __CPU__ == CORTEX_M4)
+#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
+#include "../Inc/STK_interface.h"			// Include Systic
+#include "../Inc/SCB_interface.h"			// For Trig PendSV
+#include "../Inc/NVIC_interface.h"			// To Set Priority of IRQs
+#include "../Inc/SCB_interface.h"			// For Trig PendSV
+#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
+
+
+#else
+    #error "Undefined CPU."
+#endif
+
 
 
 /******************************************************************************

@@ -2,8 +2,8 @@
 * @file MRTOS_Scheduler.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 0.1
-* @date 2023-05-01
+* @version 1.0
+* @date 2023-05-26
 *
 */
 /******************************************************************************
@@ -25,6 +25,7 @@
 #define START_OF_STACK_IN_HW	_estack
 #define START_OF_HEAP_IN_HW	    _eheap
 #define MIN_STACK_SIZE			(16*4+68)
+#define INIT_VAL_FOR_REG		0x0
 
 /******************************************************************************
 * Module Preprocessor Macros
@@ -127,7 +128,7 @@ static MRTOS_Task	Global_IdleTask ;
 /******************************************************************************
 * Private Functions Deceleration
 *******************************************************************************/
-static void MRTOS_staticSchedular(void);
+static void MRTOS_staticFirstStageSchedular(void);
 static void MRTOS_voidTickerHandler(void);
 
 
@@ -235,7 +236,7 @@ FORCE_INLINE static void MRTOS_voidDesignTaskStack (MRTOS_Task* pTask)
 	{
 
 		DECREASE_PC_BY(pTask,1) ;
-		*(pTask->taskPrivateStates.pCurrentPSP) = 0xDEADBEEF ;
+		*(pTask->taskPrivateStates.pCurrentPSP) = INIT_VAL_FOR_REG ;
 	}
 
 }
@@ -424,7 +425,7 @@ static void MRTOS_voidInsertionSort(void)
 
 
 }
- static void MRTOS_staticSchedular(void)
+ static void MRTOS_staticFirstStageSchedular(void)
 {
 
 
@@ -480,14 +481,19 @@ static void MRTOS_voidInsertionSort(void)
 
 	}
 }
-static void MRTROS_staticDispatcher()
+static void MRTOS_staticSecondStageSchedular()
 {
 	// I 've a queue of Ready tasks need to be executed
 	u8 LOC_u8QueueSize = queue_size(&Global_QueueOfReadyTasks);
 	u8 LOC_u8Counter = 0 ;
 	MRTOS_Task *LOC_currentTask = NULL ;
 	// Queue LOC_u8Counter == 1 if there is one task that has the highest priority
-	if(1 == LOC_u8Counter)
+	if(0 == LOC_u8QueueSize)
+	{
+		// Run Idle Task
+		OS_Control.OS_nextTask = &Global_IdleTask ;
+	}
+	else if(1 == LOC_u8QueueSize)
 	{
 		//	This Task Should be running
 		queue_get(&LOC_currentTask, &Global_QueueOfReadyTasks);
@@ -533,7 +539,7 @@ static void MRTROS_staticDispatcher()
 __attribute__((naked)) void PEND_SV_HANDLER_NAME (void)
 {
 	/**************************************	Critical Section	*************************************/
-	//  __asm volatile ("CPSID i");
+	  __asm volatile ("CPSID i");
 	// Save Current Context
 	// xPSR,............,R0 automatically Pushed
 	OS_Control.OS_currentTask->taskPrivateStates.pCurrentPSP = (u32*)PSRC_voidGetPSP();
@@ -603,7 +609,7 @@ __attribute__((naked)) void PEND_SV_HANDLER_NAME (void)
 	PSRC_voidSetPSP((u32)OS_Control.OS_currentTask->taskPrivateStates.pCurrentPSP);
 
 	// Enable IRQ
-	//__asm volatile ("CPSIE i");
+	__asm volatile ("CPSIE i");
 	__asm("BX LR");
 
 }
@@ -627,14 +633,14 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
     case SVC_ID_TASK_DELAY :
 
     	// Update Scheduler Table and Ready Queue
-    	MRTOS_staticSchedular();
+    	MRTOS_staticFirstStageSchedular();
     	// Check if OS Working
     	if(OS_Control.OS_State == OS_Running)
     	{
     		if(OS_Control.OS_currentTask->taskID != (u8)-1)
     		{
         		//	Calling Dispatcher
-        		MRTROS_staticDispatcher();
+        		MRTOS_staticSecondStageSchedular();
         		// Context Switching
         		SCB_voidTrigPendSV();
     		}
@@ -646,7 +652,6 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
   }
 
 }
-u32 counter = 0;
 FORCE_INLINE static void MRTOS_staticCheckDelayedTasks (void)
 {
 	u8 LOC_u8Counter = 0 ;
@@ -677,12 +682,12 @@ static void MRTOS_voidTickerHandler(void)
 	// With Every Tick, Check Delayed Tasks First
 	MRTOS_staticCheckDelayedTasks();
 	// With Every Tick Evaluate the scheduler table
-	MRTOS_staticSchedular();
+	MRTOS_staticFirstStageSchedular();
 	// Select Tasks
-	MRTROS_staticDispatcher();
+	MRTOS_staticSecondStageSchedular();
 	// Context Switching
 	SCB_voidTrigPendSV();
-	counter++;
+
 }
 
 

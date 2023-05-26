@@ -2,8 +2,8 @@
 * @file MRTOS_Porting.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file consist of some of APIs that controls and hold CPU registers
-* @version 0.1
-* @date 2023-05-01
+* @version 1.0
+* @date 2023-05-26
 *
 */
 /******************************************************************************
@@ -14,16 +14,6 @@
 #include "../MRTOS/inc/MRTOS_Porting.h"
 
 
-#if (__CPU__ == CORTEX_M3) ||( __CPU__ == CORTEX_M4)
-#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
-#include "../Inc/STK_interface.h"			// Include Systic
-#include "../Inc/SCB_interface.h"			// For Trig PendSV
-#include "../Inc/NVIC_interface.h"			// To Set Priority of IRQs
-
-
-#else
-    #error "Undefined CPU."
-#endif 
 
 
 

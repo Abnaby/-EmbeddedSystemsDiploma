@@ -1,7 +1,6 @@
 
 ## Getting started  
 - First of all The MRTOS is implemented for educational and learning purposes so it may exist some faults I didn't handle so u can upload them in the issue section or fork the project and try to add your modification.
-- This is Version 0.1 `Under Development`
 
 ## Getting help 
 Feel Free to contact me, just message me at <br/> Linkedin at `linkedin.com/in/abnaby` <br/> Facebook at `fb.com/imohamedabdo` <br/> with your question.
@@ -18,13 +17,19 @@ $ MRTOS
 │   ├── MRTOS_Porting.c			-->	Is Used to define all processor faults as weak fcn.
 |   ├── MRTOS_Scheduler.c		--> APIs Definition DO NOT EDIT ANYTHING HERE 
 │   └── Queue Files			-->	Needed Files For Queue Implementation
-├── HW 
-|	└── Like Systick timer files	-->	Needed Files For the Ticker
+├── Essential_MCAL_Libs 
 ├── examples
 |   ├── TaskDelay					
 |   └── Round-Robin			
 └── README.md
 ```
+## MRTOS Features 
+in `V1.0 `
+* Support The basic operation of any RTOS.
+* The MRTOS scheduler based on priority - Highest Priority Should Run First-
+* Support Round-Robin Scheduling when two or more tasks have the same highest priority. 
+* Must Take Care of the Priority-Inversion problem.
+
 
 ## Porting Between Different Microprocessors.
 If you Opened The `MRTOS_Porting.h` will find some of the tunable parameters. <br/>
@@ -35,24 +40,28 @@ in `MRTOS_Porting.h` exist
 | __ CPU __ | This Macro is Used to select the processor to include the suitable APIs to access the processor register  | `CORTEX_M3` <br/> `CORTEX_M4` | 
 | MAX_NUM_OF_TASKS | Write down maximum number of tasks | if define tasks more than defined will return error `ExceedMaxNumberOfTasks`|
 | TICK_TIME | This Macro is used to define the tick time in microsecond | the default is 1 millisecond |
-| _estack | This Symbol is defined for the top of stack defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_estack` |
-| _eheap | This Symbol is defined for the top of heap defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_eheap` | 
+| MainStackSize | his Macro is used to define the SIZE of main stack area | This area is used by Kernel, Interrupts, and Exceptions |
+| PEND_SV_HANDLER_NAME | This Macro is used to define the handler name of pendSV |  |
+| END_OF_STACK_SYMBOL | This Symbol is defined for the top of stack defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_estack` |
+| END_OF_HEAP_SYMBOL | This Symbol is defined for the top of heap defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_eheap` | 
 
-in `MRTOS_Porting.h` if using another processor add your processor information in that section.
+in `MRTOS_Porting.h` if using another processor add your processor information in `Includes` section.
 
 ```c 
-#if  !((__CPU__ == CORTEX_M3) ||( __CPU__ == CORTEX_M4))
-//  CPU Name
-#define _USER_DEFINED_CPU_         CORTEX_M7
-#define _INCLUDE_CPU_LIB           "../Inc/PSRC_interface.h"
+#if (__CPU__ == CORTEX_M3) ||( __CPU__ == CORTEX_M4)
+#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
+#include "../Inc/STK_interface.h"			// Include Systic
+#include "../Inc/SCB_interface.h"			// For Trig PendSV
+#include "../Inc/NVIC_interface.h"			// To Set Priority of IRQs
+#include "../Inc/SCB_interface.h"			// For Trig PendSV
+#include "../Inc/PSRC_interface.h"			// Include Processor Libraries
+#else
+    #error "Undefined CPU."
 #endif
 ```
-| Param Name | Usage | Note |
-| ------ | ------ | ---- |
-|_ USER_DEFINED_CPU _ | add CPU name |  |
-|_ _INCLUDE_CPU_LIB _ | The Lib Path | add your include file with the same APIs name exist in <a href="">PSRC_interface file </a> | 
 
 in `MRTOS_Porting.c` Exist all most popular faults for CPU in while(1) defined as weak function. 
+
 ```c
 _attribute_(__WEAK__) void HardFault_Handler (void) { while(1); }
 
@@ -81,6 +90,7 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 | StackOverflow | When happen overflow during creating task.  | 
 | ErrorInQueueInit | Error in Queue Initialization. | 
 | ExceedMaxNumberOfTasks | Happens when number of tasks larger than defined in macro `MAX_NUM_OF_TASKS` in file `MRTOS_Porting.h`. | 
+| NULL_ARGs | Happens when User Passed Null Argument | 
 
 ### Task-Definition  
 This struct defined as task, with some User Accessible parameters and some of it Non Accessible by user.
@@ -92,7 +102,6 @@ typedef struct
 	u32					taskStackSize ;				  
 	u8					taskPriority;				 
 	ptrFunc				pTaskFcn ;			   
-	u8					taskPeriodicity;			
 	//  Non Accessible by user
 	MRTOS_PrivTaskRef taskPrivateStates  // I know you wont listen, but don't ever touch this member.
 }MRTOS_Task;
@@ -103,7 +112,6 @@ typedef struct
 | taskStackSize |  Size of task in bytes | |
 | taskPriority | Priority of task |  Lowest number is Lowest Priority | 
 | pTaskFcn | Pointer to Task  | 
-| taskPeriodicity | The time intervals that the function should run on it| 
 | taskPrivateStates | Non Accessible by user. check out that part for more <a href="#Task-Creation">details</a> | 
 
 
@@ -118,8 +126,10 @@ First of all,I need to explain what is the `taskPrivateStates` struct contains
 | taskState | Current Task State <a href="#Task-States">Details</a>  | 
 | _S_PSP_Task | Start Address of task in hardware stack | 
 | _E_PSP_Task | End Address of task in hardware stack |  
-| pCurrentPSP | Current stack pointer in function to know the last pushed item | 
-  
+| pCurrentPSP | Current stack pointer in function to know the last pushed item |
+| TimeDelayFlag | Flag to enable/disable tick delay of task.|
+| _taskDelayTime | Delay a task for a given number of ticks. The actual time that the task remains blocked depends on the tick rate |
+
 Before Going Deep into The function implementation I need to explain a static struct that is related to OS to keep track the updates in OS.  
 
 
@@ -224,10 +234,12 @@ To Create a Task, Will Walking some Steps to initialize it
 	```
 ***So After All of That*** you must know there are 16(CPU_Reg) * (4 bytes) = 64 bytes + Same size for saving/restoring context that exist in any created task but ignore this info when creating stack size.
 
-### Task-States
+## Task-States
+<div align="center">
+<img src="https://drive.google.com/uc?export=download&id=1RQBPP4rwn_94k11kkjI03EQo8V0QWzdI">
+</div>
 
-
-### Context-Switching 
+## Context-Switching 
 The ARM Cortex-M3/4 architecture is designed with special features to facilitate implementing a pre-emptive RTOS. The system code takes advantage of these features when implementing context switching code.  
 The stack pointers for the ARM Cortex-M include the main stack pointer (MSP) and the process stack pointer (PSP). The MSP is always used when handling interrupts. The PSP is only used during regular task execution. ARM recommends using the MSP for the kernel as well as interrupts and recommends the PSP for executing other tasks.
 The context switcher needs to:  
@@ -316,46 +328,46 @@ So the whole image of context switching is:
 
 ## OS-Explanation
 ```c
-MRTOS_Task T1_PushButton;
+MRTOS_Task T1_LED_1;
 MRTOS_Task T2_LED;
-MRTOS_Task T3_ToggleLED;
+MRTOS_Task T3_LED_3;
 
-void PushButton(void);
-void LedControl(void);
-void ToggleLed(void);
+void LED_1(void);
+void LED_2(void);
+void LED_3(void);
 
 int main(void){
 
 	(void)MRTOS_voidInit();
 
 	/*****************		TASK 1 INIT		********************/
-	T1_PushButton.taskID			=		1	;
-	T1_PushButton.taskPriority		=		3	;
-	T1_PushButton.taskPeriodicity	=		1	;
-	T1_PushButton.taskStackSize		=		100 ;
-	T1_PushButton.pTaskFcn			=		PushButton ;
-	(void)MRTOS_voidCreateTask(&T1_PushButton);
+	T1_LED_1.taskID			=		1	;
+	T1_LED_1.taskPriority		=		3	;
+	T1_LED_1.taskPeriodicity	=		1	;
+	T1_LED_1.taskStackSize		=		100 ;
+	T1_LED_1.pTaskFcn			=		LED_1 ;
+	(void)MRTOS_voidCreateTask(&T1_LED_1);
 
 	/*****************		TASK 2 INIT		********************/
 	T2_LED.taskID			=		2	;
 	T2_LED.taskPriority		=		3	;
 	T2_LED.taskPeriodicity	=		1	;
 	T2_LED.taskStackSize		=		100 ;
-	T2_LED.pTaskFcn			=		LedControl ;
+	T2_LED.pTaskFcn			=		LED_2 ;
 	(void)MRTOS_voidCreateTask(&T2_LED);
 
 	/*****************		TASK 3 INIT		********************/
-	T3_ToggleLED.taskID				=		3	;
-	T3_ToggleLED.taskPriority		=		2	;
-	T3_ToggleLED.taskPeriodicity	=		4	;
-	T3_ToggleLED.taskStackSize		=		100 ;
-	T3_ToggleLED.pTaskFcn			=		ToggleLed ;
-	(void)MRTOS_voidCreateTask(&T3_ToggleLED);
+	T3_LED_3.taskID				=		3	;
+	T3_LED_3.taskPriority		=		2	;
+	T3_LED_3.taskPeriodicity	=		4	;
+	T3_LED_3.taskStackSize		=		100 ;
+	T3_LED_3.pTaskFcn			=		LED_3 ;
+	(void)MRTOS_voidCreateTask(&T3_LED_3);
 	
 	/*****************		Active Tasks		*****************/
-	(void)MRTOS_voidActiveTask(&T1_PushButton);
+	(void)MRTOS_voidActiveTask(&T1_LED_1);
 	(void)MRTOS_voidActiveTask(&T2_LED);
-	(void)MRTOS_voidActiveTask(&T3_ToggleLED);
+	(void)MRTOS_voidActiveTask(&T3_LED_3);
 
 
 	/*****************		Start Scheduler		*****************/
@@ -379,13 +391,125 @@ All Tasks will be in the same way
 and you can see the context switching process in detail in this section <a href="#Context-Switching">Context-Switching</a> 
 
 ### Full Example  
-Display numbers from 0 to 9 in Common Anode
-> Hardware Setup  
-![image]()
+Toggle Three Leds   
+1. First Led toggle each 100 ms   
+2. Second Led toggle each 300 ms  
+3. Third Led toggle each 600 ms   
+
+And Three Leds Have The Same Priority  
+Code 
 ```c
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#include "RCC_interface.h"
+#include "GPIO_interface.h"
+#include "NVIC_interface.h"
+#include "EXTI_interface.h"
+#include "AFIO_interface.h"
+#include "PSRC_interface.h"
+
+#include "../MRTOS/inc/MRTOS_Scheduler.h"
+
+
+
+MRTOS_Task T1_LED_1;
+MRTOS_Task T2_LED;
+MRTOS_Task T3_LED_3;
+
+
+
+void LED_1(void);
+void LED_2(void);
+void LED_3(void);
+int i = 0 ;
+int t1 = 0 , t2 = 0 , t3 = 0;
+
+int main(void){
+
+	(void)MRTOS_voidInit();
+	/*****************		TASK 1 INIT		********************/
+	T1_LED_1.taskID			=		1	;
+	T1_LED_1.taskPriority		=		5	;
+	T1_LED_1.taskStackSize		=		100 ;
+	T1_LED_1.pTaskFcn			=		LED_1 ;
+	(void)MRTOS_voidCreateTask(&T1_LED_1);
+
+	/*****************		TASK 2 INIT		********************/
+	T2_LED.taskID			=		2	;
+	T2_LED.taskPriority		=		2	;
+	T2_LED.taskStackSize		=		100 ;
+	T2_LED.pTaskFcn			=		LED_2 ;
+	(void)MRTOS_voidCreateTask(&T2_LED);
+
+	/*****************		TASK 3 INIT		********************/
+	T3_LED_3.taskID				=		3	;
+	T3_LED_3.taskPriority		=		2	;
+	T3_LED_3.taskStackSize		=		100 ;
+	T3_LED_3.pTaskFcn			=		LED_3 ;
+	(void)MRTOS_voidCreateTask(&T3_LED_3);
+
+	/*****************		Active Tasks		*****************/
+	(void)MRTOS_voidActiveTask(&T1_LED_1);
+	(void)MRTOS_voidActiveTask(&T2_LED);
+	(void)MRTOS_voidActiveTask(&T3_LED_3);
+
+	/*****************		Start Scheduler		*****************/
+	MRTOS_voidStartScheduler();
+	while(1)
+	{
+
+	}
+
+}
+
+void LED_1(void)
+{
+	u8 LOC_u8isPressed = 0 ;
+	/*			init clock			*/
+	RCC_voidInitSysClock();
+	RCC_voidEnableClock(RCC_APB2, PORTA);
+	GPIO_voidSetPinDirection(PORTA, PIN2, GPIO_OUTPUT_10MHZ_PUSH_PULL);
+	while(1)
+	{
+		t1^=1 ;
+		GPIO_voidTogglePinValue(PORTA,PIN2);
+		MRTOS_voidTaskDelay(&T1_LED_1, 100);
+	}
+
+}
+void LED_2(void)
+{
+	/*			init clock			*/
+	RCC_voidInitSysClock();
+	RCC_voidEnableClock(RCC_APB2, PORTA);
+	GPIO_voidSetPinDirection(PORTA, PIN0, GPIO_OUTPUT_10MHZ_PUSH_PULL);
+	while(1)
+	{
+		t2^=1 ;
+		GPIO_voidTogglePinValue(PORTA,PIN0);
+		MRTOS_voidTaskDelay(&T2_LED, 300);
+	}
+}
+void LED_3(void)
+{
+	RCC_voidInitSysClock();
+	RCC_voidEnableClock(RCC_APB2, PORTA);
+	GPIO_voidSetPinDirection(PORTA, PIN5, GPIO_OUTPUT_10MHZ_PUSH_PULL);
+	while(1)
+	{
+		t3 ^= 1;
+		GPIO_voidTogglePinValue(PORTA, PIN5);
+		MRTOS_voidTaskDelay(&T3_LED_3, 600);
+		}
+}
 ```
 > Result
-![image]()
+![image](https://drive.google.com/uc?export=download&id=1zMHE1qbxpbhGDcj7b36DhbhPPORs1-Rt)  
+So when T3 Run, T1 and T2 should run in round-robin scheduling.  
+When T3 run, T2 should Run Twice and T1 should run six times.
+
+![image](https://drive.google.com/uc?export=download&id=1uvt9jGCT9P4t8RjAlGMsdMS7XQS7kHnk)
+
 
 ## Contributing  
 Bug reports, feature requests, and so on are always welcome. Feel free to leave a note in the Issues section.
