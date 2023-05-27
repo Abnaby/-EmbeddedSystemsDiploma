@@ -160,7 +160,7 @@ static void MRTOS_staticIdleTask(void)
 {
 	while(1)
 	{
-		__asm("NOP") ;
+		__asm("wfe") ;
 	}
 }
 

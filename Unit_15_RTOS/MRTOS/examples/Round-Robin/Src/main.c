@@ -42,7 +42,6 @@ int main(void){
 	/*****************		TASK 1 INIT		********************/
 	T1_PushButton.taskID			=		1	;
 	T1_PushButton.taskPriority		=		2	;
-	T1_PushButton.taskPeriodicity	=		1	;
 	T1_PushButton.taskStackSize		=		100 ;
 	T1_PushButton.pTaskFcn			=		PushButton ;
 	(void)MRTOS_voidCreateTask(&T1_PushButton);
@@ -52,7 +51,6 @@ int main(void){
 	/*****************		TASK 2 INIT		********************/
 	T2_LED.taskID			=		2	;
 	T2_LED.taskPriority		=		2	;
-	T2_LED.taskPeriodicity	=		1	;
 	T2_LED.taskStackSize		=		100 ;
 	T2_LED.pTaskFcn			=		LedControl ;
 	(void)MRTOS_voidCreateTask(&T2_LED);
@@ -62,7 +60,6 @@ int main(void){
 	/*****************		TASK 3 INIT		********************/
 	T3_ToggleLED.taskID				=		3	;
 	T3_ToggleLED.taskPriority		=		2	;
-	T3_ToggleLED.taskPeriodicity	=		4	;
 	T3_ToggleLED.taskStackSize		=		100 ;
 	T3_ToggleLED.pTaskFcn			=		ToggleLed ;
 	(void)MRTOS_voidCreateTask(&T3_ToggleLED);
@@ -70,7 +67,6 @@ int main(void){
 	/*****************		TASK 4 INIT		********************/
 	T4_SuspendTask.taskID				=		4	;
 	T4_SuspendTask.taskPriority		=		2	;
-	T4_SuspendTask.taskPeriodicity	=		4	;
 	T4_SuspendTask.taskStackSize		=		100 ;
 	T4_SuspendTask.pTaskFcn			=		t4_func ;
 	(void)MRTOS_voidCreateTask(&T4_SuspendTask);

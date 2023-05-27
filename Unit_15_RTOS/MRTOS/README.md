@@ -24,11 +24,20 @@ $ MRTOS
 └── README.md
 ```
 ## MRTOS Features 
-in `V1.0 `
+in `V1.1 `
 * Support The basic operation of any RTOS.
 * The MRTOS scheduler based on priority - Highest Priority Should Run First-
 * Support Round-Robin Scheduling when two or more tasks have the same highest priority. 
+* Updated the IDLE task content to enter sleep mode and wait for an event.
 * Must Take Care of the Priority-Inversion problem.
+
+## MRTOS Performance
+>  MRTOS CPU utilization  
+By updating `NOP` instruction with `WFE` instruction.  
+![image](https://drive.google.com/uc?export=download&id=1aU-jwE04Cd6NI4pz_YGngCXllb6-Fe_y)
+
+>  Tasks Switching Latency 
+![image](https://drive.google.com/uc?export=download&id=1I1TWVKmjpkRBKU8vcMBaQTsFK7tiHiyj)
 
 
 ## Porting Between Different Microprocessors.

@@ -2,8 +2,8 @@
 * @file MRTOS_Porting.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file consist of some of APIs that controls and hold CPU registers
-* @version 1.0
-* @date 2023-05-26
+* @version 1.1
+* @date 2023-05-27
 *
 */
 

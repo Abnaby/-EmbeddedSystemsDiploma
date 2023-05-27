@@ -2,8 +2,8 @@
 * @file MRTOS_Scheduler.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.0
-* @date 2023-05-26
+* @version 1.1
+* @date 2023-05-27
 *
 */
 

@@ -2,8 +2,8 @@
 * @file MRTOS_Scheduler.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.0
-* @date 2023-05-26
+* @version 1.1
+* @date 2023-05-27
 *
 */
 /******************************************************************************
@@ -164,7 +164,7 @@ static void MRTOS_staticIdleTask(void)
 {
 	while(1)
 	{
-		__asm("NOP") ;
+		__asm("WFE") ; //Enter Sleep Mode "Wait For Event IRQ, Exceptions"
 	}
 }
 
@@ -399,7 +399,7 @@ MRTOS_ErrorID MRTOS_voidStartScheduler(void)
 /******************************************************************************
 * Handler Mode - Function Call
 *******************************************************************************/
-static void MRTOS_voidInsertionSort(void)
+FORCE_INLINE static void MRTOS_voidInsertionSort(void)
 {
 
 	u8 LOC_u8Counter = 0 ;
@@ -423,9 +423,8 @@ static void MRTOS_voidInsertionSort(void)
 	}
 
 
-
 }
- static void MRTOS_staticFirstStageSchedular(void)
+static void MRTOS_staticFirstStageSchedular(void)
 {
 
 
