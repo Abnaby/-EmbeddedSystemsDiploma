@@ -2,7 +2,7 @@
 * @file MRTOS_Porting.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file consist of some of APIs that controls and hold CPU registers
-* @version 1.3
+* @version 1.4
 * @date 2023-05-27
 *
 */
@@ -77,10 +77,16 @@
 	 */
 	#define MAX_QUEUE_MSG_SIZE			1
 #endif
-
-#define ENABLE_BINARY_SAMPHORE				1
-
-// #define ENABLE_COUNTING_SAMPHORE			0
+/**
+ * @brief This Macro is used to Enable Binary Semaphore
+ *
+ */
+#define ENABLE_BINARY_SAMPHORE				0
+/**
+ * @brief This Macro is used to Enable Counting Semaphore
+ *
+ */
+#define ENABLE_COUNTING_SAMPHORE			1
 
 /******************************************************************************
 *  Preprocessor Constants

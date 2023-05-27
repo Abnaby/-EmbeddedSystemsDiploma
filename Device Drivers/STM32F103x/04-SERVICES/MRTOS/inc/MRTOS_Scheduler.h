@@ -2,7 +2,7 @@
 * @file MRTOS_Scheduler.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.3
+* @version 1.4
 * @date 2023-05-27
 *
 */
@@ -92,6 +92,7 @@ typedef struct
 typedef struct
 {
 	u32 msgWaitingCounter ;
+	u32 maxCounting	;
 	MRTOS_Task* MutexHolder ;
 	u32 nextPopedItemIndex	;
 } MRTOS_PrivQueueRef ;
@@ -123,6 +124,15 @@ typedef struct
 
 #endif
 
+#if ENABLE_COUNTING_SAMPHORE ==1
+/**
+ * @brief  this struct defined as counting semaphore
+ */
+typedef struct
+{
+	MRTOS_PrivQueueRef 		QueuePrivateData;
+}MRTOS_CountingSamphore;
+#endif
 
 /******************************************************************************
 * Function Prototypes
@@ -235,6 +245,44 @@ MRTOS_ErrorID MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *pSamphore, u8*
 
 #endif
 
+#if ENABLE_COUNTING_SAMPHORE == 1
+/**
+ * @brief This Function is used to initialize Counting Semaphore .
+ *
+ * @param pSemaphore an object from @ref MRTOS_CountingSamphore
+ * @param copy_u8MaxCount	maximum number of the counting semaphore.
+ * @param copy_u8InitialCount initial value of counting semaphore
+ *
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_CreateCountingSemphore(MRTOS_CountingSamphore *pSemaphore, u32 copy_u8MaxCount , u32 copy_u8InitialCount);
+/**
+ * @brief This Function is used to increment Counting Semaphore .
+ *
+ * @param pSemaphore an object from @ref MRTOS_CountingSamphore
+ *
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_IncrementCountingSemphore(MRTOS_CountingSamphore *pSemaphore);
+/**
+ * @brief This Function is used to decrement Counting Semaphore .
+ *
+ * @param pSemaphore an object from @ref MRTOS_CountingSamphore
+ *
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_DecrementCountingSemphore(MRTOS_CountingSamphore *pSemaphore);
 
+/**
+ * @brief This Function is used to get current Semaphore counter .
+ *
+ * @param pSemaphore an object from @ref MRTOS_CountingSamphore
+ * @param ptoNumberOfFlags pointer to result variable
+ *
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_GetCountingSemphore(MRTOS_CountingSamphore *pSemaphore , u32 *ptoNumberOfFlags);
+
+#endif
 
 #endif /* INC_MRTOS_SCHEDULER_H_ */

@@ -2,7 +2,7 @@
 * @file MRTOS_Scheduler.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.3
+* @version 1.4
 * @date 2023-05-27
 *
 */
@@ -510,6 +510,84 @@ MRTOS_ErrorID MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *pSamphore, u8 
 	return LOC_MRTOS_ErrorID;
 
 
+}
+#endif
+
+#if ENABLE_COUNTING_SAMPHORE == 1
+MRTOS_ErrorID MRTOS_CreateCountingSemphore(MRTOS_CountingSamphore *pSemaphore, u32 copy_u8MaxCount , u32 copy_u8InitialCount)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pSemaphore != NULL)
+	{
+		pSemaphore->QueuePrivateData.maxCounting = copy_u8MaxCount ;
+		pSemaphore->QueuePrivateData.msgWaitingCounter = copy_u8InitialCount ;
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
+
+
+}
+MRTOS_ErrorID MRTOS_IncrementCountingSemphore(MRTOS_CountingSamphore *pSemaphore)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pSemaphore != NULL)
+	{
+		if(pSemaphore->QueuePrivateData.msgWaitingCounter < pSemaphore->QueuePrivateData.maxCounting)
+		{
+			pSemaphore->QueuePrivateData.msgWaitingCounter++;
+		}
+		else
+		{
+			LOC_MRTOS_ErrorID = INVALID_OPERATION;
+
+		}
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
+}
+MRTOS_ErrorID MRTOS_DecrementCountingSemphore(MRTOS_CountingSamphore *pSemaphore)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pSemaphore != NULL)
+	{
+		if(pSemaphore->QueuePrivateData.msgWaitingCounter != 0)
+		{
+			pSemaphore->QueuePrivateData.msgWaitingCounter-- ;
+		}
+		else
+		{
+			LOC_MRTOS_ErrorID = INVALID_OPERATION;
+		}
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
+}
+MRTOS_ErrorID MRTOS_GetCountingSemphore(MRTOS_CountingSamphore *pSemaphore , u32 *ptoNumberOfFlags)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pSemaphore != NULL)
+	{
+
+		*ptoNumberOfFlags = pSemaphore->QueuePrivateData.msgWaitingCounter ;
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
 }
 #endif
 /******************************************************************************

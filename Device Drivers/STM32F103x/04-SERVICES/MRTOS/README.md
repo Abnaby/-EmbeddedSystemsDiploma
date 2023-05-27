@@ -19,6 +19,7 @@ $ MRTOS
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── Essential_MCAL_Libs 
 ├── examples
+|   ├── AquireCountingSemaphore					
 |   ├── AquireBinarySemaphore					
 |   ├── QueueUsage					
 |   ├── TaskDelay					
@@ -26,13 +27,14 @@ $ MRTOS
 └── README.md
 ```
 ## MRTOS Features 
-in `V1.3`
+in `V1.4`
 * Support The basic operation of any RTOS.
 * The MRTOS scheduler based on priority - Highest Priority Should Run First-
 * Support Round-Robin Scheduling when two or more tasks have the same highest priority. 
 * Updated the IDLE task content to enter sleep mode and wait for an event.
 * Implement Queue APIs to share data between tasks.
 * Support Binary Semaphores.
+* Support Counting Semaphores.
 * Must Take Care of the Priority-Inversion problem.
 
 ## MRTOS Performance
@@ -57,6 +59,11 @@ in `MRTOS_Porting.h` exist
 | PEND_SV_HANDLER_NAME | This Macro is used to define the handler name of pendSV |  |
 | END_OF_STACK_SYMBOL | This Symbol is defined for the top of stack defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_estack` |
 | END_OF_HEAP_SYMBOL | This Symbol is defined for the top of heap defined by linkerscript (.ld) File | if your `ld` file uses another name change it to `_eheap` | 
+| ENABLE_QUEUE_MSG_BOX | This Macro is used to Enable Queue for sharing data between threads | if the value is `1` enabled, otherwise is disabled | 
+| MAX_QUEUE_MSG_SIZE | This Macro is used to define MAX size of Queue for data synch |  Write the max possible elements of MSG_QUEUE_BOX | 
+| ENABLE_BINARY_SAMPHORE | This Macro is used to Enable Binary Semaphore | if the value is `1`so it is enabled, otherwise is disabled | 
+| ENABLE_COUNTING_SAMPHORE | This Macro is used to Enable Counting Semaphore | if the value is `1`so it is enabled, otherwise is disabled | 
+
 
 in `MRTOS_Porting.h` if using another processor add your processor information in `Includes` section.
 
@@ -101,6 +108,10 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 | MRTOS_AquireBinarySemaphore(MRTOS_BinarySamphore *) | This Function is used to take a Semaphore.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_ReleaseBinarySemaphore(MRTOS_BinarySamphore *)  | This Function is used to give a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *)  | This Function is used to get a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore <br/> `ptr_u8Flag` state of semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_CreateCountingSemphore(MRTOS_CountingSamphore *,u32,u32)  | This Function is used to initialize Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore <br/> `u32 copy_u8MaxCount` maximum number of the counting semaphore. <br/> `copy_u8InitialCount` initial value of counting semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_IncrementCountingSemphore(MRTOS_CountingSamphore *)  | This Function is used to increment Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_DecrementCountingSemphore(MRTOS_CountingSamphore *)  | This Function is used to decrement Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_GetCountingSemphore(MRTOS_CountingSamphore *,u32)  | This Function is used to get current Semaphore counter.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore <br/> `u32 *ptoNumberOfFlags` pointer to result variable  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
 
 
 ### Using of Queue
@@ -114,14 +125,13 @@ You can find and example in
 [Queue Example](../MRTOS/examples/QueueUsage/)
 
 ### Using of Semaphore
-a signal between tasks/interrupts that does not carry any additional data. The most common type of semaphore is a binary semaphore, that triggers activation of a task.
-<div align="center">
-<img src="https://static.packt-cdn.com/products/9781838826734/graphics/assets/d82cc6e2-4a19-4439-ba39-632cfccaedb0.png">
-</div>
-
+> Binary Semaphores  
+a signal between tasks/interrupts that does not carry any additional data. The most common type of semaphore is a binary semaphore, that triggers activation of a task. <div align="center">
+<img src="https://static.packt-cdn.com/products/9781838826734/graphics/assets/d82cc6e2-4a19-4439-ba39-632cfccaedb0.png"></div>  
 [Binary Semaphore Example](../MRTOS/examples/AquireBinarySemaphore/)
 
-
+> Counting Semaphores  
+A counting semaphore refers to a semaphore with several counter values. The value can span a wide range of possibilities. The counting semaphore’s value can range from 0 to N.  <div align="center"><img src="https://gab.wallawalla.edu/~larry.aamodt/cptr480/keil/Documentation/RTOS2/html/Semaphore.png"> </div>  [Counting Semaphore Example](../MRTOS/examples/AquireCountingSemaphore/)
 
 ### Error-Id
 | Error Name | Usage | 

@@ -1,4 +1,4 @@
-## Aquire Semaphore Example
+## Queue Example
 
 In this example we created 2 tasks with the same priority.  
 
