@@ -19,16 +19,18 @@ $ MRTOS
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── Essential_MCAL_Libs 
 ├── examples
+|	├── QueueUsage	
 |   ├── TaskDelay					
 |   └── Round-Robin			
 └── README.md
 ```
 ## MRTOS Features 
-in `V1.1 `
+in `V1.2`
 * Support The basic operation of any RTOS.
 * The MRTOS scheduler based on priority - Highest Priority Should Run First-
 * Support Round-Robin Scheduling when two or more tasks have the same highest priority. 
 * Updated the IDLE task content to enter sleep mode and wait for an event.
+* Implement Queue APIs to share data between tasks.
 * Must Take Care of the Priority-Inversion problem.
 
 ## MRTOS Performance
@@ -90,7 +92,21 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 | MRTOS_voidActiveTask(p2Task) | This Function is used for Active tasks and makes them ready to execute  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidTerminateTask(p2Task) | This Function is used for Terminate tasks.  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidTaskDelay(p2Task,u32) | Delay a task for a given number of ticks. The actual time that the task remains blocked depends on the tick rate.  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> <br/>`u32 copy_u32NumberofTicks` The amount of ticks, that the calling task should block.| `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_voidStartScheduler(void) | This Function is used to start OS kernal  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_voidStartScheduler(void) | This Function is used to send element with size u32 to queue to be shared between tasks  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_voidSendItemToQueue(copy_u32ToData) | This Function is used to receive first element with size u32 .  |  `u32 *pToData`  pointer to data to be add in queue | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_RecieveItemToQueue(pToData); | This Function is used to start OS kernal  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_ResetQueue(void) | This Function is used to reset the queue.  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+
+
+### Using of Queue
+Queue is the easiest way to send and receive data between the tasks.A queue is a first in, first out (FIFO) system where items are removed from the queue once read.  
+In this example, Task A writes some data to a queue, After, Task B can write some other piece of data to the queue. Task B’s data will appear behind Task A’s data, as the queue is a FIFO system.
+<div align="center">
+<img src="https://www.digikey.com/maker-media/88d32074-22e7-4fc3-943f-9e59b06dede9">
+</div>
+You can find and example in  
+
+[Queue Example](../MRTOS/examples/QueueUsage/)
 
 ### Error-Id
 | Error Name | Usage | 

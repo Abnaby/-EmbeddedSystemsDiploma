@@ -35,7 +35,7 @@
  * @brief This Macro is used to define the tick time in microsecond 
  * 
  */
-#define TICK_TIME 3000
+#define TICK_TIME 4000
 
 /**
  * @brief This Macro is used to define the SIZE of main stack area
@@ -75,7 +75,7 @@
 	 * @brief This Macro is used to define MAX size of Queue for data synch
 	 *
 	 */
-	#define MAX_QUEUE_MSG_SIZE			2
+	#define MAX_QUEUE_MSG_SIZE			1
 #endif
 
 /******************************************************************************

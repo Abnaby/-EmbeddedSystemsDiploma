@@ -154,11 +154,27 @@ MRTOS_ErrorID MRTOS_voidTaskDelay(MRTOS_Task* pTask, u32 copy_u32NumberofTicks);
  */
 MRTOS_ErrorID MRTOS_voidStartScheduler(void);
 
+/**
+ * @brief This Function is used to send element with size u32 to queue to be shared between tasks.
+ *
+ * @param copy_u32ToData 	pointer to data to be add in queue
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 copy_u32ToData);
+/**
+ * @brief This Function is used to receive first element with size u32 .
+ *
+ * @param pToData 	pointer to data to be add in queue
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *pToData);
 
-MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData);
-
-MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *vPointerToData);
-
+/**
+ * @brief This Function is used to reset the queue.
+ *
+ * @param void
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
 MRTOS_ErrorID MRTOS_ResetQueue(void );
 
 

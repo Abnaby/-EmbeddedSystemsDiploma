@@ -143,7 +143,7 @@ static MRTOS_Task	Global_IdleTask ;
 
 #if ENABLE_QUEUE_MSG_BOX == 1
 	// Queue
-	static u32 Global_voidQuueArr[(MAX_QUEUE_MSG_SIZE+1)] ;
+	static u32 Global_voidQueueArr[(MAX_QUEUE_MSG_SIZE+1)] ;
 	/**
 	 * @brief Is object from @ref MRTOS_Queue used to create number of queue used in application
 	 *
@@ -425,7 +425,7 @@ MRTOS_ErrorID MRTOS_voidStartScheduler(void)
 }
 
 #if ENABLE_QUEUE_MSG_BOX == 1
-MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData)
+MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 copy_u32ToData)
 {
 	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
 	if(Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter <= MAX_QUEUE_MSG_SIZE)
@@ -434,7 +434,7 @@ MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData)
 		Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter++ ;
 
 		// Add To Queue
-		Global_voidQuueArr[Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter] =  *(u32*)vPointerToData;
+		Global_voidQueueArr[Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter] =  copy_u32ToData;
 	}
 	else
 	{
@@ -442,14 +442,18 @@ MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData)
 	}
 	return LOC_MRTOS_ErrorID ;
 }
-MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *vPointerToData)
+MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *pToData)
 {
 	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
 	if(Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter != 0)
 	{
 		Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex++ ;
+		if(Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex > (MAX_QUEUE_MSG_SIZE-1))
+		{
+			Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex = 1;
+		}
 		//	Pop From Queue
-		*vPointerToData = Global_voidQuueArr[Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex] ;
+		*pToData = Global_voidQueueArr[Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex] ;
 		// Decrement Counter
 		Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter-- ;
 	}
