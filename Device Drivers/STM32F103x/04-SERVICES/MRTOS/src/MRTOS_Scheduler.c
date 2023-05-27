@@ -2,7 +2,7 @@
 * @file MRTOS_Scheduler.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.2
+* @version 1.3
 * @date 2023-05-27
 *
 */
@@ -99,25 +99,6 @@ static struct
 }OS_Control;
 
 
-/**
- * @brief  this struct holds some attributes that Not Entered by the user
- *
- */
-typedef struct
-{
-	u32 msgWaitingCounter ;
-	MRTOS_Task* MutexHolder ;
-	u32 nextPopedItemIndex	;
-} MRTOS_PrivQueueRef ;
-
-
-/**
- * @brief  this struct defined as queue for data synchronization
- */
-typedef struct
-{
-	MRTOS_PrivQueueRef 		QueuePrivateData;
-}MRTOS_Queue;
 /******************************************************************************
 * Module Variable Definitions
 *******************************************************************************/
@@ -143,13 +124,14 @@ static MRTOS_Task	Global_IdleTask ;
 
 #if ENABLE_QUEUE_MSG_BOX == 1
 	// Queue
-	static u32 Global_voidQuueArr[(MAX_QUEUE_MSG_SIZE+1)] ;
+	static u32 Global_voidQueueArr[(MAX_QUEUE_MSG_SIZE+1)] ;
 	/**
 	 * @brief Is object from @ref MRTOS_Queue used to create number of queue used in application
 	 *
 	 */
 	static MRTOS_Queue Global_DataQueueSynch ;
 #endif
+
 
 
 /******************************************************************************
@@ -425,7 +407,7 @@ MRTOS_ErrorID MRTOS_voidStartScheduler(void)
 }
 
 #if ENABLE_QUEUE_MSG_BOX == 1
-MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData)
+MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 copy_u32ToData)
 {
 	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
 	if(Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter <= MAX_QUEUE_MSG_SIZE)
@@ -434,7 +416,7 @@ MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData)
 		Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter++ ;
 
 		// Add To Queue
-		Global_voidQuueArr[Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter] =  *(u32*)vPointerToData;
+		Global_voidQueueArr[Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter] =  copy_u32ToData;
 	}
 	else
 	{
@@ -442,14 +424,18 @@ MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData)
 	}
 	return LOC_MRTOS_ErrorID ;
 }
-MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *vPointerToData)
+MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *pToData)
 {
 	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
 	if(Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter != 0)
 	{
 		Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex++ ;
+		if(Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex > (MAX_QUEUE_MSG_SIZE-1))
+		{
+			Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex = 1;
+		}
 		//	Pop From Queue
-		*vPointerToData = Global_voidQuueArr[Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex] ;
+		*pToData = Global_voidQueueArr[Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex] ;
 		// Decrement Counter
 		Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter-- ;
 	}
@@ -466,6 +452,64 @@ MRTOS_ErrorID MRTOS_ResetQueue(void)
 	Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter = 0 ;
 	Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex = 0 ;
 	return LOC_MRTOS_ErrorID;
+}
+#endif
+
+#if ENABLE_BINARY_SAMPHORE == 1
+MRTOS_ErrorID MRTOS_AquireBinarySemaphore(MRTOS_BinarySamphore *pSamphore)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pSamphore->QueuePrivateData.msgWaitingCounter == 0)
+	{
+		pSamphore->QueuePrivateData.msgWaitingCounter++;
+	}
+	else if(pSamphore->QueuePrivateData.msgWaitingCounter == 1)
+	{
+		LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+	}
+	else
+	{
+		// Shouldn't be here
+		LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+
+	}
+	return LOC_MRTOS_ErrorID;
+}
+
+MRTOS_ErrorID MRTOS_ReleaseBinarySemaphore(MRTOS_BinarySamphore *pSamphore)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pSamphore->QueuePrivateData.msgWaitingCounter == 0)
+	{
+		LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+	}
+	else if(pSamphore->QueuePrivateData.msgWaitingCounter == 1)
+	{
+		pSamphore->QueuePrivateData.msgWaitingCounter--;
+	}
+	else
+	{
+		// Shouldn't be here
+		LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+	}
+	return LOC_MRTOS_ErrorID;
+}
+MRTOS_ErrorID MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *pSamphore, u8 *ptr_u8Flag)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+
+	if(pSamphore->QueuePrivateData.msgWaitingCounter == 0 || pSamphore->QueuePrivateData.msgWaitingCounter == 1)
+	{
+		*ptr_u8Flag =  pSamphore->QueuePrivateData.msgWaitingCounter  ;
+	}
+	else
+	{
+		// Shouldn't be here
+		LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+	}
+	return LOC_MRTOS_ErrorID;
+
+
 }
 #endif
 /******************************************************************************

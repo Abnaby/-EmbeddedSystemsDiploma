@@ -2,7 +2,7 @@
 * @file MRTOS_Scheduler.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.2
+* @version 1.3
 * @date 2023-05-27
 *
 */
@@ -16,8 +16,7 @@
 *******************************************************************************/
 
 #include "STD_TYPES.h"
-
-
+#include "../MRTOS/inc/MRTOS_Porting.h"
 
 /******************************************************************************
 * Preprocessor Constants
@@ -86,12 +85,43 @@ typedef struct
 	MRTOS_PrivTaskRef					taskPrivateStates;	          // I know you wont listen, but don't ever touch this member.
 }MRTOS_Task;
 
+/**
+ * @brief  this struct holds some attributes that Not Entered by the user
+ *
+ */
+typedef struct
+{
+	u32 msgWaitingCounter ;
+	MRTOS_Task* MutexHolder ;
+	u32 nextPopedItemIndex	;
+} MRTOS_PrivQueueRef ;
 
 
 
 /******************************************************************************
-* Configuration Constants
+* Private Typedefs
 *******************************************************************************/
+#if ENABLE_QUEUE_MSG_BOX == 1
+/**
+ * @brief  this struct defined as queue for data synchronization
+ */
+typedef struct
+{
+	MRTOS_PrivQueueRef 		QueuePrivateData;
+}MRTOS_Queue;
+#endif
+
+#if ENABLE_BINARY_SAMPHORE == 1
+
+/**
+ * @brief  this struct defined as queue for data synchronization
+ */
+typedef struct
+{
+	MRTOS_PrivQueueRef 		QueuePrivateData;
+}MRTOS_BinarySamphore;
+
+#endif
 
 
 /******************************************************************************
@@ -153,17 +183,57 @@ MRTOS_ErrorID MRTOS_voidTaskDelay(MRTOS_Task* pTask, u32 copy_u32NumberofTicks);
  * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
  */
 MRTOS_ErrorID MRTOS_voidStartScheduler(void);
+#if ENABLE_QUEUE_MSG_BOX == 1
 
+/**
+ * @brief This Function is used to send element with size u32 to queue to be shared between tasks.
+ *
+ * @param copy_u32ToData 	pointer to data to be add in queue
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 copy_u32ToData);
+/**
+ * @brief This Function is used to receive first element with size u32 .
+ *
+ * @param pToData 	pointer to data to be add in queue
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *pToData);
 
-MRTOS_ErrorID MRTOS_voidSendItemToQueue(u32 *vPointerToData);
-
-MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *vPointerToData);
-
+/**
+ * @brief This Function is used to reset the queue.
+ *
+ * @param void
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
 MRTOS_ErrorID MRTOS_ResetQueue(void );
+#endif
 
+#if ENABLE_BINARY_SAMPHORE == 1
+/**
+ * @brief This Function is used to take a Semaphore .
+ *
+ * @param an object from @ref MRTOS_BinarySamphore
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_AquireBinarySemaphore(MRTOS_BinarySamphore *pSamphore);
+/**
+ * @brief This Function is used to give a Semaphore .
+ *
+ * @param an object from @ref MRTOS_BinarySamphore
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_ReleaseBinarySemaphore(MRTOS_BinarySamphore *pSamphore);
+/**
+ * @brief This Function is used to get a semaphore state.
+ *
+ * @param pSamphore   an object from @ref MRTOS_BinarySamphore
+ * @param ptr_u8Flag  state of semaphore.
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *pSamphore, u8* ptr_u8Flag);
 
-
-
+#endif
 
 
 

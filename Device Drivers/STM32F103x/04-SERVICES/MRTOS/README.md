@@ -19,18 +19,20 @@ $ MRTOS
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── Essential_MCAL_Libs 
 ├── examples
-|	├── QueueUsage	
+|   ├── AquireBinarySemaphore					
+|   ├── QueueUsage					
 |   ├── TaskDelay					
 |   └── Round-Robin			
 └── README.md
 ```
 ## MRTOS Features 
-in `V1.2`
+in `V1.3`
 * Support The basic operation of any RTOS.
 * The MRTOS scheduler based on priority - Highest Priority Should Run First-
 * Support Round-Robin Scheduling when two or more tasks have the same highest priority. 
 * Updated the IDLE task content to enter sleep mode and wait for an event.
 * Implement Queue APIs to share data between tasks.
+* Support Binary Semaphores.
 * Must Take Care of the Priority-Inversion problem.
 
 ## MRTOS Performance
@@ -96,6 +98,9 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 | MRTOS_voidSendItemToQueue(copy_u32ToData) | This Function is used to receive first element with size u32 .  |  `u32 *pToData`  pointer to data to be add in queue | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_RecieveItemToQueue(pToData); | This Function is used to start OS kernal  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_ResetQueue(void) | This Function is used to reset the queue.  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_AquireBinarySemaphore(MRTOS_BinarySamphore *) | This Function is used to take a Semaphore.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_ReleaseBinarySemaphore(MRTOS_BinarySamphore *)  | This Function is used to give a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *)  | This Function is used to get a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore <br/> `ptr_u8Flag` state of semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 
 
 ### Using of Queue
@@ -107,6 +112,16 @@ In this example, Task A writes some data to a queue, After, Task B can write som
 You can find and example in  
 
 [Queue Example](../MRTOS/examples/QueueUsage/)
+
+### Using of Semaphore
+a signal between tasks/interrupts that does not carry any additional data. The most common type of semaphore is a binary semaphore, that triggers activation of a task.
+<div align="center">
+<img src="https://static.packt-cdn.com/products/9781838826734/graphics/assets/d82cc6e2-4a19-4439-ba39-632cfccaedb0.png">
+</div>
+
+[Binary Semaphore Example](../MRTOS/examples/AquireBinarySemaphore/)
+
+
 
 ### Error-Id
 | Error Name | Usage | 
