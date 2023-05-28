@@ -2,8 +2,8 @@
 * @file MRTOS_Scheduler.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.4
-* @date 2023-05-27
+* @version 1.5
+* @date 2023-05-28
 *
 */
 
@@ -85,6 +85,7 @@ typedef struct
 	MRTOS_PrivTaskRef					taskPrivateStates;	          // I know you wont listen, but don't ever touch this member.
 }MRTOS_Task;
 
+#if ENABLE_QUEUE_MSG_BOX == 1 ||ENABLE_BINARY_SAMPHORE == 1 || ENABLE_COUNTING_SAMPHORE ==1 ||ENABLE_MUTEX	== 1
 /**
  * @brief  this struct holds some attributes that Not Entered by the user
  *
@@ -93,10 +94,9 @@ typedef struct
 {
 	u32 msgWaitingCounter ;
 	u32 maxCounting	;
-	MRTOS_Task* MutexHolder ;
 	u32 nextPopedItemIndex	;
 } MRTOS_PrivQueueRef ;
-
+#endif
 
 
 /******************************************************************************
@@ -132,6 +132,17 @@ typedef struct
 {
 	MRTOS_PrivQueueRef 		QueuePrivateData;
 }MRTOS_CountingSamphore;
+#endif
+
+#if ENABLE_MUTEX	== 1
+typedef struct
+{
+	MRTOS_Task* MutexHolder ;
+	u8		priorityInversionFlag ;
+	MRTOS_Task* inheritedTask;
+	MRTOS_PrivQueueRef 		QueuePrivateData;
+
+}MRTOS_Mutex;
 #endif
 
 /******************************************************************************
@@ -282,6 +293,38 @@ MRTOS_ErrorID MRTOS_DecrementCountingSemphore(MRTOS_CountingSamphore *pSemaphore
  * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
  */
 MRTOS_ErrorID MRTOS_GetCountingSemphore(MRTOS_CountingSamphore *pSemaphore , u32 *ptoNumberOfFlags);
+
+#endif
+
+#if ENABLE_MUTEX == 1
+
+/**
+ * @brief This Function is used to create mutex  .
+ *
+ * @param pMutex an object from @ref MRTOS_Mutex
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_CreateMutex(MRTOS_Mutex *pMutex);
+/**
+ * @brief This Function is used to take a mutex .
+ *
+ * @param pMutex an object from @ref MRTOS_Mutex
+ * @param pCurrentRunningTask pointer to current running task.
+ *
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_AquireMutex(MRTOS_Mutex *pMutex,MRTOS_Task* pCurrentRunningTask);
+
+/**
+ * @brief This Function is used to give a mutex .
+ *
+ * @param pMutex an object from @ref MRTOS_Mutex
+ * @param pCurrentRunningTask pointer to current running task.
+ *
+ * @return MRTOS_ErrorID return one of @ref MRTOS_ErrorID
+ */
+MRTOS_ErrorID MRTOS_ReleaseMutex(MRTOS_Mutex *pMutex,MRTOS_Task* pCurrentRunningTask);
+
 
 #endif
 

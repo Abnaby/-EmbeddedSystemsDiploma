@@ -2,8 +2,8 @@
 * @file MRTOS_Porting.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file consist of some of APIs that controls and hold CPU registers
-* @version 1.4
-* @date 2023-05-27
+* @version 1.5
+* @date 2023-05-28
 *
 */
 
@@ -42,7 +42,7 @@
  * @details This area is used by Kernel, Interrupts, and Exceptions
  *
  */
-#define MainStackSize   3072
+#define MainStackSize   2072
 
 /**
  * @brief This Macro is used to define the handler name of pendSV
@@ -75,7 +75,7 @@
 	 * @brief This Macro is used to define MAX size of Queue for data synch
 	 *
 	 */
-	#define MAX_QUEUE_MSG_SIZE			1
+	#define MAX_QUEUE_MSG_SIZE			0
 #endif
 /**
  * @brief This Macro is used to Enable Binary Semaphore
@@ -86,7 +86,14 @@
  * @brief This Macro is used to Enable Counting Semaphore
  *
  */
-#define ENABLE_COUNTING_SAMPHORE			1
+#define ENABLE_COUNTING_SAMPHORE			0
+
+/**
+ * @brief This Macro is used to Enable mutual exclusion (MUTEX)
+ *
+ */
+#define ENABLE_MUTEX			1
+
 
 /******************************************************************************
 *  Preprocessor Constants

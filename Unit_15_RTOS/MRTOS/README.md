@@ -11,31 +11,33 @@ $ MRTOS
 .
 ├── inc
 │   ├── MRTOS_Porting.h 		-->	Is Used to Port MRTOS to different Processors/MCUs
-|   ├── MRTOS_Scheduler.h 		--> Function Prototypes of What is TASK and Supported APIs 
+│   ├── MRTOS_Scheduler.h 		--> Function Prototypes of What is TASK and Supported APIs 
 │   └── Queue Files			-->	Needed Files For Queue Implementation
 ├── src
 │   ├── MRTOS_Porting.c			-->	Is Used to define all processor faults as weak fcn.
-|   ├── MRTOS_Scheduler.c		--> APIs Definition DO NOT EDIT ANYTHING HERE 
+│   ├── MRTOS_Scheduler.c		--> APIs Definition DO NOT EDIT ANYTHING HERE 
 │   └── Queue Files			-->	Needed Files For Queue Implementation
-├── Essential_MCAL_Libs 
+│── Essential_MCAL_Libs 
 ├── examples
-|   ├── AquireCountingSemaphore					
-|   ├── AquireBinarySemaphore					
-|   ├── QueueUsage					
-|   ├── TaskDelay					
-|   └── Round-Robin			
+│   ├── AquireMutex					
+│   ├── AquireCountingSemaphore					
+│   ├── AquireBinarySemaphore					
+│   ├── QueueUsage					
+│   ├── TaskDelay					
+│   └── Round-Robin			
 └── README.md
 ```
 ## MRTOS Features 
-in `V1.4`
+in `V1.5`
 * Support The basic operation of any RTOS.
 * The MRTOS scheduler based on priority - Highest Priority Should Run First-
 * Support Round-Robin Scheduling when two or more tasks have the same highest priority. 
 * Updated the IDLE task content to enter sleep mode and wait for an event.
-* Implement Queue APIs to share data between tasks.
-* Support Binary Semaphores.
-* Support Counting Semaphores.
-* Must Take Care of the Priority-Inversion problem.
+* Implement <a href="#Queue">Queue</a> Queue APIs to share data between tasks.
+* Support <a href="#Semaphore">Binary Semaphores</a> as signaling mechanism.
+* Support <a href="#Semaphore">Counting Semaphores</a> as signaling mechanism.
+* Support <a href="#Mutex">Mutex</a> as locking mechanism .
+* Must Take Care of the <a href="#Deadlock">deadlock</a> problem.
 
 ## MRTOS Performance
 >  MRTOS CPU utilization  
@@ -63,6 +65,7 @@ in `MRTOS_Porting.h` exist
 | MAX_QUEUE_MSG_SIZE | This Macro is used to define MAX size of Queue for data synch |  Write the max possible elements of MSG_QUEUE_BOX | 
 | ENABLE_BINARY_SAMPHORE | This Macro is used to Enable Binary Semaphore | if the value is `1`so it is enabled, otherwise is disabled | 
 | ENABLE_COUNTING_SAMPHORE | This Macro is used to Enable Counting Semaphore | if the value is `1`so it is enabled, otherwise is disabled | 
+| ENABLE_MUTEX | This Macro is used to Enable mutual exclusion (MUTEX) | if the value is `1`so it is enabled, otherwise is disabled | 
 
 
 in `MRTOS_Porting.h` if using another processor add your processor information in `Includes` section.
@@ -94,27 +97,31 @@ _attribute_(__WEAK__) void UsageFault_Handler(void) { while(1); }
 ```
 
 ## Development   
-| Function Name | Usage |  Parameter | return |
-| ------ | ------ |  ------ |  ------ |
+| Function Name | Usage &nbsp; &nbsp; &nbsp; &nbsp;  |  Parameter | return |
+| ------ | ------------ |  ------ |  ------ |
 | MRTOS_voidInit(void)  | This Function is used to initialize MRTOS. <br/> This function will initialize some of HW like systick timer and some of SW like initializing idle task.| void | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>  |
 | MRTOS_voidCreateTask(p2Task) | This Function is used to Create task stack area  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidActiveTask(p2Task) | This Function is used for Active tasks and makes them ready to execute  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidTerminateTask(p2Task) | This Function is used for Terminate tasks.  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidTaskDelay(p2Task,u32) | Delay a task for a given number of ticks. The actual time that the task remains blocked depends on the tick rate.  |  `MRTOS_Task* pTask` - pointer to user defined <a href="#Task-Definition">Task</a> <br/>`u32 copy_u32NumberofTicks` The amount of ticks, that the calling task should block.| `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_voidStartScheduler(void) | This Function is used to send element with size u32 to queue to be shared between tasks  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_voidSendItemToQueue(copy_u32ToData) | This Function is used to receive first element with size u32 .  |  `u32 *pToData`  pointer to data to be add in queue | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_voidSendItemToQueue<br/>(copy_u32ToData) | This Function is used to receive first element with size u32 .  |  `u32 *pToData`  pointer to data to be add in queue | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_RecieveItemToQueue(pToData); | This Function is used to start OS kernal  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
 | MRTOS_ResetQueue(void) | This Function is used to reset the queue.  |  `void` | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_AquireBinarySemaphore(MRTOS_BinarySamphore *) | This Function is used to take a Semaphore.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_ReleaseBinarySemaphore(MRTOS_BinarySamphore *)  | This Function is used to give a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_GetBinarySemaphoreState(MRTOS_BinarySamphore *)  | This Function is used to get a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore <br/> `ptr_u8Flag` state of semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
-| MRTOS_CreateCountingSemphore(MRTOS_CountingSamphore *,u32,u32)  | This Function is used to initialize Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore <br/> `u32 copy_u8MaxCount` maximum number of the counting semaphore. <br/> `copy_u8InitialCount` initial value of counting semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
-| MRTOS_IncrementCountingSemphore(MRTOS_CountingSamphore *)  | This Function is used to increment Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
-| MRTOS_DecrementCountingSemphore(MRTOS_CountingSamphore *)  | This Function is used to decrement Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
-| MRTOS_GetCountingSemphore(MRTOS_CountingSamphore *,u32)  | This Function is used to get current Semaphore counter.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore <br/> `u32 *ptoNumberOfFlags` pointer to result variable  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_AquireBinarySemaphore<br/>(MRTOS_BinarySamphore *) | This Function is used to take a Semaphore.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_ReleaseBinarySemaphore<br/>(MRTOS_BinarySamphore *)  | This Function is used to give a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_GetBinarySemaphoreState<br/>(MRTOS_BinarySamphore *)  | This Function is used to get a semaphore state.  |  `MRTOS_BinarySamphore *pSamphore` an object from @ref MRTOS_BinarySamphore <br/> `ptr_u8Flag` state of semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a>    |
+| MRTOS_CreateCountingSemphore<br/>(MRTOS_CountingSamphore *,u32,u32)  | This Function is used to initialize Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore <br/> `u32 copy_u8MaxCount` maximum number of the counting semaphore. <br/> `copy_u8InitialCount` initial value of counting semaphore | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_IncrementCountingSemphore<br/>(MRTOS_CountingSamphore *)  | This Function is used to increment Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_DecrementCountingSemphore<br/>(MRTOS_CountingSamphore *)  | This Function is used to decrement Counting Semaphore.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_GetCountingSemphore<br/>(MRTOS_CountingSamphore *,u32)  | This Function is used to get current Semaphore counter.  |  `MRTOS_CountingSamphore *pSamphore` an object from MRTOS_CountingSamphore <br/> `u32 *ptoNumberOfFlags` pointer to result variable  | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_CreateMutex<br/>(MRTOS_Mutex *)  | This Function is used to create and initialize mutex.  |  `MRTOS_Mutex *pMutex` an object from @ref MRTOS_Mutex | `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_AquireMutex<br/>(MRTOS_Mutex*, MRTOS_Task*)  | This Function is used to take a mutex.  |  `MRTOS_Mutex *pMutex` an object from @ref MRTOS_Mutex <br/>  `MRTOS_Task* pCurrentRunningTask` - pointer to current running user defined <a href="#Task-Definition">Task</a>| `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
+| MRTOS_ReleaseMutex<br/>(MRTOS_Mutex*, MRTOS_Task*)  | This Function is used to take a mutex.  |  `MRTOS_Mutex *pMutex` an object from @ref MRTOS_Mutex <br/>  `MRTOS_Task* pCurrentRunningTask` - pointer to current running user defined <a href="#Task-Definition">Task</a>| `MRTOS_ErrorID` - one of <a href="#Error-Id">defined errors</a> |
 
 
-### Using of Queue
+
+### Queue
 Queue is the easiest way to send and receive data between the tasks.A queue is a first in, first out (FIFO) system where items are removed from the queue once read.  
 In this example, Task A writes some data to a queue, After, Task B can write some other piece of data to the queue. Task B’s data will appear behind Task A’s data, as the queue is a FIFO system.
 <div align="center">
@@ -124,7 +131,7 @@ You can find and example in
 
 [Queue Example](../MRTOS/examples/QueueUsage/)
 
-### Using of Semaphore
+### Semaphore
 > Binary Semaphores  
 a signal between tasks/interrupts that does not carry any additional data. The most common type of semaphore is a binary semaphore, that triggers activation of a task. <div align="center">
 <img src="https://static.packt-cdn.com/products/9781838826734/graphics/assets/d82cc6e2-4a19-4439-ba39-632cfccaedb0.png"></div>  
@@ -132,6 +139,46 @@ a signal between tasks/interrupts that does not carry any additional data. The m
 
 > Counting Semaphores  
 A counting semaphore refers to a semaphore with several counter values. The value can span a wide range of possibilities. The counting semaphore’s value can range from 0 to N.  <div align="center"><img src="https://gab.wallawalla.edu/~larry.aamodt/cptr480/keil/Documentation/RTOS2/html/Semaphore.png"> </div>  [Counting Semaphore Example](../MRTOS/examples/AquireCountingSemaphore/)
+
+### Mutex
+A mutex (short for MUTual EXclusion) is a flag or lock used to allow only one thread to access a section of code at a time. It blocks (or locks out) all other threads from accessing the code or resource. This ensures that anything executed in that critical section is thread-safe and information will not be corrupted by other threads.
+<div align="center"><img src="https://i.ibb.co/jvX5pk3/How-to-Write-Parallel-Multitasking-Applications-for-ESP32-with-Free-RTOS-and-Arduino-Mutex-Working-I.png"> </div> 
+
+For Example 
+We need to protect the shared resource LCD when writing on it.
+```c 
+MRTOS_AquireMutex(&mutex1,&currentTask);
+
+//#######################################
+//########## Critical Section ###########
+//#######################################
+WriteOnLCD("Hello World");
+
+MRTOS_ReleaseMutex(&mutex1,&currentTask);
+```
+<div align="center"><img src="https://microcontrollerslab.com/wp-content/uploads/2020/05/FreeRTOS-mutex-example.jpg"> </div> 
+
+ [Mutex Example](../MRTOS/examples/AquireMutex/)
+
+### Deadlock
+A deadlock consists of a set of blocked processes, each holding a resource and waiting to acquire a resource held by another process in the set  A deadlock, also called as deadly embrace, is a situation in which two threads are each unknowingly waiting for resource held by other.  
+Example  
+A system has 2 disk drives P1 and P2 each hold one disk drive and each need the other one.  
+
+| P0 | P1 |
+| ------ | ------ | 
+| wait (A) | wait(B) | 
+| wait (B) | wait(A) | 
+<div align="center"><img src="https://i.imgur.com/upmQJaT.jpg"> </div> 
+
+
+* Task #1 wants the scanner while holding the printer. Task #1 cannot proceed until both the printer and the scanner are in its possession.
+* Task #2 wants the printer while holding the scanner. Task #2 cannot continue until it has the printer and the scanner.
+
+
+ 
+
+
 
 ### Error-Id
 | Error Name | Usage | 
@@ -141,6 +188,8 @@ A counting semaphore refers to a semaphore with several counter values. The valu
 | ErrorInQueueInit | Error in Queue Initialization. | 
 | ExceedMaxNumberOfTasks | Happens when number of tasks larger than defined in macro `MAX_NUM_OF_TASKS` in file `MRTOS_Porting.h`. | 
 | NULL_ARGs | Happens when User Passed Null Argument | 
+|INVALID_OPERATION|When Perform invalid operation|
+
 
 ### Task-Definition  
 This struct defined as task, with some User Accessible parameters and some of it Non Accessible by user.

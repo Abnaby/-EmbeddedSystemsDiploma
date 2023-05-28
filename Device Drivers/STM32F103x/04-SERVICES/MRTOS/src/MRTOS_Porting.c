@@ -2,8 +2,8 @@
 * @file MRTOS_Porting.h
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file consist of some of APIs that controls and hold CPU registers
-* @version 1.4
-* @date 2023-05-27
+* @version 1.5
+* @date 2023-05-28
 *
 */
 /******************************************************************************
@@ -91,7 +91,9 @@ void MRTOS_voidCallService(u8 copy_u8ServiceID)
 		case 2 :
 			__asm("SVC #0x02");
 			break;
-
+		case 3 :
+			__asm("SVC #0x03");
+			break;
 	}
 
 }

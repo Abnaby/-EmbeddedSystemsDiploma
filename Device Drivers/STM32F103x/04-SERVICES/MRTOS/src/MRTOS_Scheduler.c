@@ -2,8 +2,8 @@
 * @file MRTOS_Scheduler.c
 * @author Mohamed Abd El-Naby (mahameda.naby@gmail.com) 
 * @brief this file contain MRTOS services.
-* @version 1.4
-* @date 2023-05-27
+* @version 1.5
+* @date 2023-05-28
 *
 */
 /******************************************************************************
@@ -78,6 +78,7 @@ typedef enum
 	SVC_ID_ACTIVE_TASK,
 	SVC_ID_TASK_DELAY,
 	SVC_ID_TERMINATE_TASk,
+	SVC_ID_PRIORITY_INVERSION
 }OS_Services;
 
 /**
@@ -448,7 +449,6 @@ MRTOS_ErrorID MRTOS_RecieveItemToQueue(u32 *pToData)
 MRTOS_ErrorID MRTOS_ResetQueue(void)
 {
 	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
-	Global_DataQueueSynch.QueuePrivateData.MutexHolder = (MRTOS_Task*) NULL;
 	Global_DataQueueSynch.QueuePrivateData.msgWaitingCounter = 0 ;
 	Global_DataQueueSynch.QueuePrivateData.nextPopedItemIndex = 0 ;
 	return LOC_MRTOS_ErrorID;
@@ -581,6 +581,166 @@ MRTOS_ErrorID MRTOS_GetCountingSemphore(MRTOS_CountingSamphore *pSemaphore , u32
 	{
 
 		*ptoNumberOfFlags = pSemaphore->QueuePrivateData.msgWaitingCounter ;
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
+}
+#endif
+
+#if ENABLE_MUTEX == 1
+MRTOS_ErrorID MRTOS_CreateMutex(MRTOS_Mutex *pMutex)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pMutex != NULL)
+	{
+		// 1 mean it is available
+		pMutex->QueuePrivateData.msgWaitingCounter = 1;
+		pMutex->priorityInversionFlag = 0 ;
+		pMutex->inheritedTask = NULL ;
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
+}
+MRTOS_ErrorID MRTOS_AquireMutex(MRTOS_Mutex *pMutex,MRTOS_Task* pCurrentRunningTask)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pMutex != NULL && pCurrentRunningTask != NULL)
+	{
+		// Check if it available or not
+		if(pMutex->QueuePrivateData.msgWaitingCounter == 1)
+		{
+			// available
+			pMutex->MutexHolder = pCurrentRunningTask;
+			// Unavailable
+			pMutex->QueuePrivateData.msgWaitingCounter=0 ;
+
+		}
+		else
+		{
+			// Not available
+			if(pCurrentRunningTask->taskPriority >= pMutex->MutexHolder->taskPriority)
+			{
+				// Current Task is highest priority from mutex holder so make priority inversion.
+				// Check if it reserved before or not
+				if(pMutex->priorityInversionFlag == 0)
+				{
+					// Not Inherited Before
+
+					// Assign Inherited Task
+					pMutex->priorityInversionFlag = 1 ;
+					pMutex->inheritedTask = pCurrentRunningTask ;
+					// Swap Priorities
+					u32 tempPriority = pMutex->MutexHolder->taskPriority ;
+					pMutex->MutexHolder->taskPriority = pCurrentRunningTask->taskPriority ;
+					pCurrentRunningTask->taskPriority = tempPriority ;
+				}
+				else
+				{
+					// Higher Task Need to run after release MUTEX
+
+					// Restore Priorities before change it
+					u32 tempPriority = pMutex->inheritedTask->taskPriority;
+					pMutex->inheritedTask->taskPriority =  pMutex->MutexHolder->taskPriority ;
+					pMutex->MutexHolder->taskPriority = tempPriority ;
+
+					// Swap New Priorities
+					pMutex->inheritedTask = pCurrentRunningTask ;
+					tempPriority = pMutex->MutexHolder->taskPriority ;
+					pMutex->MutexHolder->taskPriority = pCurrentRunningTask->taskPriority ;
+					pCurrentRunningTask->taskPriority = tempPriority ;
+				}
+
+
+
+				// Call Service Call
+				MRTOS_voidCallService(SVC_ID_PRIORITY_INVERSION);
+			}
+			else
+			{
+				// Don't Make any thing its by default priority lower than current task
+				// So it mustn't goes here
+			}
+
+		}
+	}
+	else
+	{
+		LOC_MRTOS_ErrorID = NULL_ARGs;
+	}
+
+	return LOC_MRTOS_ErrorID;
+
+
+}
+MRTOS_ErrorID MRTOS_ReleaseMutex(MRTOS_Mutex *pMutex,MRTOS_Task* pCurrentRunningTask)
+{
+	MRTOS_ErrorID	LOC_MRTOS_ErrorID =	NoError ;
+	if(pMutex != NULL && pCurrentRunningTask != NULL)
+	{
+		// Check if it Unavailable to release it
+		if(pMutex->QueuePrivateData.msgWaitingCounter == 0)
+		{
+			// Check Holder
+			if(pMutex->MutexHolder == pCurrentRunningTask)
+			{
+				// Correct Holder
+
+
+				// Check the priority inversion flag
+				if(pMutex->priorityInversionFlag == 0)
+				{
+					// No Priority Inversion Happen
+					// So should ticker select next task auto.
+					// Return it to available
+					pMutex->QueuePrivateData.msgWaitingCounter = 1 ;
+
+				}
+				else
+				{
+					// Mutex is steel unavailable
+					pMutex->QueuePrivateData.msgWaitingCounter = 0 ;
+
+
+
+					// Priority Inversion Happens
+					// Clear It
+					pMutex->priorityInversionFlag = 0 ;
+
+					// Swap Priorities to restore it.
+					u32 tempPriority = pMutex->inheritedTask->taskPriority;
+					pMutex->inheritedTask->taskPriority =  pMutex->MutexHolder->taskPriority ;
+					pMutex->MutexHolder->taskPriority = tempPriority ;
+
+
+					// Update MUTEX Holder
+					pMutex->MutexHolder = pMutex->inheritedTask ;
+
+					// Call SVC
+					MRTOS_voidCallService(SVC_ID_PRIORITY_INVERSION);
+
+				}
+
+			}
+			else
+			{
+				// Doensn't have permission to release it
+				LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+			}
+		}
+		else
+		{
+			// Already Available
+			LOC_MRTOS_ErrorID = INVALID_OPERATION ;
+
+		}
 	}
 	else
 	{
@@ -824,6 +984,7 @@ void _MRTOS_SVC_CALL_( u32 *svc_args )
     case SVC_ID_ACTIVE_TASK:
     case SVC_ID_TERMINATE_TASk :
     case SVC_ID_TASK_DELAY :
+    case SVC_ID_PRIORITY_INVERSION:
 
     	// Update Scheduler Table and Ready Queue
     	MRTOS_staticFirstStageSchedular();
@@ -870,10 +1031,8 @@ FORCE_INLINE static void MRTOS_staticCheckDelayedTasks (void)
 
 
 }
- u32 counter ;
 static void MRTOS_voidTickerHandler(void)
 {
-	counter++;
 	// With Every Tick, Check Delayed Tasks First
 	MRTOS_staticCheckDelayedTasks();
 	// With Every Tick Evaluate the scheduler table
