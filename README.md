@@ -1,4 +1,4 @@
-# Embedded Systems Diploma by eng Keroles Shenouda "Learn in Depth"
+# Embedded Systems Diploma by Eng Keroles Shenouda "Learn in Depth"
 
 [![image](https://drive.google.com/uc?export=view&id=1Bcpl5OGMCVsqHlF52MFKXuOHNEaKHi92)](https://www.learn-in-depth.com/online-diploma/mahameda.naby@gmail.com)
 
@@ -27,10 +27,10 @@
 
 ---
 
-### Third Term ![image](https://progress-bar.dev/50/?title=In_2023&color=ff0000)
+### Third Term ![image](https://progress-bar.dev/75)
 
 - [Unit 12: Intro to some advanced topics]() ![image](https://progress-bar.dev/0/)
-- [Unit 13: Mastering CAN Protocol]() ![image](https://progress-bar.dev/0/)
+- [Unit 13: Mastering CAN Protocol](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_13_CAN) ![image](https://progress-bar.dev/100/)
 - [Unit 14: Mastering ARM CortexM3/4](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_14) ![image](https://progress-bar.dev/100/)
 - [Unit 15:Create Your Own RTOS](https://github.com/Abnaby/EmbeddedSystemsDiploma/tree/main/Unit_15_RTOS/MRTOS) ![image](https://progress-bar.dev/100/)
 
