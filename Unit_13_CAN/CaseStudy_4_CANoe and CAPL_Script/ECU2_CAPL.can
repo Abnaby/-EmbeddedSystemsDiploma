@@ -1,0 +1,55 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  // Commands Variables 
+  const int CMD_ACCELERATE = 1 ; 
+  const int CMD_DECELERATE = 0 ; 
+  
+  // Speed Limits 
+  const int LOWER_SPEED =  0 ; 
+  const int MAX_SPEED   =  255 ; 
+  int CurrentSpeed = 0 ; 
+  
+  // Msgs Objects 
+  message Speed_Value  msgObj_SpeedValue ;
+  
+  
+}
+
+on start
+{
+  // Entry Point 
+  write("##### ECU2 CAPL SCRIPT #####");
+}
+
+on message Acceleration_CMD 
+{
+  // Received Msg from ECU1 
+  if(this.ACC_Signal.phys == CMD_ACCELERATE )
+  {
+     write("    Received State CMD_ACCELERATE Command");
+    // Increase Speed 
+    if(CurrentSpeed >= MAX_SPEED)
+        CurrentSpeed = MAX_SPEED ; 
+    else
+        CurrentSpeed++ ; 
+  }
+  else 
+  {
+    write("    Received State CMD_DECELERATE Command");
+    // Decrease Speed
+    if(CurrentSpeed <= LOWER_SPEED)
+      CurrentSpeed = LOWER_SPEED ; 
+    else
+      CurrentSpeed--  ; 
+  }
+  
+  // Resend Speed To ECU1 
+  msgObj_SpeedValue.SPD_Signal.phys = CurrentSpeed ; 
+  output(msgObj_SpeedValue); 
+}

@@ -1,0 +1,65 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  // Timer Variables 
+  const int firingmsgTime_MS = 400 ; 
+  msTimer firingMsgTime  ; 
+  
+  // Commands Variables 
+  const int CMD_ACCELERATE = 1 ; 
+  const int CMD_DECELERATE = 0 ; 
+  int CurrentAccelerationVar = CMD_DECELERATE ; 
+  message Acceleration_CMD mssObj_AccelerationCMD ; 
+  
+  // Speed 
+  int ReceivedSpeed ; 
+  const int ThersholdSpeed = 180 ; 
+
+}
+
+on start 
+{
+  // As a Main FCN in C
+  write("##### ECU1 CAPL SCRIPT #####");
+
+       
+  setTimer(firingMsgTime,firingmsgTime_MS) ; 
+  write("Running Status %d",firingMsgTime.isRunning());
+
+}
+
+on sysvar Global_AccelerationDataExchange
+{
+  //write("Time to elapse: %d",timeToElapse(firingMsgTime)); 
+  write("Changing Acceleration State"); 
+}
+on timer firingMsgTime
+{
+  
+  // Xor The value of ACC
+  CurrentAccelerationVar =  @sysvar::Global_AccelerationDataExchange ; 
+  
+  // Change Physical Value 
+  mssObj_AccelerationCMD.ACC_Signal.phys = CurrentAccelerationVar ; 
+  // Send Command 
+  output(mssObj_AccelerationCMD);
+  
+    // Reset The Timer to fire in firingmsgTime_MS 
+  setTimer(firingMsgTime,firingmsgTime_MS) ;  
+}
+
+on message Speed_Value
+{
+  ReceivedSpeed = this.SPD_Signal.phys ; 
+  // Received Msg form speed control ECU
+    write("    Received Speed is : %d" , ReceivedSpeed);
+  if(ReceivedSpeed >= ThersholdSpeed)
+      @sysvar::Global_SpeedDataExchange  = 1 ; 
+  else 
+     @sysvar::Global_SpeedDataExchange  = 0  ; 
+}
